@@ -1,0 +1,109 @@
+/* 	-----------------------------------
+    ----    Copyright Weborn 2016    --
+    ---- Do Not Attempt to Duplicate --
+	----------------------------------- */
+	
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
+	
+body
+{
+	padding:0;
+	background: url("../images/background.png");
+	font-family: 'Roboto Light', sans-serif;
+	background-size:cover;
+	color:#EBEBEB;
+}
+
+#header
+{
+	height:30%;
+}
+
+.logo_univ
+{
+	height:200px;
+	width:150px;
+	background:#E2E417;
+	padding:1em;
+}
+
+.logo_univ img
+{
+	max-width:125px;
+}
+
+#comingSoon
+{
+	margin-top:1em;
+}
+
+#footer
+{
+	height:10%;
+}
+
+#bigTitle h1
+{
+	font-weight:100;
+	font-size:60px;
+}
+
+#bigTitle h2
+{
+	font-weight:400;
+	font-size:40px;
+}
+
+#content
+{
+	height:55%;
+}
+
+#bigLogo img
+{
+	max-width:200px;
+	position:relative;
+}
+
+#tagline h4
+{
+	font-weight:300;
+	font-size:25px;
+}
+
+#countdown
+{
+	margin-top:-2.5em;
+}
+
+.left_number
+{
+	margin-top:0.5em;
+	max-width:20%;
+	float:left;
+}
+
+.left_number h1
+{
+	font-size:80px;
+}
+
+.right_number
+{
+	padding-top:2em;
+	margin-left:2em;
+	float:left;
+}
+
+.right_number h4
+{
+	margin-bottom:0;
+	font-size:30px;
+}
+
+.right_number h3
+{
+	margin-top:0;
+	font-size:32px;
+}

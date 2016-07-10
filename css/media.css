@@ -1,0 +1,144 @@
+/* 	-----------------------------------
+    ----    Copyright Weborn 2016    --
+    ---- Do Not Attempt to Duplicate --
+	----------------------------------- */
+	
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
+
+@media (max-width: 1200px) and (min-width: 995px) {
+	
+	#countdown
+	{
+		margin-left:0;
+	}
+	
+	.left_number h1
+	{
+		font-size:60px;
+	}
+}
+
+@media (min-width: 700px) and (max-width: 995px) {
+	
+	#countdown
+	{
+		margin-left:50%;
+	}
+	
+	#tagline
+	{
+		margin-top:2em;
+		margin-bottom:2em;
+	}
+	
+	#tagline h4
+	{
+		font-size:20px;
+	}
+	
+	.right_number
+	{
+		margin-left:0;
+	}
+	
+	.left_number h1
+	{
+		font-size:60px;
+	}
+	
+	.right_number h4
+	{
+		margin-bottom:0;
+		font-size:20px;
+	}
+	
+	.right_number h3
+	{
+		margin-top:0;
+		font-size:22px;
+	}
+}
+
+@media (min-width: 451px) and (max-width: 699px)
+{
+	#countdown
+	{
+		margin-left:25%;
+	}
+	
+	#tagline
+	{
+		margin-top:2em;
+		margin-bottom:2em;
+	}
+	
+	#tagline h4
+	{
+		font-size:20px;
+	}
+	
+	.right_number
+	{
+		margin-left:0;
+	}
+	
+	.left_number h1
+	{
+		font-size:60px;
+	}
+	
+	.right_number h4
+	{
+		margin-bottom:0;
+		font-size:20px;
+	}
+	
+	.right_number h3
+	{
+		margin-top:0;
+		font-size:22px;
+	}
+}
+
+@media (max-width: 450px)
+{
+	#countdown
+	{
+		margin-left:2em;
+	}
+	
+	#tagline
+	{
+		margin-top:2em;
+		margin-bottom:2em;
+	}
+	
+	#tagline h4
+	{
+		font-size:20px;
+	}
+	
+	.right_number
+	{
+		margin-left:0;
+	}
+	
+	.left_number h1
+	{
+		font-size:60px;
+	}
+	
+	.right_number h4
+	{
+		margin-bottom:0;
+		font-size:20px;
+	}
+	
+	.right_number h3
+	{
+		margin-top:0;
+		font-size:22px;
+	}
+	
+}
