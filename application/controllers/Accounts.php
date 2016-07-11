@@ -12,6 +12,7 @@ class Accounts extends CI_Controller {
 	public function index()
 	{
         // $this->accounts_model->register('furibaito@live.com', 'garen', 'Lee Sin', '08176425732', 2, 'SMA EX', 'recov@gmail.com', 'Howdy', 'No shit');
+        $this->load->view('admin_view');
 	}
 
     // Splits the verification code and checks if it's correct

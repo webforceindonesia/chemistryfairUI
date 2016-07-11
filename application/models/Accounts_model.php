@@ -5,6 +5,22 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 // Accounts_model.php
 // Interface to manage the account from the database
 
+/* 'accounts' table structure
+
+    id              	int(10) unsigned	
+    email               varchar(255)				
+    password	        varchar(255)				
+    fullname	        varchar(128)				
+    phone_number	    varchar(16)				
+    email_recovery	    varchar(128)				
+    security_question	varchar(128)				
+    security_answer	    varchar(128)				
+    is_admin	        tinyint(1)	
+    verification_code	varchar(64)			
+    is_verified	        tinyint(1)			
+    time_created	    datetime				
+*/
+
 class Accounts_model extends CI_Model
 {
     // Constructor
@@ -15,7 +31,21 @@ class Accounts_model extends CI_Model
     }
 
     /**
-     *  Check if the email is already exists on the database
+     *  Get the account details data
+     *  @param integer $account_id 
+     *  @return object Contains data
+     *  @author FURIBAITO
+     */
+    public function get_details($account_id)
+    {
+        $this->db->select('email, fullname, phone_number, email_recovery, security_question, is_admin, is_verified, time_created');
+        $this->db->where('id', $account_id);
+        $this->db->limit(1);
+        return $this->db->get('accounts')->row();
+    }
+
+    /**
+     *  Get account id from email
      *  @param string $email 
      *  @return integer Account ID on exists, 0 otherwise
      *  @author FURIBAITO
@@ -57,22 +87,36 @@ class Accounts_model extends CI_Model
 
         $return_data = array();
 
+        // Check from Seminar table
+        $query_row = $this->db->get('seminar_participant')->row();
+        if (!empty($query_row))
+        {
+            $return_data['seminar'] = $query_row->id;
+        }
+
+        // Check from CFK table
+        $query_row = $this->db->get('cfk_participants')->row();
+        if (!empty($query_row))
+        {
+            $return_data['cfk'] = $query_row->id;
+        }
+
         // Check from CC table
-        $query_row = $this->db->get('cc_teams')->row();
+        $query_row = $this->db->get('cc_participants')->row();
         if (!empty($query_row))
         {
             $return_data['cc'] = $query_row->id;
         }
 
         // Check from CIP table
-        $query_row = $this->db->get('cip_teams')->row();
+        $query_row = $this->db->get('cip_participants')->row();
         if (!empty($query_row))
         {
             $return_data['cip'] = $query_row->id;
         }
 
         // Check from CAC table
-        $query_row = $this->db->get('cac_teams')->row();
+        $query_row = $this->db->get('cac_participants')->row();
         if (!empty($query_row))
         {
             $return_data['cac'] = $query_row->id;
@@ -97,7 +141,7 @@ class Accounts_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register($email, $password, $fullname, $phone_number, $institution_type, $institution_name, $email_recovery, $security_question, $security_answer)
+    public function register($email, $password, $fullname, $phone_number, $email_recovery, $security_question, $security_answer)
     {
         // Check if the email is not taken yet
         if ($this->get_id_from_email($email) !== 0)
@@ -111,8 +155,6 @@ class Accounts_model extends CI_Model
             'password'          =>  password_hash($password, PASSWORD_DEFAULT),
             'fullname'          =>  $fullname,
             'phone_number'      =>  $phone_number,
-            'institution_type'  =>  $institution_type,
-            'institution_name'  =>  $institution_name,
             'email_recovery'    =>  $email_recovery,
             'security_question' =>  $security_question,
             'security_answer'   =>  $security_answer,
@@ -215,17 +257,22 @@ class Accounts_model extends CI_Model
     }
 
     /**
-     *  Renew password
+     *  Change details of a field in the DB (Only password, fullname, phone_number, email_recovery, security_question and security_answer)
      *  @param integer $account_id 
-     *  @param string $input_new_password
+     *  @param string $field
+     *  @param mixed $value
      *  @return void
      *  @author FURIBAITO
      */
-    public function set_new_password($account_id, $input_new_password)
+    public function change_details($account_id, $field_name, $value)
     {
-        $this->db->where('id', $account_id);
-        $this->db->limit(1);
-        $this->db->update('accounts', array('password' => password_hash($input_new_password, PASSWORD_DEFAULT)));
+        $allowed_field = array('password', 'fullname', 'phone_number', 'email_recovery', 'security_question', 'security_answer');
+        if (in_array($field_name, $allowed_field, true))
+        {
+            $this->db->where('id', $account_id);
+            $this->db->limit(1);
+            $this->db->update('accounts', array($field_name => ($field_name === 'password') ? password_hash($value, PASSWORD_DEFAULT) : $value));
+        }
     }
 
     /**
