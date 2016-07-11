@@ -68,7 +68,7 @@ class Cc_participants_model extends CI_Model
     $teacher_name, $teacher_phone_number, $lodging_days, $teacher_needs_lodging, $need_transport)
     {
         // Create the query builder 
-        $this->db->insert('seminar_participants', array(
+        $this->db->insert('cc_participants', array(
             'account_id'            =>  $account_id,
             'fullname_member1'      =>  $fullname_member1,
             'fullname_member2'      =>  $fullname_member2,

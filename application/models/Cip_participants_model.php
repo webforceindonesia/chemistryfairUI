@@ -2,7 +2,7 @@
 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-// Cip_teams_model.php
+// Cip_participants_model.php
 // Interface to manage the Chemistry Innovation Project team data.
 
 /* 'cip_participants' table structure
@@ -69,7 +69,7 @@ class Cip_participants_model extends CI_Model
     $institution_name, $province_id, $lodging_days, $need_transport)
     {
         // Create the query builder 
-        $this->db->insert('seminar_participants', array(
+        $this->db->insert('cip_participants', array(
             'account_id'            =>  $account_id,
             'type'                  =>  $type,
             'fullname_member1'      =>  $fullname_member1,
@@ -99,10 +99,24 @@ class Cip_participants_model extends CI_Model
         {
             $this->db->where('id', $account_id);
             $this->db->limit(1);
-            $this->db->update('cc_participants', array($field_name => $value));
+            $this->db->update('cip_participants', array($field_name => $value));
             return true;
         }
         return false;
+    }
+
+    /**
+     *  Let this participant pass the abstract selection
+     *  @param int $account_id
+     *  @return bool True on success, false otherwise
+     *  @author FURIBAITO
+     */
+    public function pass_abstract($account_id)
+    {
+        $this->db->where('id', $account_id);
+        $this->db->limit(1);
+        $this->db->update('cip_participants', array('abstract_passed' => true));
+        return true;
     }
 
     /**
@@ -115,7 +129,7 @@ class Cip_participants_model extends CI_Model
     {
         $this->db->where('id', $account_id);
         $this->db->limit(1);
-        $this->db->update('cc_participants', array('is_paid' => true));
+        $this->db->update('cip_participants', array('is_paid' => true));
         return true;
     }
 }
