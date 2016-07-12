@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             	<div class="col-md-3">&nbsp;</div>
             	<div class="col-md-6">
                         <div id="bigLogo">
-                            <p align="center"><img src="<?php echo base_url() ?>/images/bigLogo.jpg" class="layer" data-depth="0.20"></p>
+                            <p align="center"><img src="<?php echo base_url() ?>/images/bigLogo.svg" class="layer" data-depth="0.20"></p>
                         </div>
                 </div>
             	<div class="col-md-3">&nbsp;</div>

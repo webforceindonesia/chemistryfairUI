@@ -48,10 +48,10 @@
                             </div>
                             <div class="col-md-10">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="<?php echo base_url() ?>">Beranda</a></li>
-                                    <li><a href="<?php echo base_url() ?>">Acara</a></li>
-                                    <li><a href="<?php echo base_url() ?>">Lomba</a></li>
-                                    <li><a href="<?php echo base_url() ?>">Tentang Kami</a></li>
+                                    <li><a href="<?php echo base_url('fairui') ?>">Beranda</a></li>
+                                    <li><a href="<?php echo base_url('fairui') ?>/acara">Acara</a></li>
+                                    <li><a href="<?php echo base_url('fairui') ?>">Lomba</a></li>
+                                    <li><a href="<?php echo base_url('fairui') ?>/aboutus">Tentang Kami</a></li>
                                 </ul>
                             </div>
                         </div>

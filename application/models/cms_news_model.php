@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class fairui extends CI_Model {
+class cms_news_model extends CI_Model {
+
+	private 
 
 	public function __construct ()
 	{
@@ -9,7 +11,19 @@ class fairui extends CI_Model {
 		parent::__construct();
 	}
 	
-	//CMS Models
+	public function write ()
+	{
+		$this->load->database();
+		
+	}
+	
+	public function pull ()
+	{
+		
+			
+	}
+	
+	
 		
 }
 ?>

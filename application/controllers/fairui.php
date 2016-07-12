@@ -33,7 +33,7 @@ class Fairui extends CI_Controller {
 				show_404();
 			}
 			
-			$data['title'] = "About Us - Chemistry Fair";
+			$data['title'] = "Tentang Kami - Chemistry Fair";
 			
 			$this->load->view('templates/header.php', $data);
 			$this->load->view($page, $data);
@@ -53,7 +53,7 @@ class Fairui extends CI_Controller {
 				show_404();
 			}
 			
-			$data['title'] = "About Us - Chemistry Fair";
+			$data['title'] = "Beranda - Chemistry Fair";
 			
 			$this->load->view('templates/header.php', $data);
 			$this->load->view($page, $data);
