@@ -27,11 +27,15 @@ body
 	color:#000;
 }
 
+#headerAll
+{
+	height:40%;
+}
+
 #headerBig
 {
 	position:relative;
 	top:0;
-	height:20%;
 }
 
 #contentAll

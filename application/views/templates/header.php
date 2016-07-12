@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <br><br>
-                <div id="footer">
+                <div id="footer" class="countdown">
                 <div class="row">
                     <div class="col-md-6">
                         <div id="tagline">
