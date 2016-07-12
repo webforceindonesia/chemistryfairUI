@@ -20,9 +20,13 @@ class Fairui extends CI_Controller {
 			$this->load->view($page, $data);
 	}
 	
-	public function aboutUs()
+	public function aboutus()
 	{
-		$page = "aboutUs";	
+		$event = mktime(0,0,0,8,1,2016);
+		$remaining = $event - time();
+		$data['countdown'] = floor($remaining / 86400);
+		
+		$page = "about_us";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
@@ -36,20 +40,24 @@ class Fairui extends CI_Controller {
 			$this->load->view('templates/footer.php');
 	}
 	
-	public function acara()
+	public function home()
 	{
-		$page = "aboutUs";	
+		$event = mktime(0,0,0,8,1,2016);
+		$remaining = $event - time();
+		$data['countdown'] = floor($remaining / 86400);
+		
+		$page = "home";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
 				show_404();
 			}
 			
-			$data['title'] = "Home - Chemistry Fair";
+			$data['title'] = "About Us - Chemistry Fair";
 			
 			$this->load->view('templates/header.php', $data);
 			$this->load->view($page, $data);
-			$this->load->view('templates/footer.php');	
+			$this->load->view('templates/footer.php');
 	}
 }
 

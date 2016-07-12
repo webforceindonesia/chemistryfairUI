@@ -5,7 +5,8 @@
 	
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
-	
+
+/* Global */
 body
 {
 	padding:0;
@@ -14,6 +15,71 @@ body
 	background-size:cover;
 	color:#EBEBEB;
 }
+
+#navBar
+{
+	position:absolute;
+	top:0;
+	width:100%;
+	height:4em;
+	left:0;
+	background:#ccc;
+	color:#000;
+}
+
+#headerBig
+{
+	position:relative;
+	top:0;
+	height:20%;
+}
+
+#contentAll
+{
+	min-height:50%
+}
+
+#navBar nav
+{
+	margin-top:1em;
+}
+
+#footerAll
+{
+	width:100%;
+	position:relative;
+	bottom:0;
+	height:30%;
+	background:#3E3E3E;
+}
+
+.logo_univ_footer
+{
+	height:200px;
+	width:150px;
+	background:#E2E417;
+	padding:1em;
+}
+
+.logo_univ_footer img
+{
+	max-width:125px;
+}
+
+#footerLogo
+{
+	position:absolute;
+	bottom:0;
+}
+
+#footerPar h3
+{
+	margin-top:0;
+	font-weight:300;
+}
+
+
+/* CountDown */
 
 #header
 {
@@ -58,6 +124,7 @@ body
 #content
 {
 	height:55%;
+	position:relative;
 }
 
 #bigLogo img
@@ -106,4 +173,41 @@ body
 {
 	margin-top:0;
 	font-size:32px;
+}
+
+/* About Us */
+
+#aboutUs
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+}
+
+.paragraph
+{
+	color:#000;
+}
+
+.paragraph h1
+{
+	margin-bottom:1em;
+}
+
+/* Home */
+#home
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+	color:#000;
+}
+
+/* Lomba */
+#lomba
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+	color:#000;
 }
