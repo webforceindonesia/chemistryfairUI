@@ -13,6 +13,7 @@
             <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
+            <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.slides.min.js"></script>
             
             <!-- Metas -->
             <meta charset="utf-8">
@@ -48,10 +49,10 @@
                             </div>
                             <div class="col-md-10">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="<?php echo base_url('fairui') ?>">Beranda</a></li>
-                                    <li><a href="<?php echo base_url('fairui') ?>/acara">Acara</a></li>
-                                    <li><a href="<?php echo base_url('fairui') ?>">Lomba</a></li>
-                                    <li><a href="<?php echo base_url('fairui') ?>/aboutus">Tentang Kami</a></li>
+                                    <li><a href="<?php echo base_url('Main') ?>">Beranda</a></li>
+                                    <li><a href="<?php echo base_url('Acara') ?>/acara">Acara</a></li>
+                                    <li><a href="<?php echo base_url('Lomba') ?>">Lomba</a></li>
+                                    <li><a href="<?php echo base_url('Main') ?>/aboutus">Tentang Kami</a></li>
                                 </ul>
                             </div>
                         </div>

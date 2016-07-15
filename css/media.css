@@ -6,7 +6,7 @@
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
 
-@media (max-width: 1200px) and (min-width: 995px) {
+@media handheld, screen and (max-width: 1200px) and (min-width: 995px) {
 	
 	#countdown
 	{
@@ -19,7 +19,7 @@
 	}
 }
 
-@media (min-width: 769px) and (max-width: 995px) {
+@media handheld, screen and (min-width: 769px) and (max-width: 995px) {
 	
 	#countdown
 	{
@@ -70,7 +70,7 @@
 	}
 }
 
-@media (min-width: 451px) and (max-width: 768px)
+@media handheld, screen and (min-width: 451px) and (max-width: 768px)
 {
 	#countdown
 	{
@@ -126,7 +126,7 @@
 	}
 }
 
-@media (max-width: 450px)
+@media handheld, screen and (max-width: 450px)
 {
 	#countdown
 	{
@@ -180,4 +180,59 @@
 	{
 		margin-top:1em;
 	}
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+  
+  #content
+  {
+	  margin-top:20%;
+  }
+  
+  #footer
+  {
+	  margin-top:50%;
+  }
+
+}
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	
+  #content
+  {
+	  margin-top:20%;
+  }
+  
+  #footer
+  {
+	  margin-top:50%;
+  }
+
+}
+
+@media only screen 
+  and (max-device-width: 320px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	  
+  #content
+  {
+	  margin-top:20%;
+  }
+  
+  #footer
+  {
+	  margin-top:50%;
+  }
+
+  #bigTitle h1
+  {
+	  font-size:50px;
+  }
+
 }
