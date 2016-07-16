@@ -162,9 +162,6 @@ class Accounts_model extends CI_Model
             'is_verified'       =>  false,
             'time_created'      =>  date('Y-m-d H:i:s')
         ));
-
-        // Send a verification email to the new user
-        $this->send_verification_email($this->db->insert_id());
     }
 
     /**

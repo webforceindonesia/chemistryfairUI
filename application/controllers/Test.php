@@ -7,13 +7,21 @@ class Test extends CI_Controller {
     {
         parent::__constructor();
         $this->load->library('session');
+        $this->load->library('form_validation');
+        $this->load->helper('form');
     }
     
     public function index()
 	{
-        $this->load->view('test/header.php', $data);
-        $this->load->view('test/footer.php');
+        $this->view();
 	}
+
+    public function view($page = 'home')
+    {
+        $this->load->view('test/header.php', $data);
+        $this->load->view('test/home.php');
+        $this->load->view('test/footer.php');
+    }
 }
 
 ?>

@@ -1,0 +1,114 @@
+<div id="form-container">
+
+    <!-- Show the form for account registration -->
+    <?php echo form_open('accounts/account_registration');
+
+    // Alamat Email
+    echo form_label('Alamat Email', 'email', array('class' => 'form-label'));
+    echo form_error('email');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'email',
+        'placeholder'   => 'Masukkan email anda.',
+        'value'         => set_value('email')
+    )); 
+
+    echo '<br/>';
+
+    // Konfirmasi Alamat Email
+    echo form_label('Konfirmasi Alamat Email', 'emailconf', array('class' => 'form-label'));
+    echo form_error('emailconf');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'emailconf',
+        'placeholder'   => 'Ketik ulang alamat email anda.',
+    )); 
+
+    echo '<br/>';
+
+    // Password
+    echo form_label('Password', 'password', array('class' => 'form-label'));
+    echo form_error('password');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'password',
+        'placeholder'   => 'Masukkan password anda.',
+    ));
+
+    echo '<br/>';
+
+    // Password Confirmation
+    echo form_label('Konfirmasi Password', 'passconf', array('class' => 'form-label'));
+    echo form_error('passconf');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'passconf',
+        'placeholder'   => 'Ketik ulang password anda.',
+    ));
+
+    echo '<br/>';
+
+    // Fullname
+    echo form_label('Nama Lengkap', 'fullname', array('class' => 'form-label'));
+    echo form_error('fullname');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'fullname',
+        'placeholder'   => 'Masukkan nama lengkap anda.',
+        'value'         => set_value('fullname')
+    ));
+
+    echo '<br/>';
+
+    // Phone number
+    echo form_label('Nomor telepon', 'phone_number', array('class' => 'form-label'));
+    echo form_error('phone_number');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'phone_number',
+        'placeholder'   => 'Masukkan nomor telepon anda.',
+        'value'         => set_value('phone_number')
+    ));
+
+    echo '<br/>';
+
+    // Recovery Email
+    echo form_label('Email Cadangan', 'email_recovery', array('class' => 'form-label'));
+    echo form_error('email_recovery');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'email_recovery',
+        'placeholder'   => 'Masukkan email cadangan anda.',
+        'value'         => set_value('email_recovery')
+    ));
+
+    echo '<br/>';
+
+    // Security Question
+    echo form_label('Pertanyaan Keamanan', 'security_question', array('class' => 'form-label'));
+    echo form_error('security_question');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'security_question',
+        'placeholder'   => 'Masukkan pertanyaan keamanan anda.',
+        'value'         => set_value('security_question')
+    ));
+
+    echo '<br/>';
+
+    // Security Answer
+    echo form_label('Jawaban Keamanan', 'security_answer', array('class' => 'form-label'));
+    echo form_error('security_answer');
+    echo form_input(array(
+        'class'         => 'form-input-generic', 
+        'name'          => 'security_answer',
+        'placeholder'   => 'Masukkan jawaban keamanan anda.',
+        'value'         => set_value('security_answer')
+    ));
+
+    echo '<br/>';
+
+    echo form_submit(array('id' => 'form-submit', 'value' => 'Submit'));
+
+    echo form_close(); ?>
+</div>
