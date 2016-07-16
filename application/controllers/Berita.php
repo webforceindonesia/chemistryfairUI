@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Fairui extends CI_Controller {
+class Berita extends CI_Controller {
 
 	public function index()
 	{
@@ -9,7 +9,7 @@ class Fairui extends CI_Controller {
 			$remaining = $event - time();
 			$data['countdown'] = floor($remaining / 86400);
 			
-			$page = "landing_page";
+			$page = "home";
 			if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
@@ -20,44 +20,58 @@ class Fairui extends CI_Controller {
 			$this->load->view($page, $data);
 	}
 	
-	public function aboutus()
+	public function form()
 	{
 		$event = mktime(0,0,0,8,1,2016);
 		$remaining = $event - time();
 		$data['countdown'] = floor($remaining / 86400);
 		
-		$page = "about_us";	
+		$page = "new_entry_news";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
 				show_404();
 			}
 			
-			$data['title'] = "About Us - Chemistry Fair";
+			$data['title'] = "Form - Chemistry Fair";
 			
 			$this->load->view('templates/header.php', $data);
 			$this->load->view($page, $data);
 			$this->load->view('templates/footer.php');
 	}
 	
-	public function home()
+	public function news()
 	{
 		$event = mktime(0,0,0,8,1,2016);
 		$remaining = $event - time();
 		$data['countdown'] = floor($remaining / 86400);
 		
-		$page = "home";	
+		$this->load->model('cms_news_model');
+		$content = $this->cms_news_model->pull_one();
+		
+		$data['news_title'] = $content['title'];
+		$data['news_content'] = $content['content'];
+		$data['news_created'] = $content['created'];
+				
+		$page = "news_entry";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
 				show_404();
 			}
 			
-			$data['title'] = "About Us - Chemistry Fair";
+			$data['title'] = "Form - Chemistry Fair";
 			
 			$this->load->view('templates/header.php', $data);
 			$this->load->view($page, $data);
 			$this->load->view('templates/footer.php');
+	}
+	
+	public function form_input()
+	{
+		$this->load->model('cms_news_model');
+		
+		$this->cms_news_model->write();
 	}
 }
 
