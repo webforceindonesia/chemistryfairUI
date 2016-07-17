@@ -1,88 +1,80 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 <html>
-<head>
-	
-    <!-- Page Title -->
-    <title><?php echo $page_title ?></title>
+    <head>
+
+        <!-- Page Title -->
+        <title><?php echo $page_title ?></title>
+        
+        <!-- Include CSS & JS -->
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/qunit.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/media.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
+        
+        <!-- Metas -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        
+        <!---------------------------------
+        ----    Copyright Weborn 2016    --
+        ---- Do Not Attempt to Duplicate --
+        ---------------------------------->
+        
+        <style>
+            @media (max-width:995px)
+            {
+                .logo_univ
+                {
+                    display:none;	
+                }
+            }
+        </style>
     
-    <!-- Include CSS & JS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/qunit.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/style.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/media.css">
-    <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
-    
-    <!-- Metas -->
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-    <!---------------------------------
-    ----    Copyright Weborn 2016    --
-    ---- Do Not Attempt to Duplicate --
-    ---------------------------------->
-    
-</head>
-<body>
-	<div class="container">
-      <div id="header">
-      <div class="row">
-    	<div class="col-md-2">
-    		<div class="logo_univ">
-            	<img src="<?php echo base_url() ?>/images/logo_univ.png">
+    </head>
+
+    <body>
+        <div class="logo-cf-header-container-small mobile-only">
+            <img src="<?php echo base_url() ?>images/bigLogo.svg">
+            <div>
+                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
             </div>
         </div>
-       	<div class="col-md-10">
-        	<h4 id="comingSoon">Coming Soon</h4>
+        <div id="top-bar">
+            <div id="logo-univ-header-container" class="col-md-2">
+                <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logoui.png">
+                <img id="logo-hmd" src="<?php echo base_url() ?>images/HMD-Kimia.png">
+            </div>
+            <div class="col-md-8">
+                <span id="comingsoon">COMING SOON</span>
+            </div>
         </div>
-      </div>
-      </div>
-      <div id="content">
-      		<div class="row">
-              <div id="container">
-            	<div class="col-md-3">&nbsp;</div>
-            	<div class="col-md-6">
-                        <div id="bigLogo">
-                            <p align="center"><img src="<?php echo base_url() ?>/images/logo.svg" class="layer" data-depth="0.20"></p>
-                        </div>
-                </div>
-            	<div class="col-md-3">&nbsp;</div>
-                <div class="col-md-12">
-                	<div id="bigTitle">
-                            <h1 align="center" class="layer" data-depth="0.30">CHEMISTRY FAIR</h1>
-                            <h2 align="center">04.07.2016</h2>
-                    </div>
-                </div>  
-              </div>
+
+        <div class="logo-cf-header-container">
+            <img src="<?php echo base_url() ?>images/bigLogo.svg">
+            <div>
+                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
             </div>
-      </div>
-      <div id="footer">
-      	<div class="row">
-        	<div class="col-md-6">
-            	<div id="tagline">
-           			<h4 id="tagline" align="left"><i>Maximizing Chemistry Potential to <br> Maintain The Sustainablility of Energy</i></h4>
+        </div>
+
+        <div class="fixed-bot">
+            <div class="col-md-4">
+                <p class="quote"><i>Maximizing Chemistry Potential to Maintain The Sustainablility of Energy</i></p>
+            </div>
+
+            <div class="col-md-2">
+            
+            </div>
+
+            <div class="col-md-6 countdown-area">
+                <div class="countdown-number">
+                    <span><?php echo $countdown ?></span>
+                </div>
+                <div>
+                    <p>HARI LAGI MENUJU<br/>OPEN REGISTRATION</p>
                 </div>
             </div>
-            <div class="col-md-6" id="countdown">
-            	<div class="left_number">
-           			<h1><?php echo $countdown ?></h1>
-                </div>
-                <div class="right_number">
-                    <h4>HARI LAGI MENUJU</h4>
-                    <h3>OPEN REGISTERATION</h3>
-                </div>
-            </div>
-      	</div>
-      </div>
-    </div>
-    
-    <!-- Parallax Must be on bottom -->
-	<script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.parallax.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url() ?>/js/script.js"></script>
-    
-</body>
-</html>
+        </div>
