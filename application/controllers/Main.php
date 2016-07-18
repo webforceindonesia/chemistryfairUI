@@ -52,13 +52,15 @@ class Main extends CI_Controller {
 		$this->load->model('cms_news_model');
 		$content = $this->cms_news_model->pull_last_ten();
 		
-		do
+		foreach ($content as $row)
 		{
-			$data['news_title'.$i] = $content[$i]['title'];
-			
+			$data['news_title'][$i] = $row['title'];
+			$data['news_created'][$i] = $row['created'];
+			$data['news_content'][$i] = $row['content'];
 			$i++;
-		}while($content[$i]['title'] != '');
+		}
 		
+		$data['news_counter'] = $i;
 			
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{

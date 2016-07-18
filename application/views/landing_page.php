@@ -62,18 +62,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div id="footer">
       	<div class="row">
-        	<div class="col-md-6">
+        	<div class="col-md-7">
             	<div id="tagline">
            			<h4 id="tagline" align="left"><i>Maximizing Chemistry Potential to <br> Maintain The Sustainablility of Energy</i></h4>
                 </div>
             </div>
-            <div class="col-md-6" id="countdown">
+            <div class="col-md-5" id="countdown">
             	<div class="left_number">
            			<h1><?php echo $countdown ?></h1>
                 </div>
                 <div class="right_number">
                     <h4>HARI LAGI MENUJU</h4>
-                    <h3>OPEN REGISTERATION</h3>
+                    <h3>OPEN REGISTRATION</h3>
                 </div>
             </div>
       	</div>

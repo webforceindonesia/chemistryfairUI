@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 	Title : <input type="text" name="title"><br>
                     Content : <textarea name="content"></textarea><br>
                     <input type="submit">
-                </form>   
+                </form>
             </div>   	
             </div>
         </div>

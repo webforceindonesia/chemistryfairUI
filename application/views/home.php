@@ -11,12 +11,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             	<div class="col-md-6">
                 	<h1>Berita</h1>
                     <div id="berita">
-                    <?php ?>
+                    <?php
+					$i=0;
+					foreach ($news_title as $count)
+					{
+						?>
                     	<div class="oneBerita">
-                        	<h1><?php echo $news_title0 ?></h1>
-                        
+                        	<h2><?php echo $news_title[$i] ?></h2>
+                            <p><?php echo $news_created[$i] ?></p>
+                        	<p>
+                            	<?php echo $news_content[$i] ?>
+                            </p>
                         </div>
-                    <?php ?>
+                    <?php 
+					$i++;
+					}
+					?>
                     </div>
                 </div>
             	<div class="col-md-6">
