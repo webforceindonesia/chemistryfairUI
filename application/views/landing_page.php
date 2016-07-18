@@ -28,15 +28,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     </head>
     <body>
-        <div class="logo-cf-header-container-small">
+        <div class="logo-cf-comingsoon-container-small">
             <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>
                 <p>CHEMISTRY FAIR<br/><span>2016</span></p>
             </div>
         </div>
         <div id="top-bar">
-            <div id="logo-univ-header-container" class="col-md-2">
-                <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logo_univ_box.png">
+            <div id="logo-univ-comingsoon-container" class="col-md-2">
+                <img id="logo-univ-comingsoon" src="<?php echo base_url() ?>/images/logo_univ_box.png">
                 <img id="logo-hmd" src="<?php echo base_url() ?>images/HMD-Kimia.png">
             </div>
             <div class="col-md-8">
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
-        <div class="logo-cf-header-container">
+        <div class="logo-cf-comingsoon-container">
             <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>
                 <p>CHEMISTRY FAIR<br/><span>2016</span></p>
