@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div id="top-bar">
             <div id="logo-univ-header-container" class="col-md-2">
-                <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logoui.png">
+                <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logo_univ_box.png">
                 <img id="logo-hmd" src="<?php echo base_url() ?>images/HMD-Kimia.png">
             </div>
             <div class="col-md-8">
