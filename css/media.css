@@ -6,6 +6,66 @@
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
 
+@media handheld, screen and (min-width: 320px) and (max-width: 991px)
+{
+	#logo-univ-header-container
+	{
+		display: none;
+	}
+
+	#top-bar
+	{
+		height: auto;
+	}
+
+	#top-bar div
+	{
+		text-align: center;
+	}
+
+	#top-bar .col-md-8
+	{
+		text-align: center;
+	}
+
+	.logo-cf-header-container-small
+	{
+		display: block;
+	}
+
+	.logo-cf-header-container
+	{
+		display: none;
+	}
+
+	.fixed-bot
+	{
+		position: fixed;
+		bottom: 40px;
+	}
+
+	.fixed-bot .col-md-4
+	{
+		text-align: center;
+	}
+
+	.quote
+	{
+		font-size: 16px;
+	}
+
+	.countdown-area div
+	{
+		display: block;
+		text-align: center;
+	}
+
+	.countdown-number span
+	{
+		font-size: 72px;
+	}
+}
+
 @media handheld, screen and (max-width: 1200px) and (min-width: 995px) {
 	
 	#countdown
