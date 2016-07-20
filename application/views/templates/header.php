@@ -1,4 +1,4 @@
-	<html>
+<html>
         <head>
             
             <!-- Page Title -->
@@ -84,4 +84,25 @@
                 </div>
               </div>
             </div>
-        </section>
+        </div>
+        <div id="top-bar">
+            <div id="logo-univ-header-container" class="col-md-2">
+                <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logo_univ_box.png">
+            </div>
+            <div class="col-md-9">
+                <ul class="nav">
+                    <li class="col-md-2"><a href="<?php echo base_url() ?>">BERANDA</a></li>
+                    <li class="col-md-2"><a href="<?php echo base_url() ?>">ACARA</a></li>
+                    <li class="col-md-2"><a href="<?php echo base_url() ?>">LOMBA</a></li>
+                    <li class="col-md-3"><a href="<?php echo base_url() ?>">TENTANG KAMI</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="logo-cf-header-container">
+            <img src="<?php echo base_url() ?>images/biglogo.svg">
+            <div>
+                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
+            </div>
+        </div>
+        <br/>
+        <br/>

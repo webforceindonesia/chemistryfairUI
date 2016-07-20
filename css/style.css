@@ -5,6 +5,7 @@
 	
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 /* Global */
 body
@@ -103,96 +104,298 @@ body
 /* CountDown */
 #header
 {
-	height:30%;
+	width:100%;
+	height:45px;
+	background-color:rgba(0, 0, 0, 0.5);
 }
 
-.logo_univ
+#top-bar .col-md-8
 {
-	height:200px;
-	width:150px;
-	background:#E2E417;
-	padding:1em;
+	text-align: right;
 }
 
-.logo_univ img
+#comingsoon
 {
-	max-width:125px;
+	vertical-align: middle;
+	line-height: 45px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 22px;
 }
 
-#comingSoon
+#logo-univ-comingsoon-container
 {
-	margin-top:1em;
+	margin-left: 5%;
+	position: relative;
 }
 
-#footer
+#logo-univ-comingsoon
 {
-	height:10%;
+	margin-top: -30px;
+	height: 250px;
 }
 
-#bigTitle h1
+#logo-hmd
 {
-	font-weight:100;
-	font-size:60px;
+	position: absolute;
+	left: 200px;
+	bottom: 0px;
+	display: inline-block;
+	height: 175px;
+	vertical-align: left;
 }
 
-#bigTitle h2
+.logo-cf-comingsoon-container
 {
-	font-weight:400;
-	font-size:40px;
+	position: absolute;
+	margin-top: 100px;
+	width: 100%;
+	height: 300px;
+	padding: 30px;
+	vertical-align: middle;
+	text-align: center;
 }
 
-#content
+.logo-cf-comingsoon-container img
 {
-	height:55%;
-	position:relative;
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
 }
 
-#bigLogo img
+.logo-cf-comingsoon-container div
 {
-	max-width:200px;
-	position:relative;
+	margin-top: 10px;
+	text-align: center;
+	height: 135px;
+	line-height: 135px;
 }
 
-#tagline h4
+.logo-cf-comingsoon-container div p
 {
-	font-weight:300;
-	font-size:25px;
+	font-size: 42px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-#countdown
+.logo-cf-comingsoon-container div p span
 {
-	margin-top:-2.5em;
+	font-size: 60px;
+	font-weight: 400;
 }
 
-.left_number
+.logo-cf-comingsoon-container-small
 {
-	margin-top:0.5em;
-	max-width:20%;
-	float:left;
+	width: 100%;
+	height: 75px;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
 }
 
-.left_number h1
+.logo-cf-comingsoon-container-small img
 {
-	font-size:80px;
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
 }
 
-.right_number
+.logo-cf-comingsoon-container-small div
 {
-	padding-top:2em;
-	margin-left:2em;
-	float:left;
+	display: inline-block;
+	text-align: left;
+	height: 45px;
+	line-height: 45px;
 }
 
-.right_number h4
+.logo-cf-comingsoon-container-small div p
 {
-	margin-bottom:0;
-	font-size:30px;
+	font-size: 22px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.right_number h3
+.logo-cf-comingsoon-container-small div p span
 {
-	margin-top:0;
-	font-size:32px;
+	font-size: 28px;
+	font-weight: 400;
+}
+
+.fixed-bot
+{
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	padding: 30px;
+	vertical-align: bottom;
+}
+
+.quote
+{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.countdown-area
+{
+	text-align: right;
+}
+
+.countdown-area div
+{
+	display: inline-block;
+}
+
+.countdown-area div p
+{
+	font-size: 22px;
+}
+
+.countdown-number span
+{
+	font-size: 65px;
+	margin-right: 8px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+}
+
+/* Header Template */
+
+.nav > li 
+{
+    text-align: center;
+}
+
+.nav > li > a
+{
+	line-height: 45px;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: white;
+	-webkit-transition: color 0.2s, background-color 0.2s; /* Safari */
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.nav > li > a:hover
+{
+	color: black;
+}
+
+#logo-univ-header-container
+{
+	margin-left: 5%;
+}
+
+#logo-univ-header
+{
+	margin-top: -30px;
+	height: 250px;
+	position: absolute;
+}
+
+.logo-cf-header-container
+{
+	width: 100%;
+	height: 200px;
+	padding: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.logo-cf-header-container img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo-cf-header-container div
+{
+	display: inline-block;
+	text-align: left;
+	height: 135px;
+	line-height: 135px;
+}
+
+.logo-cf-header-container div p
+{
+	font-size: 42px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 15px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-header-container div p span
+{
+	font-size: 48px;
+	font-weight: 400;
+}
+
+.logo-cf-header-container-small
+{
+	width: 100%;
+	height: 75px;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
+}
+
+.logo-cf-header-container-small img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo-cf-header-container-small div
+{
+	display: inline-block;
+	text-align: left;
+	height: 45px;
+	line-height: 45px;
+}
+
+.logo-cf-header-container-small div p
+{
+	font-size: 22px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-header-container-small div p span
+{
+	font-size: 28px;
+	font-weight: 400;
 }
 
 /* About Us */
