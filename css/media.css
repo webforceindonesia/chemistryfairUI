@@ -68,6 +68,12 @@
 	{
 		margin-top:1em;
 	}
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 }
 
 @media handheld, screen and (min-width: 451px) and (max-width: 768px)
@@ -123,6 +129,12 @@
 	#footerPar h3
 	{
 		margin-top:1em;
+	}
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
 	}
 }
 
@@ -180,6 +192,13 @@
 	{
 		margin-top:1em;
 	}
+
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 }
 
 @media only screen 
@@ -197,6 +216,13 @@
 	  margin-top:50%;
   }
 
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
+
 }
 
 @media only screen 
@@ -213,6 +239,13 @@
   {
 	  margin-top:50%;
   }
+
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 
 }
 
@@ -234,5 +267,12 @@
   {
 	  font-size:50px;
   }
+
+
+	#contentAll
+	{
+		padding-bottom:100%;
+		background:#EDEDED;
+	}
 
 }

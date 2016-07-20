@@ -50,10 +50,11 @@ class Main extends CI_Controller {
 		$page = "home";
 		
 		$this->load->model('cms_news_model');
-		$content = $this->cms_news_model->pull_last_ten();
+		$content = $this->cms_news_model->pull_last();
 		
 		foreach ($content as $row)
 		{
+			$data['news_id'][$i] = $row['id'];
 			$data['news_title'][$i] = $row['title'];
 			$data['news_created'][$i] = $row['created'];
 			$data['news_content'][$i] = $row['content'];

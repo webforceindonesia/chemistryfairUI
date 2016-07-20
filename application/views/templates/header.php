@@ -13,7 +13,6 @@
             <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
-            <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.slides.min.js"></script>
             
             <!-- Metas -->
             <meta charset="utf-8">

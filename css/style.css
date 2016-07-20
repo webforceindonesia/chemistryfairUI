@@ -40,6 +40,7 @@ body
 #headerAll
 {
 	height:40%;
+	padding-bottom:10%;
 }
 
 #headerBig
@@ -92,9 +93,14 @@ body
 	font-weight:300;
 }
 
+#contentAll
+{
+	padding-bottom:5%;
+	background:#EDEDED;
+}
+
 
 /* CountDown */
-
 #header
 {
 	height:30%;
@@ -217,6 +223,17 @@ body
 	color:#000;
 }
 
+#homePage h1
+{
+	font-size:45px;
+}
+
+#slider
+{
+	margin-top:0;
+	background:#000;
+}
+
 /* Lomba */
 #lomba
 {
@@ -224,4 +241,12 @@ body
 	min-height:55%;
 	padding-top:2em;
 	color:#000;
+}
+
+/* About Us */
+
+.paragraph p
+{
+	font-size: 20px;
+	font-weight:100;
 }
