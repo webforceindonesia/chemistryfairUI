@@ -428,3 +428,122 @@ body
 	padding-top:2em;
 	color:#000;
 }
+
+/* Acara */
+#seminar
+{
+	background-color: #EDEDED;
+	color: #202020;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	width: 100%;
+	padding: 40px;
+}
+
+.content-title-container
+{
+	margin-bottom: 60px;
+}
+
+.content-title-container h1
+{
+	margin-left: 15px;
+	font-weight: 700;
+}
+
+.content-description-container
+{
+	margin-bottom: 40px;
+}
+
+.content-description-container p
+{
+	font-size: 16px;
+	line-height: 1.75;
+}
+
+.content-description-container div
+{
+	font-size: 18px;
+}
+
+.content-description-container img
+{
+	float: left;
+	width: 300px;
+}
+
+.content-description-container h3
+{
+	clear: left;
+}
+
+.hexagon {
+  position: relative;
+  width: 75px; 
+  height: 43.30px;
+  background-color: #444444;
+  color: #FFFFFF;
+  margin: 21.65px 0;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+  border-left: solid 2px #333333;
+  border-right: solid 2px #333333;
+  text-align: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 53.03px;
+  height: 53.03px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 8.9835px;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.hexagon:before {
+  top: -26.5165px;
+  border-top: solid 2.8284px #333333;
+  border-right: solid 2.8284px #333333;
+}
+
+.hexagon:after {
+  bottom: -26.5165px;
+  border-bottom: solid 2.8284px #333333;
+  border-left: solid 2.8284px #333333;
+}
+
+.hexagon span {
+  display: block;
+  position: absolute;
+  top:1.1547005383792514px;
+  left: 0;
+  width:71px;
+  height:40.9919px;
+  z-index: 2;
+  line-height: 0.75;
+  background: inherit;
+}
+
+.hexagon p
+{
+	font-size: 28px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.alert-btn
+{
+	float: right;
+	margin-left: 10px;
+}
+
+.alert span
+{
+	font-size: 16px;
+}
