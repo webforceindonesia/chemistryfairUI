@@ -36,53 +36,6 @@
        
         </head>
         <body>
-        <section id="headerAll">
-            <div class="container">
-                <section id="navBar">
-                    <nav class="navbar navbar-default">
-                        <div class="container">
-                            <div class="col-md-2">
-                                &nbsp;
-                            </div>
-                            <div class="col-md-10">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="<?php echo base_url('Main') ?>">Beranda</a></li>
-                                    <li><a href="<?php echo base_url('Acara') ?>/acara">Acara</a></li>
-                                    <li><a href="<?php echo base_url('Lomba') ?>">Lomba</a></li>
-                                    <li><a href="<?php echo base_url('Main') ?>/aboutus">Tentang Kami</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </section>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="logo_univ">
-                            <img src="<?php echo base_url() ?>/images/logo_univ.png">
-                        </div>
-                    </div>
-                </div>
-                <br><br>
-                <div id="footer" class="countdown">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="tagline">
-                            <h4 id="tagline" align="left"><i>Maximizing Chemistry Potential to <br> Maintain The Sustainablility of Energy</i></h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6" id="countdown">
-                        <div class="left_number">
-                            <h1><?php echo $countdown ?></h1>
-                        </div>
-                        <div class="right_number">
-                            <h4>HARI LAGI MENUJU</h4>
-                            <h3>OPEN REGISTERATION</h3>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
         <div id="top-bar">
             <div id="logo-univ-header-container" class="col-md-2">
                 <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logo_univ_box.png">

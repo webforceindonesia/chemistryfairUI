@@ -8,7 +8,14 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$page = "login_admin";
+		if(isset($this->session->username) && $this->session->isLogged == True)
+		{
+			$page="admin/dashboard";	
+		}else
+		{
+			$page = "login_admin";
+		}
+
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 		{
 			//Homepage does not exist
@@ -25,12 +32,14 @@ class Admin extends CI_Controller {
 		$this->password = $this->input->post('password');
 
 		$this->load->model('login_model');
-		if($this->login_model->getUsername($this->username, $this->password))
+		if($unPassword = $this->login_model->getPassword($this->username))
 		{
 			if(password_verify($this->password, $unPassword))
 			{
 				$this->session->username = $this->username;
 				$this->session->isLogged = True;
+
+				redirect('/admin');
 			}else
 			{
 				redirect('/admin', 'refresh');
@@ -93,10 +102,45 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function logout ()
+	{
+		session_destroy();
+		redirect('/main');
+	}
+
 	//Development Only
 	public function new_admin()
 	{
+		if($_POST)
+		{
+			$this->load->model('login_model');
+			$this->login_model->new_admin();
 
+			redirect('/admin');
+		}else
+		{
+			redirect('/admin');
+		}
+	}
+
+	public function new_admin_form()
+	{
+		$event = mktime(0,0,0,8,1,2016);
+		$remaining = $event - time();
+		$data['countdown'] = floor($remaining / 86400);
+		
+		$page = "new_entry_admin";	
+		if (!file_exists (APPPATH.'views/'.$page.'.php'))
+			{
+				//Homepage does not exist
+				show_404();
+			}
+			
+			$data['title'] = "Admin - Chemistry Fair";
+			
+			$this->load->view('templates/header.php', $data);
+			$this->load->view($page, $data);
+			$this->load->view('templates/footer.php');
 	}
 }
 
