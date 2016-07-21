@@ -30,19 +30,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>Inovasi teknologi sebagai upaya konservasi energi.</li>
                 <li>Inovasi sumberdaya nonhayati sebagai sumber energi alternatif ramah lingkungan.</li>
             </ol>
+        </div>
 
+        <div class="content-contact-container col-md-3">
+            <b>Contact Person</b><br/>
+            0813 1698 3975 Irena<br/>
+            0812 6114 3860 Nofentari<br/>
+            0819 0889 8233 Fardha<br/>
+        </div>
+
+        <div class="content-info-container col-md-6">
             <h2>Syarat Peserta</h2>
             <p>Pelajar Indonesia jenjang pendidikan SMA/se-derajat & Perguruan Tinggi</p>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Biaya Pendaftaran</h2>
             <p>Upload Abstrak: Gratis</p>
             <p>Setelah abstrak di-upload dan dinyatakan lolos maka peserta dikenakan 
             biaya pendaftaran untuk melanjutkan ke tahap selanjutnya (upload makalah) 
             sebesar Rp&nbsp;120.000,-/tim untuk siswa/siswi SMA/SMK sederajat dan Rp&nbsp;130.000,-/tim untuk mahasiswa/mahasiswi perguruan tinggi</p>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Waktu Pendaftaran Online</h2>
             <i>1 Agustus 2016 – 18 September 2016</i><br/>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Waktu & Tempat Pelaksanaan</h2>
             <b>Upload Abstrak</b><br/>
             <i>1 Agustus 2016 – 18 September 2016 </i><br/><br/>
@@ -58,7 +73,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <b>Display Project</b><br/>
             <i>Minggu, 13 November 2016 </i><br/>
             <i>Gedung C FMIPA UI</i><br/>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Hadiah</h2>
 
             <h3>Tingkat SMA</h3>
@@ -84,12 +101,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <i>*E-sertifikat akan diberikan kepada seluruh peserta yang mengikuti seleksi abstrak.</i><br/>
             <i>*Peserta akan mendapatkan sertifikat sesuai dengan tahap terakhir dari seleksi yang peserta lalui.</i>
-        </div>
-        <div class="content-contact-container col-md-3">
-            <b>Contact Person</b><br/>
-            0813 1698 3975 Irena<br/>
-            0812 6114 3860 Nofentari<br/>
-            0819 0889 8233 Fardha<br/>
         </div>
 
         <!-- Check if it's already in time for open registration -->
@@ -117,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="alert alert-danger col-md-12" role="alert">
             <?php 
                 $time_left = (new DateTime())->diff(new DateTime(CF_CIP_OPEN_REGISTRATION));
-                echo 'Registrasi online Chemistry Competition akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
+                echo 'Registrasi online Chemistry Innovatiion Project akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
                     . DateTime::createFromFormat('Y-m-d H:i:s', CF_CIP_OPEN_REGISTRATION)->format('j F Y') . '</strong>.'; 
             ?>
             </div>

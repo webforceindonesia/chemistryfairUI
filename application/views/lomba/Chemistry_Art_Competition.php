@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="alert alert-danger col-md-12" role="alert">
             <?php 
                 $time_left = (new DateTime())->diff(new DateTime(CF_CAC_OPEN_REGISTRATION));
-                echo 'Registrasi online Chemistry Competition akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
+                echo 'Registrasi online Chemistry Art Competition akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
                     . DateTime::createFromFormat('Y-m-d H:i:s', CF_CAC_OPEN_REGISTRATION)->format('j F Y') . '</strong>.'; 
             ?>
             </div>

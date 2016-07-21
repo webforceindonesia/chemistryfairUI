@@ -25,5 +25,5 @@
         }
         $string = join($delimiter, $newwords);
    }//foreach
-   return $string;
+   return $string . ' | Chemistry Fair 2016';
 } ?>

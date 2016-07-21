@@ -20,6 +20,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p>
                 Acara ini juga disertai demonstrasi percobaan kimia sederhana, sehingga Chemistry Fair Kids Chemistry Fair 2016 ini sangat menjelaskan tentang bagaimana peranan kimia itu sendiri terhadap generasi muda, bahkan kepada anak-anak.
             </p>
+        </div>
+
+        <div class="content-contact-container col-md-3">
+            <b>Contact Person</b><br/>
+            0857 1054 1545 Ika<br/>
+            0857 7114 2307 Nur Aisyah<br/>
+        </div>
+        
+        <div class="content-info-container col-md-6">
             <h2>Syarat Peserta</h2>
             <b>Lomba Mewarnai TK</b><br/>
             <p>Anak-anak pada jenjang pendidikan TK se-derajat</p>
@@ -27,7 +36,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p>Siswa/siswi pada jenjang pendidikan Sekolah Dasar se-derajat dari kelas&nbsp;1 hingga kelas&nbsp;3</p>
             <b>Lomba Menghias Kue</b><br/>
             <p>Anak-anak pada jenjang pendidikan TK se-derajat</p>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Biaya Pendaftaran</h2>
             <b>Lomba Mewarnai TK</b><br/>
             <p>Rp.&nbsp;20.000,-</p>
@@ -37,11 +48,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p>Rp.&nbsp;40.000,-</p>
             <b>Jika mendaftar kedua lomba</b><br/>
             <p>Rp.&nbsp;30.000,-</p>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Waktu & Tempat</h2>
             <i>Sabtu, 19 November 2016</i><br/>
             <i>Gedung Annex Balairung, Universitas Indonesia</i><br/>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Hadiah</h2>
             <b>Lomba Mewarnai TK</b><br/>
             <p>Tiga karya terbaik mendapatkan uang sebesar Rp&nbsp;100.000,-</p>
@@ -53,11 +68,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 Juara 2: Rp 250.000,-<br/>
                 Juara 3: Rp 200.000,-<br/>
             </p>
-        </div>
-        <div class="content-contact-container col-md-3">
-            <b>Contact Person</b><br/>
-            0857 1054 1545 Ika<br/>
-            0857 7114 2307 Nur Aisyah<br/>
         </div>
 
         <!-- Check if it's already in time for open registration -->
@@ -85,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="alert alert-danger col-md-12" role="alert">
             <?php 
                 $time_left = (new DateTime())->diff(new DateTime(CF_CFK_OPEN_REGISTRATION));
-                echo 'Registrasi online seminar akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
+                echo 'Registrasi online Chemistry Fair Kids akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
                     . DateTime::createFromFormat('Y-m-d H:i:s', CF_CFK_OPEN_REGISTRATION)->format('j F Y') . '</strong>.'; 
             ?>
             </div>

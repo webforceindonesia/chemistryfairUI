@@ -10,10 +10,16 @@ class Lomba extends CI_Controller
         $this->load->helper('titlecase');
     }
 
+    public function index()
+    {
+        $this->show_content('lomba');
+    }
+
     public function show_content($view_file)
     {
-        $data['page_title'] = str_replace('_', ' ', $view_file);
-        $data['page_title'] = titlecase($data['page_title']);
+        if (empty($view_file)) $view_file = 'lomba';
+        $data['title'] = str_replace('_', ' ', $view_file);
+        $data['title'] = titlecase($data['title']);
         $this->load->view('templates/header.php', $data);
         $this->load->view('lomba/' . $view_file);
         $this->load->view('templates/footer.php');

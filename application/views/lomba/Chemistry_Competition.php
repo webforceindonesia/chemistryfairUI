@@ -20,15 +20,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p>
                 Lomba ini akan diawali dengan tahap seleksi, dimana seluruh peserta dari seluruh Indonesia yang telah mendaftar yang akan mengikuti seleksi tersebut secara tim yang secara . Seluruh 5 regional akan mengikuti tahap seleksi secara online. Kemudian seratus tim (13 tim/regional dan 35 tim secara paralel) yang lolos seleksi akan mengikuti tahap perempat final yang akan dilakukan secara tim. Kemudian, akan diambil 12 tim (1 tim/regional dan 7 paralel) untuk  tahap semifinal yang dilakukan secara individu (teori dan praktikum). Selanjutnya, akan diambil 3 peserta terbaik untuk mengikuti tahap final (cerdas cermat). Dari tahap-tahap tersebut akan diambil 3 peserta sebagai juara umum dan 1 perserta per regional sebagai juara regional.
             </p>
+        </div>
+
+        <div class="content-contact-container col-md-3">
+            <b>Contact Person</b><br/>
+            0896 7725 8455 Willy<br/>
+            0858 9452 4679 Maryam<br/>
+        </div>
+        
+        <div class="content-info-container col-md-6">
             <h2>Syarat Peserta</h2>
             <p>Pelajar Indonesia jenjang pendidikan SMA/se-derajat</p>
+        </div>            
 
+        <div class="content-info-container col-md-6">
             <h2>Biaya Pendaftaran</h2>
             <p>Rp.&nbsp;150.000,-/tim (1&nbsp;tim&nbsp;=&nbsp;2&nbsp;orang)</p>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Waktu Pendaftaran Online</h2>
             <i>1 September 2016 – 22 Oktober 2016</i><br/>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Waktu & Tempat Pelaksanaan</h2>
             <b>Seleksi Online</b><br/>
             <i>Sabtu, 29 Oktober 2016</i><br/>
@@ -39,7 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <b>Semifinal & Final</b><br/>
             <i>Minggu, 13 Oktober 2016</i><br/>
             <i>Gedung G & B FMIPA UI</i><br/>
+        </div>
 
+        <div class="content-info-container col-md-6">
             <h2>Hadiah</h2>
             <b>Juara 1</b><br/>
             <p>Rp&nbsp;5.500.000,-&nbsp;+&nbsp;Medali, Sertifikat, dan Piala</p>
@@ -50,12 +67,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             <i>*Sertifikat peserta  babak Penyisihan dalam bentuk digital bagi seluruh peserta (dikirimkan melalui e-mail peserta).</i><br/>
             <i>*Peserta akan mendapatkan sertifikat sesuai dengan tahap terakhir dari seleksi yang peserta lalui.</i>
-
-        </div>
-        <div class="content-contact-container col-md-3">
-            <b>Contact Person</b><br/>
-            0896 7725 8455 Willy<br/>
-            0858 9452 4679 Maryam<br/>
         </div>
 
         <!-- Check if it's already in time for open registration -->

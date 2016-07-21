@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['acara/(:any)'] = 'acara/show_content/$1';
 $route['lomba/(:any)'] = 'lomba/show_content/$1';
+$route['aboutus'] = 'main/aboutus';

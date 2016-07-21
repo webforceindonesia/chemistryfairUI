@@ -5,6 +5,9 @@ class Main extends CI_Controller {
 
 	public function index()
 	{
+			$this->home();
+			exit();
+			
 			$event = mktime(0,0,0,8,1,2016);
 			$remaining = $event - time();
 			$data['countdown'] = floor($remaining / 86400);
