@@ -83,3 +83,14 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*
+|   Custom Constants
+*/
+
+// Online registration openings timestamp
+defined('CF_SEMINAR_OPEN_REGISTRATION')     OR define('CF_SEMINAR_OPEN_REGISTRATION',   '2016-09-01 00:00:00');
+defined('CF_CFK_OPEN_REGISTRATION')         OR define('CF_CFK_OPEN_REGISTRATION',       '2016-09-01 00:00:00');
+defined('CF_CC_OPEN_REGISTRATION')          OR define('CF_CC_OPEN_REGISTRATION',        '2016-09-01 00:00:00');
+defined('CF_CIP_OPEN_REGISTRATION')         OR define('CF_CIP_OPEN_REGISTRATION',       '2016-08-01 00:00:00');
+defined('CF_CAC_OPEN_REGISTRATION')         OR define('CF_CAC_OPEN_REGISTRATION',       '2016-09-01 00:00:00');

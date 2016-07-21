@@ -52,3 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['acara/(:any)'] = 'acara/show_content/$1';
+$route['lomba/(:any)'] = 'lomba/show_content/$1';
