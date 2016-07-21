@@ -24,13 +24,11 @@
             ---------------------------------->
             
             <style>
-			
 				@media (max-width:995px)
 				{
 					.logo_univ
 					{
 						display:none;	
-					
 					}
 				}
 				

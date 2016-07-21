@@ -25,18 +25,20 @@ class Admin extends CI_Controller {
 		$this->password = $this->input->post('password');
 
 		$this->load->model('login_model');
-
-		getUsername();
-
-		if(password_verify($this->password, $unPassword))
+		if($this->login_model->getUsername($this->username, $this->password))
 		{
-			$this->session->username = $this->username;
-			$this->session->isLogged = True;
+			if(password_verify($this->password, $unPassword))
+			{
+				$this->session->username = $this->username;
+				$this->session->isLogged = True;
+			}else
+			{
+				redirect('/admin', 'refresh');
+			}
 		}else
 		{
 			redirect('/admin', 'refresh');
 		}
-
 	}
 
 	public function forget()

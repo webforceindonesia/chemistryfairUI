@@ -15,10 +15,11 @@ class login_model extends CI_Model {
 	
 	public function getUsername ($username, $password)
 	{
-		$query = $this->db->get_where('admin', array('username' => $username));
+		$query = $this->db->query("SELECT * FROM `admin` WHERE `username` = '$username'");
 		
-		if($row = $query->result())
+		if($query->num_rows() > 0)
 		{	
+			$row = $query->result();
 			$content['title'] = $row->title;
 			$content['content'] = $row->content;
 			$content['created'] = $row->created;

@@ -34,7 +34,7 @@ class Berita extends CI_Controller {
 		$data['news_content'] = $content['content'];
 		$data['news_created'] = $content['created'];
 				
-		$page = "news_entry";	
+		$page = "news_entry";
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
