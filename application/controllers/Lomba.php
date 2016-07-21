@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Acara extends CI_Controller 
+class Lomba extends CI_Controller 
 {
     public function __construct()
     {
@@ -15,7 +15,7 @@ class Acara extends CI_Controller
         $data['page_title'] = str_replace('_', ' ', $view_file);
         $data['page_title'] = titlecase($data['page_title']);
         $this->load->view('templates/header.php', $data);
-        $this->load->view('acara/' . $view_file);
+        $this->load->view('lomba/' . $view_file);
         $this->load->view('templates/footer.php');
     }
 }

@@ -86,6 +86,18 @@
 	{
 		display: none;
 	}
+
+	/* Content Template */
+	.hexagon
+	{
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.content-title
+	{
+		text-align: center;
+	}
 }
 
 @media handheld, screen and (max-width: 1200px) and (min-width: 995px) {

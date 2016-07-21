@@ -51,7 +51,14 @@ body
 
 #contentAll
 {
-	min-height:50%
+	min-height:50%;
+	background-color: #EDEDED;
+	color: #202020;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 #navBar nav
@@ -430,15 +437,6 @@ body
 }
 
 /* Acara */
-#seminar
-{
-	background-color: #EDEDED;
-	color: #202020;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 400;
-	width: 100%;
-	padding: 40px;
-}
 
 .content-title-container
 {
@@ -477,6 +475,25 @@ body
 {
 	clear: left;
 }
+
+.content-contact-container
+{
+	margin-bottom: 40px;
+}
+
+.content-left-label
+{
+	display: inline-block;
+	width: 100px;
+}
+
+.content-left-value
+{
+	display: inline-block;
+	width: auto;
+}
+
+
 
 .hexagon {
   position: relative;
@@ -541,6 +558,7 @@ body
 {
 	float: right;
 	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
 .alert span
