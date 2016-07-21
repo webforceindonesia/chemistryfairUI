@@ -36,6 +36,12 @@
        
         </head>
         <body>
+        <div class="logo-cf-header-container-small mobile-only">
+            <img src="<?php echo base_url() ?>images/biglogo.svg">
+            <div>
+                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
+            </div>
+        </div>
         <div id="top-bar">
             <div id="logo-univ-header-container" class="col-md-2">
                 <img id="logo-univ-header" src="<?php echo base_url() ?>/images/logo_univ_box.png">
