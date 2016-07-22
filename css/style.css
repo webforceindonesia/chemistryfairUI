@@ -1,0 +1,620 @@
+/* 	-----------------------------------
+    ----    Copyright Weborn 2016    --
+    ---- Do Not Attempt to Duplicate --
+	----------------------------------- */
+	
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+/* Global */
+body
+{
+	padding:0;
+	background: url("../images/background.png");
+	font-family: 'Roboto Light', sans-serif;
+	background-size:cover;
+	color:#EBEBEB;
+}
+
+#navBar
+{
+	position:absolute;
+	top:0;
+	width:100%;
+	height:4em;
+	left:0;
+	background:#ccc;
+	color:#000;
+}
+
+.form
+{
+	color:#000;
+}
+
+.news
+{
+	color:#000;
+}
+
+#headerAll
+{
+	height:40%;
+	padding-bottom:10%;
+}
+
+#headerBig
+{
+	position:relative;
+	top:0;
+}
+
+#contentAll
+{
+	min-height:50%;
+	background-color: #EDEDED;
+	color: #202020;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#navBar nav
+{
+	margin-top:1em;
+}
+
+#footerAll
+{
+	width:100%;
+	position:relative;
+	bottom:0;
+	height:30%;
+	background:#3E3E3E;
+}
+
+.logo_univ_footer
+{
+	height:200px;
+	width:150px;
+	background:#E2E417;
+	padding:1em;
+}
+
+.logo_univ_footer img
+{
+	max-width:125px;
+}
+
+#footerLogo
+{
+	position:absolute;
+	bottom:0;
+}
+
+#footerPar h3
+{
+	margin-top:0;
+	font-weight:300;
+}
+
+#contentAll
+{
+	padding-bottom:5%;
+	background:#EDEDED;
+}
+
+
+/* CountDown */
+#header
+{
+	width:100%;
+	height:45px;
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+#top-bar .col-md-8
+{
+	text-align: right;
+}
+
+#comingsoon
+{
+	vertical-align: middle;
+	line-height: 45px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 22px;
+}
+
+#logo-univ-comingsoon-container
+{
+	margin-left: 5%;
+	position: relative;
+}
+
+#logo-univ-comingsoon
+{
+	margin-top: -30px;
+	height: 250px;
+}
+
+#logo-hmd
+{
+	position: absolute;
+	left: 200px;
+	bottom: 0px;
+	display: inline-block;
+	height: 175px;
+	vertical-align: left;
+}
+
+.logo-cf-comingsoon-container
+{
+	position: absolute;
+	margin-top: 100px;
+	width: 100%;
+	height: 300px;
+	padding: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.logo-cf-comingsoon-container img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+}
+
+.logo-cf-comingsoon-container div
+{
+	margin-top: 10px;
+	text-align: center;
+	height: 135px;
+	line-height: 135px;
+}
+
+.logo-cf-comingsoon-container div p
+{
+	font-size: 42px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-comingsoon-container div p span
+{
+	font-size: 60px;
+	font-weight: 400;
+}
+
+.logo-cf-comingsoon-container-small
+{
+	width: 100%;
+	height: 75px;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
+}
+
+.logo-cf-comingsoon-container-small img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo-cf-comingsoon-container-small div
+{
+	display: inline-block;
+	text-align: left;
+	height: 45px;
+	line-height: 45px;
+}
+
+.logo-cf-comingsoon-container-small div p
+{
+	font-size: 22px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-comingsoon-container-small div p span
+{
+	font-size: 28px;
+	font-weight: 400;
+}
+
+.fixed-bot
+{
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	padding: 30px;
+	vertical-align: bottom;
+}
+
+.quote
+{
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.countdown-area
+{
+	text-align: right;
+}
+
+.countdown-area div
+{
+	display: inline-block;
+}
+
+.countdown-area div p
+{
+	font-size: 22px;
+}
+
+.countdown-number span
+{
+	font-size: 65px;
+	margin-right: 8px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+}
+
+/* Header Template */
+
+#top-bar
+{
+	width:100%;
+	height:45px;
+	background-color:rgba(0, 0, 0, 0.5);
+}
+
+.nav > li 
+{
+    text-align: center;
+}
+
+.nav > li > a
+{
+	line-height: 45px;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: white;
+	-webkit-transition: color 0.2s, background-color 0.2s; /* Safari */
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.nav > li > a:hover
+{
+	color: black;
+}
+
+#logo-univ-header-container
+{
+	margin-left: 5%;
+}
+
+#logo-univ-header
+{
+	margin-top: -30px;
+	height: 250px;
+	position: absolute;
+}
+
+.logo-cf-header-container
+{
+	width: 100%;
+	height: 200px;
+	padding: 30px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.logo-cf-header-container img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo-cf-header-container div
+{
+	display: inline-block;
+	text-align: left;
+	height: 135px;
+	line-height: 135px;
+}
+
+.logo-cf-header-container div p
+{
+	font-size: 42px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 15px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-header-container div p span
+{
+	font-size: 48px;
+	font-weight: 400;
+}
+
+.logo-cf-header-container-small
+{
+	width: 100%;
+	height: 75px;
+	padding: 5px;
+	vertical-align: middle;
+	text-align: center;
+	display: none;
+}
+
+.logo-cf-header-container-small img
+{
+	height: 100%;
+	margin-left: auto;
+	text-align: center;
+	display: inline-block;
+}
+
+.logo-cf-header-container-small div
+{
+	display: inline-block;
+	text-align: left;
+	height: 45px;
+	line-height: 45px;
+}
+
+.logo-cf-header-container-small div p
+{
+	font-size: 22px;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.logo-cf-header-container-small div p span
+{
+	font-size: 28px;
+	font-weight: 400;
+}
+
+/* About Us */
+
+#aboutUs
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+}
+
+.paragraph
+{
+	color:#000;
+}
+
+.paragraph h1
+{
+	margin-bottom:1em;
+}
+
+/* Home */
+#home
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+	color:#000;
+}
+
+#homePage h1
+{
+	font-size:45px;
+}
+
+#slider
+{
+	margin-top:0;
+	background:#000;
+}
+
+/* Lomba */
+#lomba
+{
+	background:#EDEDED;
+	min-height:55%;
+	padding-top:2em;
+	color:#000;
+}
+
+/* About Us */
+
+.paragraph p
+{
+	font-size: 20px;
+	font-weight:100;
+}
+/* Acara */
+
+.content-title-container
+{
+	margin-bottom: 60px;
+}
+
+.content-title-container h1
+{
+	margin-left: 15px;
+	font-weight: 700;
+}
+
+.content-description-container
+{
+	margin-bottom: 40px;
+}
+
+.content-description-container p
+{
+	font-size: 16px;
+	line-height: 1.75;
+}
+
+.content-description-container div
+{
+	font-size: 18px;
+}
+
+.content-description-container img
+{
+	float: left;
+	width: 300px;
+}
+
+.content-description-container h3
+{
+	clear: left;
+}
+
+.content-contact-container
+{
+	margin-bottom: 40px;
+}
+
+.content-info-container
+{
+	margin-bottom: 50px;
+}
+
+.content-left-label
+{
+	display: inline-block;
+	width: 100px;
+}
+
+.content-left-value
+{
+	display: inline-block;
+	width: auto;
+}
+
+.content-subdirectory-container
+{
+	margin-bottom: 30px;
+	padding: 20px;
+	background-color: floralwhite;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.34);
+	-moz-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.34);
+	box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.34);
+}
+
+.content-subdirectory-container .content-title-container
+{
+	margin-bottom: 0;
+	color: black;
+}
+
+.hexagon {
+  position: relative;
+  width: 75px; 
+  height: 43.30px;
+  background-color: #444444;
+  color: #FFFFFF;
+  margin: 21.65px 0;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+  border-left: solid 2px #333333;
+  border-right: solid 2px #333333;
+  text-align: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 53.03px;
+  height: 53.03px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 8.9835px;
+  box-shadow: 0 0 10px rgba(0,0,0,1);
+}
+
+.hexagon:before {
+  top: -26.5165px;
+  border-top: solid 2.8284px #333333;
+  border-right: solid 2.8284px #333333;
+}
+
+.hexagon:after {
+  bottom: -26.5165px;
+  border-bottom: solid 2.8284px #333333;
+  border-left: solid 2.8284px #333333;
+}
+
+.hexagon span {
+  display: block;
+  position: absolute;
+  top:1.1547005383792514px;
+  left: 0;
+  width:71px;
+  height:40.9919px;
+  z-index: 2;
+  line-height: 0.75;
+  background: inherit;
+}
+
+.hexagon p
+{
+	font-size: 28px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.alert-btn
+{
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.alert span
+{
+	font-size: 16px;
+}
