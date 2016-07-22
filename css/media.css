@@ -6,6 +6,100 @@
 /* Fonts */
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,500);
 
+@media handheld, screen and (min-width: 320px) and (max-width: 991px)
+{
+	/* Coming Soon Page */
+	#logo-univ-comingsoon-container
+	{
+		display: none;
+	}
+
+	#top-bar
+	{
+		height: auto;
+	}
+
+	#top-bar div
+	{
+		text-align: center;
+	}
+
+	#top-bar .col-md-8
+	{
+		text-align: center;
+	}
+
+	.logo-cf-comingsoon-container-small
+	{
+		display: block;
+	}
+
+	.logo-cf-comingsoon-container
+	{
+		display: none;
+	}
+
+	.fixed-bot
+	{
+		position: fixed;
+		bottom: 40px;
+	}
+
+	.fixed-bot .col-md-4
+	{
+		text-align: center;
+	}
+
+	.quote
+	{
+		font-size: 16px;
+	}
+
+	.countdown-area div
+	{
+		display: block;
+		text-align: center;
+	}
+
+	.countdown-number span
+	{
+		font-size: 72px;
+	}
+
+	/* Header Template */
+	#logo-univ-header-container
+	{
+		display: none;
+	}
+
+	#top-bar
+	{
+		height: auto;
+	}
+
+	.logo-cf-header-container-small
+	{
+		display: block;
+	}
+
+	.logo-cf-header-container
+	{
+		display: none;
+	}
+
+	/* Content Template */
+	.hexagon
+	{
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.content-title
+	{
+		text-align: center;
+	}
+}
+
 @media handheld, screen and (max-width: 1200px) and (min-width: 995px) {
 	
 	#countdown
@@ -68,6 +162,12 @@
 	{
 		margin-top:1em;
 	}
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 }
 
 @media handheld, screen and (min-width: 451px) and (max-width: 768px)
@@ -123,6 +223,12 @@
 	#footerPar h3
 	{
 		margin-top:1em;
+	}
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
 	}
 }
 
@@ -180,6 +286,13 @@
 	{
 		margin-top:1em;
 	}
+
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 }
 
 @media only screen 
@@ -197,6 +310,13 @@
 	  margin-top:50%;
   }
 
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
+
 }
 
 @media only screen 
@@ -213,6 +333,13 @@
   {
 	  margin-top:50%;
   }
+
+
+	#contentAll
+	{
+		padding-bottom:50%;
+		background:#EDEDED;
+	}
 
 }
 
@@ -234,5 +361,12 @@
   {
 	  font-size:50px;
   }
+
+
+	#contentAll
+	{
+		padding-bottom:100%;
+		background:#EDEDED;
+	}
 
 }

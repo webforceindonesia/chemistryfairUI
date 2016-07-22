@@ -15,8 +15,8 @@ class cms_news_model extends CI_Model {
 	
 	public function write ()
 	{	
-		$this->title = $_POST['title'];
-		$this->content = $_POST['content'];
+		$this->title = $this->input->post('title');
+		$this->content = $this->input->post('content');
 		$this->created = date('Ymd');
 		
 		$data = array(
@@ -28,27 +28,28 @@ class cms_news_model extends CI_Model {
 		$this->db->insert('cms_news', $data);
 	}
 	
-	public function pull_last_ten ()
+	public function pull_last ()
 	{
 		$counter = 0;
-		$query = $this->db->get('cms_news', 10);
+		$this->db->order_by("id","desc");
+        $this->db->limit(5);
+		$query = $this->db->get('cms_news', 5);
 		
 		foreach ($query->result() as $row)
 		{	
+			$content[$counter]['id'] = $row->id;
 			$content[$counter]['title'] = $row->title;
 			$content[$counter]['content'] = $row->content;
 			$content[$counter]['created'] = $row->created;
 			$counter++;
 		}
 		
-		return $content;
-			
+		return $content;		
 	}
 	
-	public function pull_one ()
+	public function pull_one ($id)
 	{
-		$counter = 0;
-		$query = $this->db->get('cms_news');
+		$query = $this->db->get_where('cms_news', array('id' => $id));
 		
 		foreach ($query->result() as $row)
 		{	
@@ -60,7 +61,7 @@ class cms_news_model extends CI_Model {
 		return $content;
 	}
 	
-	public function edit()
+	public function edit($id)
 	{
 		
 		

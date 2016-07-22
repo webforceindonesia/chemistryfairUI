@@ -11,7 +11,7 @@
             	<div class="col-md-4" id="footerPar">
                 	<h3>Judul Footer</h3>
                     <p>
-                    	
+                        	
                     
                     
                     
