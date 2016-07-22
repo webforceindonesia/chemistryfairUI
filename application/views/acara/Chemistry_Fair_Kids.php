@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <b>Lomba Mewarnai SD</b><br/>
             <p>Siswa/siswi pada jenjang pendidikan Sekolah Dasar se-derajat dari kelas&nbsp;1 hingga kelas&nbsp;3</p>
             <b>Lomba Menghias Kue</b><br/>
-            <p>Anak-anak pada jenjang pendidikan TK se-derajat</p>
+            <p>Satu tim terdiri atas satu peserta anak (TK hingga SD Kelas 3) dan 2 orang pendamping dewasa.</p>
         </div>
 
         <div class="content-info-container col-md-6">

@@ -37,7 +37,7 @@
         </head>
         <body>
         <div class="logo-cf-header-container-small mobile-only">
-            <img src="<?php echo base_url() ?>images/biglogo.svg">
+            <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>
                 <p>CHEMISTRY FAIR<br/><span>2016</span></p>
             </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="logo-cf-header-container">
-            <img src="<?php echo base_url() ?>images/biglogo.svg">
+            <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>
                 <p>CHEMISTRY FAIR<br/><span>2016</span></p>
             </div>

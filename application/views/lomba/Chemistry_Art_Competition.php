@@ -29,7 +29,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-info-container col-md-6">
             <h2>Syarat Peserta</h2>
-            <p>Pelajar Indonesia jenjang pendidikan SMA/se-derajat</p>
+            <p>Terbuka untuk masyarakat umum tanpa batasan umur.</p>
+            <p>Untuk Chemistry Photograph merupakan kompetisi perorangan.</p>
+            <p>Untuk Chemistry Movie Project merupakan kompetisi tim. (1 tim maksimal 20 orang).</p>
         </div>
 
         <div class="content-info-container col-md-6">
