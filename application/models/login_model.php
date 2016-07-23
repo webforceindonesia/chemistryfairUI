@@ -62,7 +62,24 @@ class login_model extends CI_Model {
 
 			if($query->result())
 			{
-				return true;
+				$to = $email;
+				$subject = "Your Login In " . $company ." .gethassee.com";
+				$message = "Hello!
+							Your Reseted Password is
+							
+							Password : $new_password\n
+							
+							For Safety Please Quickly Change Your Password!";
+								   
+				$headers = 'From: noreply@chemistryfair-ui.com' . "\r\n" .
+							'Reply-To: chemistryfairweborn2016@gmail.com' . "\r\n" .
+							'X-Mailer: PHP/' . phpversion();
+								
+					if(mail($to, $subject, $message, $headers))
+					{
+						
+						return true;
+					}
 			}else
 			{
 				return false;
