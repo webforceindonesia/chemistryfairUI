@@ -52,6 +52,21 @@
                     <li class="col-md-2"><a href="<?php echo site_url() . 'acara/' ?>">ACARA</a></li>
                     <li class="col-md-2"><a href="<?php echo site_url() . 'lomba/' ?>">LOMBA</a></li>
                     <li class="col-md-3"><a href="<?php echo site_url() . 'aboutus/' ?>">TENTANG KAMI</a></li>
+                    <li class="col-md-3 header-account-box-container">
+                        <div class="header-account-box">
+                            <?php if (isset($_SESSION['user_id'])) : ?>
+                                <span class="header-user-icon glyphicon glyphicon-user" aria-hidden="true" style="color: green"></span>
+                                &nbsp;
+                                <span><?php echo $_SESSION['user_fullname']; ?></span>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <a href="" class="btn btn-default">Register</a>
+                                    <a href="" class="btn btn-default">Login</a>
+                                </div>
+                            <?php else : ?>
+                            
+                            <?php endif; ?>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

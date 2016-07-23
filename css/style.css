@@ -289,9 +289,17 @@ body
 	background-color:rgba(0, 0, 0, 0.5);
 }
 
-.nav > li 
+#top-bar .col-md-9
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#top-bar .nav > li 
 {
     text-align: center;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .nav > li > a
@@ -410,6 +418,55 @@ body
 {
 	font-size: 28px;
 	font-weight: 400;
+}
+
+.header-account-box-container
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.header-account-box
+{
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding-bottom: 15px;
+	background-color: whitesmoke;
+	border-radius: 0px 0px 3px 3px;
+	-moz-border-radius: 0px 0px 3px 3px;
+	-webkit-border-radius: 0px 0px 3px 3px;
+	border: 0px solid #000000;
+	-webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.34);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.34);
+	box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.34);
+}
+
+.header-account-box > span:nth-child(2)
+{
+	line-height: 50px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	color: #202020;
+}
+
+.header-account-box > .btn-group
+{
+	width: auto;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.header-account-box > .btn-group > a
+{
+	text-shadow: 0px 0px 0px rgba(150, 150, 150, 0);
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+}
+
+.header-account-box > .btn-group > a:first-child
+{
+	background-color: lightgreen;
 }
 
 /* About Us */
