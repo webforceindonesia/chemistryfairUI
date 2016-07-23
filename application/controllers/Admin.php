@@ -65,7 +65,14 @@ class Admin extends CI_Controller {
 
 	public function reset()
 	{
-		$email = $this->input->post('email');
+		$this->load->model('login_model');
+		if($this->login_model->reset())
+		{
+			redirect('/admin?reset=1');
+		}else
+		{
+			redirect('/forget?false=1');
+		}
 	}
 
 	public function news_new_form()

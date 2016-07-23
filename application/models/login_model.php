@@ -31,12 +31,6 @@ class login_model extends CI_Model {
 		}
 	}
 
-	public function login ()
-	{
-
-
-	}
-
 	public function new_admin ()
 	{
 		$username = $this->input->post('username');
@@ -52,6 +46,31 @@ class login_model extends CI_Model {
 		);
 		
 		$this->db->insert('admin', $data);
+	}
+
+	public function reset()
+	{
+		$email = $this->input->post('email');
+
+		$query = $this->db->query("SELECT * FROM `admin` WHERE `email` = '$email'");
+		
+		if($query->num_rows() > 0)
+		{	
+			$newPass = substr(md5(microtime()),rand(0,26),5);
+			$newPass = password_hash($newPass, PASSWORD_BCRYPT);
+			$query = $this->db->query("UPDATE users SET password = '$newPass' WHERE email = '$email'");
+
+			if($query->result())
+			{
+				return true;
+			}else
+			{
+				return false;
+			}
+		}else
+		{
+			return false;
+		}
 	}
 }
 ?>

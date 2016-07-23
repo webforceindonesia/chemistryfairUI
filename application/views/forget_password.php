@@ -138,7 +138,7 @@
 	<p align="center"><img src="images/logo/display.png" onerror="this.style.display='none'"></p>
 </div>
 			<div class="login">
-            <?php echo form_open('admin/reset', array('id' => 'loginForm')) ?>
+            <?php echo form_open('admin/reset', array('id' => 'forgetForm')) ?>
             <table align="center">
                 <tr>
                     <td>
@@ -166,16 +166,6 @@
 </div>
 </div>
 <script>
-    function submitForm ()
-    {
-    	document.getElementById("loginForm").submit();
-	}
-	
-	function forgetPassword ()
-	{
-		window.location.href = "login_admin.php?forget=1";
-	}
-	
 	function submitReset ()
 	{
 		document.getElementById("forgetForm").submit();
