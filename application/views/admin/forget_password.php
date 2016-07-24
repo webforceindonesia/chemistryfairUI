@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $page_title ?></title>
+	<title><?php echo $title ?></title>
     
     <!-- Stylesheet -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -138,7 +138,7 @@
 	<p align="center"><img src="images/logo/display.png" onerror="this.style.display='none'"></p>
 </div>
 			<div class="login">
-            <?php echo form_open('admin/reset', array('id' => 'forgetForm')) ?>
+            <form id="forgetForm" action="login.php?forget=1" method="post">
             <table align="center">
                 <tr>
                     <td>
@@ -166,6 +166,16 @@
 </div>
 </div>
 <script>
+    function submitForm ()
+    {
+    	document.getElementById("loginForm").submit();
+	}
+	
+	function forgetPassword ()
+	{
+		window.location.href = "login_admin.php?forget=1";
+	}
+	
 	function submitReset ()
 	{
 		document.getElementById("forgetForm").submit();

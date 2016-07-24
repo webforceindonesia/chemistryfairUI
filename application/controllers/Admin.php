@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 	{
 		if(isset($this->session->username) && $this->session->isLogged == True)
 		{
-			$page="admin/dashboard";	
+			$page="admin/new_entry_news";	
 		}else
 		{
 			$page = "login_admin";
@@ -65,7 +65,14 @@ class Admin extends CI_Controller {
 
 	public function reset()
 	{
-		$email = $this->input->post('email');
+		$this->load->model('login_model');
+		if($this->login_model->reset())
+		{
+			redirect('/admin?reset=1');
+		}else
+		{
+			redirect('/forget?false=1');
+		}
 	}
 
 	public function news_new_form()
@@ -74,7 +81,7 @@ class Admin extends CI_Controller {
 		$remaining = $event - time();
 		$data['countdown'] = floor($remaining / 86400);
 		
-		$page = "new_entry_news";	
+		$page = "admin/new_entry_news";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
@@ -129,7 +136,7 @@ class Admin extends CI_Controller {
 		$remaining = $event - time();
 		$data['countdown'] = floor($remaining / 86400);
 		
-		$page = "new_entry_admin";	
+		$page = "admin/new_entry_admin";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
