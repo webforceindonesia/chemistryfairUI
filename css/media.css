@@ -87,6 +87,37 @@
 		display: none;
 	}
 
+	/* Footer Template */
+	#footerAll
+	{
+		height: auto;
+	}
+
+	.footer-contact-container
+	{
+		text-align: left;
+	}
+
+	#footerAll > div:first-child
+	{
+		text-align: center;
+	}
+
+	.logo-univ-footer
+	{
+		width: 100%;
+		height: auto;
+	}
+
+	.logo-hmd-footer
+	{
+		width: 300px;
+		height: auto;
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+
 	/* Content Template */
 	.hexagon
 	{
