@@ -87,6 +87,38 @@
 		display: none;
 	}
 
+	/* Footer Template */
+	#footerAll
+	{
+		height: auto;
+		padding-bottom: 2em;
+	}
+
+	.footer-contact-container
+	{
+		text-align: left;
+	}
+
+	#footerAll > div:first-child
+	{
+		text-align: center;
+	}
+
+	.logo-univ-footer
+	{
+		width: 100%;
+		height: auto;
+	}
+
+	.logo-hmd-footer
+	{
+		width: 300px;
+		height: auto;
+		position: relative;
+		left: 0;
+		top: 0;
+	}
+
 	/* Content Template */
 	.hexagon
 	{
@@ -230,6 +262,11 @@
 		padding-bottom:50%;
 		background:#EDEDED;
 	}
+
+	#homePage h1
+	{
+		font-size:40px;
+	}
 }
 
 @media handheld, screen and (max-width: 450px)
@@ -287,6 +324,10 @@
 		margin-top:1em;
 	}
 
+	#homePage h1
+	{
+		font-size:40px;
+	}
 
 	#contentAll
 	{
@@ -310,11 +351,20 @@
 	  margin-top:50%;
   }
 
+  #homePage h1
+	{
+		font-size:25px;
+	}
 
 	#contentAll
 	{
 		padding-bottom:50%;
 		background:#EDEDED;
+	}
+
+	.logo-hmd-footer img
+	{
+		max-width:10px;
 	}
 
 }
@@ -334,11 +384,21 @@
 	  margin-top:50%;
   }
 
+  #homePage h1
+	{
+		font-size:25px;
+	}
+
 
 	#contentAll
 	{
 		padding-bottom:50%;
 		background:#EDEDED;
+	}
+
+	.logo-hmd-footer img
+	{
+		max-width:10px;
 	}
 
 }
@@ -361,6 +421,21 @@
   {
 	  font-size:50px;
   }
+
+  #homePage h1
+	{
+		font-size:25px;
+	}
+
+	  #homePage h2
+	{
+		font-size:20px;
+	}
+
+	.logo-hmd-footer img
+	{
+		max-width:10px;
+	}
 
 
 	#contentAll

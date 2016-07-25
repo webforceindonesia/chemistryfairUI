@@ -67,15 +67,6 @@ body
 	margin-top:1em;
 }
 
-#footerAll
-{
-	width:100%;
-	position:relative;
-	bottom:0;
-	height:30%;
-	background:#3E3E3E;
-}
-
 .logo_univ_footer
 {
 	height:200px;
@@ -410,6 +401,76 @@ body
 {
 	font-size: 28px;
 	font-weight: 400;
+}
+
+/* Footer Template */
+#footerAll
+{
+	width:100%;
+	position: relative;
+	bottom:0;
+	height: 200px;
+	background:#202020;
+	clear:both;
+
+	-webkit-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
+	box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
+}
+
+.footer-par
+{
+	margin-top: 30px;
+}
+
+.logo-univ-footer
+{
+	height: 100%;
+}
+
+.logo-hmd-footer
+{
+	height: 90%;
+	position: relative;
+	left: 50px;
+	top: 10px;
+}
+
+.footer-par > h3
+{
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.footer-contact-container
+{
+	padding-right: 50px;
+	font-size: 13px;
+}
+
+.footer-contact-container span
+{
+	line-height: 25px;
+}
+
+.footer-contact-container > div > div
+{
+	width: 40px;
+	display: inline-block;
+}
+
+.footer-quote-container 
+{
+	text-align: center;
+	padding-top: 40px;
+}
+
+.footer-quote-container p
+{
+	font-size: 36px;
+	font-weight: lighter;
+	font-style: italic;
+	color: dimgrey;
 }
 
 /* About Us */
