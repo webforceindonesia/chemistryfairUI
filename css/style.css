@@ -445,7 +445,7 @@ body
 .footer-contact-container
 {
 	padding-right: 50px;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 .footer-contact-container span
@@ -455,8 +455,9 @@ body
 
 .footer-contact-container > div > div
 {
-	width: 40px;
+	min-width: 20px;
 	display: inline-block;
+	font-weight: bold;
 }
 
 .footer-quote-container 
