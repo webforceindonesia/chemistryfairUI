@@ -2,7 +2,7 @@
         <head>
             
             <!-- Page Title -->
-            <title><?php echo $title ?></title>
+            <title><?php echo $page_title ?></title>
             
             <!-- Include CSS & JS -->
             <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap-theme.min.css">
@@ -48,10 +48,10 @@
             </div>
             <div class="col-md-9">
                 <ul class="nav">
-                    <li class="col-md-2"><a href="<?php echo site_url() ?>">BERANDA</a></li>
-                    <li class="col-md-2"><a href="<?php echo site_url() . 'acara/' ?>">ACARA</a></li>
-                    <li class="col-md-2"><a href="<?php echo site_url() . 'lomba/' ?>">LOMBA</a></li>
-                    <li class="col-md-3"><a href="<?php echo site_url() . 'aboutus/' ?>">TENTANG KAMI</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url('admin/') ?>">DASHBOARD</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url('admin/news_new_form') ?>">BUAT BERITA BARU</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url('admin/check') ?>">Check Lomba</a></li>
+                    <li class="col-md-3"><a href="<?php echo site_url('admin/pendaftar') ?>">Semniar</a></li>
                 </ul>
             </div>
         </div>

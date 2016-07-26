@@ -53,33 +53,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <ul>
                                 <li>
                                     <div>
-                                    <time><span class ="tanggal">16-18</span><br><span class ="bulan">DESEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc"> lalala lalala</span>
+                                    <time><span class ="tanggal">1-18</span><br><span class ="bulan">AGUSTUS - SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pendaftaran dan pengiriman Abstrak</span>
                                     </div>
                                 </li>
                                 <li>
-                              <div>
-                              <time><span class ="tanggal">16-18</span><br><span class ="bulan">DESEMBER</span><BR><span class ="tahun">2016</span></time>
-                              <span class = "timelinedesc"> lalala lalala</span>
-                              </div>
+                                    <div>
+                                    <time><span class ="tanggal">26</span><br><span class ="bulan">SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman lolos Abstrak</span>
+                                    </div>
                                 </li>
                                 <li>
-                              <div>
-                              <time><span class ="tanggal">16-18</span><br><span class ="bulan">DESEMBER</span><BR><span class ="tahun">2016</span></time>
-                              <span class = "timelinedesc"> lalala lalala</span>
-                              </div>
+                                    <div>
+                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah</span>
+                                    </div>
                                 </li>
                                 <li>
-                              <div>
-                              <time><span class ="tanggal">16-18</span><br><span class ="bulan">DESEMBER</span><BR><span class ="tahun">2016</span></time>
-                              <span class = "timelinedesc"> lalala lalala</span>
-                              </div>
+                                    <div>
+                                    <time><span class ="tanggal">24</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi)</span>
+                                    </div>
                                 </li>
                                 <li>
-                              <div>
-                              <time><span class ="tanggal">16-18</span><br><span class ="bulan">DESEMBER</span><BR><span class ="tahun">2016</span></time>
-                              <span class = "timelinedesc"> lalala lalala</span>
-                              </div>
+                                    <div>
+                                    <time><span class ="tanggal">12</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Presentasi final</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">13</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pameran poster dan prototype</span>
+                                    </div>
                                 </li>
                             </ul>
                         </section>

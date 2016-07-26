@@ -10,10 +10,10 @@ class Admin extends CI_Controller {
 	{
 		if(isset($this->session->username) && $this->session->isLogged == True)
 		{
-			$page="admin/new_entry_news";	
+			$page="admin/dashboard";	
 		}else
 		{
-			$page = "login_admin";
+			$page = "admin/login_admin";
 		}
 
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
@@ -23,9 +23,12 @@ class Admin extends CI_Controller {
 		}
 			
 		$data['page_title'] = "Admin - Chemistry Fair UI 2016";
+		$this->load->view('admin/templates/header.php', $data);
 		$this->load->view($page, $data);
+		$this->load->view('admin/templates/footer.php');
 	}
 
+	/* Login Methods */
 	public function login()
 	{
 		$this->username = $this->input->post('username');
@@ -42,17 +45,19 @@ class Admin extends CI_Controller {
 				redirect('/admin');
 			}else
 			{
+				$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
 				redirect('/admin', 'refresh');
 			}
 		}else
 		{
+				$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
 			redirect('/admin', 'refresh');
 		}
 	}
 
 	public function forget()
 	{
-		$page = "forget_password";
+		$page = "admin/forget_password";
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 		{
 			//Homepage does not exist
@@ -68,22 +73,32 @@ class Admin extends CI_Controller {
 		$this->load->model('login_model');
 		if($this->login_model->reset())
 		{
-			redirect('/admin?reset=1');
+			$this->session->set_flashdata('failed', 'Success');
+			redirect('/admin');
 		}else
 		{
-			redirect('/forget?false=1');
+			$this->session->set_flashdata('failed', 'Reset Failed');
+			redirect('/forget');
 		}
 	}
 
+	public function logout ()
+	{
+		session_destroy();
+		redirect('/main');
+	}
+
+	/* Admin Functionality */
 	public function news_new_form()
 	{
-		$page = "admin/new_entry_news";	
-		if (!file_exists (APPPATH.'views/'.$page.'.php'))
+			if(isset($this->session->username) && $this->session->isLogged == True)
 			{
-				//Homepage does not exist
-				show_404();
+				$page="admin/news/new_entry_news";	
+			}else
+			{
+				$page = "admin/login_admin";
 			}
-			
+
 			$data['title'] = "Admin - Chemistry Fair";
 			
 			$this->load->view('admin/templates/header.php', $data);
@@ -129,12 +144,6 @@ class Admin extends CI_Controller {
                 }
 	}
 
-	public function logout ()
-	{
-		session_destroy();
-		redirect('/main');
-	}
-
 	public function successPage ()
 	{
 		$page = "admin/success";	
@@ -149,6 +158,71 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/templates/header.php', $data);
 			$this->load->view($page, $data);
 			$this->load->view('admin/templates/footer.php');
+	}
+
+	public function lomba ($param1 = NULL, $param2 = NULL, $param3 = NULL)
+	{
+		$this->load->model('admin_model');
+		$data['page_title'] 	= "Peserta Lomba - Admin Chemistry Fair";
+
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			redirect('main');
+		}
+		
+
+		if($param1 != NULL)
+			{
+				switch ($param1)
+				{
+					case 'cc' :
+					{
+						$data['participants'] = $this->admin_model->getParticipants('cc');
+						$page 				  = "admin/lomba/participants_cc";
+					}break;
+
+					case 'cfk' :
+					{
+						$data['participants'] = $this->admin_model->getParticipants('cfk');
+					}break;
+
+					case 'cip' :
+					{
+						$data['participants'] = $this->admin_model->getParticipants('cip');
+					}break;
+
+					case 'cmp' :
+					{
+						$data['participants'] = $this->admin_model->getParticipants('cmp');
+					}break;
+
+					case 'cp' :
+					{
+						$data['participants'] = $this->admin_model->getParticipants('cp');
+					}break;
+
+					default :
+					{
+						redirect ('/admin');
+					}
+				}
+			}
+			else{
+				$page = "admin/lomba/lomba_home";
+			}
+
+		$this->load->view('admin/templates/header.php', $data);
+		$this->load->view($page, $data);
+		$this->load->view('admin/templates/footer.php');
+	}
+
+	public function konfirmasi_pembayaran($lomba = '', $account_id = '')
+	{
+		$this->db->set('is_paid', '1');
+		$this->db->where('account_id', $account_id);
+		$this->db->update($lomba . '_participants');
+		$this->session->set_flashdata('success', 'Success in Konfirmasi Pembayaran');
+		redirect('/admin/lomba');
 	}
 
 	//Development Only
