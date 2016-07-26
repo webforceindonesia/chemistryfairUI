@@ -28,7 +28,7 @@ class Accounts extends CI_Controller {
 
     public function register()
     {
-        $data['page_header'] = titlecase('Registrasi Akun Chemistry Fair 2016');
+        $data['title'] = titlecase('Registrasi Akun Chemistry Fair 2016');
         $data['disable_user_bar'] = TRUE;
         
         $this->load->view('templates/header.php', $data);
@@ -117,15 +117,15 @@ class Accounts extends CI_Controller {
                 $this->input->post('security_answer')
             );
             
-            $data['success_title'] = 'Konfirmasi Akun Email Anda';
+            $data['success_title'] = 'Registrasi Hampir Selesai';
             $data['success_message'] = 'Kami telah mengirimkan email konfirmasi kepada anda. 
-                                        Mohon membukanya dan klik link yang dicantumkan di dalam email anda';
-            $data['success_button_label'] = 'Kembali ke beranda.';
+                                        Mohon membukanya dan klik link yang dicantumkan di dalam email anda.';
+            $data['success_button_label'] = 'Kembali ke Beranda';
             $data['success_button_link'] = site_url();
             $this->load->view('templates/success.php', $data);
 
             // Send a verification email to the new user
-            $this->send_verification_email($this->db->insert_id());
+            $this->accounts_model->send_verification_email($this->db->insert_id());
         }
 
         // Else, show the form

@@ -52,7 +52,7 @@ body
 
 #contentAll
 {
-	min-height:50%;
+
 	background-color: #EDEDED;
 	color: #202020;
 	font-family: 'Montserrat', sans-serif;
@@ -742,7 +742,7 @@ body
 .registration-account-container
 {
 	width: 100%;
-	min-height: 300px;
+	height: 260px;
 	background-color:rgba(0, 0, 0, 0.5);
 	font-family: 'Montserrat', sans-serif;
 	padding-top: 35px;
@@ -903,15 +903,17 @@ body
 
 .success-title
 {
-	margin: 30px auto;
+	margin: 10px auto;
 	font-size: 42px;
-	color: limegreen;
+	color: darkgreen;
 }
 
 .success-message
 {
 	text-align: center;
-	font-size: 24px;
+	font-size: 18px;
+	margin: 30px auto;
+	width: 80%;
 }
 
 .success-button
