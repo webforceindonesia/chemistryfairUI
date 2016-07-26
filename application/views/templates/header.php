@@ -53,28 +53,38 @@
                     <li class="col-md-2"><a href="<?php echo site_url() . 'lomba/' ?>">LOMBA</a></li>
                     <li class="col-md-3"><a href="<?php echo site_url() . 'aboutus/' ?>">TENTANG KAMI</a></li>
                     <li class="col-md-3 header-account-box-container">
+                    <?php if (!isset($disable_user_bar) || $disable_user_bar === FALSE) : ?>
                         <div class="header-account-box">
                             <?php if (isset($_SESSION['user_id'])) : ?>
                                 <span class="header-user-icon glyphicon glyphicon-user" aria-hidden="true" style="color: green"></span>
                                 &nbsp;
                                 <span><?php echo $_SESSION['user_fullname']; ?></span>
                                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                    <a href="" class="btn btn-default">Register</a>
-                                    <a href="" class="btn btn-default">Login</a>
+                                    <a href="<?php echo site_url() . 'akun/dashboard' ?>" class="btn btn-default">Dashboard</a>
+                                    <a href="<?php echo site_url() . 'akun/logout' ?>" class="btn btn-default">Logout</a>
                                 </div>
                             <?php else : ?>
-                            
+                                <span class="header-user-icon glyphicon glyphicon-user" aria-hidden="true" style="color: grey"></span>
+                                &nbsp;
+                                <span>Selamat datang!</span>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <a href="<?php echo site_url() . 'akun/register' ?>" class="btn btn-default">Register</a>
+                                    <a href="<?php echo site_url() . 'akun/login' ?>" class="btn btn-default">Login</a>
+                                </div>
                             <?php endif; ?>
                         </div>
+                    <?php endif; ?>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="logo-cf-header-container">
-            <img src="<?php echo base_url() ?>images/bigLogo.svg">
-            <div>
-                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
-            </div>
+            <?php if (!isset($disable_user_bar) || $disable_user_bar === FALSE) : ?>
+                <img src="<?php echo base_url() ?>images/bigLogo.svg">
+                <div>
+                    <p>CHEMISTRY FAIR<br/><span>2016</span></p>
+                </div>
+            <?php endif; ?>
         </div>
         <br/>
         <br/>
