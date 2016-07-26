@@ -57,9 +57,13 @@ body
 	color: #202020;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 400;
-	width: 100%;
+	width: 90%;
+	margin: auto;
+	margin-bottom: 50px;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	border-radius: 2px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 #navBar nav
@@ -91,13 +95,6 @@ body
 	margin-top:0;
 	font-weight:300;
 }
-
-#contentAll
-{
-	padding-bottom:5%;
-	background:#EDEDED;
-}
-
 
 /* CountDown */
 #header
@@ -333,6 +330,8 @@ body
 
 .logo-cf-header-container img
 {
+	position: relative;
+	top: -35px;
 	height: 100%;
 	margin-left: auto;
 	text-align: center;
@@ -341,6 +340,8 @@ body
 
 .logo-cf-header-container div
 {
+	position: relative;
+	top: -35px;
 	display: inline-block;
 	text-align: left;
 	height: 135px;
@@ -735,4 +736,188 @@ body
 .alert span
 {
 	font-size: 16px;
+}
+
+/* Account Registration Form */
+.registration-account-container
+{
+	width: 100%;
+	min-height: 300px;
+	background-color:rgba(0, 0, 0, 0.5);
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 35px;
+}
+
+.registration-account-header
+{
+	text-align: center;
+}
+
+.registration-account-header h2
+{
+	font-size: 42px;
+	font-weight: bold;
+	margin-bottom: 35px;
+	color: yellowgreen;
+}
+
+.registration-account-logo
+{
+	height: 60px;
+	width: 290px;
+	display: inline-block;
+}
+
+.registration-account-logo img
+{
+	float: left;
+	height: 100%;
+	margin-right: 10px;
+}
+
+.registration-account-logo p
+{
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 1;
+	text-align: left;
+	vertical-align: middle;
+	margin-top: 5px;
+}
+
+.registration-account-header span
+{
+	font-size: 28px;
+	font-weight: 400;
+}
+
+.registration-account-form
+{
+    background-color:rgba(255, 255, 255, 1);
+	padding: 50px 50px 50px 50px;
+    font: 13px Arial, Helvetica, sans-serif;
+	box-shadow: 0 1px 6px rgba(0,0,0,0.2), 0 1px 4px rgba(0,0,0,0.4);
+	width: 40%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	position: relative;
+	top: -150px;
+}
+
+.form-label
+{
+	display: block;
+    margin: 0;
+	font-size: 16px;
+	color: #202020;
+}
+
+.form-error
+{
+	display: block;
+	font-size: 12px;
+	color: darkred;
+}
+
+.form-input-generic
+{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 7px;
+	outline: none;
+	margin-top: 10px;
+}
+
+.form-input-generic[type=text], .form-input-generic[type=password]
+{
+	color: #005000;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.form-input-generic::-webkit-input-placeholder {
+    color: grey;
+}
+.form-input-generic:-moz-placeholder {
+    color: grey;
+}
+.form-input-generic::-moz-placeholder {
+    color: grey;
+}
+.form-input-generic:-ms-input-placeholder {
+    color: grey;
+}
+
+.form-input-generic:focus
+{
+	border: 1px solid #0C0;
+}
+
+.form-submit
+{
+     border: none;
+     padding: 8px 15px 8px 15px;
+     background: #FF8500;
+     color: #fff;
+     box-shadow: 1px 1px 4px #DADADA;
+     -moz-box-shadow: 1px 1px 4px #DADADA;
+     -webkit-box-shadow: 1px 1px 4px #DADADA;
+     border-radius: 3px;
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+}
+
+.form-submit:hover
+{
+	background: #EA7B00;
+    color: #fff;
+}
+
+.registration-account-form p
+{
+	margin: 0;
+	color: darkred;
+}
+
+/* Success Page */
+.success-container
+{
+	width: 80%;
+	text-align: center;
+}
+
+.success-title
+{
+	margin: 30px auto;
+	font-size: 42px;
+	color: limegreen;
+}
+
+.success-message
+{
+	text-align: center;
+	font-size: 24px;
+}
+
+.success-button
+{
+	padding: 10px;
+	background-color: limegreen;
+	color: white;
+	border-radius: 2px;
 }

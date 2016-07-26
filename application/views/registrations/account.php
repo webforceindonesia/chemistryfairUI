@@ -1,114 +1,129 @@
-<div id="form-container">
+<div class="registration-account-container">
 
-    <!-- Show the form for account registration -->
-    <?php echo form_open('accounts/account_registration');
+    <!-- Decorative form title -->
+    <div class="registration-account-header col-md-6">
+        <!-- Form type title -->
+        <h2>FORMULIR REGISTRASI</h2>
 
-    // Alamat Email
-    echo form_label('Alamat Email', 'email', array('class' => 'form-label'));
-    echo form_error('email');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'email',
-        'placeholder'   => 'Masukkan email anda.',
-        'value'         => set_value('email')
-    )); 
+        <!-- Chemistry Fair title -->
+        <div class="registration-account-logo">
+            <img src="<?php echo base_url() ?>images/bigLogo.svg">
+            <p>CHEMISTRY FAIR<br/><span>2016</span></p>
+        </div>
+    </div>
 
-    echo '<br/>';
+    <!-- The form -->
+    <div class="registration-account-form col-md-6">
+        <!-- Show the form for account registration -->
+        <?php echo form_open('accounts/register');
 
-    // Konfirmasi Alamat Email
-    echo form_label('Konfirmasi Alamat Email', 'emailconf', array('class' => 'form-label'));
-    echo form_error('emailconf');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'emailconf',
-        'placeholder'   => 'Ketik ulang alamat email anda.',
-    )); 
+        // Alamat Email
+        echo form_label('Alamat Email', 'email', array('class' => 'form-label'));
+        echo form_error('email');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'email',
+            'placeholder'   => 'Masukkan email anda.',
+            'value'         => set_value('email')
+        )); 
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Password
-    echo form_label('Password', 'password', array('class' => 'form-label'));
-    echo form_error('password');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'password',
-        'placeholder'   => 'Masukkan password anda.',
-    ));
+        // Konfirmasi Alamat Email
+        echo form_label('Konfirmasi Alamat Email', 'emailconf', array('class' => 'form-label'));
+        echo form_error('emailconf');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'emailconf',
+            'placeholder'   => 'Ketik ulang alamat email anda.',
+        )); 
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Password Confirmation
-    echo form_label('Konfirmasi Password', 'passconf', array('class' => 'form-label'));
-    echo form_error('passconf');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'passconf',
-        'placeholder'   => 'Ketik ulang password anda.',
-    ));
+        // Password
+        echo form_label('Password', 'password', array('class' => 'form-label'));
+        echo form_error('password');
+        echo form_password(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'password',
+            'placeholder'   => 'Masukkan password anda.',
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Fullname
-    echo form_label('Nama Lengkap', 'fullname', array('class' => 'form-label'));
-    echo form_error('fullname');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'fullname',
-        'placeholder'   => 'Masukkan nama lengkap anda.',
-        'value'         => set_value('fullname')
-    ));
+        // Password Confirmation
+        echo form_label('Konfirmasi Password', 'passconf', array('class' => 'form-label'));
+        echo form_error('passconf');
+        echo form_password(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'passconf',
+            'placeholder'   => 'Ketik ulang password anda.',
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Phone number
-    echo form_label('Nomor telepon', 'phone_number', array('class' => 'form-label'));
-    echo form_error('phone_number');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'phone_number',
-        'placeholder'   => 'Masukkan nomor telepon anda.',
-        'value'         => set_value('phone_number')
-    ));
+        // Fullname
+        echo form_label('Nama Lengkap', 'fullname', array('class' => 'form-label'));
+        echo form_error('fullname');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'fullname',
+            'placeholder'   => 'Masukkan nama lengkap anda.',
+            'value'         => set_value('fullname')
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Recovery Email
-    echo form_label('Email Cadangan', 'email_recovery', array('class' => 'form-label'));
-    echo form_error('email_recovery');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'email_recovery',
-        'placeholder'   => 'Masukkan email cadangan anda.',
-        'value'         => set_value('email_recovery')
-    ));
+        // Phone number
+        echo form_label('Nomor telepon', 'phone_number', array('class' => 'form-label'));
+        echo form_error('phone_number');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'phone_number',
+            'placeholder'   => 'Masukkan nomor telepon anda.',
+            'value'         => set_value('phone_number')
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Security Question
-    echo form_label('Pertanyaan Keamanan', 'security_question', array('class' => 'form-label'));
-    echo form_error('security_question');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'security_question',
-        'placeholder'   => 'Masukkan pertanyaan keamanan anda.',
-        'value'         => set_value('security_question')
-    ));
+        // Recovery Email
+        echo form_label('Email Cadangan', 'email_recovery', array('class' => 'form-label'));
+        echo form_error('email_recovery');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'email_recovery',
+            'placeholder'   => 'Masukkan email cadangan anda.',
+            'value'         => set_value('email_recovery')
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    // Security Answer
-    echo form_label('Jawaban Keamanan', 'security_answer', array('class' => 'form-label'));
-    echo form_error('security_answer');
-    echo form_input(array(
-        'class'         => 'form-input-generic', 
-        'name'          => 'security_answer',
-        'placeholder'   => 'Masukkan jawaban keamanan anda.',
-        'value'         => set_value('security_answer')
-    ));
+        // Security Question
+        echo form_label('Pertanyaan Keamanan', 'security_question', array('class' => 'form-label'));
+        echo form_error('security_question');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'security_question',
+            'placeholder'   => 'Masukkan pertanyaan keamanan anda.',
+            'value'         => set_value('security_question')
+        ));
 
-    echo '<br/>';
+        echo '<br/>';
 
-    echo form_submit(array('id' => 'form-submit', 'value' => 'Submit'));
+        // Security Answer
+        echo form_label('Jawaban Keamanan', 'security_answer', array('class' => 'form-label'));
+        echo form_error('security_answer');
+        echo form_input(array(
+            'class'         => 'form-input-generic', 
+            'name'          => 'security_answer',
+            'placeholder'   => 'Masukkan jawaban keamanan anda.',
+            'value'         => set_value('security_answer')
+        ));
 
-    echo form_close(); ?>
+        echo '<br/>';
+
+        echo form_submit(array('class' => 'form-submit', 'value' => 'Submit'));
+
+        echo form_close(); ?>
+    </div>
 </div>

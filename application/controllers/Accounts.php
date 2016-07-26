@@ -9,19 +9,91 @@ class Accounts extends CI_Controller {
         $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->helper('form');
+        $this->load->helper('url');
+        $this->load->helper('titlecase');
         $this->load->model('accounts_model');
     }
 
 	public function index()
 	{
-
+        if (isset($_SERVER['user_id']))
+        {
+            $this->dashboard();
+        }
+        else
+        {
+            $this->login();
+        }
 	}
 
-    public function account_registration()
+    public function register()
     {
-        $data['page_header'] = 'Registrasi Akun Chemistry Fair 2016';
+        $data['page_header'] = titlecase('Registrasi Akun Chemistry Fair 2016');
+        $data['disable_user_bar'] = TRUE;
         
         $this->load->view('templates/header.php', $data);
+
+        // Prepare the rules of the form
+        $this->form_validation->set_rules(  
+            'email', 'Email', 
+            'required|valid_email|is_unique[accounts.email]', 
+            array(
+                'valid_email'   => 'Email anda tidak valid.',
+                'is_unique'     => 'Email anda sudah terdaftar dalam data kami. Apakah anda ingin <a href="'
+                                    . site_url() . '/akun/login">Login</a>?'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'emailconf', 'Konfirmasi Email', 
+            'required|matches[email]', 
+            array(
+                'matches'       => 'Mohon cek kembali email anda.'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'password', 'Password', 
+            'required|min_length[8]', 
+            array(
+                'min_length'    => 'Password anda terlalu pendek. Minimal 8 karakter.'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'passconf', 'Konfirmasi Password', 
+            'required|matches[password]', 
+            array(
+                'min_length'    => 'Password anda tidak sama dengan kolom password diatas.'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'fullname', 'Nama Lengkap', 
+            'required|max_length[128]|callback_is_name_valid', 
+            array(
+                'callback_is_name_valid'    => 'Nama hanya dapat berisi karakter alphabet atau spasi.'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'phone_number', 'Nomor Telepon', 
+            'required|max_length[24]|numeric', 
+            array(
+                'numeric'       => 'Mohon masukkan hanya angka.'
+            )
+        );
+        $this->form_validation->set_rules(  
+            'email_recovery', 'Email Cadangan', 
+            'required|max_length[128]|valid_email', 
+            array(
+                'valid_email'   => 'Email anda tidak valid.',
+            )
+        );
+        $this->form_validation->set_rules(  
+            'security_question', 'Pertanyaan Keamanan', 
+            'required|max_length[128]'
+        );
+        $this->form_validation->set_rules(  
+            'security_answer', 'Jawaban Keamanan', 
+            'required|max_length[128]'
+        );
+        $this->form_validation->set_rules('security_answer', 'Jawaban Keamanan', 'required');
 
         // If the user is already logged in an account, send an error and tells them to logout first
         if (isset($_SESSION['user_id']))
@@ -45,10 +117,12 @@ class Accounts extends CI_Controller {
                 $this->input->post('security_answer')
             );
             
-            $data['success_header'] = 'Konfirmasi Akun Email Anda';
+            $data['success_title'] = 'Konfirmasi Akun Email Anda';
             $data['success_message'] = 'Kami telah mengirimkan email konfirmasi kepada anda. 
                                         Mohon membukanya dan klik link yang dicantumkan di dalam email anda';
-            $this->load->view('registration/success.php', $data);
+            $data['success_button_label'] = 'Kembali ke beranda.';
+            $data['success_button_link'] = site_url();
+            $this->load->view('templates/success.php', $data);
 
             // Send a verification email to the new user
             $this->send_verification_email($this->db->insert_id());
@@ -56,74 +130,13 @@ class Accounts extends CI_Controller {
 
         // Else, show the form
         else
-        {
-            $this->form_validation->set_rules(  
-                'email', 'Email', 
-                'required|valid_email|is_unique[accounts.email]', 
-                array(
-                    'valid_email'   => 'Email anda tidak valid.',
-                    'is_unique'     => 'Email anda sudah terdaftar dalam data kami.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'emailconf', 'Konfirmasi Email', 
-                'required|matches[email]', 
-                array(
-                    'matches'       => 'Mohon cek kembali email anda.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'password', 'Password', 
-                'required|min_length[8]', 
-                array(
-                    'min_length'    => 'Password anda terlalu pendek. Minimal 8 karakter.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'passconf', 'Konfirmasi Password', 
-                'required|matches[password]', 
-                array(
-                    'min_length'    => 'Password anda tidak sama dengan kolom password diatas.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'fullname', 'Nama Lengkap', 
-                'required|max_length[128]|alpha', 
-                array(
-                    'alpha'         => 'Nama hanya dapat berisi karakter alphabet.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'phone_number', 'Nomor Telepon', 
-                'required|max_length[24]|numeric', 
-                array(
-                    'numeric'       => 'Mohon masukkan hanya angka.'
-                )
-            );
-            $this->form_validation->set_rules(  
-                'email_recovery', 'Email Cadangan', 
-                'required|max_length[128]|valid_email', 
-                array(
-                    'valid_email'   => 'Email anda tidak valid.',
-                )
-            );
-            $this->form_validation->set_rules(  
-                'security_question', 'Pertanyaan Keamanan', 
-                'required|max_length[128]'
-            );
-            $this->form_validation->set_rules(  
-                'security_answer', 'Jawaban Keamanan', 
-                'required|max_length[128]'
-            );
-            $this->form_validation->set_rules('security_answer', 'Jawaban Keamanan', 'required');
-            
-            //$this->load->view('registrations/header.php', $data);
-            //$this->load->view('registrations/account.php');
+        { 
+            $this->load->view('registrations/account.php');
         }
-        //$this->load->view('templates/footer.php');
+        $this->load->view('templates/footer.php');
     }
 
-    public function participant_registration($type)
+    public function register_participant($type)
     {
         switch ($type) 
         {
@@ -152,6 +165,12 @@ class Accounts extends CI_Controller {
         $separated_data = explode('_', $validation_code, 2);
         echo $this->accounts_model->verify_account($separated_data[0], $separated_data[1]) ? 'Verified' : 'Ayy no';
     }
+
+    // Check if the inputted name is correct (Alphabet or spaces only)
+    function is_name_valid($input)
+    {
+        return (preg_match("/^([-a-z_ ])+$/i", $input)) ? TRUE : FALSE;
+    } 
 }
 
 ?>
