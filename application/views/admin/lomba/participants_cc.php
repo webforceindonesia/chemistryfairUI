@@ -96,5 +96,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         		</table>
         	</div>
         </div>
+        <div class="row">
+        	<div class="col-md-8">
+        		&nbsp
+        	</div>
+        	<div class="col-md-4">
+        		<ul class="pagination">
+				  <li><a href="#">1</a></li>
+				</ul>
+        	</div>
+        </div>
   </div>
 </section>

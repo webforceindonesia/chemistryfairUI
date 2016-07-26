@@ -9,9 +9,16 @@ class admin_model extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function getParticipants ($lomba)
+	public function getParticipants ($lomba, $limit='')
 	{
-		return $this->db->get($lomba.'_participants')->result();
+		if($limit == '')
+		{
+			return $this->db->get($lomba.'_participants', 30)->result();
+		}else
+		{
+			$this->db->where("id > $limit");
+			return $this->db->get($lomba.'_participants', 30)->result();
+		}
 	}
 }
 ?>

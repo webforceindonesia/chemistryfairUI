@@ -99,7 +99,7 @@ class Admin extends CI_Controller {
 				$page = "admin/login_admin";
 			}
 
-			$data['title'] = "Admin - Chemistry Fair";
+			$data['page_title'] = "New News | Admin - Chemistry Fair";
 			
 			$this->load->view('admin/templates/header.php', $data);
 			$this->load->view($page, $data);
@@ -160,7 +160,7 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/templates/footer.php');
 	}
 
-	public function lomba ($param1 = NULL, $param2 = NULL, $param3 = NULL)
+	public function lomba ($param1 = NULL, $param2 = NULL)
 	{
 		$this->load->model('admin_model');
 		$data['page_title'] 	= "Peserta Lomba - Admin Chemistry Fair";
@@ -177,31 +177,31 @@ class Admin extends CI_Controller {
 				{
 					case 'cc' :
 					{
-						$data['participants'] = $this->admin_model->getParticipants('cc');
+						$data['participants'] = $this->admin_model->getParticipants('cc', $param2);
 						$page 				  = "admin/lomba/participants_cc";
 					}break;
 
 					case 'cfk' :
 					{
-						$data['participants'] = $this->admin_model->getParticipants('cfk');
+						$data['participants'] = $this->admin_model->getParticipants('cfk', $param2);
 						$page 				  = "admin/lomba/participants_cfk";
 					}break;
 
 					case 'cip' :
 					{
-						$data['participants'] = $this->admin_model->getParticipants('cip');
+						$data['participants'] = $this->admin_model->getParticipants('cip', $param2);
 						$page 				  = "admin/lomba/participants_cip";
 					}break;
 
 					case 'cmp' :
 					{
-						$data['participants'] = $this->admin_model->getParticipants('cmp');
+						$data['participants'] = $this->admin_model->getParticipants('cmp', $param2);
 						$page 				  = "admin/lomba/participants_cmp";
 					}break;
 
 					case 'cp' :
 					{
-						$data['participants'] = $this->admin_model->getParticipants('cp');
+						$data['participants'] = $this->admin_model->getParticipants('cp', $param2);
 						$page 				  = "admin/lomba/participants_cp";
 					}break;
 

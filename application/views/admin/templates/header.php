@@ -50,8 +50,8 @@
                 <ul class="nav">
                     <li class="col-md-2"><a href="<?php echo site_url('admin/') ?>">DASHBOARD</a></li>
                     <li class="col-md-2"><a href="<?php echo site_url('admin/news_new_form') ?>">BUAT BERITA BARU</a></li>
-                    <li class="col-md-2"><a href="<?php echo site_url('admin/lomba') ?>">Check Lomba</a></li>
-                    <li class="col-md-3"><a href="<?php echo site_url('admin/pendaftar') ?>">Semniar</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url('admin/lomba') ?>">DAFTAR PESERTA</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url('admin/logout') ?>">LOGOUT</a></li>
                 </ul>
             </div>
         </div>
