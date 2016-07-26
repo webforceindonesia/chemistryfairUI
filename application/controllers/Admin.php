@@ -184,21 +184,25 @@ class Admin extends CI_Controller {
 					case 'cfk' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cfk');
+						$page 				  = "admin/lomba/participants_cfk";
 					}break;
 
 					case 'cip' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cip');
+						$page 				  = "admin/lomba/participants_cip";
 					}break;
 
 					case 'cmp' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cmp');
+						$page 				  = "admin/lomba/participants_cmp";
 					}break;
 
 					case 'cp' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cp');
+						$page 				  = "admin/lomba/participants_cp";
 					}break;
 
 					default :
