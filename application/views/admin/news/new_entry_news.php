@@ -31,9 +31,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-4">
                     <input type="submit" class="form-control">
                 </div>
-                <div class="col-md-4">
-                    <button class="" href="<?php echo base_url('admin/logout')?>">Logout</button>
-                </div>
                 </form>
             </div> 
         </div>
