@@ -93,6 +93,8 @@ class Accounts extends CI_Controller {
                 'valid_email'   => 'Email anda tidak valid.',
             )
         );
+
+        /*
         $this->form_validation->set_rules(  
             'security_question', 'Pertanyaan Keamanan', 
             'required|max_length[128]', 
@@ -107,13 +109,7 @@ class Accounts extends CI_Controller {
                 'required'      => 'Form ini harus diisi!',
             )
         );
-        $this->form_validation->set_rules(
-            'security_answer', 'Jawaban Keamanan', 
-            'required', 
-            array(
-                'required'      => 'Form ini harus diisi!',
-            )
-        );
+        */
 
         // Get the captcha results
         $show_captcha_error = isset($_POST['submit']) ? !$this->is_captcha_valid($this->input->post('g-recaptcha-response')) : false;
@@ -136,8 +132,8 @@ class Accounts extends CI_Controller {
                 $this->input->post('fullname'),
                 $this->input->post('phone_number'),
                 $this->input->post('email_recovery'),
-                $this->input->post('security_question'),
-                $this->input->post('security_answer')
+                '',
+                ''
             );
             
             $data['success_title'] = 'Registrasi Hampir Selesai';
@@ -183,11 +179,7 @@ class Accounts extends CI_Controller {
         // If the user is already logged in an account, send an error and tells them to logout first
         if (isset($_SESSION['user_id']))
         {
-            $this->load->view('error.php', array(
-                'error_title' => 'Anda sudah login!',  
-                'error_message' => 'Jika anda ingin mengganti akun, silahkan logout terlebih dahulu.',  
-                'error_button_label' => 'Beranda',
-                'error_button_link' => site_url()));
+            $this->dashboard();
         }
 
         // If the form is validated, set the session ID
@@ -357,27 +349,100 @@ class Accounts extends CI_Controller {
         $this->load->view('templates/footer.php');
     }
 
-    public function register_participant($type)
+    /**
+     *  Shows the user dashboard
+     *  @param string $show Page to load (empty for index)
+     *  @return bool TRUE on success, FALSE otherwise
+     *  @author FURIBAITO
+     */
+    public function dashboard($action = 'index')
     {
-        switch ($type) 
+        // Set the title and load the header
+        $data['title'] = titlecase('Dashboard');
+        $data['import_captcha'] = TRUE;
+        $this->load->view('templates/header.php', $data);
+
+        // Load the dashboard navigation template
+        $this->load->view('accounts/dashboard_nav.php');
+
+        $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
+
+        if ($action == 'index')
         {
-            case 'account':
-                
-                break;
+            $data['user_fullname'] = $user_data->fullname;
+            $data['user_email'] = $user_data->email;
+            $data['user_verified'] = $user_data->is_verified;
+            $data['user_phone_number'] = $user_data->phone_number;
+            $data['user_email_recovery'] = $user_data->email_recovery;
+            $data['show_captcha_error'] = FALSE;
 
-            case 'seminar':
-                $this->form_validation->set_rules('type', 'Tipe Pendaftar', 'required');
-                $this->form_validation->set_rules('fullname', 'Nama Lengkap', 'required|max_length[128]|alpha');
-		        $this->form_validation->set_rules('institution_name', 'Nama Institusi',  'required');
-                break;
+            if ($data['user_verified'] == FALSE)
+            {
+                if (isset($_POST['submit']))
+                {
+                    $show_captcha_error = !$this->is_captcha_valid($this->input->post('g-recaptcha-response'));
+                    $data['show_captcha_error'] = $show_captcha_error;
+                    if (!$show_captcha_error)
+                    {
+                        // Send a verification email to the requesting user
+                        $this->accounts_model->send_verification_email($_SESSION['user_id']);
+                    }
+                }
+            }
 
-            default:
-                # code...
-                break;
+            $this->load->view('accounts/dashboard_profile.php', $data);
         }
-        $this->load->view('test/header.php', $data);
-        $this->load->view('test/home.php');
-        $this->load->view('test/footer.php');
+
+        else if ($action == 'edit_account')
+        {
+            $this->form_validation->set_rules(  
+            'fullname', 'Nama Lengkap', 
+            'required|max_length[128]|callback_is_name_valid', 
+            array(
+                'required'      => 'Form ini harus diisi!',
+                'callback_is_name_valid'    => 'Nama hanya dapat berisi karakter alphabet atau spasi.'
+                )
+            );
+            $this->form_validation->set_rules(  
+                'phone_number', 'Nomor Telepon', 
+                'required|max_length[24]|numeric', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                    'numeric'       => 'Mohon masukkan hanya angka.'
+                )
+            );
+            $this->form_validation->set_rules(  
+                'email_recovery', 'Email Cadangan', 
+                'required|max_length[128]|valid_email', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                    'valid_email'   => 'Email anda tidak valid.',
+                )
+            );
+
+            // If the form is validated, update DB otherwise show the form again with errors
+            if ($this->form_validation->run() === TRUE)
+            {
+                // Change the account details in the DB
+                $this->accounts_model->change_details($_SESSION['user_id'], 'fullname', $this->input->post('fullname'));
+                $this->accounts_model->change_details($_SESSION['user_id'], 'phone_number', $this->input->post('phone_number'));
+                $this->accounts_model->change_details($_SESSION['user_id'], 'email_recovery', $this->input->post('email_recovery'));
+
+                // Redirect to the dashboard index
+                redirect('akun/dashboard', 'location');
+            }
+
+            // Else, show the form
+            else
+            {
+                $data['user_fullname'] = $user_data->fullname;
+                $data['user_phone_number'] = $user_data->phone_number;
+                $data['user_email_recovery'] = $user_data->email_recovery;
+                
+                $this->load->view('accounts/edit_account.php', $data);
+            }
+        }
+        $this->load->view('templates/footer.php');
     }
 
     // Splits the verification code and checks if it's correct

@@ -98,6 +98,7 @@
 
         echo '<br/>';
 
+        /*
         // Security Question
         echo form_label('Pertanyaan Keamanan', 'security_question', array('class' => 'form-label'));
         echo form_error('security_question');
@@ -119,6 +120,7 @@
             'placeholder'   => 'Masukkan jawaban keamanan anda.',
             'value'         => set_value('security_answer')
         ));
+        */
 
         echo '<br/>';
 

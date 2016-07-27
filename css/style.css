@@ -64,6 +64,7 @@ body
 	padding-bottom: 50px;
 	border-radius: 2px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	overflow: hidden;
 }
 
 #navBar nav
@@ -981,4 +982,30 @@ body
 	background-color: limegreen;
 	color: white;
 	border-radius: 2px;
+}
+
+/* Dashboard user */
+.dashboard-nav-container
+{
+	min-width: 250px;
+}
+
+.dashboard-nav-container a
+{
+	text-align: left;
+}
+
+.dashboard-nav-container .btn-group-vertical
+{
+	width: 100%;
+}
+
+.dashboard-nav-container > .panel > .panel-body
+{
+	padding : 0;
+}
+
+.dashboard-nav-container > .panel > .panel-body > .panel
+{
+	margin-bottom: 0;
 }
