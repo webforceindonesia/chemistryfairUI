@@ -122,28 +122,63 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function sliderEdit ()
+	public function slider_edit ()
 	{
-				$config['upload_path']          = '/images/slider';
+			if(isset($this->session->username) && $this->session->isLogged == True)
+			{
+				$page="admin/slider_upload";	
+			}else
+			{
+				$page = "admin/login_admin";
+			}
+
+			$data['page_title'] = "New News | Admin - Chemistry Fair";
+			
+			$this->load->view('admin/templates/header.php', $data);
+			$this->load->view($page, $data);
+			$this->load->view('admin/templates/footer.php');
+	}
+
+	public function slider_upload ()
+	{
+				if(!isset($this->session->username) && $this->session->isLogged == False)
+				{
+					redirect('/main');
+				}
+
+				$config['upload_path']          = 'images/slider';
                 $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 100;
-                $config['max_width']            = 1024;
-                $config['max_height']           = 768;
+                $config['max_size']             = 5000;
+                $config['overwrite']			= True;
+                // $config['max_width']            = 1920;
+                // $config['max_height']           = 1080;
 
                 $this->load->library('upload', $config);
+                $i=1;
 
-                if ( ! $this->upload->do_upload('slider'))
-                {
-                        $error = array('error' => $this->upload->display_errors());
+                foreach ($_FILES as $key => $value) {
 
-                        $this->load->view('upload_form', $error);
-                }
-                else
-                {
-                        $data = array('upload_data' => $this->upload->data());
+				    if (!empty($value['tmp_name']) && $value['size'] > 0) {
 
-                        $this->load->view('upload_success', $data);
-                }
+				    	$config['file_name'] = "Slide-" . $i;
+				    	$this->upload->initialize($config);
+
+				        if (!$this->upload->do_upload($key)) {
+
+				            $errors = $this->upload->display_errors();
+				            $this->session->set_flashdata('errors', $errors);
+				            redirect('/admin');
+				        } else {
+
+				            $data = array('upload_data' => $this->upload->data());
+				            $this->session->set_flashdata('success', 'Upload Success!');
+				        }
+
+				        $i++;
+				    }
+				}
+
+				redirect('/admin');
 	}
 
 	public function successPage ()
