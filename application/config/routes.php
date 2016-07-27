@@ -57,3 +57,4 @@ $route['acara/(:any)'] = 'acara/show_content/$1';
 $route['lomba/(:any)'] = 'lomba/show_content/$1';
 $route['aboutus'] = 'main/aboutus';
 $route['akun/(:any)'] = 'accounts/$1';
+$route['akun/(:any)/(:any)'] = 'accounts/$1/$2';
