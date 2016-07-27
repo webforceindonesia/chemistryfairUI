@@ -258,8 +258,6 @@ class Accounts_model extends CI_Model
         $account_email = $query_row->email;
         $account_email_recovery = $query_row->email_recovery;
 
-        echo var_dump($query_row);
-
         $verification_code = bin2hex(openssl_random_pseudo_bytes(32));
         $activation_url = site_url() . 'accounts/change_password/' . $account_id . '_' . $verification_code;
         

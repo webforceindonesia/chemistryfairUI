@@ -250,6 +250,7 @@ class Accounts extends CI_Controller {
     public function change_password($secret_code = '')
     {
         $data['title'] = titlecase('Ganti Password');
+        $data['import_captcha'] = TRUE;
 
         $this->load->view('templates/header.php', $data);
 
@@ -330,9 +331,12 @@ class Accounts extends CI_Controller {
                     'valid_email'   => 'Email anda tidak valid.'
                 )
             );
+
+            // Get the captcha results
+            $show_captcha_error = isset($_POST['submit']) ? !$this->is_captcha_valid($this->input->post('g-recaptcha-response')) : false;
             
             // If the form is validated, try to send the reset password email
-            if ($this->form_validation->run() === TRUE)
+            if ($this->form_validation->run() === TRUE && $show_captcha_error === FALSE)
             {
                 $this->accounts_model->send_password_change_email($this->input->post('email'));
                 $data['success_title'] = 'Link password akan segera dikirimkan.';
@@ -347,7 +351,7 @@ class Accounts extends CI_Controller {
             // Else, show the form
             else
             { 
-                $this->load->view('accounts/change_password_emailto.php');
+                $this->load->view('accounts/change_password_emailto.php', array('show_captcha_error' => $show_captcha_error));
             }
         }
         $this->load->view('templates/footer.php');
