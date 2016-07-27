@@ -25,7 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        			<td>Waktu Register</td>
 	        			<td>Action</td>
 	        		</tr>
-	        		<?php foreach ($participants as $row) { ?>
+	        		<?php 
+	        			$total = 0;
+	        			foreach ($participants as $row) { ?>
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
@@ -92,7 +94,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        				<td><?php echo $row->time_registered; ?></td>
 	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cc/'.$row->account_id) ?>">Conf Pembayaran</a></td>
 	        			</tr>
-	        		<?php } ?>
+	        		<?php 
+	        			$total++;
+	        		} 
+	        		?>
         		</table>
         	</div>
         </div>
@@ -102,7 +107,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         	</div>
         	<div class="col-md-4">
         		<ul class="pagination">
-				  <li><a href="#">1</a></li>
+        		<?php for($i=0; $i<$total; $i++)
+        		{?>
+				  <li><a href="<?php echo base_url('admin/lomba/cc/' . $i); ?>"><?php echo $i+1; ?></a></li>
+        		<?php } ?>
 				</ul>
         	</div>
         </div>

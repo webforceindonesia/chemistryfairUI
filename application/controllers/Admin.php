@@ -8,12 +8,19 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
+			
+		$data['page_title'] = "Admin - Chemistry Fair UI 2016";
+
 		if(isset($this->session->username) && $this->session->isLogged == True)
 		{
-			$page="admin/dashboard";	
+			$page="admin/dashboard";
+			$this->load->view('admin/templates/header.php', $data);
+			$this->load->view($page, $data);
+			$this->load->view('admin/templates/footer.php');	
 		}else
 		{
 			$page = "admin/login_admin";
+			$this->load->view($page, $data);
 		}
 
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
@@ -21,11 +28,6 @@ class Admin extends CI_Controller {
 			//Homepage does not exist
 			show_404();
 		}
-			
-		$data['page_title'] = "Admin - Chemistry Fair UI 2016";
-		$this->load->view('admin/templates/header.php', $data);
-		$this->load->view($page, $data);
-		$this->load->view('admin/templates/footer.php');
 	}
 
 	/* Login Methods */
