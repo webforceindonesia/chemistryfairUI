@@ -999,6 +999,11 @@ body
 	text-align: left;
 }
 
+.dashboard-nav-container .btn
+{
+	width: 100%;
+}
+
 .dashboard-nav-container .btn-group-vertical
 {
 	width: 100%;

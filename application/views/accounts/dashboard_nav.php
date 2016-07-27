@@ -12,6 +12,7 @@
             <!-- Navigation panel body -->
             <div class="panel-body">
                 <!-- Subpanel navigation for acara -->
+                <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard'; ?>">Profil Akun</a>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">Acara</h3>
