@@ -8,10 +8,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap-theme.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/qunit.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/comingsoon.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/media.css">
-        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        
         <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
@@ -24,22 +22,11 @@
         ----    Copyright Weborn 2016    --
         ---- Do Not Attempt to Duplicate --
         ---------------------------------->
-        
-        <style>
-            @media (max-width:995px)
-            {
-                .logo_univ
-                {
-                    display:none;	
-                }
-            }
-        </style>
     
     </head>
 
     <body>
-        <div class="logo-cf-header-container-small mobile-only">
-
+        <div class="logo-cf-header-container-small">
             <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>
                 <p>CHEMISTRY FAIR<br/><span>2016</span></p>
@@ -80,3 +67,5 @@
                 </div>
             </div>
         </div>
+    </body>
+</html>
