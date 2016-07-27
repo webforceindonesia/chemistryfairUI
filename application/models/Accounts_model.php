@@ -173,7 +173,8 @@ class Accounts_model extends CI_Model
      */
     public function login($email, $password)
     {
-        if ($this->get_id_from_email($email) !== 0)
+        $account_id = $this->get_id_from_email($email);
+        if ($account_id !== 0)
         {
             $this->db->select('password');
             $this->db->from('accounts');
@@ -182,10 +183,10 @@ class Accounts_model extends CI_Model
             $query = $this->db->get();
             if (password_verify($password, $query->row()->password))
             {
-                return true;
+                return $account_id;
             }
         }
-        return false;
+        return 0;
     }
 
     /**
@@ -217,8 +218,8 @@ class Accounts_model extends CI_Model
 
         $subject = 'Chemistry Fair UI 2016 | Verifikasi alamat email';
 
-        $message = '<span style="font-family: Verdana">Kami mendeteksi alamat email anda melakukan proses pendaftaran akun di website kami. \r\n';
-        $message .= 'Silahkan meng-klik link dibawah ini untuk mengaktifkan akun anda.</span>';
+        $message = '<span style="font-family: Verdana">Kami mendeteksi alamat email anda melakukan proses pendaftaran akun di website kami.';
+        $message .= 'Silahkan meng-klik link ini untuk mengaktifkan akun anda. </span>';
 
         $message .= '<a href=' . "'" . $activation_url . "'" . '>Aktifkan akun Chemistry Fair anda</a>';
 
@@ -230,22 +231,76 @@ class Accounts_model extends CI_Model
     }
 
     /**
-     *  Check if the secret answer of an user is correct
-     *  @param integer $account_id 
-     *  @param string $input_secret_answer
-     *  @return bool TRUE on correct, FALSE otherwise
+     *  Send a password change link
+     *  Fails when the email doesn't exist
+     *  @param string $email 
+     *  @return void
      *  @author FURIBAITO
      */
-    public function check_secret_answer($account_id, $input_secret_answer)
+    public function send_password_change_email($email)
     {
-        $this->db->select('secret_answer');
+        $this->load->helper('url');
+        
+        // Create a 64 byte random string as a key
+        $this->db->select('id, email, email_recovery');
+        $this->db->where('email', $email);
+        $this->db->or_where('email_recovery', $email);
+        $this->db->limit(1);
+
+        $query_row = $this->db->get('accounts')->row();
+
+        if (empty($query_row))
+        {
+            return;
+        }
+
+        $account_id = $query_row->id;
+        $account_email = $query_row->email;
+        $account_email_recovery = $query_row->email_recovery;
+
+        echo var_dump($query_row);
+
+        $verification_code = bin2hex(openssl_random_pseudo_bytes(32));
+        $activation_url = site_url() . 'accounts/change_password/' . $account_id . '_' . $verification_code;
+        
+        // Store the validation code in the DB
         $this->db->where('id', $account_id);
         $this->db->limit(1);
-        $real_secret_answer = $this->db->get('accounts')->row();
-        if (!empty($real_secret_answer))
+        $this->db->update('accounts', array('verification_code' => $verification_code));
+
+        // Send the email containing the link
+        $subject = 'Chemistry Fair UI 2016 | Permintaan Ganti Password';
+
+        $message = '<span style="font-family: Verdana">Kami mendeteksi alamat email anda meminta untuk merubah password akun Chemistry Fair 2016. ';
+        $message .= 'Silahkan meng-klik link ini untuk mengganti password akun anda. Jika anda tidak menghendaki atau mengetahui tindakan ini, harap mengabaikan email ini.</span>';
+
+        $message .= '<a href=' . "'" . $activation_url . "'" . '>Ganti password</a>';
+
+        $header = "From:furibaito.test@gmail.com \r\n";
+        $header .= "MIME-Version: 1.0\r\n";
+        $header .= "Content-type: text/html\r\n";
+
+        mail($account_email, $subject, $message, $header);
+        mail($account_email_recovery, $subject, $message, $header);
+    }
+
+    /**
+     *  Check the password change secret code
+     *  @param integer $account_id 
+     *  @param string $secret_code
+     *  @return bool TRUE if the code is correct, FALSE otherwise
+     *  @author FURIBAITO
+     */
+    public function check_password_change_code($account_id, $secret_code)
+    {
+        $this->db->select('verification_code');
+        $this->db->where('id', $account_id);
+        $this->db->limit(1);
+        $stored_code = $this->db->get('accounts')->row();
+        if (!empty($stored_code))
         {
-            $real_secret_answer = $real_secret_answer->secret_answer;
-            if (strcasecmp($input_secret_answer, $real_secret_answer) === 0)
+            $stored_code = $stored_code->verification_code;
+            if (!empty($stored_code) && $stored_code === $secret_code)
             {
                 return true;
             }
@@ -270,6 +325,22 @@ class Accounts_model extends CI_Model
             $this->db->limit(1);
             $this->db->update('accounts', array($field_name => ($field_name === 'password') ? password_hash($value, PASSWORD_DEFAULT) : $value));
         }
+    }
+
+    /**
+     *  Confirms a password change
+     *  @param integer $account_id 
+     *  @param string $new_password
+     *  @return bool TRUE if the code is correct, FALSE otherwise
+     *  @author FURIBAITO
+     */
+    public function confirm_password_change($account_id, $new_password)
+    {
+        $this->change_details($account_id, 'password', $new_password);
+        
+        $this->db->where('id', $account_id);
+        $this->db->limit(1);
+        $this->db->update('accounts', array('verification_code' => NULL));
     }
 
     /**

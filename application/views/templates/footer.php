@@ -1,3 +1,5 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="footerAll">
     <div class="col-md-2">

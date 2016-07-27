@@ -808,6 +808,7 @@ body
 	-moz-border-radius: 5px;
 	position: relative;
 	top: -150px;
+	color: #505050;
 }
 
 .form-label
@@ -895,6 +896,33 @@ body
 	color: darkred;
 }
 
+/* Account Login Form */
+.login-account-container
+{
+	background-color:rgba(255, 255, 255, 1);
+	padding: 50px 50px 50px 50px;
+	margin: 0 auto;
+    font: 13px Arial, Helvetica, sans-serif;
+	box-shadow: 0 1px 6px rgba(0,0,0,0.2), 0 1px 4px rgba(0,0,0,0.4);
+	width: 60%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	color: #505050;
+	height: 400px;
+	margin-bottom: 50px;
+}
+
+.login-form p
+{
+	margin: 0;
+	color: darkred;
+}
+
 /* Success Page */
 .success-container
 {
@@ -918,6 +946,36 @@ body
 }
 
 .success-button
+{
+	padding: 10px;
+	background-color: limegreen;
+	color: white;
+	border-radius: 2px;
+}
+
+/* Error Page */
+.error-container
+{
+	width: 80%;
+	text-align: center;
+}
+
+.error-title
+{
+	margin: 10px auto;
+	font-size: 42px;
+	color: darkred;
+}
+
+.error-message
+{
+	text-align: center;
+	font-size: 18px;
+	margin: 30px auto;
+	width: 80%;
+}
+
+.error-button
 {
 	padding: 10px;
 	background-color: limegreen;

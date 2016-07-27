@@ -122,7 +122,16 @@
 
         echo '<br/>';
 
-        echo form_submit(array('class' => 'form-submit', 'value' => 'Submit'));
+        // Captcha
+        echo form_label('Verifikasi bahwa anda adalah manusia.', '', array('class' => 'form-label'));
+        if ($show_captcha_error) echo '<div class="form-error">Verifikasi Captcha anda gagal, mohon dicoba lagi.</div>';
+        echo '<div class="g-recaptcha" data-sitekey="6Lcr_SUTAAAAAJ-HOnPhgHwkC3Rb4BsvnqZw8KSX"></div>';
+
+        echo '<br/>';
+
+        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Register'));
+
+        echo '&nbsp;&nbsp;&nbsp;Atau <a href="' . site_url() . 'akun/login' . '">login</a> jika anda sudah memiliki akun Chemistry Fair 2016.';
 
         echo form_close(); ?>
     </div>

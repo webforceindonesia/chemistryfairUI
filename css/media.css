@@ -87,6 +87,13 @@
 		display: none;
 	}
 
+	.header-account-box
+	{
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+	}
+
 	/* Footer Template */
 	#footerAll
 	{
@@ -148,6 +155,7 @@
 	.registration-account-container
 	{
 		width: 100%;
+		height: auto;
 		min-height: 300px;
 		background-color:rgba(0, 0, 0, 0.5);
 		font-family: 'Montserrat', sans-serif;
@@ -159,6 +167,16 @@
 		position: static;
 		width: 100%;
 		margin-top: 25px;
+	}
+
+	/* Account Login Form */
+	.login-account-container
+	{
+		width: 100%;
+		padding: 15px;
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
 	}
 }
 

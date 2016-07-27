@@ -13,7 +13,10 @@
             <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
-            
+            <?php if (isset($import_captcha)) : ?>
+                <script src='https://www.google.com/recaptcha/api.js'></script>
+            <?php endif; ?>
+
             <!-- Metas -->
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">

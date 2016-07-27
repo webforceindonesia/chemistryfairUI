@@ -1,1 +1,0 @@
-shits on the home page nigga
