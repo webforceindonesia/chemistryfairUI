@@ -358,7 +358,7 @@ class Accounts extends CI_Controller {
     public function dashboard($action = 'index')
     {
         // If the user hasn't logon yet, show the login page
-        if (isset($_SESSION['user_id']))
+        if (!isset($_SESSION['user_id']))
         {
             $this->login();
         }
