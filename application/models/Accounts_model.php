@@ -223,7 +223,7 @@ class Accounts_model extends CI_Model
 
         $message .= '<a href=' . "'" . $activation_url . "'" . '>Aktifkan akun Chemistry Fair anda</a>';
 
-        $header = "From:furibaito.test@gmail.com \r\n";
+        $header = "From:noreply@chemistryfair-ui.com \r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type: text/html\r\n";
 
@@ -274,7 +274,7 @@ class Accounts_model extends CI_Model
 
         $message .= '<a href=' . "'" . $activation_url . "'" . '>Ganti password</a>';
 
-        $header = "From:furibaito.test@gmail.com \r\n";
+        $header = "From:noreply@chemistryfair-ui.com \r\n";
         $header .= "MIME-Version: 1.0\r\n";
         $header .= "Content-type: text/html\r\n";
 
