@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  				<?php echo form_open ('admin/new_admin') ?>
                 <div class="row">
                     <div class="col-md-1">
-                    	<h1>Title</h1>
+                    	<h1>Username</h1>
                     </div>
                     <div class="col-md-6">
                         <br>
@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br><br>
                  <div class="row">
                     <div class="col-md-1">
-                        <h1>Title</h1>
+                        <h1>Password</h1>
                     </div>
                     <div class="col-md-6">
                         <br>
@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br><br>
                 <div class="row">
                     <div class="col-md-1">
-                        <h1>Title</h1>
+                        <h1>Email</h1>
                     </div>
                     <div class="col-md-6">
                         <br>

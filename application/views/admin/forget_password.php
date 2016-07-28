@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $title ?></title>
+	<title><?php echo $page_title ?></title>
     
     <!-- Stylesheet -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" type="text/css" rel="stylesheet">
@@ -137,8 +137,13 @@
 <div id="logoBig">
 	<p align="center"><img src="images/logo/display.png" onerror="this.style.display='none'"></p>
 </div>
+			<?php if($this->session->flashdata('failed')): ?>
+				<div class="alert alert-danger">
+					<?php echo $this->session->flashdata('failed') ?>
+				</div>
+			<?php endif; ?>
 			<div class="login">
-            <form id="forgetForm" action="login.php?forget=1" method="post">
+            <?php echo form_open('admin/reset', array('id' => 'forgetForm')) ?>
             <table align="center">
                 <tr>
                     <td>
@@ -166,16 +171,6 @@
 </div>
 </div>
 <script>
-    function submitForm ()
-    {
-    	document.getElementById("loginForm").submit();
-	}
-	
-	function forgetPassword ()
-	{
-		window.location.href = "login_admin.php?forget=1";
-	}
-	
 	function submitReset ()
 	{
 		document.getElementById("forgetForm").submit();
