@@ -58,3 +58,4 @@ $route['lomba/(:any)'] = 'lomba/show_content/$1';
 $route['aboutus'] = 'main/aboutus';
 $route['akun/(:any)'] = 'accounts/$1';
 $route['akun/(:any)/(:any)'] = 'accounts/$1/$2';
+$route['akun/(:any)/(:any)/(:any)'] = 'accounts/$1/$2/$3';

@@ -189,10 +189,13 @@ class Accounts extends CI_Controller {
             if ($account_id !== 0)
             {
                 $user_data = $this->accounts_model->get_details($account_id);
-                
+
+                if($user_data->is_admin != 1)
+                {
                 $_SESSION['user_id'] = $account_id;
                 $_SESSION['user_email'] = $user_data->email;
                 $_SESSION['user_fullname'] = $user_data->fullname;
+                $this->session->email = $user_data->email;
 
                 $this->load->view('templates/header.php', $data);
                 
@@ -201,6 +204,12 @@ class Accounts extends CI_Controller {
                 $data['success_button_label'] = 'Beranda';
                 $data['success_button_link'] = site_url();
                 $this->load->view('templates/success.php', $data);
+            	}else
+            	{
+            		$this->session->username = $account_id;
+            		$this->session->isLogged = True;
+            		redirect('/admin');
+            	}
             }
 
             else 
@@ -355,7 +364,7 @@ class Accounts extends CI_Controller {
      *  @return bool TRUE on success, FALSE otherwise
      *  @author FURIBAITO
      */
-    public function dashboard($action = 'index')
+    public function dashboard($action = 'index', $param = '')
     {
         // If the user hasn't logon yet, show the login page
         if (!isset($_SESSION['user_id']))
@@ -450,11 +459,118 @@ class Accounts extends CI_Controller {
                 $this->load->view('accounts/edit_account.php', $data);
             }
         }
-
         else if ($action == 'cip')
         {
-            $this->load->view('accounts/dashboard_cip.php');
-            // JO COME
+        	$this->db->select('cip_participants.*');
+        	$this->db->where('cip_participants.account_id', $this->session->user_id);
+
+
+        	if($this->db->get('cip_participants')->num_rows() > 0)
+        	{
+        		$data_user = $this->db->get('cip_participants')->row();
+        		$data['user_is_participant']			= TRUE;
+  	        	$data['user_submitted_abstract'] 		= $data_user->abstract_link;
+	        	$data['user_passed_abstract']			= $data_user->abstract_passed;
+	        	$data['user_submitted_payment_proof']	= $data_user->payment_proof_link;
+	        	$data['user_payment_verified']			= $data_user->is_paid;
+	        	$data['user_email'] 					= $this->session->email;
+	        	$data['user_fullname'] 					= $data_user->fullname_member1;
+
+	        	$this->db->select('*');
+	        	$this->db->where('id', $this->session->user_id);
+	        	$personal_data = $this->db->get('accounts')->row();
+
+	        	$data['user_fullname'] 						= $personal_data->fullname;
+	        	$data['user_phone_number']					= $personal_data->phone_number;
+	        	$data['user_email_recovery']				= $personal_data->email_recovery;
+
+	        	if(file_exists("uploads/cip/" . $this->session->user_id . "/photos/team-1.JPG") && file_exists("uploads/cip/" . $this->session->user_id . "/photos/team-2.JPG") && file_exists("uploads/cip/" . $this->session->user_id . "/photos/team-3.JPG") && $personal_data->fullname != NULL && $personal_data->phone_number != NULL && $personal_data->email_recovery != NULL)
+	        	{
+	        		$data['user_details_complete'] = TRUE;
+	        	}else
+	        	{
+	        		$data['user_details_complete'] = False;
+	        	}
+
+	            $this->load->view('accounts/dashboard_cip.php', $data);
+        	}else
+        	{
+        		$data['user_is_participant']			= False;
+        		$this->load->view('accounts/dashboard_cip.php', $data);
+        	}
+            
+            if($param == 'upload')
+            {
+            	$config['upload_path']          =  'uploads/cip/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+                // $config['max_width']            = 1024;
+                // $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+                $link = "uploads/cip/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+				{
+					if(!mkdir($link, 0777, TRUE))
+					{
+						$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+					}
+				}
+
+
+                //Check File Berkas Upload
+                if(isset($_FILES['file_berkas']))
+                {
+                	$config['allowed_types']        = 'zip';
+                	$config['file_name']			= 'berkas';
+				    $this->upload->initialize($config);
+
+	                if ( ! $this->upload->do_upload('file_berkas'))
+	                {
+	                        $error = array('error' => $this->upload->display_errors());
+	                        $error_data = $error['error'];
+	                        $this->session->set_flashdata('upload_failed', $error_data);
+
+	                        redirect('akun/dashboard/cip');
+	                }
+	                else
+	                {
+	                		//Write to db
+	                		$this->db->select('cip_participants');
+	                		$data = array('abstract_link' => $link . "/berkas.zip");
+	                		$this->db->update('cip_participants', $data)->result;
+	                        $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
+	                        redirect('akun/dashboard/cip');
+	                }
+	            }
+
+	            //Check File Bukti Trf Upload
+				if(isset($_FILES['file_bukti']))
+                {
+                	$config['allowed_types']        = 'jpg';
+                	$config['file_name']			= 'bukti_trf';
+                	$config['overwrite']			= TRUE;
+				    $this->upload->initialize($config);
+
+	                if ( ! $this->upload->do_upload('file_bukti') )
+	                {
+	                        $error = array('error' => $this->upload->display_errors());
+
+	                        $this->session->set_flashdata('upload_failed', $error);
+
+	                        redirect('akun/dashboard/cip');
+	                }
+	                else
+	                {
+	                		//Write to db
+	                		$this->db->select('cip_participants');
+	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+	                		$this->db->update('cip_participants', $data)->result;
+	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+	                        redirect('akun/dashboard/cip');
+	                }
+	            }
+            }
         }
         $this->load->view('templates/footer.php');
     }

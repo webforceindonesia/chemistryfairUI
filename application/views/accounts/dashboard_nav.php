@@ -32,7 +32,7 @@
                     <div class="panel-body">
                         <div class="btn-group-vertical" role="group" aria-label="...">
                             <a class="btn btn-default" href="<?php echo site_url() . 'lomba/chemistry_competition'; ?>">Chemistry Competition</a>
-                            <a class="btn btn-default" href="<?php echo site_url() . 'lomba/chemistry_innovation_project'; ?>">Chemistry Innovation Project</a>
+                            <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cip'; ?>">Chemistry Innovation Project</a>
                             <a class="btn btn-default" href="<?php echo site_url() . 'lomba/chemistry_art_competition'; ?>">Chemistry Art Competition</a>
                         </div>
                     </div>

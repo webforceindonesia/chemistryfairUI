@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 	{
 			
 		$data['page_title'] = "Admin - Chemistry Fair UI 2016";
-
+		
 		if(isset($this->session->username) && $this->session->isLogged == True)
 		{
 			$page="admin/dashboard";
@@ -30,59 +30,59 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	/* Login Methods */
-	public function login()
-	{
-		$this->username = $this->input->post('username');
-		$this->password = $this->input->post('password');
+	// /* Login Methods */ Depreceated - Moved to account controller
+	// public function login()
+	// {
+	// 	$this->username = $this->input->post('username');
+	// 	$this->password = $this->input->post('password');
 
-		$this->load->model('login_model');
-		if($unPassword = $this->login_model->getPassword($this->username))
-		{
-			if(password_verify($this->password, $unPassword))
-			{
-				$this->session->username = $this->username;
-				$this->session->isLogged = True;
+	// 	$this->load->model('login_model');
+	// 	if($unPassword = $this->login_model->getPassword($this->username))
+	// 	{
+	// 		if(password_verify($this->password, $unPassword))
+	// 		{
+	// 			$this->session->username = $this->username;
+	// 			$this->session->isLogged = True;
 
-				redirect('/admin');
-			}else
-			{
-				$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
-				redirect('/admin', 'refresh');
-			}
-		}else
-		{
-				$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
-			redirect('/admin', 'refresh');
-		}
-	}
+	// 			redirect('/admin');
+	// 		}else
+	// 		{
+	// 			$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
+	// 			redirect('/admin', 'refresh');
+	// 		}
+	// 	}else
+	// 	{
+	// 			$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
+	// 		redirect('/admin', 'refresh');
+	// 	}
+	// }
 
-	public function forget()
-	{
-		$page = "admin/forget_password";
-		if (!file_exists (APPPATH.'views/'.$page.'.php'))
-		{
-			//Homepage does not exist
-			show_404();
-		}
+	// public function forget()
+	// {
+	// 	$page = "admin/forget_password";
+	// 	if (!file_exists (APPPATH.'views/'.$page.'.php'))
+	// 	{
+	// 		//Homepage does not exist
+	// 		show_404();
+	// 	}
 			
-		$data['page_title'] = "Admin - Chemistry Fair UI 2016";
-		$this->load->view($page, $data);
-	}
+	// 	$data['page_title'] = "Admin - Chemistry Fair UI 2016";
+	// 	$this->load->view($page, $data);
+	// }
 
-	public function reset()
-	{
-		$this->load->model('login_model');
-		if($this->login_model->reset())
-		{
-			$this->session->set_flashdata('failed', 'Success');
-			redirect('/admin');
-		}else
-		{
-			$this->session->set_flashdata('failed', 'Reset Failed');
-			redirect('/forget');
-		}
-	}
+	// public function reset()
+	// {
+	// 	$this->load->model('login_model');
+	// 	if($this->login_model->reset())
+	// 	{
+	// 		$this->session->set_flashdata('failed', 'Success');
+	// 		redirect('/admin');
+	// 	}else
+	// 	{
+	// 		$this->session->set_flashdata('failed', 'Reset Failed');
+	// 		redirect('/forget');
+	// 	}
+	// }
 
 	public function logout ()
 	{
@@ -257,13 +257,23 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer.php');
 	}
 
-	public function konfirmasi_pembayaran($lomba = '', $account_id = '')
+	public function konfirmasi($type='', $lomba = '', $account_id = '')
 	{
-		$this->db->set('is_paid', '1');
-		$this->db->where('account_id', $account_id);
-		$this->db->update($lomba . '_participants');
-		$this->session->set_flashdata('success', 'Success in Konfirmasi Pembayaran');
-		redirect('/admin/lomba');
+		if($type == "pembayaran")
+		{
+			$this->db->set('is_paid', '1');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Konfirmasi Pembayaran');
+			redirect('/admin/lomba');
+		}else if($type == "abstrak")
+		{
+			$this->db->set('abstract_passed', '1');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Abstract Approval');
+			redirect('/admin/lomba');
+		}
 	}
 
 	//Development Only
