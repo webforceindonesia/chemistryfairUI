@@ -14,7 +14,8 @@
                     <p>Status : <span style="color:green">Terverifikasi</span></p>
                 <?php else : ?>
                     <p>Status : <span style="color:red">Belum Terverifikasi</span></p>
-                    <p>Akun Chemistry Fair 2016 anda belum terverifikasi, mohon cek email anda akan email dari kami. (Cek juga dalam kategori spam)</p>
+                    <p>Akun Chemistry Fair 2016 anda belum terverifikasi, anda belum dapat berpartisipasi dalam acara atau lomba di Chemistry Fair 2016
+                     sebelum akun anda terverifikasi. Mohon cek email anda akan email verifikasi akun dari kami. (Cek juga dalam kategori spam)</p>
                     <p>Jika anda ingin mengirim ulang email verifikasi akun, mohon lakukan captcha dibawah ini 
                     lalu klik tombol <strong>Kirim Ulang Email Verifikasi</strong>!</p>
                     <?php 
