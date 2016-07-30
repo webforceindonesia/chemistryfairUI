@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        					} 
 	        					?>
 	        				</td>
-	        				<td><?php echo $row->payment_proof_link; ?></td>
+	        				<td class="text-centered"><a href="<?php echo base_url() . $row->payment_proof_link; ?>"><img style="max-width:50px; max-height:50px" src="<?php echo base_url() . $row->payment_proof_link; ?>"></a></td>
 	        				<td>
 	        					<?php if($row->is_paid == 1)
 	        					{
