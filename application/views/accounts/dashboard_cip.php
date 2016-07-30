@@ -16,27 +16,26 @@
                         <p>Mohon melengkapi data-data tim peserta anda dibawah halaman ini.</p>
                     <?php elseif ($user_submitted_abstract == FALSE) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Abstrak</span></p>
-                        <p>Mohon mengupload karya abstrak anda di tempat di bawah ini : </p>
-                        <p>WIP Area upload abstrak pake jquery blabla jo halp</p>
+                        <p>Mohon mengupload karya abstrak anda di tempat di bawah ini. Anda hanya bisa mengupload abstrak satu kali saja, jadi mohon
+                           upload hanya revisi terakhir dari abstrak anda.</p>
+                        <p>WIP Area upload abstrak pake JO HALP</p>
                     <?php elseif ($user_passed_abstract == FALSE) : ?>
                         <p>Status : <span style="color:yellow">Menunggu Hasil Lolos Abstrak</span></p>
                         <p>Tim kami akan memeriksa dan menilai abstrak anda, mohon menunggu hingga hasil penilaian
                          abstrak anda keluar. Terima kasih.</p>
-                        <p>Anda bisa mengupdate abstrak Anda jika perlu : </p>
-                        <p>WIP Area upload abstrak pake jquery blabla jo halp</p>
                     <?php elseif ($user_submitted_payment_proof == FALSE) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
                         <p>Selamat! Anda telah lolos dalam tahap seleksi abstrak. Untuk melanjutkan ke tahap berikutnya, mohon
                          membayar biaya pendaftaran dengan invoice yang bisa anda download di link dibawah ini.</p>
-                        <p>WIP Link download pdf tunggu jo bikin</p>
+                        <p>WIP Link downlod pdf JO HALP</p>
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
-                        <p>WIP Area upload bukti pembayaran</p>
+                        <p>WIP Area upload bukti pembayaran JO HALP</p>
                     <?php elseif ($user_payment_verified == FALSE) : ?>
                         <p>Status : <span style="color:yellow">Menunggu Hasil Konfirmasi Pembayaran</span></p>
                         <p>Tim kami akan memeriksa bukti pembayaran yang sudah Anda upload. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
-                        <p>WIP Area upload bukti pembayaran</p>
+                        <p>WIP Area upload bukti pembayaran JO HALP</p>
                     <?php else : ?>
                         <p>Status : <span style="color:green">Pembayaran Terkonfirmasi</span></p>
                         <p>Selamat! Pembayaran anda telah kami konfirmasikan dan tim anda sudah menjadi peserta dalam lomba Chemistry Innovation Project!

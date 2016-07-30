@@ -451,9 +451,10 @@ class Accounts extends CI_Controller {
             }
         }
 
-        else if ($action == 'overview_cip')
+        else if ($action == 'cip')
         {
             $this->load->view('accounts/dashboard_cip.php');
+            // JO COME
         }
         $this->load->view('templates/footer.php');
     }
