@@ -361,6 +361,7 @@ class Accounts extends CI_Controller {
         if (!isset($_SESSION['user_id']))
         {
             $this->login();
+            exit();
         }
         
         // Set the title and load the header
@@ -373,11 +374,12 @@ class Accounts extends CI_Controller {
 
         $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
 
-        if ($action == 'index')
+        $data['user_verified'] = $user_data->is_verified;
+
+        if ($action == 'index' || $user_data->is_verified == FALSE)
         {
             $data['user_fullname'] = $user_data->fullname;
             $data['user_email'] = $user_data->email;
-            $data['user_verified'] = $user_data->is_verified;
             $data['user_phone_number'] = $user_data->phone_number;
             $data['user_email_recovery'] = $user_data->email_recovery;
             $data['show_captcha_error'] = FALSE;
@@ -447,6 +449,12 @@ class Accounts extends CI_Controller {
                 
                 $this->load->view('accounts/edit_account.php', $data);
             }
+        }
+
+        else if ($action == 'cip')
+        {
+            $this->load->view('accounts/dashboard_cip.php');
+            // JO COME
         }
         $this->load->view('templates/footer.php');
     }
