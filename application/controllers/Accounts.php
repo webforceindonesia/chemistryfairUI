@@ -566,27 +566,128 @@ class Accounts extends CI_Controller {
             }
         }
         else {
-            $data['user_category']              = '';
-            $data['user_institution_name']      = '';
-            $data['user_fullname_member1']      = '';
-            $data['user_id_number_member1']     = '';
-            $data['user_identity_member1_link'] = '';
-            $data['user_passphoto_link1']       = '';
-            $data['user_fullname_member2']      = '';
-            $data['user_id_number_member2']     = '';
-            $data['user_identity_member2_link'] = '';
-            $data['user_passphoto_link2']       = '';
-            $data['user_fullname_member3']      = '';
-            $data['user_id_number_member3']     = '';
-            $data['user_identity_member3_link'] = '';
-            $data['user_passphoto_link3']       = '';
-            $data['user_province_id']          = '';
-            $data['user_lodging_days']          = '';
-            $data['user_need_transport']        = '';
-            $data['user_teacher_name']          = '';
-            $data['user_teacher_phone']         = '';
-            $data['user_teacher_email']         = '';
             $this->load->view('accounts/form_cip', $data);
+
+            $this->form_validation->set_rules(  
+                'participant_type', 'Kategori Peserta', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'institution_name', 'Nama Institusi Pendidikan', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'fullname_member1', 'Nama Lengkap Ketua Tim', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'id_number_member1', 'Nomor Identitas Ketua Tim (KTP/Kartu Pelajar)', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'fullname_member2', 'Nama Lengkap Peserta 2', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'id_number_member2', 'Nama Lengkap Peserta 2 (KTP/Kartu Pelajar)', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+             $this->form_validation->set_rules(  
+                'fullname_member3', 'Nama Lengkap Peserta 3', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'id_number_member3', 'Nama Lengkap Peserta 3 (KTP/Kartu Pelajar)', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+            $this->form_validation->set_rules(  
+                'province_id', 'Asal Provinsi', 
+                'required', 
+                array(
+                    'required'      => 'Form ini harus diisi!',
+                )
+            );
+
+            // If the form is validated
+            if ($this->form_validation->run() === TRUE)
+            {
+                // Change the account details in the DB
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'type', $this->input->post('participant_type'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'institution_name', $this->input->post('institution_name'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'fullname_member1', $this->input->post('fullname_member1'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'id_number_member1', $this->input->post('id_number_member1'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'identity_member1_link', $this->input->post('identity_member1_link'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'passphoto_link1', $this->input->post('passphoto_link1'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'fullname_member2', $this->input->post('fullname_member2'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'id_number_member2', $this->input->post('id_number_member2'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'identity_member2_link', $this->input->post('identity_member2_link'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'passphoto_link2', $this->input->post('passphoto_link2'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'fullname_member3', $this->input->post('fullname_member3'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'id_number_member3', $this->input->post('id_number_member3'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'identity_member3_link', $this->input->post('identity_member3_link'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'passphoto_link3', $this->input->post('passphoto_link3'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'province_id', $this->input->post('province_id'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'lodging_days', $this->input->post('lodging_days'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'need_transport', $this->input->post('need_transport'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_name', $this->input->post('teacher_name'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_phone', $this->input->post('teacher_phone'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_email', $this->input->post('teacher_email'));
+
+                // Redirect to the dashboard of CIP
+                redirect('akun/dashboard/cip', 'location');
+            }
+
+            // Else, show the form
+            else
+            {
+                $cip_data = $this->model->get_details($this->session->userdata('user_id'));
+                $data['user_category']              = $cip_data->type;
+                $data['user_institution_name']      = $cip_data->tyinstitution_namepe;
+                $data['user_fullname_member1']      = $cip_data->fullname_member1;
+                $data['user_id_number_member1']     = $cip_data->id_number_member1;
+                $data['user_identity_member1_link'] = $cip_data->identity_member1_link;
+                $data['user_passphoto_link1']       = $cip_data->passphoto_link1;
+                $data['user_fullname_member2']      = $cip_data->fullname_member2;
+                $data['user_id_number_member2']     = $cip_data->id_number_member2;
+                $data['user_identity_member2_link'] = $cip_data->identity_member2_link;
+                $data['user_passphoto_link2']       = $cip_data->passphoto_link2;
+                $data['user_fullname_member3']      = $cip_data->fullname_member3;
+                $data['user_id_number_member3']     = $cip_data->id_number_member3;
+                $data['user_identity_member3_link'] = $cip_data->identity_member3_link;
+                $data['user_passphoto_link3']       = $cip_data->passphoto_link3;
+                $data['user_province_id']          = $cip_data->province_id;
+                $data['user_lodging_days']          = $cip_data->lodging_days;
+                $data['user_need_transport']        = $cip_data->need_transport;
+                $data['user_teacher_name']          = $cip_data->teacher_name;
+                $data['user_teacher_phone']         = $cip_data->teacher_phone;
+                $data['user_teacher_email']         = $cip_data->teacher_email;
+                
+                $this->load->view('accounts/edit_account.php', $data);
+            }
         }
         $this->load->view('templates/footer.php');
     }
