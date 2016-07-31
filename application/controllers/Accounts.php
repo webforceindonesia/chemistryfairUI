@@ -666,9 +666,35 @@ class Accounts extends CI_Controller {
     }
 
     //Daftar Lomba
-    public function register_lomba($param = '', $param2 = '')
+    public function register_lomba($param1 = '', $param2 = '')
     {
+        switch ($param1)
+        {
+            case 'cip' :
+            {
+                if($this->input->post('type') == 'univeristy')
+                
+                $data = array (
 
+                    'type'                  => $this->input->post('type');
+                    'account_id'            => $this->session->userdata('user_id');
+                    'fullname_member1'      => $this->input->post('fullname_member1');
+                    'fullname_member2'      => $this->input->post('fullname_member2');
+                    'fullname_member3'      => $this->input->post('fullname_member3');
+
+
+
+
+
+
+                    );
+            }break;
+
+            default:
+            {
+                redirect('/main');
+            }
+        }
     }
     
 }
