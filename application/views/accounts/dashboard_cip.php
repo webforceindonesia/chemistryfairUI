@@ -134,8 +134,26 @@
         <?php else: ?>
 
             <div class="alert alert-danger">
-                You Are Not A Participant of This Competition.
+                Anda belum berpartisipasi dalam acara/lomba ini.
             </div>
+
+            <!-- Check if it's already in time for open registration -->
+            <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
+                <?php if (isset($_SESSION['user_id'])) : ?>
+                    <div class="alert alert-info col-md-12" role="alert">
+                        <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <span>Silahkan registrasi tim anda untuk acara ini.</span>
+                    </div>
+                <?php endif; ?>
+            <?php else : ?>
+                <div class="alert alert-danger col-md-12" role="alert">
+                <?php 
+                    $time_left = (new DateTime())->diff(new DateTime(CF_CIP_OPEN_REGISTRATION));
+                    echo 'Registrasi online Chemistry Innovatiion Project akan dibuka <strong>' . $time_left->days . ' Hari</strong> lagi pada tanggal <strong>'
+                        . DateTime::createFromFormat('Y-m-d H:i:s', CF_CIP_OPEN_REGISTRATION)->format('j F Y') . '</strong>.'; 
+                ?>
+                </div>
+            <?php endif; ?>
 
         <?php endif; ?>
     </div>

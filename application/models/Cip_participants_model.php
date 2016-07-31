@@ -14,7 +14,13 @@ fullname_member2	    varchar(128)
 fullname_member3	    varchar(128)
 identity_member1_link	varchar(255)			
 identity_member2_link	varchar(255)			
-identity_member3_link	varchar(255)			
+identity_member3_link	varchar(255)
+id_number_member1 	    int			
+id_number_member2   	int			
+id_number_member3 	    int		
+passphoto_link1     	varchar(255)			
+passphoto_link2	        varchar(255)			
+passphoto_link3	        varchar(255)	
 institution_name	    varchar(128)
 province_id	            int(11) unsigned			
 lodging_days	        int(11)			
