@@ -529,6 +529,7 @@ class Accounts extends CI_Controller {
 	                else
 	                {
 	                		//Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
 	                		$data = array('abstract_link' => $link . "/berkas.zip");
 	                		$this->db->update('cip_participants', $data)->result;
@@ -556,6 +557,7 @@ class Accounts extends CI_Controller {
 	                else
 	                {
 	                		//Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
 	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
 	                		$this->db->update('cip_participants', $data)->result;
@@ -580,7 +582,7 @@ class Accounts extends CI_Controller {
             $data['user_id_number_member3']     = '';
             $data['user_identity_member3_link'] = '';
             $data['user_passphoto_link3']       = '';
-            $data['user_province_id']          = '';
+            $data['user_province_id']           = '';
             $data['user_lodging_days']          = '';
             $data['user_need_transport']        = '';
             $data['user_teacher_name']          = '';
@@ -665,29 +667,279 @@ class Accounts extends CI_Controller {
         return json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, stream_context_create($stream_options)))->success;
     }
 
+    //Pendaftaran
+    public function daftar_lomba ($param1 = '')
+    {
+        switch ($param1)
+        {
+            case 'cip':
+            {
+                $page = 'accounts/form_cip.php';
+            }break;
+
+            default :
+            {
+                redirect('/main');
+            }
+        }
+
+        $this->load->view('templates/header.php');
+        $this->load->view($page);
+        $this->load->view('templates/footer.php');
+    }
+
     //Daftar Lomba
     public function register_lomba($param1 = '', $param2 = '')
     {
+
         switch ($param1)
         {
             case 'cip' :
             {
+                $flag = 0;
+
+                //File Handling
+                if($_FILES['identity_member1_link'] && $_FILES['identity_member2_link'] && $_FILES['identity_member3_link'] && $_FILES['passphoto_link1'] && $_FILES['passphoto_link2'] && $_FILES['passphoto_link3'])
+                {
+                    $config['upload_path']          = 'uploads/cip/' . $this->session->user_id;
+                    $config['max_size']             = 5000;
+                    $config['overwrite']            = TRUE;
+
+                    $this->load->library('upload', $config);
+
+                    $link = "uploads/cip/" . $this->session->user_id;
+
+                    if (!file_exists ($link))
+                    {
+                        if(!mkdir($link, 0777, TRUE))
+                        {
+                            $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                        }
+                    }
+
+                    if($_FILES['identity_member1_link'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'identity_member1_link';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('identity_member1_link') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('identity_member1_link' => $link . "/identity_member1_link");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($_FILES['identity_member2_link'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'identity_member2_link';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('identity_member2_link') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('identity_member2_link' => $link . "/identity_member2_link");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($_FILES['identity_member3_link'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'identity_member3_link';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('identity_member3_link') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('identity_member3_link' => $link . "/identity_member3_link");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($_FILES['passphoto_link1'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'passphoto_link1';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('passphoto_link1') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('passphoto_link1' => $link . "/passphoto_link1");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($_FILES['passphoto_link2'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'passphoto_link2';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('passphoto_link1') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('passphoto_link2' => $link . "/passphoto_link2");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($_FILES['passphoto_link3'])
+                    {
+                        $config['allowed_types']        = 'jpg';
+                        $config['file_name']            = 'passphoto_link3';
+                        $config['overwrite']            = TRUE;
+                        $this->upload->initialize($config);
+
+                        if ( ! $this->upload->do_upload('passphoto_link1') )
+                        {
+                                $error = array('error' => $this->upload->display_errors());
+
+                                $this->session->set_flashdata('upload_failed', $error);
+
+                                redirect('akun/dashboard/cip');
+                        }
+                        else
+                        {
+                                //Write to db
+                                $this->db->where('account_id', $this->session->userdata('user_id'));
+                                $this->db->select('cip_participants');
+                                $data = array('passphoto_link3' => $link . "/passphoto_link3");
+                                $this->db->update('cip_participants', $data)->result;
+                                $flag++;
+                        }
+                    }
+
+                    if($flag != '6')
+                    {
+                        $this->session->set_flashdata('error', 'Tolong unggah semua data');
+                        redirect('/akun/dashboard');
+                    }
+
+                }else
+                {
+                    $this->session->set_flashdata('error', 'Tolong unggah semua data');
+                    redirect('/akun/dashboard');
+                }
+
+                //Put Into Array
                 if($this->input->post('type') == 'univeristy')
-                
-                $data = array (
+                {
+                    $data_pendaftar = array (
 
-                    'type'                  => $this->input->post('type');
-                    'account_id'            => $this->session->userdata('user_id');
-                    'fullname_member1'      => $this->input->post('fullname_member1');
-                    'fullname_member2'      => $this->input->post('fullname_member2');
-                    'fullname_member3'      => $this->input->post('fullname_member3');
+                        'type'                       => $this->input->post('type'),
+                        'account_id'                 => $this->session->userdata('user_id'),
+                        'fullname_member1'           => $this->input->post('fullname_member1'),
+                        'fullname_member2'           => $this->input->post('fullname_member2'),
+                        'fullname_member3'           => $this->input->post('fullname_member3'),
+                        'identity_member1'           => $this->input->post('identity_member1'),
+                        'identity_member2'           => $this->input->post('identity_member2'),
+                        'identity_member3'           => $this->input->post('identity_member3'),
+                        // 'identity_member1_link'      => $identity_link1,
+                        // 'identity_member2_link'      => $identity_link2,
+                        // 'identity_member3_link'      => $identity_link3,
+                        // 'passphoto_link1'            => $photo_link3,
+                        // 'passphoto_link2'            => $photo_link2,
+                        // 'passphoto_link3'            => $photo_link3,
+                        'institution_name'           => $this->input->post('institution_name'),
+                        'province_id'                => $this->input->post('provice_id'),
+                        'logging_days'               => $this->input->post('logging_days'),
+                        'need_transport'             => $this->input->post('need_transport')
 
+                        );
+                }else
+                {
+                    $data_pendaftar = array (
+                        'type'                       => $this->input->post('type'),
+                        'account_id'                 => $this->session->userdata('user_id'),
+                        'fullname_member1'           => $this->input->post('fullname_member1'),
+                        'fullname_member2'           => $this->input->post('fullname_member2'),
+                        'fullname_member3'           => $this->input->post('fullname_member3'),
+                        'identity_member1'           => $this->input->post('identity_member1'),
+                        'identity_member2'           => $this->input->post('identity_member2'),
+                        'identity_member3'           => $this->input->post('identity_member3'),
+                        // 'identity_member1_link'      => $identity_link1,
+                        // 'identity_member2_link'      => $identity_link2,
+                        // 'identity_member3_link'      => $identity_link3,
+                        // 'passphoto_link1'            => $photo_link3,
+                        // 'passphoto_link2'            => $photo_link2,
+                        // 'passphoto_link3'            => $photo_link3,
+                        'institution_name'           => $this->input->post('institution_name'),
+                        'province_id'                => $this->input->post('provice_id'),
+                        'logging_days'               => $this->input->post('logging_days'),
+                        'need_transport'             => $this->input->post('need_transport'),
+                        'teacher_name'               => $this->input->post('teacher_name'),
+                        'teacher_phone'              => $this->input->post('teacher_phone'),
+                        'teacher_email'              => $this->input->post('teacher_email')
+                        );
+                }
 
+                $this->db->where('account_id', $this->session->userdata('user_id'));
+                $this->db->insert('cip_participants' , $data);
 
-
-
-
-                    );
             }break;
 
             default:

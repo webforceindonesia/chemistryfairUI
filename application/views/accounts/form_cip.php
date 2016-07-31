@@ -223,8 +223,9 @@
                     )); 
                     echo '<br/>';
 
+
                     // Teachers
-                    echo form_label('Nama guru pendamping anda (Kosongkan jika tidak ada atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label'));
+                    echo form_label('Nama guru pendamping anda (Kosongkan jika tidak ada atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label', 'id' => 'teacher'));
                     echo form_error('teacher_name');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
@@ -234,7 +235,7 @@
                     echo '<br/>';
 
                     // Teachers
-                    echo form_label('No. Handphone guru pendamping anda (Kosongkan jika tidak ada guru pendamping atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label'));
+                    echo form_label('No. Handphone guru pendamping anda (Kosongkan jika tidak ada guru pendamping atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label', 'id' => 'teacher'));
                     echo form_error('teacher_phone');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
@@ -244,11 +245,11 @@
                     echo '<br/>';
 
                     // Teachers
-                    echo form_label('Alamat email guru pendamping anda (Kosongkan jika tidak ada guru pendamping atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label'));
+                    echo form_label('Alamat email guru pendamping anda (Kosongkan jika tidak ada guru pendamping atau anda adalah Mahasiswa)', 'institution_name', array('class' => 'form-label', 'id' => 'teacher'));
                     echo form_error('teacher_email');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
-                        'name'          => 'teacteacher_emailher_name',
+                        'name'          => 'teacher_email',
                         'value'         => $user_teacher_email
                     )); 
                     echo '<br/>';
