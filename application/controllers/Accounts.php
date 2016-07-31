@@ -1130,6 +1130,8 @@ class Accounts extends CI_Controller {
                 $this->db->where('account_id', $this->session->userdata('user_id'));
                 $this->db->insert('cip_participants' , $data_pendaftar);
 
+                redirect('/akun/dashboard');
+
             }break;
 
             default:
