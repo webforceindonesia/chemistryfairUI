@@ -22,7 +22,10 @@ passphoto_link1     	varchar(255)
 passphoto_link2	        varchar(255)			
 passphoto_link3	        varchar(255)	
 institution_name	    varchar(128)
-province_id	            int(11) unsigned			
+province_id	            int(11) unsigned
+teacher_name 
+teacher_phone
+teacher_email
 lodging_days	        int(11)			
 need_transport	        tinyint(1)
 abstract_link	        varchar(255)			

@@ -565,6 +565,29 @@ class Accounts extends CI_Controller {
 	            }
             }
         }
+        else {
+            $data['user_category']              = '';
+            $data['user_institution_name']      = '';
+            $data['user_fullname_member1']      = '';
+            $data['user_id_number_member1']     = '';
+            $data['user_identity_member1_link'] = '';
+            $data['user_passphoto_link1']       = '';
+            $data['user_fullname_member2']      = '';
+            $data['user_id_number_member2']     = '';
+            $data['user_identity_member2_link'] = '';
+            $data['user_passphoto_link2']       = '';
+            $data['user_fullname_member3']      = '';
+            $data['user_id_number_member3']     = '';
+            $data['user_identity_member3_link'] = '';
+            $data['user_passphoto_link3']       = '';
+            $data['user_province_id']          = '';
+            $data['user_lodging_days']          = '';
+            $data['user_need_transport']        = '';
+            $data['user_teacher_name']          = '';
+            $data['user_teacher_phone']         = '';
+            $data['user_teacher_email']         = '';
+            $this->load->view('accounts/form_cip', $data);
+        }
         $this->load->view('templates/footer.php');
     }
 

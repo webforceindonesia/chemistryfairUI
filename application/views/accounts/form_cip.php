@@ -11,13 +11,14 @@
                     <?php echo form_open_multipart('accounts/register_lomba/cip/' . $this->session->userdata('user_id'));
 
                     // Kategori Pendidikan
-                    echo form_label('Kategori Pendidikan', 'type', array('class' => 'form-label'));
-                    echo form_error('type');
-                    echo form_radio(array(
-                        'class'         => 'form-input-generic', 
-                        'name'          => 'type',
-                        'value'         => $participant_type
-                    )); 
+                    $options = array(
+                        'highschool' => 'Sekolah Menengah Atas',
+                        'university' => 'Perguruan Tinggi'
+                    );
+                    echo form_label('Kategori Peserta', 'type', array('class' => 'form-label'));
+                    echo form_error('participant_type');
+                    echo form_dropdown('participant_type', $options, $user_category);
+                    echo '<br/>';
                     echo '<br/>';
 
                     // Nama Institusi
@@ -199,7 +200,7 @@
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
-                    echo form_dropdown('province_id', $options, '6');
+                    echo form_dropdown('province_id', $options, $user_province_id);
                     echo '<br/>';
 
                     // Lodging Days
