@@ -14,19 +14,20 @@ class Admin extends CI_Controller {
 		if(isset($this->session->username) && $this->session->isLogged == True)
 		{
 			$page="admin/dashboard";
+
+			if (!file_exists (APPPATH.'views/'.$page.'.php'))
+			{
+				//Homepage does not exist
+				show_404();
+			}
+
 			$this->load->view('admin/templates/header.php', $data);
 			$this->load->view($page, $data);
 			$this->load->view('admin/templates/footer.php');	
 		}else
 		{
-			$page = "admin/login_admin";
-			$this->load->view($page, $data);
-		}
-
-		if (!file_exists (APPPATH.'views/'.$page.'.php'))
-		{
-			//Homepage does not exist
-			show_404();
+			$this->session->sess_destroy();
+			redirect('/main');
 		}
 	}
 
@@ -91,45 +92,143 @@ class Admin extends CI_Controller {
 	}
 
 	/* Admin Functionality */
-	public function news_new_form()
+	public function news ($param1 = '', $param2 = '')
 	{
-			if(isset($this->session->username) && $this->session->isLogged == True)
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			$this->session->sess_destroy();
+			redirect('/main');
+		}
+		
+		$page 						= "admin/news/news";
+		$data['page_title']			= "Berita | Admin - Chemistry Fair UI";
+
+		if($param1 == 'delete')
+		{
+		
+			$this->db->where('id', $param2);
+			$this->db->delete('cms_news');
+			$this->session->set_flashdata('delete', 'Menghapus Berita Sukses');
+			redirect('/admin/news');
+		
+		}else if($param1 == 'edit')
+		{
+			$this->db->where('id', $param2);
+			$article = $this->db->get('cms_news')->row();
+
+			$page 					= "admin/news/new_entry_news";
+			$data['article']		= $article;
+			$data['page_title'] 	= "Ubah Berita | Admin - Chemistry Fair";
+
+		}else if($param1 == 'new')
+		{
+
+			$page 					= "admin/news/new_entry_news";
+			$data['page_title'] 	= "Buat Baru | Admin - Chemistry Fair";
+			$data['article']		= '';
+
+		}else
+		{
+			$this->load->model('admin_model');
+			if($param1 == '')
 			{
-				$page="admin/news/new_entry_news";	
+				$data['news']			= $this->admin_model->getNews();
 			}else
 			{
-				$page = "admin/login_admin";
+				$data['news']			= $this->admin_model->getNews($param1);
 			}
+			$totalNews 					= $this->admin_model->totalNews();
 
-			$data['page_title'] = "New News | Admin - Chemistry Fair";
-			
-			$this->load->view('admin/templates/header.php', $data);
-			$this->load->view($page, $data);
-			$this->load->view('admin/templates/footer.php');
+			//Load Pagination Helper
+			$this->load->library('pagination');
+
+			$config['base_url'] 		= base_url() . 'admin/news/';
+			$config['total_rows'] 		= $totalNews;
+			$config['per_page'] 		= 10;
+			$config['full_tag_open'] 	= '<ul class="pagination">';
+			$config['full_tag_close'] 	= '</ul>';
+			$config['first_link'] = '&laquo; First';
+			$config['first_tag_open'] = '<li class="prev page">';
+			$config['first_tag_close'] = '</li>';
+			$config['last_link'] = 'Last &raquo;';
+			$config['last_tag_open'] = '<li class="next page">';
+			$config['last_tag_close'] = '</li>';
+			$config['next_link'] = 'Next &rarr;';
+			$config['next_tag_open'] = '<li class="next page">';
+			$config['next_tag_close'] = '</li>';
+			$config['prev_link'] = '&larr; Previous';
+			$config['prev_tag_open'] = '<li class="prev page">';
+			$config['prev_tag_close'] = '</li>';
+			$config['cur_tag_open'] = '<li class="active"><a href="">';
+			$config['cur_tag_close'] = '</a></li>';
+			$config['num_tag_open'] = '<li class="page">';
+			$config['num_tag_close'] = '</li>';
+
+
+			$this->pagination->initialize($config);
+
+			$data['pagination'] 		= $this->pagination->create_links();
+		}
+
+		//Load The Page
+		$this->load->view('admin/templates/header.php', $data);
+		$this->load->view($page, $data);
+		$this->load->view('admin/templates/footer.php');
 	}
 	
 	public function new_news()
 	{
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			$this->session->sess_destroy();
+			redirect('/main');
+		}
+
 		if(!$_POST)
 		{
-			redirect('/main');
+			redirect('/admin/news');
 		}else
 		{
 			$this->load->model('cms_news_model');
 			$this->cms_news_model->write();
 
-			redirect('/main');
+			$this->session->set_flashdata('news', 'Membuat Berita Baru Sukses');
+
+			redirect('/admin/news');
 		}
 	}
 
-	public function slider_edit ()
+	public function edit_news($id)
+	{
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			$this->session->sess_destroy();
+			redirect('/main');
+		}
+
+		if(!$_POST)
+		{
+			redirect('/admin/news');
+		}else
+		{
+			$this->load->model('cms_news_model');
+			$this->cms_news_model->edit($id);
+
+			$this->session->set_flashdata('news', 'Merubah Berita Sukses');
+
+			redirect('/admin/news');
+		}
+	}
+
+	public function slider ()
 	{
 			if(isset($this->session->username) && $this->session->isLogged == True)
 			{
 				$page="admin/slider_upload";	
 			}else
 			{
-				$page = "admin/login_admin";
+				$this->session->sess_destroy();
+				redirect('/main');
 			}
 
 			$data['page_title'] = "New News | Admin - Chemistry Fair";
@@ -139,11 +238,21 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/templates/footer.php');
 	}
 
-	public function slider_upload ()
+	public function slider_upload ($param1 = '')
 	{
 				if(!isset($this->session->username) && $this->session->isLogged == False)
 				{
+					$this->session->sess_destroy();
 					redirect('/main');
+				}
+
+				if($param1 == 'tran')
+				{
+					$this->db->set('value', $this->input->post('tran'));
+					$this->db->where('name', 'slidejs');
+					$this->db->update('config');
+					$this->session->set_flashdata('success', 'Mengganti Animasi Slider Sukses!');
+					redirect('/admin');
 				}
 
 				$config['upload_path']          = 'images/slider';
@@ -181,22 +290,6 @@ class Admin extends CI_Controller {
 				redirect('/admin');
 	}
 
-	public function successPage ()
-	{
-		$page = "admin/success";	
-		if (!file_exists (APPPATH.'views/'.$page.'.php'))
-			{
-				//Homepage does not exist
-				show_404();
-			}
-			
-			$data['title'] = "Admin - Chemistry Fair";
-			
-			$this->load->view('admin/templates/header.php', $data);
-			$this->load->view($page, $data);
-			$this->load->view('admin/templates/footer.php');
-	}
-
 	public function lomba ($param1 = NULL, $param2 = NULL)
 	{
 		$this->load->model('admin_model');
@@ -204,42 +297,195 @@ class Admin extends CI_Controller {
 
 		if(!isset($this->session->username) && $this->session->isLogged == False)
 		{
-			redirect('main');
+			$this->session->sess_destroy();
+			redirect('/main');
 		}
-		
 
 		if($param1 != NULL)
 			{
+				$totalNews			  = $this->admin_model->totalParticipants($param1);
+				
 				switch ($param1)
 				{
 					case 'cc' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cc', $param2);
 						$page 				  = "admin/lomba/participants_cc";
+
+						//Load Pagination Helper
+						$this->load->library('pagination');
+
+						$config['base_url'] 		= base_url() . 'admin/news/';
+						$config['total_rows'] 		= $totalNews;
+						$config['per_page'] 		= 10;
+						$config['full_tag_open'] 	= '<ul class="pagination">';
+						$config['full_tag_close'] 	= '</ul>';
+						$config['first_link'] = '&laquo; First';
+						$config['first_tag_open'] = '<li class="prev page">';
+						$config['first_tag_close'] = '</li>';
+						$config['last_link'] = 'Last &raquo;';
+						$config['last_tag_open'] = '<li class="next page">';
+						$config['last_tag_close'] = '</li>';
+						$config['next_link'] = 'Next &rarr;';
+						$config['next_tag_open'] = '<li class="next page">';
+						$config['next_tag_close'] = '</li>';
+						$config['prev_link'] = '&larr; Previous';
+						$config['prev_tag_open'] = '<li class="prev page">';
+						$config['prev_tag_close'] = '</li>';
+						$config['cur_tag_open'] = '<li class="active"><a href="">';
+						$config['cur_tag_close'] = '</a></li>';
+						$config['num_tag_open'] = '<li class="page">';
+						$config['num_tag_close'] = '</li>';
+
+
+						$this->pagination->initialize($config);
+
+						$data['pagination'] 		= $this->pagination->create_links();
+
 					}break;
 
 					case 'cfk' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cfk', $param2);
 						$page 				  = "admin/lomba/participants_cfk";
+
+						//Load Pagination Helper
+						$this->load->library('pagination');
+
+						$config['base_url'] 		= base_url() . 'admin/news/';
+						$config['total_rows'] 		= $totalNews;
+						$config['per_page'] 		= 10;
+						$config['full_tag_open'] 	= '<ul class="pagination">';
+						$config['full_tag_close'] 	= '</ul>';
+						$config['first_link'] = '&laquo; First';
+						$config['first_tag_open'] = '<li class="prev page">';
+						$config['first_tag_close'] = '</li>';
+						$config['last_link'] = 'Last &raquo;';
+						$config['last_tag_open'] = '<li class="next page">';
+						$config['last_tag_close'] = '</li>';
+						$config['next_link'] = 'Next &rarr;';
+						$config['next_tag_open'] = '<li class="next page">';
+						$config['next_tag_close'] = '</li>';
+						$config['prev_link'] = '&larr; Previous';
+						$config['prev_tag_open'] = '<li class="prev page">';
+						$config['prev_tag_close'] = '</li>';
+						$config['cur_tag_open'] = '<li class="active"><a href="">';
+						$config['cur_tag_close'] = '</a></li>';
+						$config['num_tag_open'] = '<li class="page">';
+						$config['num_tag_close'] = '</li>';
+
+
+						$this->pagination->initialize($config);
+
+						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cip' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cip', $param2);
 						$page 				  = "admin/lomba/participants_cip";
+
+						//Load Pagination Helper
+						$this->load->library('pagination');
+
+						$config['base_url'] 		= base_url() . 'admin/news/';
+						$config['total_rows'] 		= $totalNews;
+						$config['per_page'] 		= 10;
+						$config['full_tag_open'] 	= '<ul class="pagination">';
+						$config['full_tag_close'] 	= '</ul>';
+						$config['first_link'] = '&laquo; First';
+						$config['first_tag_open'] = '<li class="prev page">';
+						$config['first_tag_close'] = '</li>';
+						$config['last_link'] = 'Last &raquo;';
+						$config['last_tag_open'] = '<li class="next page">';
+						$config['last_tag_close'] = '</li>';
+						$config['next_link'] = 'Next &rarr;';
+						$config['next_tag_open'] = '<li class="next page">';
+						$config['next_tag_close'] = '</li>';
+						$config['prev_link'] = '&larr; Previous';
+						$config['prev_tag_open'] = '<li class="prev page">';
+						$config['prev_tag_close'] = '</li>';
+						$config['cur_tag_open'] = '<li class="active"><a href="">';
+						$config['cur_tag_close'] = '</a></li>';
+						$config['num_tag_open'] = '<li class="page">';
+						$config['num_tag_close'] = '</li>';
+
+
+						$this->pagination->initialize($config);
+
+						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cmp' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cmp', $param2);
 						$page 				  = "admin/lomba/participants_cmp";
+
+						//Load Pagination Helper
+						$this->load->library('pagination');
+
+						$config['base_url'] 		= base_url() . 'admin/news/';
+						$config['total_rows'] 		= $totalNews;
+						$config['per_page'] 		= 10;
+						$config['full_tag_open'] 	= '<ul class="pagination">';
+						$config['full_tag_close'] 	= '</ul>';
+						$config['first_link'] = '&laquo; First';
+						$config['first_tag_open'] = '<li class="prev page">';
+						$config['first_tag_close'] = '</li>';
+						$config['last_link'] = 'Last &raquo;';
+						$config['last_tag_open'] = '<li class="next page">';
+						$config['last_tag_close'] = '</li>';
+						$config['next_link'] = 'Next &rarr;';
+						$config['next_tag_open'] = '<li class="next page">';
+						$config['next_tag_close'] = '</li>';
+						$config['prev_link'] = '&larr; Previous';
+						$config['prev_tag_open'] = '<li class="prev page">';
+						$config['prev_tag_close'] = '</li>';
+						$config['cur_tag_open'] = '<li class="active"><a href="">';
+						$config['cur_tag_close'] = '</a></li>';
+						$config['num_tag_open'] = '<li class="page">';
+						$config['num_tag_close'] = '</li>';
+
+
+						$this->pagination->initialize($config);
+
+						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cp' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cp', $param2);
 						$page 				  = "admin/lomba/participants_cp";
+
+						//Load Pagination Helper
+						$this->load->library('pagination');
+
+						$config['base_url'] 		= base_url() . 'admin/news/';
+						$config['total_rows'] 		= $totalNews;
+						$config['per_page'] 		= 10;
+						$config['full_tag_open'] 	= '<ul class="pagination">';
+						$config['full_tag_close'] 	= '</ul>';
+						$config['first_link'] = '&laquo; First';
+						$config['first_tag_open'] = '<li class="prev page">';
+						$config['first_tag_close'] = '</li>';
+						$config['last_link'] = 'Last &raquo;';
+						$config['last_tag_open'] = '<li class="next page">';
+						$config['last_tag_close'] = '</li>';
+						$config['next_link'] = 'Next &rarr;';
+						$config['next_tag_open'] = '<li class="next page">';
+						$config['next_tag_close'] = '</li>';
+						$config['prev_link'] = '&larr; Previous';
+						$config['prev_tag_open'] = '<li class="prev page">';
+						$config['prev_tag_close'] = '</li>';
+						$config['cur_tag_open'] = '<li class="active"><a href="">';
+						$config['cur_tag_close'] = '</a></li>';
+						$config['num_tag_open'] = '<li class="page">';
+						$config['num_tag_close'] = '</li>';
+
+
+						$this->pagination->initialize($config);
+
+						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					default :
@@ -259,6 +505,12 @@ class Admin extends CI_Controller {
 
 	public function konfirmasi($type='', $lomba = '', $account_id = '')
 	{
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			$this->session->sess_destroy();
+			redirect('/main');
+		}
+
 		if($type == "pembayaran")
 		{
 			$this->db->set('is_paid', '1');
@@ -276,40 +528,40 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	//Development Only
-	public function new_admin()
-	{
-		if($_POST)
-		{
-			$this->load->model('login_model');
-			$this->login_model->new_admin();
+	// //Development Only - Depreceated Merged with accounts controller
+	// public function new_admin()
+	// {
+	// 	if($_POST)
+	// 	{
+	// 		$this->load->model('login_model');
+	// 		$this->login_model->new_admin();
 
-			redirect('/admin');
-		}else
-		{
-			redirect('/admin');
-		}
-	}
+	// 		redirect('/admin');
+	// 	}else
+	// 	{
+	// 		redirect('/admin');
+	// 	}
+	// }
 
-	public function new_admin_form()
-	{
-		$event = mktime(0,0,0,8,1,2016);
-		$remaining = $event - time();
-		$data['countdown'] = floor($remaining / 86400);
+	// public function new_admin_form()
+	// {
+	// 	$event = mktime(0,0,0,8,1,2016);
+	// 	$remaining = $event - time();
+	// 	$data['countdown'] = floor($remaining / 86400);
 		
-		$page = "admin/new_entry_admin";	
-		if (!file_exists (APPPATH.'views/'.$page.'.php'))
-			{
-				//Homepage does not exist
-				show_404();
-			}
+	// 	$page = "admin/new_entry_admin";	
+	// 	if (!file_exists (APPPATH.'views/'.$page.'.php'))
+	// 		{
+	// 			//Homepage does not exist
+	// 			show_404();
+	// 		}
 			
-			$data['title'] = "Admin - Chemistry Fair";
+	// 		$data['title'] = "Admin - Chemistry Fair";
 			
-			$this->load->view('templates/header.php', $data);
-			$this->load->view($page, $data);
-			$this->load->view('templates/footer.php');
-	}
+	// 		$this->load->view('templates/header.php', $data);
+	// 		$this->load->view($page, $data);
+	// 		$this->load->view('templates/footer.php');
+	// }
 }
 
 ?>

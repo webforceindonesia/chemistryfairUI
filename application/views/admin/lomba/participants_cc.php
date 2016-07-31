@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+function dateReverse ($date)
+            {
+                $dateArray = explode('-',$date);
+                $reversed = $dateArray['2'] . "-" . $reversed = $dateArray['1'] . "-" . $reversed = $dateArray['0'];
+                return $reversed;
+            }
 ?>
 <section id="contentAll">
 <div class="container">
@@ -91,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        					} 
 	        					?>
 	        				</td>
-	        				<td><?php echo $row->time_registered; ?></td>
+	        				<td><?php echo dateReverse($row->time_registered); ?></td>
 	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cc/'.$row->account_id) ?>">Conf Pembayaran</a></td>
 	        			</tr>
 	        		<?php 
@@ -107,10 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         	</div>
         	<div class="col-md-4">
         		<ul class="pagination">
-        		<?php for($i=0; $i<$total; $i++)
-        		{?>
-				  <li><a href="<?php echo base_url('admin/lomba/cc/' . $i); ?>"><?php echo $i+1; ?></a></li>
-        		<?php } ?>
+        		<?php echo $pagination ?>
 				</ul>
         	</div>
         </div>

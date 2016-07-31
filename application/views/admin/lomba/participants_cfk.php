@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+function dateReverse ($date)
+            {
+                $dateArray = explode('-',$date);
+                $reversed = $dateArray['2'] . "-" . $reversed = $dateArray['1'] . "-" . $reversed = $dateArray['0'];
+                return $reversed;
+            }
 ?>
 <section id="contentAll">
 <div class="container">
@@ -26,11 +33,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        				<td><?php echo $row->institution_name; ?></td>
 	        				<td><img src="<?php echo base_url() ?>uploads/cip/photo/<?php echo $row->photo_link ?>"></td>
 	        				<td><img src="<?php echo base_url() ?>uploads/cip/transfer/<?php echo $row->payment_proof_link ?>"></td>
-	        				<td><?php echo $row->time_registered; ?></td>
+	        				<td><?php echo dateReverse($row->time_registered); ?></td>
 	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cip/'.$row->account_id) ?>">Conf Pembayaran</a></td>
 	        			</tr>
 	        		<?php } ?>
         		</table>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-8">
+        		&nbsp
+        	</div>
+        	<div class="col-md-4">
+        		<ul class="pagination">
+        		<?php echo $pagination ?>
+				</ul>
         	</div>
         </div>
   </div>

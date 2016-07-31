@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+function dateReverse ($date)
+            {
+                $dateArray = explode('-',$date);
+                $reversed = $dateArray['2'] . "-" . $reversed = $dateArray['1'] . "-" . $reversed = $dateArray['0'];
+                return $reversed;
+            }
 ?>
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
@@ -16,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        			<td>Member 3</td>
 	        			<td>Identitas 1</td>
 	        			<td>Identitas 2</td>
-	        			<td>Identitas 3</td>j
+	        			<td>Identitas 3</td>
 	        			<td>Nama Institusi</td>
 	        			<td>Provinsi</td>
 	        			<td>Penginapan</td>
@@ -92,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        						Belum Membayar
 	        					<?php endif; ?>
 	        				</td>
-	        				<td><?php echo $row->time_registered; ?></td>
+	        				<td><?php echo dateReverse($row->time_registered); ?></td>
 	        				<td style="font-size:18px;"><?php if($row->payment_proof_link != NULL): ?><a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>"><i class="fa fa-money" aria-hidden="true"></i></a><?php endif; ?>
 	        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></td>
 	        			</tr>
@@ -107,10 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         	</div>
         	<div class="col-md-4">
         		<ul class="pagination">
-        		<?php for($i=0; $i<$total; $i++)
-        		{?>
-				  <li><a href="<?php echo base_url('admin/lomba/cc/' . $i); ?>"><?php echo $i+1; ?></a></li>
-        		<?php } ?>
+        		<?php echo $pagination ?>
 				</ul>
         	</div>
         </div>

@@ -10,7 +10,7 @@
         </p>
     </div>
     <div class="col-md-6 footerPar footer-contact-container">
-        <h3>Kontak kami</h3>
+    <br><br>
         <div class="col-md-6">
             <div><i class="fa fa-envelope" aria-hidden="true"></i></div>       <span>chemistryfair2016@gmail.com</span><br/>
             <div><i class="fa fa-twitter" aria-hidden="true"></i></div>        <span>@chemfair2016</span><br/>                   

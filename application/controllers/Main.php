@@ -11,20 +11,12 @@ class Main extends CI_Controller {
 		
 		$i=0;
 		$page = "home";
+
+		$this->db->where('name', 'slidejs');
+		$data['slidetran'] = $this->db->get('config')->row();
 		
 		$this->load->model('cms_news_model');
-		$content = $this->cms_news_model->pull_last();
-		
-		foreach ($content as $row)
-		{
-			$data['news_id'][$i] = $row['id'];
-			$data['news_title'][$i] = $row['title'];
-			$data['news_created'][$i] = $row['created'];
-			$data['news_content'][$i] = $row['content'];
-			$i++;
-		}
-		
-		$data['news_counter'] = $i;
+		$data['news'] 				= $this->cms_news_model->getNews();
 			
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{

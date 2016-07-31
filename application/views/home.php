@@ -13,6 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			    echo $y;
 			  }
  			}
+
+            function dateReverse ($date)
+            {
+                $dateArray = explode('-',$date);
+                $reversed = $dateArray['2'] . "-" . $reversed = $dateArray['1'] . "-" . $reversed = $dateArray['0'];
+                return $reversed;
+            }
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/timeline.css"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.slides.min.js"></script>
@@ -31,20 +38,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             	<div class="col-md-6">
                 	<h1><i>Berita</i></h1>
                     <div id="berita">
-                    <?php
-					$i=0;
-					foreach ($news_title as $count)
-					{
-						?>
-                    	<div class="oneBerita">
-                        	<a href="<?php echo base_url("berita/view?id=$news_id[$i]"); ?>"><h2><?php echo $news_title[$i] ?></h2></a>
-                            <p><?php echo $news_created[$i] ?></p>
-                            <p><?php custom_echo($news_content[$i], 50) ?></p>
+                    <?php foreach ($news as $article): ?>
+                        <div class="oneBerita">
+                            <a href="<?php echo base_url("berita/view/$article->id"); ?>"><h3><?php echo $article->title; ?></h3></a>
+                            <p><?php echo dateReverse($article->created); ?></p>
+                            <p align="justify"><?php custom_echo ($article->content, 50); ?></p>
                         </div>
-                    <?php 
-						$i++;
-					}
-					?>
+                    <?php endforeach; ?>
                     </div>
                 </div>
             	<div class="col-md-6">
@@ -101,14 +101,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         height: 328,
         navigation: {
           active:false,
-          effect: "fade"
+          effect: "<?php echo $slidetran->value ?>"
         },
         pagination: {
           active:false,
-          effect: "fade"
+          effect: "<?php echo $slidetran->value ?>"
         }, 
         play: 	{
-        	effect:"fade",
+        	effect:"<?php echo $slidetran->value ?>",
         	auto:true,
         	interval:5000
         },
