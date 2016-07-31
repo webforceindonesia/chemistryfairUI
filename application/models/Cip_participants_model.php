@@ -53,8 +53,8 @@ class Cip_participants_model extends CI_Model
     public function get_details($account_id)
     {
         $this->db->select('type, fullname_member1, fullname_member2, fullname_member3, 
-        identity_member1_link, identity_member2_link, identity_member3_link, institution_name, province_id, lodging_days, need_transport
-        , abstract_link, abstract_passed, payment_proof_link, is_paid, time_registered');
+        identity_member1_link, identity_member2_link, identity_member3_link, id_number_member1, id_number_member2, id_number_member3, passphoto_link1, passphoto_link2, passphoto_link3, institution_name, province_id, lodging_days, need_transport
+        , teacher_name, teacher_phone, teacher_number, teacher_ abstract_link, abstract_passed, payment_proof_link, is_paid, time_registered');
         $this->db->where('id', $account_id);
         $this->db->limit(1);
         return $this->db->get('cip_participants')->row();
@@ -75,7 +75,7 @@ class Cip_participants_model extends CI_Model
      *  @author FURIBAITO
      */
     public function register_participant($account_id, $type, $fullname_member1, $fullname_member2, $fullname_member3,
-    $institution_name, $province_id, $lodging_days, $need_transport)
+    $id_number_member1, $id_number_member2, $id_number_member3, $institution_name, $province_id, $lodging_days, $need_transport, $teacher_name, $teacher_phone, $teacher_email)
     {
         // Create the query builder 
         $this->db->insert('cip_participants', array(
@@ -84,10 +84,16 @@ class Cip_participants_model extends CI_Model
             'fullname_member1'      =>  $fullname_member1,
             'fullname_member2'      =>  $fullname_member2,
             'fullname_member3'      =>  $fullname_member3,
+            'id_number_member1'	    =>  $id_number_member1,
+            'id_number_member2'		=>  $id_number_member2,
+            'id_number_member3'	    =>  $id_number_member3,
             'institution_name'      =>  $institution_name,
             'province_id'           =>  $province_id, 
             'lodging_days'          =>  $lodging_days,
             'need_transport'        =>  $need_transport,
+            'teacher_name'          =>  $teacher_name,
+            'teacher_phone'         =>  $teacher_phone,
+            'teacher_email'         =>  $teacher_email,
             'time_registered'       =>  date('Y-m-d H:i:s')
         ));
     }
@@ -103,7 +109,8 @@ class Cip_participants_model extends CI_Model
     public function change_details($account_id, $field_name, $value)
     {
         $allowed_field = array('type', 'fullname_member1', 'fullname_member2', 'fullname_member3', 'identity_member1_link', 'identity_member2_link',
-        'identity_member3_link', 'institution_name', 'province_id', 'lodging_days', 'need_transport', 'abstract_link', 'payment_proof_link');
+        'identity_member3_link', 'institution_name', 'province_id', 'lodging_days', 'need_transport', 'abstract_link', 'payment_proof_link'
+        , 'teacher_name', 'teacher_phone', 'teacher_email', 'id_number_member1', 'id_number_member2', 'id_number_member3');
         if (in_array($field_name, $allowed_field, true))
         {
             $this->db->where('id', $account_id);

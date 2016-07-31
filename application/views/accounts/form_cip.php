@@ -151,16 +151,6 @@
                     )); 
                     echo '<br/>';
 
-                    // Nama institusi
-                    echo form_label('Nama Sekolah atau Perguruan Tinggi', 'institution_name', array('class' => 'form-label'));
-                    echo form_error('institution_name');
-                    echo form_input(array(
-                        'class'         => 'form-input-generic', 
-                        'name'          => 'institution_name',
-                        'value'         => $user_institution_name
-                    )); 
-                    echo '<br/>';
-
                     // Asal provinsi
                     $options = array(
                         array('1', titlecase('aceh')),
@@ -256,7 +246,7 @@
 
                     echo '<br/>';
 
-                    echo form_submit(array('class' => 'form-submit',  'submit', 'value' => 'Ubah'));
+                    echo form_submit(array('class' => 'form-submit',  'submit', 'value' => 'Update'));
 
                     echo '<br/>';
                     echo '<br/>';
