@@ -14,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-description-container col-md-9">
             <img src="<?php echo base_url() . 'images/supri/buku.png'; ?>">
-            <p>
+            <p align="justify">
                 Chemistry Competition ini merupakan salah satu bentuk perwujudan dari Tri Dharma Perguruan Tinggi yaitu pendidikan. Kegiatan kompetisi kimia ini diadakan untuk meningkatkan semangat berkompetisi para peserta yang meliputi siswa SMA/sederajat se-Indonesia yang akan dibagi menjadi 5 (lima) regional. Regional 1 terdiri dari Sumatera, dan sekitarnya. Regional 2 terdiri dari Banten, Jakarta, Bogor, Depok, Tangerang, Bekasi (Jabodetabek), Jawa Barat. Regional 3 terdiri dari Jawa Tengah, Jawa Timur, Bali. Regional 4 teridiri dari Kalimantan, Sulawesi, dan sekitarnya. Regional 5 terdiri dari Nusa Tenggara Barat, Nusa Tenggara Timur, Maluku, Papua.
             </p>
-            <p>
+            <p align="justify">
                 Lomba ini akan diawali dengan tahap seleksi, dimana seluruh peserta dari seluruh Indonesia yang telah mendaftar yang akan mengikuti seleksi tersebut secara tim yang secara . Seluruh 5 regional akan mengikuti tahap seleksi secara online. Kemudian seratus tim (13 tim/regional dan 35 tim secara paralel) yang lolos seleksi akan mengikuti tahap perempat final yang akan dilakukan secara tim. Kemudian, akan diambil 12 tim (1 tim/regional dan 7 paralel) untuk  tahap semifinal yang dilakukan secara individu (teori dan praktikum). Selanjutnya, akan diambil 3 peserta terbaik untuk mengikuti tahap final (cerdas cermat). Dari tahap-tahap tersebut akan diambil 3 peserta sebagai juara umum dan 1 perserta per regional sebagai juara regional.
             </p>
         </div>

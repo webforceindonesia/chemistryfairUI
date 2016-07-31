@@ -14,13 +14,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-description-container col-md-9">
             <img src="<?php echo base_url() . 'images/supri/idea.png'; ?>">
-            <p>
+            <p align="justify">
                 Chemistry Innovation Project ini merupakan salah satu bentuk perwujudan dari Tri Dharma Perguruan Tinggi yaitu penelitian.  Kegiatan ini merupakan ajang kompetisi bagi siswa SMA/ sederajat dan mahasiswa se-Indonesia untuk melakukan penelitian serta mempublikasikan hasil karya penelitian/proyek mereka di bidang kimia. Chemistry Innovation Project kali ini mengangkat tema “Encourage Young Scientist to Innovate Chemical Energy“.
             </p>
-            <p>
+            <p align="justify">
                 Lomba ini akan diawali dengan pengiriman abstrak peserta yang akan diseleksi dengan kesesuaian tema. Setelah itu, peserta yang lolos diminta untuk membuat makalah yang akan diserahkan oleh peserta saat pendaftaran. 
             </p>
-            <p>
+            <p align="justify">
                 Kemudian akan diambil 16 tim (8 tim siswa dan 8 tim mahasiswa) dengan makalah terbaik yang akan lolos ke tahap selanjutnya untuk mempresentasikan dan membawa proyek (prototype) mereka di depan dewan juri. Dari 16 tim tersebut akan didapatkan juara 1, 2, dan 3 untuk tingkat siswa SMA/sederajat dan juara 1, 2, dan 3 untuk tingkat mahasiswa. Setelah itu, peserta mengikuti tahap selanjutnya yaitu Display CIP. Di tahap ini, peserta akan dikunjungi dan dilakukan pemungutan suara oleh para peserta lomba Chemistry Fair 2016, yang nantinya proyek (prototype) yang paling banyak mendapat suara akan menjadi juara favorit CIP.
             </p>
 

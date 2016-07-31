@@ -14,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-description-container col-md-9">
             <img src="<?php echo base_url() . 'images/supri/bocah.png'; ?>">
-            <p>
+            <p align="justify">
                 Chemistry Fair Kids merupakan salah satu bentuk dari perwujudan Tri Dharma Perguruan Tinggi yaitu dalam pengabdian masyarakat. Chemistry Fair Kids pada Chemistry Fair 2016 ini bertemakan “Pre Education on Energy”. Tema ini memiliki tujuan memberikan pendidikan sejak dini bagi para generasi muda akan pentingnya energi dalam kehidupan kita. Rangkaian kegiatan Chemistry Fair Kids ini berupa lomba mewarnai yang terbagi ke dalam 2 kategori. Kategori pertama akan diikuti oleh anak-anak pada jenjang pendidikan TK dan kategori kedua akan diikuti anak-anak dengan jenjang pendidikan kelas 1 SD hingga kelas 3 SD. Selain itu juga terdapat lomba menghias kue bersama keluarga.
             </p>
-            <p>
+            <p align="justify">
                 Acara ini juga disertai demonstrasi percobaan kimia sederhana, sehingga Chemistry Fair Kids Chemistry Fair 2016 ini sangat menjelaskan tentang bagaimana peranan kimia itu sendiri terhadap generasi muda, bahkan kepada anak-anak.
             </p>
         </div>

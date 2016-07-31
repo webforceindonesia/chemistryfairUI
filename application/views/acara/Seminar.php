@@ -14,10 +14,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-description-container col-md-9">
             <img src="<?php echo base_url() . 'images/supri/seminar.png'; ?>">
-            <p>
+            <p align="justify">
                 Seminar Nasional merupakan seminar yang terbuka untuk siswa SMA, mahasiswa, pemenang lomba, kalangan akademisi dan profesional dalam bidang kimia dengan menghadirkan pembicara dari luar negeri yang menaungi lembaga berbasis penyelesaian bagi krisis energi nasional melalui pemanfaatan energi baru dan terbarukan. 
             </p>
-            <p>
+            <p align="justify">
                 Tema seminar kali ini yaitu <strong>“Role of Chemical Alternative Energy to Maintain the Sustainability”</strong>. Dengan tema ini, diharapkan peserta dapat memahami peranan energi alternatif kimia dalam menjaga ketahanan energi nasional di tengah isu krisis energi dewasa ini.
             </p>
             <h3>Biaya Pendaftaran</h3>

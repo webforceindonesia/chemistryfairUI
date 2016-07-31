@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="content-description-container col-md-9">
             <img src="<?php echo base_url() . 'images/supri/lukis.png'; ?>">
 
-            <p>
+            <p align="justify">
                 Chemistry Art Competition  merupakan sebuah ajang kesenian dalam acara di dalam Chemistry Fair 2016.  Acara ini bertemakan “Collaborating Art and Chemistry to Solve Energy Crisis” yang bertujuan untuk mengembangkan kreativitas dalam mengkolaborasikan kimia dan seni untuk menyelesaikan masalah krisis energi. Acara ini sendiri terdiri dari 2 (dua) lomba yaitu, lomba Chemistry Movie Project & Chemistry Photograph. Sehingga, CAC 2016 ini mendorong kreativitas dan pengembangan jiwa seni dari tiap peserta tentang bagaimana mengaplikasikan kimia terhadap seni itu sendiri.
             </p>
         </div>
@@ -29,9 +29,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="content-info-container col-md-6">
             <h2>Syarat Peserta</h2>
-            <p>Terbuka untuk masyarakat umum tanpa batasan umur.</p>
-            <p>Untuk Chemistry Photograph merupakan kompetisi perorangan.</p>
-            <p>Untuk Chemistry Movie Project merupakan kompetisi tim. (1 tim maksimal 20 orang).</p>
+            <p align="justify">Terbuka untuk masyarakat umum tanpa batasan umur.<br><br>
+            Untuk Chemistry Photograph merupakan kompetisi perorangan.<br><br>
+            Untuk Chemistry Movie Project merupakan kompetisi tim. <br>(1 tim maksimal 20 orang).</p>
         </div>
 
         <div class="content-info-container col-md-6">
