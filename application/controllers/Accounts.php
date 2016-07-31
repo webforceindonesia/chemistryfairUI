@@ -642,7 +642,11 @@ class Accounts extends CI_Controller {
         return json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, stream_context_create($stream_options)))->success;
     }
 
-    //Daftat Lomba
+    //Daftar Lomba
+    public function register_lomba($param = '', $param2 = '')
+    {
+
+    }
     
 }
 
