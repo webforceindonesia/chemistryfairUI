@@ -92,5 +92,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('CF_SEMINAR_OPEN_REGISTRATION')     OR define('CF_SEMINAR_OPEN_REGISTRATION',   '2016-09-01 00:00:00');
 defined('CF_CFK_OPEN_REGISTRATION')         OR define('CF_CFK_OPEN_REGISTRATION',       '2016-09-01 00:00:00');
 defined('CF_CC_OPEN_REGISTRATION')          OR define('CF_CC_OPEN_REGISTRATION',        '2016-09-01 00:00:00');
-defined('CF_CIP_OPEN_REGISTRATION')         OR define('CF_CIP_OPEN_REGISTRATION',       '2016-08-01 00:00:00');
+defined('CF_CIP_OPEN_REGISTRATION')         OR define('CF_CIP_OPEN_REGISTRATION',       '2016-07-01 00:00:00');
 defined('CF_CAC_OPEN_REGISTRATION')         OR define('CF_CAC_OPEN_REGISTRATION',       '2016-09-01 00:00:00');

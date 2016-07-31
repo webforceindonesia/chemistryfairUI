@@ -947,7 +947,7 @@ class Accounts extends CI_Controller {
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'id_number_member3', $this->input->post('id_number_member3'));
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'province_id', $this->input->post('province_id'));
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'lodging_days', $this->input->post('lodging_days'));
-                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'need_transport', $this->input->post('need_transport'));
+                $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'need_transport', empty($this->input->post('need_transport')) ? 0 : $this->input->post('need_transport'));
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_name', $this->input->post('teacher_name'));
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_phone', $this->input->post('teacher_phone'));
                 $this->cip_participants_model->change_details($this->session->userdata('user_id'), 'teacher_email', $this->input->post('teacher_email'));

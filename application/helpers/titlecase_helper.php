@@ -25,5 +25,6 @@
         }
         $string = join($delimiter, $newwords);
    }//foreach
-   return $string . ' | Chemistry Fair 2016';
+   $string = str_replace('_', ' ', $string);
+   return $string;
 } ?>
