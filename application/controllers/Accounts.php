@@ -463,16 +463,21 @@ class Accounts extends CI_Controller {
         }
         else if ($action == 'cip')
         {
-            if (in_array('cip', $this->session->userdata('user_participations')))
+            if (array_key_exists('cip', $this->session->userdata('user_participations')))
             {
                 $this->load->model('cip_participants_model');
                 $user_participant_data = $this->cip_participants_model->get_details($this->session->userdata('user_id'));
+                $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
 
         		$data['user_is_participant']			= TRUE;
   	        	$data['user_submitted_abstract'] 		= $user_participant_data->abstract_link != NULL ? TRUE : FALSE;
 	        	$data['user_passed_abstract']			= $user_participant_data->abstract_passed;
 	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
 	        	$data['user_payment_verified']			= $user_participant_data->is_paid;
+                $data['user_email']                     = $this->session->userdata('user_email');
+                $data['user_fullname']                  = $user_data->fullname;  
+                $data['user_phone_number']              = $user_data->phone_number;
+                $data['user_email_recovery']            = $user_data->email_recovery;
 
 	        	if( file_exists (base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-1.*")
                 || file_exists (base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-2.*")
@@ -568,7 +573,7 @@ class Accounts extends CI_Controller {
             }
         }
         else {
-            
+
             $data['user_category']              = '';
             $data['user_institution_name']      = '';
             $data['user_fullname_member1']      = '';
