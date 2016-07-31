@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
         <div class="row">
@@ -15,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        			<td>Member 3</td>
 	        			<td>Identitas 1</td>
 	        			<td>Identitas 2</td>
-	        			<td>Identitas 3</td>
+	        			<td>Identitas 3</td>j
 	        			<td>Nama Institusi</td>
 	        			<td>Provinsi</td>
 	        			<td>Penginapan</td>
@@ -92,8 +93,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	        					<?php endif; ?>
 	        				</td>
 	        				<td><?php echo $row->time_registered; ?></td>
-	        				<td><?php if($row->payment_proof_link != NULL): ?><a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>">Conf Pembayaran</a><br><br><?php endif; ?>
-	        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>">Approve Abstrak</a></td>
+	        				<td style="font-size:18px;"><?php if($row->payment_proof_link != NULL): ?><a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>"><i class="fa fa-money" aria-hidden="true"></i></a><?php endif; ?>
+	        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></td>
 	        			</tr>
 	        		<?php $total++; 
 	        		} ?>
