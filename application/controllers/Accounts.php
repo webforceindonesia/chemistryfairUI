@@ -802,7 +802,93 @@ class Accounts extends CI_Controller {
         {
             case 'cip':
             {
+                $data['user_category']              = '';
+                $data['user_institution_name']      = '';
+                $data['user_fullname_member1']      = '';
+                $data['user_id_number_member1']     = '';
+                $data['user_identity_member1_link'] = '';
+                $data['user_passphoto_link1']       = '';
+                $data['user_fullname_member2']      = '';
+                $data['user_id_number_member2']     = '';
+                $data['user_identity_member2_link'] = '';
+                $data['user_passphoto_link2']       = '';
+                $data['user_fullname_member3']      = '';
+                $data['user_id_number_member3']     = '';
+                $data['user_identity_member3_link'] = '';
+                $data['user_passphoto_link3']       = '';
+                $data['user_province_id']           = '';
+                $data['user_lodging_days']          = '';
+                $data['user_need_transport']        = '';
+                $data['user_teacher_name']          = '';
+                $data['user_teacher_phone']         = '';
+                $data['user_teacher_email']         = '';
+
                 $page = 'accounts/form_cip.php';
+
+                $this->form_validation->set_rules(  
+                    'participant_type', 'Kategori Peserta', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'institution_name', 'Nama Institusi Pendidikan', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname_member1', 'Nama Lengkap Ketua Tim', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'id_number_member1', 'Nomor Identitas Ketua Tim (KTP/Kartu Pelajar)', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname_member2', 'Nama Lengkap Peserta 2', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'id_number_member2', 'Nama Lengkap Peserta 2 (KTP/Kartu Pelajar)', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                 $this->form_validation->set_rules(  
+                    'fullname_member3', 'Nama Lengkap Peserta 3', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'id_number_member3', 'Nama Lengkap Peserta 3 (KTP/Kartu Pelajar)', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'province_id', 'Asal Provinsi', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
             }break;
 
             default :
@@ -812,7 +898,7 @@ class Accounts extends CI_Controller {
         }
 
         $this->load->view('templates/header.php');
-        $this->load->view($page);
+        $this->load->view($page, $data);
         $this->load->view('templates/footer.php');
     }
 
@@ -862,11 +948,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('identity_member1_link' => $link . "/identity_member1_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $identity_link1 = $link . "/identity_member1_link.jpg";
                                 $flag++;
                         }
                     }
@@ -888,11 +970,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('identity_member2_link' => $link . "/identity_member2_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $identity_link2 = $link . "/identity_member2_link.jpg";
                                 $flag++;
                         }
                     }
@@ -914,11 +992,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('identity_member3_link' => $link . "/identity_member3_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $identity_link3 = $link . "/identity_member3_link.jpg";
                                 $flag++;
                         }
                     }
@@ -940,11 +1014,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('passphoto_link1' => $link . "/passphoto_link1");
-                                $this->db->update('cip_participants', $data)->result;
+                                $photo_link1 = $link . "/photo_link1.jpg";
                                 $flag++;
                         }
                     }
@@ -966,11 +1036,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('passphoto_link2' => $link . "/passphoto_link2");
-                                $this->db->update('cip_participants', $data)->result;
+                                $photo_link2 = $link . "/photo_link2.jpg";
                                 $flag++;
                         }
                     }
@@ -992,11 +1058,7 @@ class Accounts extends CI_Controller {
                         }
                         else
                         {
-                                //Write to db
-                                $this->db->where('account_id', $this->session->userdata('user_id'));
-                                $this->db->select('cip_participants');
-                                $data = array('passphoto_link3' => $link . "/passphoto_link3");
-                                $this->db->update('cip_participants', $data)->result;
+                                $photo_link3 = $link . "/photo_link3.jpg";
                                 $flag++;
                         }
                     }
@@ -1018,46 +1080,46 @@ class Accounts extends CI_Controller {
                 {
                     $data_pendaftar = array (
 
-                        'type'                       => $this->input->post('type'),
+                        'type'                       => $this->input->post('participant_type'),
                         'account_id'                 => $this->session->userdata('user_id'),
                         'fullname_member1'           => $this->input->post('fullname_member1'),
                         'fullname_member2'           => $this->input->post('fullname_member2'),
                         'fullname_member3'           => $this->input->post('fullname_member3'),
-                        'identity_member1'           => $this->input->post('identity_member1'),
-                        'identity_member2'           => $this->input->post('identity_member2'),
-                        'identity_member3'           => $this->input->post('identity_member3'),
-                        // 'identity_member1_link'      => $identity_link1,
-                        // 'identity_member2_link'      => $identity_link2,
-                        // 'identity_member3_link'      => $identity_link3,
-                        // 'passphoto_link1'            => $photo_link3,
-                        // 'passphoto_link2'            => $photo_link2,
-                        // 'passphoto_link3'            => $photo_link3,
+                        'identity_member1'           => $this->input->post('id_number_member1'),
+                        'identity_member2'           => $this->input->post('id_number_member2'),
+                        'identity_member3'           => $this->input->post('id_number_member3'),
+                        'identity_member1_link'      => $identity_link1,
+                        'identity_member2_link'      => $identity_link2,
+                        'identity_member3_link'      => $identity_link3,
+                        'passphoto_link1'            => $photo_link3,
+                        'passphoto_link2'            => $photo_link2,
+                        'passphoto_link3'            => $photo_link3,
                         'institution_name'           => $this->input->post('institution_name'),
                         'province_id'                => $this->input->post('provice_id'),
-                        'logging_days'               => $this->input->post('logging_days'),
+                        'lodging_days'               => $this->input->post('logging_days'),
                         'need_transport'             => $this->input->post('need_transport')
 
                         );
                 }else
                 {
                     $data_pendaftar = array (
-                        'type'                       => $this->input->post('type'),
+                        'type'                       => $this->input->post('participant_type'),
                         'account_id'                 => $this->session->userdata('user_id'),
                         'fullname_member1'           => $this->input->post('fullname_member1'),
                         'fullname_member2'           => $this->input->post('fullname_member2'),
                         'fullname_member3'           => $this->input->post('fullname_member3'),
-                        'identity_member1'           => $this->input->post('identity_member1'),
-                        'identity_member2'           => $this->input->post('identity_member2'),
-                        'identity_member3'           => $this->input->post('identity_member3'),
-                        // 'identity_member1_link'      => $identity_link1,
-                        // 'identity_member2_link'      => $identity_link2,
-                        // 'identity_member3_link'      => $identity_link3,
-                        // 'passphoto_link1'            => $photo_link3,
-                        // 'passphoto_link2'            => $photo_link2,
-                        // 'passphoto_link3'            => $photo_link3,
+                        'identity_member1'           => $this->input->post('id_number_member1'),
+                        'identity_member2'           => $this->input->post('id_number_member2'),
+                        'identity_member3'           => $this->input->post('id_number_member3'),
+                        'identity_member1_link'      => $identity_link1,
+                        'identity_member2_link'      => $identity_link2,
+                        'identity_member3_link'      => $identity_link3,
+                        'passphoto_link1'            => $photo_link1,
+                        'passphoto_link2'            => $photo_link2,
+                        'passphoto_link3'            => $photo_link3,
                         'institution_name'           => $this->input->post('institution_name'),
                         'province_id'                => $this->input->post('provice_id'),
-                        'logging_days'               => $this->input->post('logging_days'),
+                        'lodging_days'               => $this->input->post('logging_days'),
                         'need_transport'             => $this->input->post('need_transport'),
                         'teacher_name'               => $this->input->post('teacher_name'),
                         'teacher_phone'              => $this->input->post('teacher_phone'),
@@ -1066,7 +1128,7 @@ class Accounts extends CI_Controller {
                 }
 
                 $this->db->where('account_id', $this->session->userdata('user_id'));
-                $this->db->insert('cip_participants' , $data);
+                $this->db->insert('cip_participants' , $data_pendaftar);
 
             }break;
 

@@ -82,9 +82,9 @@
                     echo '<br/>';
 
                     // Identitiy No. 2
-                    echo form_label('Nomor Identitas Ketua Tim (KTP/Kartu Pelajar) Peserta 2', 'id_number_member2', array('class' => 'form-label'));
+                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar) Peserta 2', 'id_number_member2', array('class' => 'form-label'));
                     echo form_error('id_number_member2');
-                    echo form_upload(array(
+                    echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'id_number_member2',
                         'value'         => $user_id_number_member2
@@ -122,7 +122,7 @@
                     echo '<br/>';
 
                     // Identitiy No. 3
-                    echo form_label('Nomor Identitas Ketua Tim (KTP/Kartu Pelajar) Peserta 3', 'id_number_member3', array('class' => 'form-label'));
+                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar) Peserta 3', 'id_number_member3', array('class' => 'form-label'));
                     echo form_error('id_number_member3');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
