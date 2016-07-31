@@ -88,7 +88,7 @@ class Accounts_model extends CI_Model
         $return_data = array();
 
         // Check from Seminar table
-        $query_row = $this->db->get('seminar_participant')->row();
+        $query_row = $this->db->get('seminar_participants')->row();
         if (!empty($query_row))
         {
             $return_data['seminar'] = $query_row->id;
@@ -115,8 +115,15 @@ class Accounts_model extends CI_Model
             $return_data['cip'] = $query_row->id;
         }
 
-        // Check from CAC table
-        $query_row = $this->db->get('cac_participants')->row();
+        // Check from CP table
+        $query_row = $this->db->get('cp_participants')->row();
+        if (!empty($query_row))
+        {
+            $return_data['cac'] = $query_row->id;
+        }
+
+        // Check from CMP table
+        $query_row = $this->db->get('cmp_participants')->row();
         if (!empty($query_row))
         {
             $return_data['cac'] = $query_row->id;

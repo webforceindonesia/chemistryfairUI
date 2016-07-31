@@ -16,7 +16,7 @@ class Accounts extends CI_Controller {
 
 	public function index()
 	{
-        if (isset($_SERVER['user_id']))
+        if (isset($_SESSION['user_id']))
         {
             $this->dashboard();
         }
@@ -474,9 +474,9 @@ class Accounts extends CI_Controller {
 	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
 	        	$data['user_payment_verified']			= $user_participant_data->is_paid;
 
-	        	if( empty(glob(base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-1.*"))
-                || empty(glob(base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-2.*"))
-                || empty(glob(base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-3.*")))
+	        	if( file_exists (base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-1.*")
+                || file_exists (base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-2.*")
+                || file_exists (base_url() . "uploads/cip/" . $this->session->user_id . "/photos/team-3.*"))
 	        	{
 	        		$data['user_details_complete'] = FALSE;
 	        	}
@@ -641,6 +641,9 @@ class Accounts extends CI_Controller {
 
         return json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, stream_context_create($stream_options)))->success;
     }
+
+    //Daftat Lomba
+    
 }
 
 ?>
