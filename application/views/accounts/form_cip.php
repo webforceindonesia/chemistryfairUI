@@ -7,8 +7,31 @@
                 <!-- The form -->
                 <div class="login-form">
 
+                    <?php
+                        if($this->session->flashdata('upload_failed')): ?>
+                        <?php foreach ($this->session->flashdata('upload_failed') as $error_msg) : ?>
+                            <div class="alert alert-danger">
+                                <?php echo $error_msg; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <?php
+                        if($this->session->flashdata('upload')): ?>
+                        <div class="alert alert-success">
+                            <?php echo $this->session->flashdata('upload'); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php
+                        if($this->session->flashdata('make_failed')): ?>
+                        <div class="alert alert-danger">
+                            <?php echo $this->session->flashdata('make_failed'); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <!-- Show the form for account registration -->
-                    <?php echo form_open_multipart('accounts/register_lomba/cip/' . $this->session->userdata('user_id'));
+                    <?php echo form_open_multipart('accounts/dashboard/cip_' . $mode);
 
                     // Kategori Pendidikan
                     $options = array(
@@ -53,21 +76,21 @@
 
                     // Upload Tanda Pengenal 1
                     echo form_label('Upload Bukti Siswa/Mahasiswa (Dapat berupa scan Kartu Tanda Mahasiswa) Ketua Tim', 'identity_member1_link', array('class' => 'form-label'));
+                    if (!empty($user_identity_member1_link)) echo '<img src="'.base_url().$user_identity_member1_link.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_error('identity_member1_link');
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'identity_member1_link',
-                        'value'         => $user_identity_member1_link
                     )); 
                     echo '<br/>';
 
                     // Pasfoto 1
                     echo form_label('Upload Pas Foto 3x4 Ketua Tim', 'passphoto_link1', array('class' => 'form-label'));
+                    if (!empty($user_passphoto_link1)) echo '<img src="'.base_url().$user_passphoto_link1.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_error('passphoto_link1');
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'passphoto_link1',
-                        'value'         => $user_passphoto_link1
                     )); 
                     echo '<br/>';
 
@@ -82,7 +105,7 @@
                     echo '<br/>';
 
                     // Identitiy No. 2
-                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar) Peserta 2', 'id_number_member2', array('class' => 'form-label'));
+                    echo form_label('Nomor Identitas Ketua Tim (KTP/Kartu Pelajar) Peserta 2', 'id_number_member2', array('class' => 'form-label'));
                     echo form_error('id_number_member2');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
@@ -93,17 +116,16 @@
 
                     // Upload Tanda Pengenal 2
                     echo form_label('Upload Bukti Siswa/Mahasiswa (Dapat berupa scan Kartu Tanda Mahasiswa) Peserta 2', 'identity_member2_link', array('class' => 'form-label'));
-                    echo form_error('identity_member2_link');
+                    if (!empty($user_identity_member2_link)) echo '<img src="'.base_url().$user_identity_member2_link.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'identity_member2_link',
-                        'value'         => $user_identity_member2_link
                     )); 
                     echo '<br/>';
 
                     // Pasfoto 2
                     echo form_label('Upload Pas Foto 3x4 Peserta 2', 'passphoto_link2', array('class' => 'form-label'));
-                    echo form_error('passphoto_link2');
+                    if (!empty($user_passphoto_link2)) echo '<img src="'.base_url().$user_passphoto_link2.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'passphoto_link2',
@@ -122,7 +144,7 @@
                     echo '<br/>';
 
                     // Identitiy No. 3
-                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar) Peserta 3', 'id_number_member3', array('class' => 'form-label'));
+                    echo form_label('Nomor Identitas Ketua Tim (KTP/Kartu Pelajar) Peserta 3', 'id_number_member3', array('class' => 'form-label'));
                     echo form_error('id_number_member3');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
@@ -133,7 +155,7 @@
 
                     // Upload Tanda Pengenal 3
                     echo form_label('Upload Bukti Siswa/Mahasiswa (Dapat berupa scan Kartu Tanda Mahasiswa) Peserta 3', 'identity_member3_link', array('class' => 'form-label'));
-                    echo form_error('identity_member3_link');
+                    if (!empty($user_identity_member3_link)) echo '<img src="'.base_url().$user_identity_member3_link.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'identity_member3_link',
@@ -143,7 +165,7 @@
 
                     // Pasfoto 3
                     echo form_label('Upload Pas Foto 3x4 Peserta 3', 'passphoto_link3', array('class' => 'form-label'));
-                    echo form_error('passphoto_link3');
+                    if (!empty($user_passphoto_link3)) echo '<img src="'.base_url().$user_passphoto_link3.'" width= "100">(Sudah terupload, anda bisa menggantinya dengan mengupload ulang)';
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'passphoto_link3',
@@ -153,40 +175,40 @@
 
                     // Asal provinsi
                     $options = array(
-                        array('1', titlecase('aceh')),
-                        array('2', titlecase('bali')),
-                        array('3', titlecase('banten')),
-                        array('4', titlecase('bengkulu')),
-                        array('5', titlecase('gorontalo')),
-                        array('6', titlecase('jakarta')),
-                        array('7', titlecase('jambi')),
-                        array('8', titlecase('jawa_barat')),
-                        array('9', titlecase('jawa_tengah')),
-                        array('10', titlecase('jawa_timur')),
-                        array('11', titlecase('kalimantan_barat')),
-                        array('12', titlecase('kalimantan_selatan')),
-                        array('13', titlecase('kalimantan_tengah')),
-                        array('14', titlecase('kalimantan_timur')),
-                        array('15', titlecase('kalimantan_utara')),
-                        array('16', titlecase('kepulauan_bangka_belitung')),
-                        array('17', titlecase('kepulauan_riau')),
-                        array('18', titlecase('lampung')),
-                        array('19', titlecase('maluku')),
-                        array('20', titlecase('maluku_utara')),
-                        array('21', titlecase('nusa_tenggara_barat')),
-                        array('22', titlecase('nusa_tenggara_timur')),
-                        array('23', titlecase('papua')),
-                        array('24', titlecase('papua_barat')),
-                        array('25', titlecase('riau')),
-                        array('26', titlecase('sulawesi_barat')),
-                        array('27', titlecase('sulawesi_selatan')),
-                        array('28', titlecase('sulawesi_tengah')),
-                        array('29', titlecase('sulawesi_timur')),
-                        array('30', titlecase('sulawesi_utara')),
-                        array('31', titlecase('sumatera_barat')),
-                        array('32', titlecase('sumatera_selatan')),
-                        array('33', titlecase('sumatera_utara')),
-                        array('34', titlecase('yogyakarta'))
+                        '1' => titlecase('aceh'),
+                        '2' => titlecase('bali'),
+                        '3' => titlecase('banten'),
+                        '4' => titlecase('bengkulu'),
+                        '5' => titlecase('gorontalo'),
+                        '6' => titlecase('jakarta'),
+                        '7' => titlecase('jambi'),
+                        '8' => titlecase('jawa_barat'),
+                        '9' => titlecase('jawa_tengah'),
+                        '10' => titlecase('jawa_timur'),
+                        '11' => titlecase('kalimantan_barat'),
+                        '12' => titlecase('kalimantan_selatan'),
+                        '13' => titlecase('kalimantan_tengah'),
+                        '14' => titlecase('kalimantan_timur'),
+                        '15' => titlecase('kalimantan_utara'),
+                        '16' => titlecase('kepulauan_bangka_belitung'),
+                        '17' => titlecase('kepulauan_riau'),
+                        '18' => titlecase('lampung'),
+                        '19' => titlecase('maluku'),
+                        '20' => titlecase('maluku_utara'),
+                        '21' => titlecase('nusa_tenggara_barat'),
+                        '22' => titlecase('nusa_tenggara_timur'),
+                        '23' => titlecase('papua'),
+                        '24' => titlecase('papua_barat'),
+                        '25' => titlecase('riau'),
+                        '26' => titlecase('sulawesi_barat'),
+                        '27' => titlecase('sulawesi_selatan'),
+                        '28' => titlecase('sulawesi_tengah'),
+                        '29' => titlecase('sulawesi_timur'),
+                        '30' => titlecase('sulawesi_utara'),
+                        '31' => titlecase('sumatera_barat'),
+                        '32' => titlecase('sumatera_selatan'),
+                        '33' => titlecase('sumatera_utara'),
+                        '34' => titlecase('yogyakarta')
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
@@ -204,12 +226,10 @@
                     echo '<br/>';
 
                     // Need transport
-                    echo form_label('Apakah anda membutuhkan transportasi dari penginapan anda? (Kosongkan jika tidak perlu)', 'institution_name', array('class' => 'form-label'));
+                    echo form_label('Apakah anda membutuhkan transportasi dari penginapan anda?', 'institution_name', array('class' => 'form-label'));
                     echo form_error('need_transport');
-                    echo form_input(array(
-                        'class'         => 'form-input-generic', 
-                        'name'          => 'need_transport',
-                        'value'         => $user_need_transport
+                    echo form_checkbox(array(
+                        'name'          => 'need_transport'
                     )); 
                     echo '<br/>';
 

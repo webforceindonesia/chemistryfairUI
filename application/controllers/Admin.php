@@ -254,6 +254,7 @@ class Admin extends CI_Controller {
 					$this->session->set_flashdata('success', 'Mengganti Animasi Slider Sukses!');
 					redirect('/admin');
 				}
+
 				$config['upload_path']          = 'images/slider';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 5000;

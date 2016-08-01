@@ -52,7 +52,7 @@ class Cip_participants_model extends CI_Model
      */
     public function get_details($account_id)
     {
-        $this->db->select('cip_participants.*');
+        $this->db->select('*');
         $this->db->where('account_id', $account_id);
         $this->db->limit(1);
         return $this->db->get('cip_participants')->row();
@@ -107,11 +107,11 @@ class Cip_participants_model extends CI_Model
     public function change_details($account_id, $field_name, $value)
     {
         $allowed_field = array('type', 'fullname_member1', 'fullname_member2', 'fullname_member3', 'identity_member1_link', 'identity_member2_link',
-        'identity_member3_link', 'institution_name', 'province_id', 'lodging_days', 'need_transport', 'abstract_link', 'payment_proof_link'
+        'identity_member3_link', 'passphoto_link1', 'passphoto_link2', 'passphoto_link3', 'institution_name', 'province_id', 'lodging_days', 'need_transport', 'abstract_link', 'payment_proof_link'
         , 'teacher_name', 'teacher_phone', 'teacher_email', 'id_number_member1', 'id_number_member2', 'id_number_member3');
         if (in_array($field_name, $allowed_field, true))
         {
-            $this->db->where('id', $account_id);
+            $this->db->where('account_id', $account_id);
             $this->db->limit(1);
             $this->db->update('cip_participants', array($field_name => $value));
             return true;
