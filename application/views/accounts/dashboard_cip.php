@@ -147,7 +147,7 @@
                     <p><div><strong>Nama Guru Pendamping</strong></div><?php echo empty($user_teacher_name) ? 'Tidak ada' : $user_teacher_name ?></p>
                     <p><div><strong>No. Handphone Guru Pendamping</strong></div><?php echo empty($user_teacher_phone) ? 'Tidak ada' : $user_teacher_phone ?></p>
                     <p><div><strong>Email Guru Pendamping</strong></div><?php echo empty($user_teacher_email) ? 'Tidak ada' : $user_teacher_email ?></p>
-                    <a href="<?php echo site_url() ?>akun/dashboard/cip_edit">Ubah</a>
+                    <a href="<?php echo site_url() ?>daftar/cip/edit">Ubah</a>
                 </div>
             </div>
         <?php else: ?>
@@ -160,7 +160,7 @@
             <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'akun/dashboard/cip_register'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/cip'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
                         <span>Silahkan registrasi tim anda untuk acara ini.</span>
                     </div>
                 <?php endif; ?>

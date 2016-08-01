@@ -31,7 +31,7 @@
                     <?php endif; ?>
 
                     <!-- Show the form for account registration -->
-                    <?php echo form_open_multipart('daftar/cip/' . $mode);
+                    <?php echo form_open_multipart('daftar/cp');
 
                     // Kategori Pendidikan
                     $options = array(
@@ -262,7 +262,7 @@
 
                     echo '<br/>';
 
-                    echo form_submit(array('class' => 'form-submit',  'submit', 'value' => 'Unggah'));
+                    echo form_submit(array('class' => 'form-submit',  'submit', 'value' => 'Update'));
 
                     echo '<br/>';
                     echo '<br/>';
