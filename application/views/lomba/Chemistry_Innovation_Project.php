@@ -127,8 +127,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php endif; ?>
             <?php else : ?>
                 <div class="alert alert-warning col-md-12" role="alert">
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
+                    <a href="<?php echo site_url() . 'akun/register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
+                    <a href="<?php echo site_url() . 'akun/login'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
                     <span>Sebelum anda bisa mendaftar untuk acara ini, anda harus memiliki akun Chemistry Fair 2016</span>
                 </div>
             <?php endif; ?>
