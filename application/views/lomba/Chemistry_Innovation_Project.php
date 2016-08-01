@@ -103,6 +103,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i>*Peserta akan mendapatkan sertifikat sesuai dengan tahap terakhir dari seleksi yang peserta lalui.</i>
         </div>
 
+        <!-- Downloads -->
+        <div class="content-info-container col-md-12">
+            <h2>Unduhan</h2>
+            <a href="<?php echo base_url() . 'downloads/Guidebook CIP CF 2016.pdf' ?>" download>Guidebook CIP CF 2016</a><br>
+            <a href="<?php echo base_url() . 'downloads/Lampiran I (CIP tingkat Siswa).docx' ?>" download>Lampiran I (CIP tingkat Siswa)</a><br>
+            <a href="<?php echo base_url() . 'downloads/Lampiran II (CIP tingkat Mahasiswa).docs' ?>" download>Lampiran II (CIP tingkat Mahasiswa)</a><br>
+        </div>
+
         <!-- Check if it's already in time for open registration -->
         <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
             <?php if (isset($_SESSION['user_id'])) : ?>

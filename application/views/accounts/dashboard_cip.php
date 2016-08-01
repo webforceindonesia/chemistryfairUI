@@ -130,16 +130,16 @@
                     <p><div><strong>Nama Institusi</strong></div><?php echo $user_institution_name ?></p>
                     <p><div><strong>Nama Ketua Tim</strong></div><?php echo $user_fullname_member1 ?></p>
                     <p><div><strong>Nomor Identitas Ketua Tim</strong></div><?php echo $user_id_number_member1 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Ketua Tim</strong></div><?php echo empty($user_identity_member1_link) ? '<span style="color:red">KOSONG</span>' : '<a href="'.$user_identity_member1_link.'">Link</a>' ?></p>
-                    <p><div><strong>Gambar Pasfoto Ketua Tim</strong></div><?php echo empty($user_passphoto_link1) ? '<span style="color:red"><span style="color:red">KOSONG</span></span>' :  '<a href="'.$user_passphoto_link1.'">Link</a>' ?></p>
+                    <p><div><strong>Gambar Scan Identitas Ketua Tim</strong></div><?php echo empty($user_identity_member1_link) ? '<span style="color:red">KOSONG</span>' : '<img src="'.base_url().$user_identity_member1_link.'" height= "100">' ?></p>
+                    <p><div><strong>Gambar Pasfoto Ketua Tim</strong></div><?php echo empty($user_passphoto_link1) ? '<span style="color:red"><span style="color:red">KOSONG</span></span>' :  '<img src="'.base_url().$user_passphoto_link1.'" height= "100">' ?></p>
                     <p><div><strong>Nama Anggota 2</strong></div><?php echo $user_fullname_member2 ?></p>
                     <p><div><strong>Nomor Identitas Anggota 2</strong></div><?php echo $user_id_number_member2 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Anggota 2</strong></div><?php echo empty($user_identity_member2_link) ? '<span style="color:red">KOSONG</span>' :  '<a href="'.$user_identity_member2_link.'">Link</a>' ?></p>
-                    <p><div><strong>Gambar Pasfoto Anggota 2</strong></div><?php echo empty($user_passphoto_link2) ? '<span style="color:red">KOSONG</span>' :  '<a href="'.$user_passphoto_link2.'">Link</a>' ?></p>
+                    <p><div><strong>Gambar Scan Identitas Anggota 2</strong></div><?php echo empty($user_identity_member2_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_member2_link.'" height= "100">' ?></p>
+                    <p><div><strong>Gambar Pasfoto Anggota 2</strong></div><?php echo empty($user_passphoto_link2) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_passphoto_link2.'" height= "100">' ?></p>
                     <p><div><strong>Nama Anggota 3</strong></div><?php echo $user_fullname_member3 ?></p>
                     <p><div><strong>Nomor Identitas Anggota 3</strong></div><?php echo $user_id_number_member3 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Anggota 3</strong></div><?php echo empty($user_identity_member3_link) ? '<span style="color:red">KOSONG</span>' :  '<a href="'.$user_identity_member3_link.'">Link</a>' ?></p>
-                    <p><div><strong>Gambar Pasfoto Anggota 3</strong></div><?php echo empty($user_passphoto_link3) ? '<span style="color:red">KOSONG</span>' :  '<a href="'.$user_passphoto_link3.'">Link</a>' ?></p>
+                    <p><div><strong>Gambar Scan Identitas Anggota 3</strong></div><?php echo empty($user_identity_member3_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_member3_link.'" height= "100">' ?></p>
+                    <p><div><strong>Gambar Pasfoto Anggota 3</strong></div><?php echo empty($user_passphoto_link3) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_passphoto_link3.'" height= "100">' ?></p>
                     <p><div><strong>Asal Provinsi</strong></div><?php echo titlecase($this->db->get_where('misc_provinces', array('id' => $user_province_id), 1)->row()->name) ?></p>
                     <p><div><strong>Region</strong></div><?php echo $this->db->get_where('misc_region_provinces', array('region_id' => $user_province_id), 1)->row()->regionset_id ?></p>
                     <p><div><strong>Kebutuhan Hari Penginapan</strong></div><?php echo empty($user_lodging_days) ? 'Tidak ada' : $user_lodging_days ?></p>
