@@ -508,5 +508,279 @@ class Daftar extends CI_Controller
         $this->load->view('templates/footer.php');
     
     }
+
+    public function cp ($param1 = '')
+    {
+        $data['title'] = titlecase('Dashboard');
+        $data['import_captcha'] = TRUE;
+        $this->load->view('templates/header.php', $data);
+
+        //Check if already Registered
+        $this->load->model('cp_participants_model');
+        if (!array_key_exists('cip', $this->session->userdata('user_participations')))
+        {
+                redirect('akun/dashboard/cip');
+           exit();
+        }
+
+        if($param1 == 'edit')
+        {
+
+            $this->form_validation->set_rules(  
+                    'institution_name', 'Nama Institusi Pendidikan', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'id_number', 'Nomor Identitas (KTP/Kartu Pelajar)', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'province_id', 'Asal Provinsi', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'address', 'Alamat Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'phone', 'No Telpon', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'email', 'E-Mail', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $cp_data = $this->cp_participants_model->get_details($this->session->userdata('user_id'));
+                $data['mode']                       = 'edit';
+                $data['user_institution_name']      = $cp_data->institution_name;
+                $data['user_fullname']              = $cp_data->fullname;
+                $data['user_id_number']             = $cp_data->id_number;
+                $data['user_identity_link']         = $cp_data->identity_link;
+                $data['user_province_id']           = $cp_data->province_id;
+                $data['address']                    = $cp_data->address;
+                $data['email']                      = $cp_data->email;
+                $data['phone']                      = $cp_data->phone;
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+                    // Register the user to the DB
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'fullname', $this->input->post('fullname'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'institution_name', $this->input->post('institution_name'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'id_number', $this->input->post('id_number'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'province_id', $this->input->post('province_id'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'address', $this->input->post('address'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'email', $this->input->post('email'));
+                    $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'phone', $this->input->post('phone'));
+
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+                    // Do the file uploading if found
+                    if (!empty($_FILES))
+                    {
+                        $config['upload_path']          = 'uploads/cp/' . $this->session->user_id;
+                        $config['allowed_types']        = 'jpg';
+                        $config['max_size']             = 5000;
+                        $config['overwrite']            = TRUE;
+
+                        $this->load->library('upload', $config);
+
+                        $link = "uploads/cp/" . $this->session->user_id;
+
+                        if (!file_exists ($link))
+                        {
+                            if(!mkdir($link, 0777, TRUE))
+                            {
+                                $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                            }
+                        }
+
+                        $error = array();
+
+                        if(is_uploaded_file($_FILES['identity_link']['tmp_name']))
+                        {
+                            $config['file_name']            = 'identity_link';
+                            $this->upload->initialize($config);
+
+                            if (!$this->upload->do_upload('identity_link'))
+                            {
+                                array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+                            }
+                            else
+                            {
+                                $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'identity_link', $link . '/identity_link' . '.jpg');
+                            }
+                        }
+
+                        $this->session->set_flashdata('upload_failed', $error);
+                    }
+
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/cp');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_cp.php', $data);
+                }
+        }else
+        {
+                $this->form_validation->set_rules(  
+                    'institution_name', 'Nama Institusi Pendidikan', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'id_number', 'Nomor Identitas (KTP/Kartu Pelajar)', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'province_id', 'Asal Provinsi', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'address', 'Alamat Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'phone', 'No Telpon', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'email', 'E-Mail', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $data['mode']                       = '';
+                $data['user_institution_name']      = '';
+                $data['user_fullname']              = '';
+                $data['user_id_number']             = '';
+                $data['user_identity_link']         = '';
+                $data['user_province_id']           = '';
+                $data['address']                    = '';
+                $data['email']                      = '';
+                $data['phone']                      = '';
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+                    // Register the user to the DB
+                    $this->cp_participants_model->register_participant(
+                        $this->session->userdata('user_id'),
+                        $this->input->post('fullname'),
+                        $this->input->post('id_number'),
+                        $this->input->post('institution_name'),
+                        $this->input->post('province_id'),
+                        $this->input->post('address'),
+                        $this->input->post('phone'),
+                        $this->input->post('email')
+                    );
+
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+                    // Do the file uploading if found
+                    if (!empty($_FILES))
+                    {
+                        $config['upload_path']          = 'uploads/cp/' . $this->session->user_id;
+                        $config['allowed_types']        = 'jpg';
+                        $config['max_size']             = 5000;
+                        $config['overwrite']            = TRUE;
+
+                        $this->load->library('upload', $config);
+
+                        $link = "uploads/cp/" . $this->session->user_id;
+
+                        if (!file_exists ($link))
+                        {
+                            if(!mkdir($link, 0777, TRUE))
+                            {
+                                $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                            }
+                        }
+
+                        $error = array();
+
+                        if(is_uploaded_file($_FILES['identity_link']['tmp_name']))
+                        {
+                            $config['file_name']            = 'identity_link';
+                            $this->upload->initialize($config);
+
+                            if (!$this->upload->do_upload('identity_link'))
+                            {
+                                array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+                            }
+                            else
+                            {
+                                $this->cp_participants_model->change_details($this->session->userdata('user_id'), 'identity_link', $link . '/identity_link' . '.jpg');
+                            }
+                        }
+
+                        $this->session->set_flashdata('upload_failed', $error);
+                    }
+
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/cp');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_cp.php', $data);
+                }
+        }
+
+        $this->load->view('templates/footer.php');
+    }
         
 }

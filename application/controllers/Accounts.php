@@ -594,6 +594,94 @@ class Accounts extends CI_Controller {
 	            }
             }
         }
+        else if($action == 'cp')
+        {
+            if (array_key_exists('cp', $this->session->userdata('user_participations')))
+            {
+                $this->load->model('cp_participants_model');
+                $user_participant_data = $this->cp_participants_model->get_details($this->session->userdata('user_id'));
+                $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
+
+                $data['user_is_participant']            = TRUE;
+                $data['user_submitted_payment_proof']   = $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
+                $data['user_payment_verified']          = $user_participant_data->is_paid;
+                $data['user_email']                     = $this->session->userdata('user_email');
+                
+                $cp_data = $this->cp_participants_model->get_details($this->session->userdata('user_id'));
+                $data['mode']                       = 'edit';
+                $data['user_institution_name']      = $cp_data->institution_name;
+                $data['user_fullname']              = $cp_data->fullname;
+                $data['user_id_number']             = $cp_data->id_number;
+                $data['user_identity_link']         = $cp_data->identity_link;
+                $data['user_province_id']           = $cp_data->province_id;
+                $data['address']                    = $cp_data->address;
+                $data['email']                      = $cp_data->email;
+                $data['phone']                      = $cp_data->phone;
+
+                if (empty($data['user_identity_link']))
+                {
+                    $data['user_details_complete'] = FALSE;
+                }
+                
+                else
+                {
+                    $data['user_details_complete'] = TRUE;
+                }
+            }
+            
+            else
+            {
+                $data['user_is_participant'] = FALSE;
+            }
+
+            $this->load->view('accounts/dashboard_cp.php', $data);
+            
+            if ($param == 'upload')
+            {
+                $config['upload_path']          = 'uploads/cp/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cp/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
+
+                //Check File Bukti Trf Upload
+                if(isset($_FILES['file_bukti']))
+                {
+                    $config['allowed_types']        = 'jpg';
+                    $config['file_name']            = 'bukti_trf';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if ( ! $this->upload->do_upload('file_bukti') )
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+
+                            $this->session->set_flashdata('upload_failed', $error);
+
+                            redirect('akun/dashboard/cip');
+                    }
+                    else
+                    {
+                            //Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+                            $this->db->select('cip_participants');
+                            $data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+                            $this->db->update('cip_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+                            redirect('akun/dashboard/cip');
+                    }
+                }
+            }
+        }
         
         $this->load->view('templates/footer.php');
     }

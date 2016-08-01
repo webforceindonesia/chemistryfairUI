@@ -119,14 +119,14 @@ class Accounts_model extends CI_Model
         $query_row = $this->db->get('cp_participants')->row();
         if (!empty($query_row))
         {
-            $return_data['cac'] = $query_row->id;
+            $return_data['cp'] = $query_row->id;
         }
 
         // Check from CMP table
         $query_row = $this->db->get('cmp_participants')->row();
         if (!empty($query_row))
         {
-            $return_data['cac'] = $query_row->id;
+            $return_data['cmp'] = $query_row->id;
         }
 
         $this->db->flush_cache();

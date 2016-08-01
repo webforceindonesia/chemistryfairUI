@@ -35,9 +35,8 @@ class Cp_participants_model extends CI_Model
      */
     public function get_details($account_id)
     {
-        $this->db->select('fullname, identity_link, institution_name, province_id, 
-        instagram_photo_link, payment_proof_link, is_paid, time_registered');
-        $this->db->where('id', $account_id);
+        $this->db->select('*');
+        $this->db->where('account_id', $account_id);
         $this->db->limit(1);
         return $this->db->get('cp_participants')->row();
     }
@@ -51,14 +50,18 @@ class Cp_participants_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $fullname, $institution_name, $province_id)
+    public function register_participant($account_id, $fullname, $id_number, $institution_name, $province_id, $address, $phone, $email)
     {
         // Create the query builder 
         $this->db->insert('cp_participants', array(
             'account_id'            =>  $account_id,
             'fullname'              =>  $fullname,
+            'id_number'             =>  $id_number,
             'institution_name'      =>  $institution_name,
             'province_id'           =>  $province_id,
+            'address'               =>  $address,
+            'phone'                 =>  $phone,
+            'email'                 =>  $email,
             'time_registered'       =>  date('Y-m-d H:i:s')
         ));
     }
@@ -74,13 +77,13 @@ class Cp_participants_model extends CI_Model
      */
     public function change_details($account_id, $field_name, $value)
     {
-        $allowed_field = array('fullname', 'identity_link', 'institution_name', 'province_id', 'instagram_photo_link', 'payment_proof_link');
+        $allowed_field = array('fullname', 'identity_link', 'institution_name', 'province_id', 'id_number', 'payment_proof_link', 'address', 'phone', 'email');
         if (in_array($field_name, $allowed_field, true))
         {
-            $this->db->where('id', $account_id);
+            $this->db->where('account_id', $account_id);
             $this->db->limit(1);
             $this->db->update('cp_participants', array($field_name => $value));
-            return true;
+            // return true;
         }
         return false;
     }
