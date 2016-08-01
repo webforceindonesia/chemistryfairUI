@@ -89,6 +89,31 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
+                    <?php elseif ($user_instagram_link == NULL) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Link Instagram</span></p>
+                        <p>Tim kami akan memeriksa link instagram anda. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
+                        <p>Anda bisa mengupdate link instagram Anda jika perlu : </p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cip/upload'); ?>
+                        <?php
+
+                        // Upload Bukti Trf
+                        echo form_label('Link Instagram', 'insta', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('insta');
+                        echo form_input(array(
+                            'class'         => 'button button-success', 
+                            'name'          => 'insta',
+                            'placeholder'   => 'Link Instagram.',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
+
+                        ?></form></p>
                     <?php else : ?>
                         <p>Status : <span style="color:green">Pembayaran Terkonfirmasi</span></p>
                         <p>Selamat! Pembayaran anda telah kami konfirmasikan dan tim anda sudah menjadi peserta dalam lomba Chemistry Innovation Project!

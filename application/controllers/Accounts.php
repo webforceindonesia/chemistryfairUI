@@ -614,6 +614,7 @@ class Accounts extends CI_Controller {
                 $data['user_id_number']             = $cp_data->id_number;
                 $data['user_identity_link']         = $cp_data->identity_link;
                 $data['user_province_id']           = $cp_data->province_id;
+                $data['user_instagram_link']        = $cp_data->instagram_photo_link;
                 $data['address']                    = $cp_data->address;
                 $data['email']                      = $cp_data->email;
                 $data['phone']                      = $cp_data->phone;
@@ -667,7 +668,7 @@ class Accounts extends CI_Controller {
 
                             $this->session->set_flashdata('upload_failed', $error);
 
-                            redirect('akun/dashboard/cip');
+                            redirect('akun/dashboard/cp');
                     }
                     else
                     {
@@ -677,8 +678,22 @@ class Accounts extends CI_Controller {
                             $data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
                             $this->db->update('cip_participants', $data)->result;
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
-                            redirect('akun/dashboard/cip');
+                            redirect('akun/dashboard/cp');
                     }
+                }
+            }else if($param == 'insta')
+            {
+                if($this->input->post('insta'));
+                {
+                    $this->db->where('account_id', $this->session->userdata('user_id'));
+                    $this->db->update('cip_participants', array('instagram_photo_link' => $this->input->post('insta')));
+                            $this->session->set_flashdata('upload', 'Link Instagram Sukses Di Simpan');
+                            redirect('akun/dashboard/cp');
+                }else
+                {
+                    $this->session->set_flashdata('upload_failed', 'Link Tidak Valid');
+
+                    redirect('akun/dashboard/cp');
                 }
             }
         }
