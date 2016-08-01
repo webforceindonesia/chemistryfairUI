@@ -40,7 +40,7 @@
                     );
                     echo form_label('Kategori Peserta', 'type', array('class' => 'form-label'));
                     echo form_error('participant_type');
-                    echo form_dropdown('participant_type', $options, $user_category);
+                    echo form_dropdown('participant_type', $options, empty($user_category) ? set_value('participant_type') : $user_category);
                     echo '<br/>';
                     echo '<br/>';
 
@@ -50,7 +50,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'institution_name',
-                        'value'         => $user_institution_name
+                        'value'         => empty($user_institution_name) ? set_value('institution_name') : $user_institution_name
                     )); 
                     echo '<br/>';
 
@@ -60,7 +60,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'fullname_member1',
-                        'value'         => $user_fullname_member1
+                        'value'         => empty($user_fullname_member1) ? set_value('fullname_member1') : $user_fullname_member1
                     )); 
                     echo '<br/>';
 
@@ -70,7 +70,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'id_number_member1',
-                        'value'         => $user_id_number_member1
+                        'value'         => empty($user_id_number_member1) ? set_value('id_number_member1') : $user_id_number_member1
                     )); 
                     echo '<br/>';
 
@@ -100,7 +100,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'fullname_member2',
-                        'value'         => $user_fullname_member2
+                        'value'         => empty($user_fullname_member2) ? set_value('fullname_member2') : $user_fullname_member2
                     )); 
                     echo '<br/>';
 
@@ -110,7 +110,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'id_number_member2',
-                        'value'         => $user_id_number_member2
+                        'value'         => empty($user_id_number_member2) ? set_value('id_number_member2') : $user_id_number_member2
                     )); 
                     echo '<br/>';
 
@@ -129,7 +129,6 @@
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'passphoto_link2',
-                        'value'         => $user_passphoto_link2
                     )); 
                     echo '<br/>';
 
@@ -139,7 +138,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'fullname_member3',
-                        'value'         => $user_fullname_member3
+                        'value'         => empty($user_fullname_member3) ? set_value('fullname_member3') : $user_fullname_member3
                     )); 
                     echo '<br/>';
 
@@ -149,7 +148,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'id_number_member3',
-                        'value'         => $user_id_number_member3
+                        'value'         => empty($user_id_number_member3) ? set_value('id_number_member3') : $user_id_number_member3
                     )); 
                     echo '<br/>';
 
@@ -159,7 +158,6 @@
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'identity_member3_link',
-                        'value'         => $user_identity_member3_link
                     )); 
                     echo '<br/>';
 
@@ -169,7 +167,6 @@
                     echo form_upload(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'passphoto_link3',
-                        'value'         => $user_passphoto_link3
                     )); 
                     echo '<br/>';
 
@@ -212,7 +209,7 @@
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
-                    echo form_dropdown('province_id', $options, $user_province_id);
+                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id);
                     echo '<br/>';
 
                     // Lodging Days
@@ -221,16 +218,15 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'lodging_days',
-                        'value'         => $user_lodging_days
+                        'value'         => empty($user_lodging_days) ? set_value('lodging_days') : $user_lodging_days
                     )); 
                     echo '<br/>';
 
                     // Need transport
-                    echo form_label('Apakah anda membutuhkan transportasi dari penginapan anda?', 'institution_name', array('class' => 'form-label'));
+                    echo form_label('Apakah anda membutuhkan transportasi dari penginapan anda?', 'need_transport', array('class' => 'form-label'));
                     echo form_error('need_transport');
-                    echo form_checkbox(array(
-                        'name'          => 'need_transport'
-                    )); 
+                    if ($user_need_transport == true) echo form_checkbox(array('name' => 'need_transport', 'checked' => 'checked'));
+                    else echo form_checkbox('need_transport', 'true', set_checkbox('need_transport', 'true'));
                     echo '<br/>';
 
 
@@ -240,7 +236,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'teacher_name',
-                        'value'         => $user_teacher_name
+                        'value'         => empty($user_teacher_name) ? set_value('teacher_name') : $user_teacher_name
                     )); 
                     echo '<br/>';
 
@@ -250,7 +246,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'teacher_phone',
-                        'value'         => $user_teacher_phone
+                        'value'         => empty($user_teacher_phone) ? set_value('teacher_phone') : $user_teacher_phone
                     )); 
                     echo '<br/>';
 
@@ -260,7 +256,7 @@
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'teacher_email',
-                        'value'         => $user_teacher_email
+                        'value'         => empty($user_teacher_email) ? set_value('teacher_email') : $user_teacher_email
                     )); 
                     echo '<br/>';
 
