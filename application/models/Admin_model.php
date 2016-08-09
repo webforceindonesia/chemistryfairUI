@@ -106,10 +106,10 @@ class admin_model extends CI_Model {
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
 		$message  = "<html><body>";
-		$message .= "<h2>Informasi Pendaftar Baru Lomba" . $lomba ."</h2>"
-		$message .= "<table>";
+		$message .= "<h2>Informasi Pendaftar Baru Lomba" . $lomba ."</h2>";
+		$message .= '<table border="1px">';
 		$message .= "<tr>";
-		$message .= "<td>Nama</td><td>Email</td><td>No Telpon</td>"
+		$message .= "<td>Nama</td><td>Email</td><td>No Telpon</td>";
 		$message .= "</tr>";
 		$message .= "<td>".$user_data->fullname."</td><td>".$user_data->email."</td><td>".$user_data->phone_number."</td>";
 		$message .= "</tr>";

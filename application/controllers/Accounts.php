@@ -682,7 +682,7 @@ class Accounts extends CI_Controller {
                 }
             }else if($param == 'insta')
             {
-                if($this->input->post('insta'));
+                if($this->input->post('insta'))
                 {
                     $this->db->where('account_id', $this->session->userdata('user_id'));
                     $this->db->update('cip_participants', array('instagram_photo_link' => $this->input->post('insta')));
@@ -1050,10 +1050,7 @@ class Accounts extends CI_Controller {
                 //Email ticketingcf2016@gmail.com
                 $this->load->model('admin_model');
                 $pendaftar = $this->admin_model->getUser($this->session->userdata('user_id'));
-                if(!$this->admin_model->email_new_register('zonecaptain@gmail.com', 'Chemistry Innovation Project', $pendaftar))
-                {
-                    exit;
-                }
+                $this->admin_model->email_new_register('ticketingcf2016@gmail.com', 'Chemistry Innovation Project', $pendaftar);
 
             }break;
 
