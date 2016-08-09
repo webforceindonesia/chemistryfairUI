@@ -15,6 +15,18 @@ class Admin extends CI_Controller {
 		{
 			$page="admin/dashboard";
 
+			$this->load->model('admin_model');
+
+			$accounts = $this->admin_model->getAllAccounts();
+
+			foreach ($accounts as $key => $value)
+			{
+				$participantions = $this->admin_model->getParticipations($value['id']);
+				$accounts[$key]['participations'] = $participantions;
+			}
+
+			$data['accounts'] = $accounts;
+
 			if (!file_exists (APPPATH.'views/'.$page.'.php'))
 			{
 				//Homepage does not exist
@@ -30,60 +42,6 @@ class Admin extends CI_Controller {
 			redirect('/main');
 		}
 	}
-
-	// /* Login Methods */ Depreceated - Moved to account controller
-	// public function login()
-	// {
-	// 	$this->username = $this->input->post('username');
-	// 	$this->password = $this->input->post('password');
-
-	// 	$this->load->model('login_model');
-	// 	if($unPassword = $this->login_model->getPassword($this->username))
-	// 	{
-	// 		if(password_verify($this->password, $unPassword))
-	// 		{
-	// 			$this->session->username = $this->username;
-	// 			$this->session->isLogged = True;
-
-	// 			redirect('/admin');
-	// 		}else
-	// 		{
-	// 			$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
-	// 			redirect('/admin', 'refresh');
-	// 		}
-	// 	}else
-	// 	{
-	// 			$this->session->set_flashdata('failed', 'Login Error, Wrong Username or Password');
-	// 		redirect('/admin', 'refresh');
-	// 	}
-	// }
-
-	// public function forget()
-	// {
-	// 	$page = "admin/forget_password";
-	// 	if (!file_exists (APPPATH.'views/'.$page.'.php'))
-	// 	{
-	// 		//Homepage does not exist
-	// 		show_404();
-	// 	}
-			
-	// 	$data['page_title'] = "Admin - Chemistry Fair UI 2016";
-	// 	$this->load->view($page, $data);
-	// }
-
-	// public function reset()
-	// {
-	// 	$this->load->model('login_model');
-	// 	if($this->login_model->reset())
-	// 	{
-	// 		$this->session->set_flashdata('failed', 'Success');
-	// 		redirect('/admin');
-	// 	}else
-	// 	{
-	// 		$this->session->set_flashdata('failed', 'Reset Failed');
-	// 		redirect('/forget');
-	// 	}
-	// }
 
 	public function logout ()
 	{
@@ -312,8 +270,6 @@ class Admin extends CI_Controller {
 						$data['participants'] = $this->admin_model->getParticipants('cc', $param2);
 						$page 				  = "admin/lomba/participants_cc";
 
-						//Load Pagination Helper
-						$this->load->library('pagination');
 
 						$config['base_url'] 		= base_url() . 'admin/news/';
 						$config['total_rows'] 		= $totalNews;
@@ -336,11 +292,6 @@ class Admin extends CI_Controller {
 						$config['cur_tag_close'] = '</a></li>';
 						$config['num_tag_open'] = '<li class="page">';
 						$config['num_tag_close'] = '</li>';
-
-
-						$this->pagination->initialize($config);
-
-						$data['pagination'] 		= $this->pagination->create_links();
 
 					}break;
 
@@ -349,8 +300,6 @@ class Admin extends CI_Controller {
 						$data['participants'] = $this->admin_model->getParticipants('cfk', $param2);
 						$page 				  = "admin/lomba/participants_cfk";
 
-						//Load Pagination Helper
-						$this->load->library('pagination');
 
 						$config['base_url'] 		= base_url() . 'admin/news/';
 						$config['total_rows'] 		= $totalNews;
@@ -375,9 +324,6 @@ class Admin extends CI_Controller {
 						$config['num_tag_close'] = '</li>';
 
 
-						$this->pagination->initialize($config);
-
-						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cip' :
@@ -385,8 +331,6 @@ class Admin extends CI_Controller {
 						$data['participants'] = $this->admin_model->getParticipants('cip', $param2);
 						$page 				  = "admin/lomba/participants_cip";
 
-						//Load Pagination Helper
-						$this->load->library('pagination');
 
 						$config['base_url'] 		= base_url() . 'admin/news/';
 						$config['total_rows'] 		= $totalNews;
@@ -410,10 +354,6 @@ class Admin extends CI_Controller {
 						$config['num_tag_open'] = '<li class="page">';
 						$config['num_tag_close'] = '</li>';
 
-
-						$this->pagination->initialize($config);
-
-						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cmp' :
@@ -421,8 +361,6 @@ class Admin extends CI_Controller {
 						$data['participants'] = $this->admin_model->getParticipants('cmp', $param2);
 						$page 				  = "admin/lomba/participants_cmp";
 
-						//Load Pagination Helper
-						$this->load->library('pagination');
 
 						$config['base_url'] 		= base_url() . 'admin/news/';
 						$config['total_rows'] 		= $totalNews;
@@ -446,10 +384,6 @@ class Admin extends CI_Controller {
 						$config['num_tag_open'] = '<li class="page">';
 						$config['num_tag_close'] = '</li>';
 
-
-						$this->pagination->initialize($config);
-
-						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					case 'cp' :
@@ -457,8 +391,6 @@ class Admin extends CI_Controller {
 						$data['participants'] = $this->admin_model->getParticipants('cp', $param2);
 						$page 				  = "admin/lomba/participants_cp";
 
-						//Load Pagination Helper
-						$this->load->library('pagination');
 
 						$config['base_url'] 		= base_url() . 'admin/news/';
 						$config['total_rows'] 		= $totalNews;
@@ -483,9 +415,6 @@ class Admin extends CI_Controller {
 						$config['num_tag_close'] = '</li>';
 
 
-						$this->pagination->initialize($config);
-
-						$data['pagination'] 		= $this->pagination->create_links();
 					}break;
 
 					default :
@@ -503,7 +432,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/templates/footer.php');
 	}
 
-	public function konfirmasi($type='', $lomba = '', $account_id = '')
+	public function konfirmasi($type='', $lomba = '', $account_id = '', $gagal ='')
 	{
 		if(!isset($this->session->username) && $this->session->isLogged == False)
 		{
@@ -511,57 +440,38 @@ class Admin extends CI_Controller {
 			redirect('/main');
 		}
 
-		if($type == "pembayaran")
+		if($type == "pembayaran" && $gagal == '')
 		{
 			$this->db->set('is_paid', '1');
 			$this->db->where('account_id', $account_id);
 			$this->db->update($lomba . '_participants');
 			$this->session->set_flashdata('success', 'Success in Konfirmasi Pembayaran');
 			redirect('/admin/lomba');
-		}else if($type == "abstrak")
+		}else if($type == "pembayaran" && $gagal == 'invalid')
+		{
+			$this->db->set('is_paid', '2');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Menolak Konfirmasi Pembayaran');
+			redirect('/admin/lomba');
+		}else if($type == "abstrak" && $gagal == '')
 		{
 			$this->db->set('abstract_passed', '1');
 			$this->db->where('account_id', $account_id);
 			$this->db->update($lomba . '_participants');
 			$this->session->set_flashdata('success', 'Success in Abstract Approval');
 			redirect('/admin/lomba');
+		}else if($type == "abstrak" && $gagal == "gagal")
+		{
+			$this->db->set('abstract_passed', '2');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Abstract Rejection');
+			redirect('/admin/lomba');
 		}
 	}
 
-	// //Development Only - Depreceated Merged with accounts controller
-	// public function new_admin()
-	// {
-	// 	if($_POST)
-	// 	{
-	// 		$this->load->model('login_model');
-	// 		$this->login_model->new_admin();
 
-	// 		redirect('/admin');
-	// 	}else
-	// 	{
-	// 		redirect('/admin');
-	// 	}
-	// }
-
-	// public function new_admin_form()
-	// {
-	// 	$event = mktime(0,0,0,8,1,2016);
-	// 	$remaining = $event - time();
-	// 	$data['countdown'] = floor($remaining / 86400);
-		
-	// 	$page = "admin/new_entry_admin";	
-	// 	if (!file_exists (APPPATH.'views/'.$page.'.php'))
-	// 		{
-	// 			//Homepage does not exist
-	// 			show_404();
-	// 		}
-			
-	// 		$data['title'] = "Admin - Chemistry Fair";
-			
-	// 		$this->load->view('templates/header.php', $data);
-	// 		$this->load->view($page, $data);
-	// 		$this->load->view('templates/footer.php');
-	// }
 }
 
 ?>

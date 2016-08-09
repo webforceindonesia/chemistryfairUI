@@ -63,12 +63,39 @@
                         <p>Status : <span style="color:blue">Menunggu Hasil Lolos Abstrak</span></p>
                         <p>Tim kami akan memeriksa dan menilai abstrak anda, mohon menunggu hingga hasil penilaian
                          abstrak anda keluar. Terima kasih.</p>
+                    <?php elseif ($user_passed_abstract == 2) : ?>
+                        <p>Status : <span style="color:blue">Abstrak Anda Gagal</span></p>
+                        <p>Anda telah gagal dalam tahap seleksi abstrak.</p>
                     <?php elseif ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
                         <p>Selamat! Anda telah lolos dalam tahap seleksi abstrak. Untuk melanjutkan ke tahap berikutnya, mohon
                          membayar biaya pendaftaran dengan invoice yang bisa anda download di link dibawah ini.</p>
-                        <p>WIP Link downlod pdf JO HALP</p>
+                        <!-- <p>WIP Link downlod pdf JO HALP</p> -->
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cip/upload'); ?>
+                        <?php
+
+                        // Upload Bukti Trf
+                        echo form_label('File Bukti Transfer', 'bukti', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('bukti');
+                        echo form_upload(array(
+                            'class'         => 'button button-success', 
+                            'name'          => 'file_bukti',
+                            'placeholder'   => 'Upload File.',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
+
+                        ?></form></p>
+                    <?php elseif ($user_payment_verified == 2) : ?>
+                        <p>Status : <span style="color:red">Hasil Konfirmasi Pembayaran Ditolak</span></p>
+                        <p>Tim kami sudah memeriksa bukti pembayaran yang sudah Anda upload. Foto bukti pembayaran tidak memenuhi standar (tidak jelas, blur, invalid), anda bisa mengupload bukti pendaftaran yang baru. Terima kasih.</p>
+                        <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
                         <?php echo form_open_multipart('akun/dashboard/cip/upload'); ?>

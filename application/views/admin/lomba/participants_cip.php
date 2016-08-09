@@ -45,14 +45,28 @@ function dateReverse ($date)
                         '34' => 'yogyakarta'
                     );
 ?>
+
+<!-- Data Tables Links -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.3/jszip-2.5.0/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.3/jszip-2.5.0/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+<script>
+
+$(document).ready( function () {
+    $('#participants').DataTable();
+} );
+
+</script>
+
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
         <div class="row">
-        	<div class="col-md-12">
-        		<table class="table bordered" style="color:#000; font-size:11px; margin-left:-150px;"">
+        	<div class="col-md-12" id="table-participants" style="overflow-x:scroll; max-width:120%">
+        		<table class="table table-bordered" id="participants" style="color:#000; font-size:16px;">
+        		<thead>
 	        		<tr>
-	        			<td>Id</td>
+	        			<td>No.</td>
 	        			<td>Account Id</td>
 	        			<td>Type</td>
 	        			<td>Member 1</td>
@@ -71,6 +85,8 @@ function dateReverse ($date)
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
 	        		</tr>
+	        	</thead>
+	        	<tbody>
 	        		<?php $total = 0;
 	        		foreach ($participants as $row) { ?>
 	        			<tr>
@@ -127,22 +143,27 @@ function dateReverse ($date)
 	        					<?php endif; ?>
 	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
-	        				<td style="font-size:18px;"><?php if($row->payment_proof_link != NULL): ?><a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>"><i class="fa fa-money" aria-hidden="true"></i></a><?php endif; ?>
-	        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></td>
+	        				<td style="font-size:18px;">
+	        				<?php if($row->payment_proof_link != NULL): ?>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>">
+	        						<i class="fa fa-money" aria-hidden="true"></i>
+	        					</a>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id.'/invalid') ?>">
+	        						<i class="fa fa-times" aria-hidden="true"></i>
+	        					</a>
+	        				<?php endif; ?>
+		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>">
+		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        				</a>
+		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id.'/gagal') ?>">
+		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a>
+	        				</td>
 	        			</tr>
 	        		<?php $total++; 
 	        		} ?>
+	        		</tbody>
         		</table>
-        	</div>
-        </div>
-        <div class="row">
-        	<div class="col-md-8">
-        		&nbsp
-        	</div>
-        	<div class="col-md-4">
-        		<ul class="pagination">
-        		<?php echo $pagination ?>
-				</ul>
         	</div>
         </div>
   </div>
