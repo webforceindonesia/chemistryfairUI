@@ -54,37 +54,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">1-18</span><br><span class ="bulan">AGUSTUS - SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pendaftaran dan pengiriman Abstrak</span>
+                                    <span class = "timelinedesc">Pendaftaran dan pengiriman Abstrak Chemistry Innovation Project</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">1-29</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pendaftaran National Seminar Chemistry Fair 2016, Chemistry Fair Kids, serta pendaftaran dan pembayaran biaya registrasi dan pengiriman berkas Chemistry Art Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">1-22</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pendaftaran Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">26</span><br><span class ="bulan">SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pengumuman lolos Abstrak</span>
+                                    <span class = "timelinedesc">Pengumuman lolos Abstrak Chemistry Innovation Project</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah</span>
+                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah CIP</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">24</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi)</span>
+                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi) dan Try Out Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">29</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan Babak Penyisihan Online Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">6</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman Pemenang Chemistry Art Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">12</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Presentasi final</span>
+                                    <span class = "timelinedesc">Presentasi Final Chemistry Innovation Project dan pelaksanaan Babak Perempat Final Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">13</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pameran poster dan prototype</span>
+                                    <span class = "timelinedesc">Pelaksanaan Babak Semifinal dan Final Chemistry Competition dan Exhibition Day (Display prototype CIP, Pemutaran Film CMP, Voting juara favorit CAC dan CIP)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">19</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan Chemistry Fair Kids</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">26</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan National Seminar Chemistry Fair 2016 dan Penutupan Chemistry Fair 2016</span>
                                     </div>
                                 </li>
                             </ul>
