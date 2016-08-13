@@ -46,6 +46,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     <?php endforeach; ?>
                     </div>
+
+                    <h1>Countdown</h1>
+
+                    <?php if (new DateTime() > new DateTime(CF_SEMINAR_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Seminar Nasional</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_SEMINAR_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_SEMINAR_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Seminar Nasional</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Seminar Nasional</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_SEMINAR_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CFK_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Fair Kids</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CFK_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CFK_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Fair Kids</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Fair Kids</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CFK_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CC_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Competition</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CIP_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Innovation Project</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CAC_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Art Competition</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
                 </div>
             	<div class="col-md-6">
                 	<h1><i>Timeline</i></h1>
