@@ -542,7 +542,7 @@ class Accounts extends CI_Controller {
                 if(isset($_FILES['file_berkas']))
                 {
                 	$config['allowed_types']        = 'zip';
-                	$config['file_name']			= 'berkas';
+                	$config['file_name']			= 'berkas.zip';
 				    $this->upload->initialize($config);
 
 	                if ( ! $this->upload->do_upload('file_berkas'))
@@ -568,8 +568,8 @@ class Accounts extends CI_Controller {
 	            //Check File Bukti Trf Upload
 				if(isset($_FILES['file_bukti']))
                 {
-                	$config['allowed_types']        = 'jpg|png';
-                	$config['file_name']			= 'bukti_trf';
+                	$config['allowed_types']        = 'jpg';
+                	$config['file_name']			= 'bukti_trf.jpg';
                 	$config['overwrite']			= TRUE;
 				    $this->upload->initialize($config);
 
@@ -657,7 +657,7 @@ class Accounts extends CI_Controller {
                 if(isset($_FILES['file_bukti']))
                 {
                     $config['allowed_types']        = 'jpg';
-                    $config['file_name']            = 'bukti_trf';
+                    $config['file_name']            = 'bukti_trf.jpg';
                     $config['overwrite']            = TRUE;
                     $this->upload->initialize($config);
 
@@ -827,7 +827,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['identity_member1_link'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'identity_member1_link';
+                        $config['file_name']            = 'identity_member1_link.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 
@@ -853,7 +853,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['identity_member2_link'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'identity_member2_link';
+                        $config['file_name']            = 'identity_member2_link.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 
@@ -879,7 +879,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['identity_member3_link'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'identity_member3_link';
+                        $config['file_name']            = 'identity_member3_link.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 
@@ -905,7 +905,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['passphoto_link1'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'passphoto_link1';
+                        $config['file_name']            = 'passphoto_link1.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 
@@ -931,7 +931,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['passphoto_link2'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'passphoto_link2';
+                        $config['file_name']            = 'passphoto_link2.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 
@@ -957,7 +957,7 @@ class Accounts extends CI_Controller {
                     if($_FILES['passphoto_link3'])
                     {
                         $config['allowed_types']        = 'jpg';
-                        $config['file_name']            = 'passphoto_link3';
+                        $config['file_name']            = 'passphoto_link3.jpg';
                         $config['overwrite']            = TRUE;
                         $this->upload->initialize($config);
 

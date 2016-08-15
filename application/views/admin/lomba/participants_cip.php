@@ -68,6 +68,7 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>No.</td>
 	        			<td>Account Id</td>
+	        			<td>Account Email</td>
 	        			<td>Type</td>
 	        			<td>Member 1</td>
 	        			<td>Member 2</td>
@@ -79,6 +80,9 @@ $(document).ready( function () {
 	        			<td>Provinsi</td>
 	        			<td>Penginapan</td>
 	        			<td>Transportasi</td>
+	        			<td>Nama Guru Pendamping</td>
+	        			<td>Nomor Guru Pendamping</td>
+	        			<td>Email Guru Pendamping</td>
 	        			<td>Status Pembayaran</td>
 	        			<td>File Abstrak</td>
 	        			<td>Bukti Transfer</td>
@@ -92,6 +96,7 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
+	        				<td><?php echo $emails[$total] ?></td>
 	        				<td><?php echo $row->type; ?></td>
 	        				<td><?php echo $row->fullname_member1; ?></td>
 	        				<td><?php echo $row->fullname_member2; ?></td>
@@ -122,6 +127,9 @@ $(document).ready( function () {
 	        					} 
 	        					?>
 	        				</td>
+	        				<td><?php echo $row->teacher_name; ?></td>
+	        				<td><?php echo $row->teacher_phone; ?></td>
+	        				<td><?php echo $row->teacher_email; ?></td>
 	        				<td>
 	        					<?php if($row->is_paid == 1)
 	        					{

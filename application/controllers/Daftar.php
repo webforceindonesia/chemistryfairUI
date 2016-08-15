@@ -161,7 +161,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['identity_member1_link']['tmp_name']))
                     {
-                        $config['file_name']            = 'identity_member1_link';
+                        $config['file_name']            = 'identity_member1_link.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('identity_member1_link'))
@@ -176,7 +176,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['identity_member2_link']['tmp_name']))
                     {
-                        $config['file_name']            = 'identity_member2_link';
+                        $config['file_name']            = 'identity_member2_link.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('identity_member2_link'))
@@ -191,7 +191,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['identity_member3_link']['tmp_name']))
                     {
-                        $config['file_name']            = 'identity_member3_link';
+                        $config['file_name']            = 'identity_member3_link.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('identity_member3_link'))
@@ -206,7 +206,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['passphoto_link1']['tmp_name']))
                     {
-                        $config['file_name']            = 'passphoto_link1';
+                        $config['file_name']            = 'passphoto_link1.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('passphoto_link1'))
@@ -221,7 +221,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['passphoto_link2']['tmp_name']))
                     {
-                        $config['file_name']            = 'passphoto_link2';
+                        $config['file_name']            = 'passphoto_link2.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('passphoto_link2'))
@@ -236,7 +236,7 @@ class Daftar extends CI_Controller
 
                     if(is_uploaded_file($_FILES['passphoto_link3']['tmp_name']))
                     {
-                        $config['file_name']            = 'passphoto_link3';
+                        $config['file_name']            = 'passphoto_link3.jpg';
                         $this->upload->initialize($config);
 
                         if (!$this->upload->do_upload('passphoto_link3'))

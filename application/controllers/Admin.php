@@ -329,6 +329,18 @@ class Admin extends CI_Controller {
 					case 'cip' :
 					{
 						$data['participants'] = $this->admin_model->getParticipants('cip', $param2);
+
+						//Get Participants Emails
+						$counter = 0;
+						foreach($data['participants'] as $participant)
+						{
+							$emails[$counter] = $this->admin_model->getAccountInfo($participant->account_id)->email;
+							$counter++;
+						}
+
+						$data['emails']		  = $emails;
+
+						//Page Link
 						$page 				  = "admin/lomba/participants_cip";
 
 

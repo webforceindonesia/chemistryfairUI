@@ -21,6 +21,11 @@ class admin_model extends CI_Model {
 		}
 	}
 
+	public function getAccountInfo ($id)
+	{
+		return $this->db->get_where('accounts', array('id' => $id))->row();
+	}
+
 	public function totalParticipants ($lomba)
 	{
 		return $this->db->get($lomba.'_participants')->num_rows();
