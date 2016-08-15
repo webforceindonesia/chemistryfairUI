@@ -46,6 +46,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     <?php endforeach; ?>
                     </div>
+
+                    <h1>Countdown</h1>
+
+                    <?php if (new DateTime() > new DateTime(CF_SEMINAR_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Seminar Nasional</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_SEMINAR_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_SEMINAR_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Seminar Nasional</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Seminar Nasional</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_SEMINAR_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CFK_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Fair Kids</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CFK_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CFK_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Fair Kids</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Fair Kids</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CFK_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CC_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Competition</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CIP_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Innovation Project</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
+                        <b>Penutupan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_CLOSE_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CAC_CLOSE_REGISTRATION)) : ?>
+                        Pendaftaran <i>Chemistry Art Competition</i> sudah ditutup!
+                    <?php else : ?>
+                        <b>Pembukaan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
                 </div>
             	<div class="col-md-6">
                 	<h1><i>Timeline</i></h1>
@@ -54,37 +122,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">1-18</span><br><span class ="bulan">AGUSTUS - SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pendaftaran dan pengiriman Abstrak</span>
+                                    <span class = "timelinedesc">Pendaftaran dan pengiriman Abstrak Chemistry Innovation Project</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">1-29</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pendaftaran National Seminar Chemistry Fair 2016, Chemistry Fair Kids, serta pendaftaran dan pembayaran biaya registrasi dan pengiriman berkas Chemistry Art Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">1-22</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pendaftaran Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">26</span><br><span class ="bulan">SEPTEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pengumuman lolos Abstrak</span>
+                                    <span class = "timelinedesc">Pengumuman lolos Abstrak Chemistry Innovation Project</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah</span>
+                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah CIP</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">24</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi)</span>
+                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi) dan Try Out Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">29</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan Babak Penyisihan Online Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">6</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman Pemenang Chemistry Art Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">12</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Presentasi final</span>
+                                    <span class = "timelinedesc">Presentasi Final Chemistry Innovation Project dan pelaksanaan Babak Perempat Final Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">13</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pameran poster dan prototype</span>
+                                    <span class = "timelinedesc">Pelaksanaan Babak Semifinal dan Final Chemistry Competition dan Exhibition Day (Display prototype CIP, Pemutaran Film CMP, Voting juara favorit CAC dan CIP)</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">19</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan Chemistry Fair Kids</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">26</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pelaksanaan National Seminar Chemistry Fair 2016 dan Penutupan Chemistry Fair 2016</span>
                                     </div>
                                 </li>
                             </ul>

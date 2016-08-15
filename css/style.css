@@ -340,6 +340,7 @@ body
 	margin-left: auto;
 	text-align: center;
 	display: inline-block;
+	image-rendering: auto;
 }
 
 .logo-cf-header-container div

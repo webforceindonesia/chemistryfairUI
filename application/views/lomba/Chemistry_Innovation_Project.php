@@ -108,7 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h2>Unduhan</h2>
             <a href="<?php echo base_url() . 'downloads/Guidebook CIP CF 2016.pdf' ?>" download>Guidebook CIP CF 2016</a><br>
             <a href="<?php echo base_url() . 'downloads/Lampiran I (CIP tingkat Siswa).docx' ?>" download>Lampiran I (CIP tingkat Siswa)</a><br>
-            <a href="<?php echo base_url() . 'downloads/Lampiran II (CIP tingkat Mahasiswa).docs' ?>" download>Lampiran II (CIP tingkat Mahasiswa)</a><br>
+            <a href="<?php echo base_url() . 'downloads/Lampiran II (CIP tingkat Mahasiswa).docx' ?>" download>Lampiran II (CIP tingkat Mahasiswa)</a><br>
         </div>
 
         <!-- Check if it's already in time for open registration -->

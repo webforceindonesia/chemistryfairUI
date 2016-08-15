@@ -60,10 +60,7 @@
         </head>
         <body>
         <div class="logo-cf-header-container-small mobile-only">
-            <img src="<?php echo base_url() ?>images/bigLogo.svg">
-            <div>
-                <p>CHEMISTRY FAIR<br/><span>2016</span></p>
-            </div>
+            <img src="<?php echo base_url() ?>images/CF16-02.png">
         </div>
         <div id="top-bar">
             <div id="logo-univ-header-container" class="col-md-2">
@@ -103,10 +100,7 @@
         </div>
         <div class="logo-cf-header-container">
             <?php if (!isset($disable_user_bar) || $disable_user_bar === FALSE) : ?>
-                <img src="<?php echo base_url() ?>images/bigLogo.svg">
-                <div>
-                    <p>CHEMISTRY FAIR<br/><span>2016</span></p>
-                </div>
+                <img src="<?php echo base_url() ?>images/CF16-02.png">
             <?php endif; ?>
         </div>
         <br/>
