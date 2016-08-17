@@ -94,6 +94,13 @@ class Cip_participants_model extends CI_Model
             'teacher_email'         =>  $teacher_email,
             'time_registered'       =>  date('Y-m-d H:i:s')
         ));
+
+        //Get Userdata From Accounts
+        $userdata = $this->db->get_where('accounts',array('id' => $account_id))->row();
+
+        //Send Email to Ticketing CF
+        $this->load->model('admin_model');
+        $this->admin_model->email_new_register('ticketingcf2016@gmail.com', 'Chemistry Innovation Project', $userdata);
     }
 
     /**
