@@ -557,6 +557,11 @@ body
 	margin-bottom:1em;
 }
 
+table
+{
+	color:#000;
+}
+
 /* Home */
 #home
 {

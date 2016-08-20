@@ -70,8 +70,9 @@
                 <ul class="nav">
                     <li class="col-md-2"><a href="<?php echo site_url() ?>">BERANDA</a></li>
                     <li class="col-md-2"><a href="<?php echo site_url() . 'acara/' ?>">ACARA</a></li>
-                    <li class="col-md-2"><a href="<?php echo site_url() . 'lomba/' ?>">LOMBA</a></li>
-                    <li class="col-md-3"><a href="<?php echo site_url() . 'aboutus/' ?>">TENTANG KAMI</a></li>
+                    <li class="col-md-1"><a href="<?php echo site_url() . 'lomba/' ?>">LOMBA</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url() . 'contactus/' ?>">HUBUNGI KAMI</a></li>
+                    <li class="col-md-2"><a href="<?php echo site_url() . 'aboutus/' ?>">TENTANG KAMI</a></li>
                     <li class="col-md-3 header-account-box-container">
                     <?php if (!isset($disable_user_bar) || $disable_user_bar === FALSE) : ?>
                         <div class="header-account-box">
