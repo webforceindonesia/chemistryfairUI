@@ -11,11 +11,19 @@
 body
 {
 	padding:0;
-	background: url("../images/background.jpg");
 	font-family: 'Roboto Light', sans-serif;
-	background-size:100% 100%;
 	color:#EBEBEB;
 	overflow-x: hidden;
+}
+
+#background
+{
+	background-image: url("../images/background.jpg");
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:inherit;
 }
 
 #navBar

@@ -33,6 +33,7 @@
             <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
+            <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.stellar.min.js"></script>
             <?php if (isset($import_captcha)) : ?>
                 <script src='https://www.google.com/recaptcha/api.js'></script>
             <?php endif; ?>
@@ -59,6 +60,7 @@
        
         </head>
         <body>
+        <div id="background" data-stellar-background-ratio="0.5">
         <div class="logo-cf-header-container-small mobile-only">
             <img src="<?php echo base_url() ?>images/CF16-02.png">
         </div>

@@ -4,6 +4,9 @@
 	----------------------------------- */
 
 $( document ).ready(function() {
+	
+	$(window).stellar();
+	
 	$('#bigLogo').parallax();
 	$('#bigTitle').parallax();
 });
