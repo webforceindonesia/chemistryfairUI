@@ -59,16 +59,16 @@ class Main extends CI_Controller {
 		
 		$page = "contact_us";	
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))
-			{
-				//Homepage does not exist
-				show_404();
-			}
-			
-			$data['title'] = "Hubungi Kami - Chemistry Fair";
-			
-			$this->load->view('templates/header.php', $data);
-			$this->load->view($page, $data);
-			$this->load->view('templates/footer.php');
+		{
+			//Homepage does not exist
+			show_404();
+		}
+		
+		$data['title'] = "Hubungi Kami - Chemistry Fair";
+		
+		$this->load->view('templates/header.php', $data);
+		$this->load->view($page, $data);
+		$this->load->view('templates/footer.php');
 	}
 
 }
