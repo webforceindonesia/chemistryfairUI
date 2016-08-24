@@ -25,6 +25,7 @@
         </div>  
     </div>
 </section>
+</div>
 <!-- Parallax Must be on bottom -->
 <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.parallax.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>/js/script.js"></script>

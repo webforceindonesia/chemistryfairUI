@@ -52,10 +52,15 @@
 					}
 				}
 				
+                body
+                {
+                    background: url("background.jpg");
+                }
 			</style>
        
         </head>
         <body>
+        <div id="background" data-stellar-background-ratio="0.5">
         <div class="logo-cf-header-container-small mobile-only">
             <img src="<?php echo base_url() ?>images/bigLogo.svg">
             <div>

@@ -50,13 +50,14 @@ class Cp_participants_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $fullname, $id_number, $institution_name, $province_id, $address, $phone, $email)
+    public function register_participant($account_id, $fullname, $id_number, $id_link,  $institution_name, $province_id, $address, $phone, $email)
     {
         // Create the query builder 
         $this->db->insert('cp_participants', array(
             'account_id'            =>  $account_id,
             'fullname'              =>  $fullname,
             'id_number'             =>  $id_number,
+            'identity_link'         =>  $id_link,
             'institution_name'      =>  $institution_name,
             'province_id'           =>  $province_id,
             'address'               =>  $address,

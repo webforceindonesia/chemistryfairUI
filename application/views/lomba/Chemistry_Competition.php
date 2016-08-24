@@ -49,10 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i>Sabtu, 29 Oktober 2016</i><br/>
             <i>Online di http://www.scele.ui.ac.id</i><br/><br/>
             <b>Perempat Final</b><br/>
-            <i>Sabtu, 12 Oktober 2016</i><br/>
+            <i>Sabtu, 12 November 2016</i><br/>
             <i>Gedung B FMIPA UI</i><br/><br/>
             <b>Semifinal & Final</b><br/>
-            <i>Minggu, 13 Oktober 2016</i><br/>
+            <i>Minggu, 13 November 2016</i><br/>
             <i>Gedung G & B FMIPA UI</i><br/>
         </div>
 
@@ -67,6 +67,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             <i>*Sertifikat peserta  babak Penyisihan dalam bentuk digital bagi seluruh peserta (dikirimkan melalui e-mail peserta).</i><br/>
             <i>*Peserta akan mendapatkan sertifikat sesuai dengan tahap terakhir dari seleksi yang peserta lalui.</i>
+        </div>
+
+        <!-- Downloads -->
+        <div class="content-info-container col-md-12">
+            <h2>Unduhan</h2>
+            <a href="<?php echo base_url() . 'downloads/Guidebook CC CF 2016.pdf' ?>" download>Guidebook CC CF 2016</a><br>
         </div>
 
         <!-- Check if it's already in time for open registration -->

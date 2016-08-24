@@ -65,7 +65,12 @@
                          abstrak anda keluar. Terima kasih.</p>
                     <?php elseif ($user_passed_abstract == 2) : ?>
                         <p>Status : <span style="color:blue">Abstrak Anda Gagal</span></p>
-                        <p>Anda telah gagal dalam tahap seleksi abstrak.</p>
+                        <p>
+                            Mohon maaf, abstrak Tim Anda tidak lolos seleksi abstrak.
+                            Tetap semangat berkarya demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu karya Tim Anda di Chemistry Innovation Project tahun depan
+                        </p>
                     <?php elseif ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
                         <p>Selamat! Anda telah lolos dalam tahap seleksi abstrak. Untuk melanjutkan ke tahap berikutnya, mohon

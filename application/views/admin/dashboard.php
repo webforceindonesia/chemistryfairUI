@@ -61,7 +61,7 @@ $(document).ready( function () {
                       echo 'Sudah Di Verifikasi';
                     }else
                     {
-                      echo 'Belum Di Verifikasi';
+                      echo '<p style="color: red">Belum Di Verifikasi</p>';
                     }
                     ?>
                     </td>

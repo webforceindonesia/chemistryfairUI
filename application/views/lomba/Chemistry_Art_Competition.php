@@ -107,17 +107,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i>*E-sertifikat akan diberikan kepada seluruh peserta yang mengikuti seleksi karya.</i>
         </div>
 
+        <!-- Downloads -->
+        <div class="content-info-container col-md-12">
+            <h2>Unduhan</h2>
+            <a href="<?php echo base_url() . 'downloads/Guidebook CAC CF 2016.pdf' ?>" download>Guidebook CAC CF 2016</a><br>
+        </div>
+
         <!-- Check if it's already in time for open registration -->
-        <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
+        <?php if (new DateTime() < new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
             <?php if (isset($_SESSION['user_id'])) : ?>
-                <?php if (in_array('seminar', $_SESSION['user_participations'])) : ?>
+
+                <!-- For CP -->
+                <?php if (array_key_exists('cp', $this->session->userdata('user_participations'))) : ?>
                     <div class="alert alert-success col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'profile'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                        <a href="<?php echo site_url() . 'akun/dashboard/cp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
                     </div>
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/cp'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online Chemistry Photography</a>
+                    </div>
+                    <span>Silahkan registrasi diri anda untuk acara ini.</span>
+                <?php endif; ?>
+
+                <!-- For CMP -->
+                <?php if (array_key_exists('cmp', $this->session->userdata('user_participations'))) : ?>
+                    <div class="alert alert-success col-md-12" role="alert">
+                        <a href="<?php echo site_url() . 'akun/dashboard/cmp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                    </div>
+                    <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
+                <?php else : ?>
+                    <div class="alert alert-info col-md-12" role="alert">
+                        <a href="<?php echo site_url() . 'daftar/cmp'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online Chemistry Movie Project</a>
                     </div>
                     <span>Silahkan registrasi diri anda untuk acara ini.</span>
                 <?php endif; ?>

@@ -34,7 +34,7 @@ class Email_model extends CI_Model {
 		$message .= "</body></html>";
 
 
-		if(mail($data['email'], $subject, $message, $headers))
+		if(mail("chemistryfair2016@gmail.com", $subject, $message, $headers))
 		{
 			return true;
 		}else

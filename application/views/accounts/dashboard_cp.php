@@ -114,10 +114,18 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
 
                         ?></form></p>
-                    <?php else : ?>
+                    <?php elseif ($user_payment_verified == 1) : ?>
                         <p>Status : <span style="color:green">Pembayaran Terkonfirmasi</span></p>
                         <p>Selamat! Pembayaran anda telah kami konfirmasikan dan tim anda sudah menjadi peserta dalam lomba Chemistry Innovation Project!
                          Semoga sukses!</p>
+                    <?php elseif ($user_payment_verified == 2) : ?>
+                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
+                        <p>
+                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Photograph.
+                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan
+                        </p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -126,28 +134,14 @@
                     <h3 class="panel-title">Data Tim Peserta</h3>
                 </div>
                 <div class="panel-body">
-                    <p><div><strong>Kategori</strong></div><?php echo titlecase($user_category) ?></p>
                     <p><div><strong>Nama Institusi</strong></div><?php echo $user_institution_name ?></p>
-                    <p><div><strong>Nama Ketua Tim</strong></div><?php echo $user_fullname_member1 ?></p>
-                    <p><div><strong>Nomor Identitas Ketua Tim</strong></div><?php echo $user_id_number_member1 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Ketua Tim</strong></div><?php echo empty($user_identity_member1_link) ? '<span style="color:red">KOSONG</span>' : '<img src="'.base_url().$user_identity_member1_link.'" height= "100">' ?></p>
-                    <p><div><strong>Gambar Pasfoto Ketua Tim</strong></div><?php echo empty($user_passphoto_link1) ? '<span style="color:red"><span style="color:red">KOSONG</span></span>' :  '<img src="'.base_url().$user_passphoto_link1.'" height= "100">' ?></p>
-                    <p><div><strong>Nama Anggota 2</strong></div><?php echo $user_fullname_member2 ?></p>
-                    <p><div><strong>Nomor Identitas Anggota 2</strong></div><?php echo $user_id_number_member2 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Anggota 2</strong></div><?php echo empty($user_identity_member2_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_member2_link.'" height= "100">' ?></p>
-                    <p><div><strong>Gambar Pasfoto Anggota 2</strong></div><?php echo empty($user_passphoto_link2) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_passphoto_link2.'" height= "100">' ?></p>
-                    <p><div><strong>Nama Anggota 3</strong></div><?php echo $user_fullname_member3 ?></p>
-                    <p><div><strong>Nomor Identitas Anggota 3</strong></div><?php echo $user_id_number_member3 ?></p>
-                    <p><div><strong>Gambar Scan Identitas Anggota 3</strong></div><?php echo empty($user_identity_member3_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_member3_link.'" height= "100">' ?></p>
-                    <p><div><strong>Gambar Pasfoto Anggota 3</strong></div><?php echo empty($user_passphoto_link3) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_passphoto_link3.'" height= "100">' ?></p>
-                    <p><div><strong>Asal Provinsi</strong></div><?php echo titlecase($this->db->get_where('misc_provinces', array('id' => $user_province_id), 1)->row()->name) ?></p>
-                    <p><div><strong>Region</strong></div><?php echo $this->db->get_where('misc_region_provinces', array('region_id' => $user_province_id), 1)->row()->regionset_id ?></p>
-                    <p><div><strong>Kebutuhan Hari Penginapan</strong></div><?php echo empty($user_lodging_days) ? 'Tidak ada' : $user_lodging_days ?></p>
-                    <p><div><strong>Kebutuhan Transportasi di Penginapan</strong></div><?php echo empty($user_need_transport) ? 'Tidak' : 'Ya' ?></p>
-                    <p><div><strong>Nama Guru Pendamping</strong></div><?php echo empty($user_teacher_name) ? 'Tidak ada' : $user_teacher_name ?></p>
-                    <p><div><strong>No. Handphone Guru Pendamping</strong></div><?php echo empty($user_teacher_phone) ? 'Tidak ada' : $user_teacher_phone ?></p>
-                    <p><div><strong>Email Guru Pendamping</strong></div><?php echo empty($user_teacher_email) ? 'Tidak ada' : $user_teacher_email ?></p>
-                    <a href="<?php echo site_url() ?>daftar/cip/edit">Ubah</a>
+                    <p><div><strong>Nama Panjang</strong></div><?php echo $user_fullname ?></p>
+                    <p><div><strong>Nomor Identitas</strong></div><?php echo $user_id_number ?></p>
+                    <p><div><strong>Foto Kartu identitas</strong></div><?php echo empty($user_identity_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_link.'" height= "100">' ?></p>
+                    <p><div><strong>Alamat</strong></div><?php echo $address ?></p>
+                    <p><div><strong>Nomor Telpon</strong></div><?php echo $phone ?></p>
+                    <p><div><strong>Email</strong></div><?php echo $email ?></p>
+                    <a href="<?php echo site_url() ?>daftar/cp/edit">Ubah</a>
                 </div>
             </div>
         <?php else: ?>
@@ -160,7 +154,7 @@
             <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'daftar/cip'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/cp'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
                         <span>Silahkan registrasi tim anda untuk acara ini.</span>
                     </div>
                 <?php endif; ?>
