@@ -471,19 +471,38 @@ class Admin extends CI_Controller {
 			$this->db->set('abstract_passed', '1');
 			$this->db->where('account_id', $account_id);
 			$this->db->update($lomba . '_participants');
-			$this->session->set_flashdata('success', 'Success in Abstract Approval');
+			$this->session->set_flashdata('success', 'Success in Approval');
 			redirect('/admin/lomba');
 		}else if($type == "abstrak" && $gagal == "gagal")
 		{
 			$this->db->set('abstract_passed', '2');
 			$this->db->where('account_id', $account_id);
 			$this->db->update($lomba . '_participants');
-			$this->session->set_flashdata('success', 'Success in Abstract Rejection');
+			$this->session->set_flashdata('success', 'Success in Rejection');
 			redirect('/admin/lomba');
 		}
 	}
 
+	public function winner ($lomba, $account_id, $final = '')
+	{
+		if(!isset($this->session->username) && $this->session->isLogged == False)
+		{
+			$this->session->sess_destroy();
+			redirect('/main');
+		}
 
+		switch($lomba)
+		{
+			case 'cp':
+			{
+				$this->db->set('is_paid', '3');
+				$this->db->where('account_id', $account_id);
+				$this->db->update($lomba . '_participants');
+				$this->session->set_flashdata('success', 'Success in Winner Selection');
+				redirect('/admin/lomba');
+			}break;
+		}
+	}
 }
 
 ?>

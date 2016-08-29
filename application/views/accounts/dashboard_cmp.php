@@ -3,12 +3,14 @@
     <!-- The dashboard profile container -->
     <div class="dashboard-content-container col-md-9">
         <?php if ($user_is_participant == true) : ?>
-            <h1>Dashboard Peserta Chemistry Photograph</h1>
+            <h1>Dashboard Peserta Chemistry Movie Project</h1>
                 <?php
                     if($this->session->flashdata('upload_failed')): ?>
-                        <pre>
-                            <?php echo $this->session->flashdata('upload_failed') ?>
-                        </pre>
+                        <?php foreach ($this->session->flashdata('upload_failed') as $error_msg) : ?>
+                            <div class="alert alert-danger">
+                                <?php echo $error_msg; ?>
+                            </div>
+                        <?php endforeach; ?>
                     <?php endif; ?>
 
                     <?php
@@ -40,7 +42,7 @@
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -59,13 +61,13 @@
 
                         ?></form></p>
                     <?php elseif ($user_payment_verified == 0) : ?>
-                        <p>Status : <span style="color:blue">Menunggu Hasil Konfirmasi Pembayaran Atau Pembayaran Tidak Tervalidasi</span></p>
+                        <p>Status : <span style="color:blue">Menunggu Hasil Konfirmasi Pembayaran</span></p>
                         <p>Tim kami akan memeriksa bukti pembayaran yang sudah Anda upload. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -75,7 +77,7 @@
                         echo form_upload(array(
                             'class'         => 'button button-success', 
                             'name'          => 'file_bukti',
-                            'placeholder'   => 'Upload File.',
+                            'placeholder'   => 'Upload File',
                         )); 
 
                         echo '<br>';
@@ -90,7 +92,7 @@
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -108,47 +110,57 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
-                    <?php elseif ($user_instagram_link == NULL) : ?>
-                        <p>Status : <span style="color:blue">Menunggu Upload Foto Hasil Karya</span></p>
-                        <p>Tim kami akan memeriksa foto hasil karya anda. Mohon menunggu akan konfirmasi
+                    <?php elseif ($user_youtube_link == NULL) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Link Youtube</span></p>
+                        <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
+                        <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cp/insta'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cmp/youtube'); ?>
                         <?php
 
                         // Upload Bukti Trf
-                        echo form_label('File Foto Hasil Karya', 'insta', array('class' => 'form-label'));
+                        echo form_label('Link Youtube', 'youtube', array('class' => 'form-label'));
                         echo '<br>';
-                        echo form_error('insta');
-                        echo form_upload(array(
-                            'class'         => 'btn btn-primary form-control', 
-                            'name'          => 'insta_file',
-                            'placeholder'   => 'Upload File.',
+                        echo form_error('youtube');
+                        echo form_input(array(
+                            'class'         => 'btn btn-info', 
+                            'name'          => 'youtube',
+                            'placeholder'   => 'http://youtube.com/Link-Youtube',
                         )); 
 
                         echo '<br>';
 
-                        // Upload Bukti Trf
-                        echo form_label('Deskripsi Foto', 'des', array('class' => 'form-label'));
-                        echo '<br>';
-                        echo form_error('des');
-                        echo form_upload(array(
-                            'class'         => 'button button-success form-control', 
-                            'name'          => 'des',
-                            'placeholder'   => 'Deskripsi Foto.',
-                        )); 
-
-                        echo '<br>';
-
-                        echo form_submit(array('class' => 'form-submit btn btn-primary', 'name' => 'submit', 'value' => 'Submit'));
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
 
                         ?></form></p>
                     <?php elseif ($user_payment_verified == 1) : ?>
-                        <p>Status : <span style="color:green">Menunggu Pengumuman Pemenang</span></p>
-                        <p>Selamat! Pembayaran anda telah kami konfirmasikan dan Hasil Karya anda telah kami terima!
-                         Semoga sukses!</p>
-                    <?php elseif ($user_payment_verified == 3) : ?>
+                        <p>Status : <span style="color:yellow">Menunggu Hasil Pengumuman dan Verifikasi Video</span></p>
+                        <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
+                        <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cmp/youtube'); ?>
+                        <?php
+
+                        // Upload Bukti Trf
+                        echo form_label('Link Youtube', 'youtube', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('youtube');
+                        echo form_input(array(
+                            'class'         => 'btn btn-info', 
+                            'name'          => 'youtube',
+                            'placeholder'   => 'http://youtube.com/Link-Youtube',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
+
+                        ?></form></p>
+                    <?php elseif ($user_payment_verified == 2) : ?>
                         <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
                         <p>
                             Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Photograph.
@@ -156,8 +168,8 @@
                             Kegagalan merupakan kemenangan yang tertunda.
                             Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan
                         </p>
-                    <?php elseif ($user_payment_verified == 4) : ?>
-                        <p>Status : <span style="color:green">Selamat! Anda Menang!</span></p>
+                    <?php elseif ($user_payment_verified == 3) : ?>
+                        <p>Status : <span style="color:red">Anda Telah Menang! Dalam Seleksi</span></p>
                         <p>
                             Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
                             Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan!
@@ -172,7 +184,24 @@
                 <div class="panel-body">
                     <p><div><strong>Nama Institusi</strong></div><?php echo $user_institution_name ?></p>
                     <p><div><strong>Nama Panjang</strong></div><?php echo $user_fullname ?></p>
-                    <p><div><strong>Nomor Identitas</strong></div><?php echo $user_id_number ?></p>
+                    <br>
+                    <table class="table">
+                    <tr>
+                        <th>
+                        <p><div><strong>Anggota</strong></div>
+                        </th>
+                    </tr>
+                        <?php foreach ($anggotas as $anggota): ?>
+                        <tr>
+                            <td>
+                            <?php echo $anggota ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                    </p>
+                    <br>
+                    <p><div><strong>Nomor Identitas Ketua</strong></div><?php echo $user_id_number ?></p>
                     <p><div><strong>Foto Kartu identitas</strong></div><?php echo empty($user_identity_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_link.'" height= "100">' ?></p>
                     <p><div><strong>Alamat</strong></div><?php echo $address ?></p>
                     <p><div><strong>Nomor Telpon</strong></div><?php echo $phone ?></p>

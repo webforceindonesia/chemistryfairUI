@@ -673,26 +673,174 @@ class Accounts extends CI_Controller {
                     {
                             //Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
-                            $this->db->select('cip_participants');
-                            $data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
-                            $this->db->update('cip_participants', $data)->result;
+                            $this->db->select('cp_participants');
+                            $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
+                            $this->db->update('cp_participants', $data)->result;
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cp');
                     }
                 }
             }else if($param == 'insta')
             {
-                if($this->input->post('insta'))
+                $config['upload_path']          = 'uploads/cp/karya/' . $this->session->user_id;
+                $config['max_size']             = 30000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cp/karya/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
+
+                //Check File Bukti Trf Upload
+                if(isset($_FILES['insta_file']))
+                {
+                    $config['allowed_types']        = 'jpg';
+                    $config['file_name']            = 'hasil_karya.jpg';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if (!$this->upload->do_upload('insta_file') )
+                    {
+                        $error = array('error' => $this->upload->display_errors());
+                        $this->session->set_flashdata('upload_failed', $error);
+                        redirect('akun/dashboard/cp');
+                    }
+                    else
+                    {
+                        //Update DB   
+                        $this->db->where('account_id', $this->session->userdata('user_id'));
+                        $this->db->update('cp_participants', array('instagram_photo_link' => $link . '/' . $config['file_name']));
+                    }
+
+                    $config['allowed_types']        = 'pdf';
+                    $config['file_name']            = 'description.pdf';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if (!$this->upload->do_upload('des') )
+                    {
+                        $error = array('error' => $this->upload->display_errors());
+                        $this->session->set_flashdata('upload_failed', $error);
+                        redirect('akun/dashboard/cp');
+                    }
+                    else
+                    {
+                        //Update DB   
+                        $this->db->where('account_id', $this->session->userdata('user_id'));
+                        $this->db->update('cp_participants', array('photo_description' => $link . '/' . $config['file_name']));
+                        $this->session->set_flashdata('upload', 'Upload Karya Sukses & Deskripsi Karya Sukses Di Simpan');
+                        redirect('akun/dashboard/cp');
+                    }
+
+                }
+            }
+        }else if($action == 'cmp')
+        {
+            if (array_key_exists('cmp', $this->session->userdata('user_participations')))
+            {
+                $this->load->model('cmp_participants_model');
+                $user_participant_data = $this->cmp_participants_model->get_details($this->session->userdata('user_id'));
+                $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
+
+                $data['user_is_participant']            = TRUE;
+                $data['user_submitted_payment_proof']   = $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
+                $data['user_payment_verified']          = $user_participant_data->is_paid;
+                $data['user_email']                     = $this->session->userdata('user_email');
+                
+                $cp_data = $this->cmp_participants_model->get_details($this->session->userdata('user_id'));
+                $data['mode']                       = 'edit';
+                $data['user_institution_name']      = $cp_data->institution_name;
+                $data['user_fullname']              = $cp_data->fullname;
+                $data['user_id_number']             = $cp_data->id_number;
+                $data['anggotas']                   = explode('#', $cp_data->anggota);
+                $data['user_identity_link']         = $cp_data->identity_link;
+                $data['user_province_id']           = $cp_data->province_id;
+                $data['user_youtube_link']          = $cp_data->youtube_video_link;
+                $data['address']                    = $cp_data->address;
+                $data['email']                      = $cp_data->email;
+                $data['phone']                      = $cp_data->phone;
+
+                if (empty($data['user_identity_link']))
+                {
+                    $data['user_details_complete'] = FALSE;
+                }
+                
+                else
+                {
+                    $data['user_details_complete'] = TRUE;
+                }
+            }
+            
+            else
+            {
+                $data['user_is_participant'] = FALSE;
+            }
+
+            $this->load->view('accounts/dashboard_cmp.php', $data);
+            
+            if ($param == 'upload')
+            {
+                $config['upload_path']          = 'uploads/cmp/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cmp/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
+
+                //Check File Bukti Trf Upload
+                if(isset($_FILES['file_bukti']))
+                {
+                    $config['allowed_types']        = 'jpg';
+                    $config['file_name']            = 'bukti_trf.jpg';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if ( ! $this->upload->do_upload('file_bukti') )
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+
+                            $this->session->set_flashdata('upload_failed', $error);
+
+                            redirect('akun/dashboard/cmp');
+                    }
+                    else
+                    {
+                            //Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+                            $this->db->select('cmp_participants');
+                            $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
+                            $this->db->update('cmp_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+                            redirect('akun/dashboard/cmp');
+                    }
+                }
+            }else if($param == 'youtube')
+            {
+                if($this->input->post('youtube'))
                 {
                     $this->db->where('account_id', $this->session->userdata('user_id'));
-                    $this->db->update('cip_participants', array('instagram_photo_link' => $this->input->post('insta')));
-                            $this->session->set_flashdata('upload', 'Link Instagram Sukses Di Simpan');
-                            redirect('akun/dashboard/cp');
+                    $this->db->update('cp_participants', array('youtube_video_link' => $this->input->post('youtube')));
+                            $this->session->set_flashdata('upload', 'Link Youtube Sukses Di Simpan');
+                            redirect('akun/dashboard/cmp');
                 }else
                 {
                     $this->session->set_flashdata('upload_failed', 'Link Tidak Valid');
 
-                    redirect('akun/dashboard/cp');
+                    redirect('akun/dashboard/cmp');
                 }
             }
         }

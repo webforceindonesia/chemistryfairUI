@@ -120,7 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- For CP -->
                 <?php if (array_key_exists('cp', $this->session->userdata('user_participations'))) : ?>
                     <div class="alert alert-success col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'akun/dashboard/cp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                        <a href="<?php echo site_url() . 'akun/dashboard/cp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta CP</a>
                     </div>
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>
@@ -133,7 +133,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <!-- For CMP -->
                 <?php if (array_key_exists('cmp', $this->session->userdata('user_participations'))) : ?>
                     <div class="alert alert-success col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'akun/dashboard/cmp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                        <a href="<?php echo site_url() . 'akun/dashboard/cmp'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta CMP</a>
                     </div>
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>
@@ -144,8 +144,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php endif; ?>
             <?php else : ?>
                 <div class="alert alert-warning col-md-12" role="alert">
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
+                    <a href="<?php echo site_url() . 'akun/register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
+                    <a href="<?php echo site_url() . 'akun/login'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
                     <span>Sebelum anda bisa mendaftar untuk acara ini, anda harus memiliki akun Chemistry Fair 2016</span>
                 </div>
             <?php endif; ?>

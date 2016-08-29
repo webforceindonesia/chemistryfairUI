@@ -21,21 +21,28 @@ $(document).ready( function () {
 
 </script>
 
+<pre>
+	<?php print_r($participants) ?>
+</pre>
+
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
         <div class="row">
         	<div class="col-md-12" id="table-participants" style="overflow-x:scroll; max-width:120%">
-        		<table class="table table-bordered" id="participants" style="color:#000; font-size:18px;"">
+        		<table class="table table-bordered" id="participants" style="color:#000; font-size:14px;"">
         		<thead>
 	        		<tr>
 	        			<td>Id</td>
 	        			<td>Account Id</td>
-	        			<td>Type</td>
 	        			<td>Full Name</td>
 	        			<td>Nama Institusi</td>
+	        			<td>Address</td>
 	        			<td>Photo</td>
+	        			<td>Email</td>
+	        			<td>Photo KTP</td>
 	        			<td>Bukti Transfer</td>
+	        			<td>Foto Karya</td>
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
 	        		</tr>
@@ -46,13 +53,47 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
-	        				<td><?php echo $row->type; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
 	        				<td><?php echo $row->institution_name; ?></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/photo/<?php echo $row->photo_link ?>"></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/transfer/<?php echo $row->payment_proof_link ?>"></td>
+	        				<td><?php echo $row->address; ?></td>
+	        				<td><?php echo $row->phone; ?></td>
+	        				<td><?php echo $row->email; ?></td>
+	        				<td>
+	        					<a href="<?php echo base_url() . $row->identity_link ?>">
+	        						<img src="<?php echo base_url() . $row->identity_link ?>" style="width:75px">
+	        					</a>
+	        				</td>
+	        				<td>
+	        					<a href="<?php echo base_url() . $row->payment_proof_link ?>">
+	        						<img src="<?php echo base_url() . $row->payment_proof_link ?>" style="width:75px">
+	        					</a>
+	        				</td>
+	        				<td>
+	        					<a href="<?php echo base_url() . $row->instagram_photo_link ?>">
+	        						<img src="<?php echo base_url() . $row->instagram_photo_link ?>" style="width:75px">
+	        					</a><br><br><strong>Deskripsi Foto</strong>
+	        					<p><?php echo $row->photo_description ?></p>
+	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
-	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cip/'.$row->account_id) ?>">Conf Pembayaran</a></td>
+	        				<td style="font-size:18px;">
+	        				<?php if($row->payment_proof_link != NULL): ?>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cp/'.$row->account_id) ?>">
+	        						<i class="fa fa-money" aria-hidden="true"></i>
+	        					</a><br>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cp/'.$row->account_id.'/invalid') ?>">
+	        						<i class="fa fa-times" aria-hidden="true"></i>
+	        					</a><br>
+	        				<?php endif; ?>
+		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cp/'.$row->account_id) ?>">
+		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cp/'.$row->account_id.'/gagal') ?>">
+		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/winner/cp/'.$row->account_id.'/winner') ?>">
+		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a>
+	        				</td>
 	        			</tr>
 	        		<?php $total++;
 	        		} ?>

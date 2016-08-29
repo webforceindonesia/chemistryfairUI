@@ -810,7 +810,7 @@ class Daftar extends CI_Controller
                     )
                 );
                 $this->form_validation->set_rules(  
-                    'fullname', 'Nama Lengkap', 
+                    'fullname', 'Nama Lengkap - Ketua Tim', 
                     'required', 
                     array(
                         'required'      => 'Form ini harus diisi!',
@@ -852,16 +852,15 @@ class Daftar extends CI_Controller
                     )
                 );
                 
-                $cp_data = $this->cmp_participants_model->get_details($this->session->userdata('user_id'));
+                $cmp_data = $this->cmp_participants_model->get_details($this->session->userdata('user_id'));
                 $data['mode']                       = 'edit';
-                $data['user_institution_name']      = $cp_data->institution_name;
-                $data['user_fullname']              = $cp_data->fullname;
-                $data['user_id_number']             = $cp_data->id_number;
-                $data['user_identity_link']         = $cp_data->identity_link;
-                $data['user_province_id']           = $cp_data->province_id;
-                $data['address']                    = $cp_data->address;
-                $data['email']                      = $cp_data->email;
-                $data['phone']                      = $cp_data->phone;
+                $data['user_institution_name']      = $cmp_data->institution_name;
+                $data['user_fullname']              = $cmp_data->fullname;
+                $data['user_id_number']             = $cmp_data->id_number;
+                $data['user_identity_link']         = $cmp_data->identity_link;
+                $data['user_province_id']           = $cmp_data->province_id;
+                $data['address']                    = $cmp_data->address;
+                $data['phone']                      = $cmp_data->phone;
 
                 // If the form is validated
                 if ($this->form_validation->run() === TRUE)
@@ -981,7 +980,9 @@ class Daftar extends CI_Controller
                 $data['mode']                       = '';
                 $data['user_institution_name']      = '';
                 $data['user_fullname']              = '';
+                $data['anggota_fullname']           = '';
                 $data['user_id_number']             = '';
+                $data['gender']                     = '';
                 $data['user_identity_link']         = '';
                 $data['user_province_id']           = '';
                 $data['address']                    = '';
@@ -1031,17 +1032,22 @@ class Daftar extends CI_Controller
                         $this->session->set_flashdata('upload_failed', $error);
                     }
 
+                    //Compile Anggota using Implode
+                    $anggota = implode('#', $this->input->post('anggota'));
+
                     // Register the user to the DB
                     $this->cmp_participants_model->register_participant(
                         $this->session->userdata('user_id'),
                         $this->input->post('fullname'),
+                        $anggota,
+                        $this->input->post('address'),
+                        $this->input->post('phone'),
+                        $this->input->post('email'),
+                        $this->input->post('gender'),
                         $this->input->post('id_number'),
                         $config['upload_path'] . '/' . $config['file_name'],
                         $this->input->post('institution_name'),
-                        $this->input->post('province_id'),
-                        $this->input->post('address'),
-                        $this->input->post('phone'),
-                        $this->input->post('email')
+                        $this->input->post('province_id')
                     );
 
                     $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));

@@ -35,11 +35,7 @@ class Cmp_participants_model extends CI_Model
      */
     public function get_details($account_id)
     {
-        $this->db->select('fullname, identity_link, institution_name, province_id, 
-        youtube_video_link, payment_proof_link, is_paid, time_registered');
-        $this->db->where('id', $account_id);
-        $this->db->limit(1);
-        return $this->db->get('cmp_participants')->row();
+        return $this->db->get_where('cmp_participants', array('account_id' => $account_id))->row();
     }
 
     /**
@@ -51,12 +47,19 @@ class Cmp_participants_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $fullname, $institution_name, $province_id)
+    public function register_participant($account_id, $fullname, $anggota, $address, $phone, $email, $gender, $idnumber, $identity_link, $institution_name, $province_id)
     {
         // Create the query builder 
         $this->db->insert('cmp_participants', array(
             'account_id'            =>  $account_id,
             'fullname'              =>  $fullname,
+            'anggota'               =>  $anggota,
+            'address'               =>  $address,
+            'phone'                 =>  $phone,
+            'email'                 =>  $email,
+            'gender'                =>  $gender,
+            'id_number'             =>  $idnumber,
+            'identity_link'         =>  $identity_link,
             'institution_name'      =>  $institution_name,
             'province_id'           =>  $province_id,
             'time_registered'       =>  date('Y-m-d H:i:s')

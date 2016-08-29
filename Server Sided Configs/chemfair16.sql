@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 17, 2016 at 04:25 AM
+-- Generation Time: Aug 29, 2016 at 03:21 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -143,7 +143,7 @@ CREATE TABLE `cip_participants` (
 --
 
 INSERT INTO `cip_participants` (`id`, `account_id`, `type`, `fullname_member1`, `fullname_member2`, `fullname_member3`, `identity_member1_link`, `identity_member2_link`, `identity_member3_link`, `id_number_member1`, `id_number_member2`, `id_number_member3`, `passphoto_link1`, `passphoto_link2`, `passphoto_link3`, `institution_name`, `province_id`, `lodging_days`, `need_transport`, `teacher_name`, `teacher_email`, `teacher_phone`, `abstract_link`, `abstract_passed`, `payment_proof_link`, `is_paid`, `time_registered`) VALUES
-(9, 11, 'university', 'wdawda', 'awdawdasd', 'awdawdasdasd', 'uploads/cip/11/identity_member1_link.jpg', 'uploads/cip/11/identity_member2_link.jpg', 'uploads/cip/11/identity_member3_link.jpg', 'sdawdasdawdasd', 'awdawdasdawd', 'awdasdawdasd', 'uploads/cip/11/passphoto_link1.jpg', 'uploads/cip/11/passphoto_link2.jpg', 'uploads/cip/11/passphoto_link3.jpg', 'awdasda', 1, 0, 0, '', '', '', NULL, 0, NULL, 0, '2016-08-09 17:41:13');
+(11, 11, 'highschool', 'Jonathan Hosea', 'Jonathan Hosea', 'Jonathan Hosea', 'uploads/cip/11/identity_member1_link.jpg', 'uploads/cip/11/identity_member2_link.jpg', 'uploads/cip/11/identity_member3_link.jpg', 'Jonathan Hosea', 'Jonathan Hosea', 'Jonathan Hosea', 'uploads/cip/11/passphoto_link1.jpg', 'uploads/cip/11/passphoto_link2.jpg', 'uploads/cip/11/passphoto_link3.jpg', 'zonecaptain@gmail.com', 1, 10, 1, '', '', '8161963880', NULL, 0, 'uploads/cip/11/bukti_trf.JPG', 1, '2016-08-17 07:56:40');
 
 -- --------------------------------------------------------
 
@@ -155,6 +155,12 @@ CREATE TABLE `cmp_participants` (
   `id` int(10) UNSIGNED NOT NULL,
   `account_id` int(10) UNSIGNED NOT NULL,
   `fullname` varchar(128) NOT NULL,
+  `anggota` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `id_number` varchar(2555) NOT NULL,
   `identity_link` varchar(255) DEFAULT NULL,
   `institution_name` varchar(128) NOT NULL,
   `province_id` int(10) UNSIGNED NOT NULL,
@@ -163,6 +169,13 @@ CREATE TABLE `cmp_participants` (
   `is_paid` tinyint(1) NOT NULL DEFAULT '0',
   `time_registered` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cmp_participants`
+--
+
+INSERT INTO `cmp_participants` (`id`, `account_id`, `fullname`, `anggota`, `address`, `phone`, `email`, `gender`, `id_number`, `identity_link`, `institution_name`, `province_id`, `youtube_video_link`, `payment_proof_link`, `is_paid`, `time_registered`) VALUES
+(2, 11, 'Jonathan Hosea', 'Hosea#Tjandra#Ali', 'TPI D 11', '8161963880', 'zonecaptain@gmail.com', 'Male', 'asndonaslndaksndasd', 'uploads/cmp/11/identity_link.jpg', 'SMAK5', 15, NULL, NULL, 0, '2016-08-26 17:11:06');
 
 -- --------------------------------------------------------
 
@@ -222,6 +235,7 @@ CREATE TABLE `cp_participants` (
   `institution_name` varchar(128) NOT NULL,
   `province_id` int(10) UNSIGNED NOT NULL,
   `instagram_photo_link` varchar(255) DEFAULT NULL,
+  `photo_description` varchar(255) DEFAULT NULL,
   `payment_proof_link` varchar(255) DEFAULT NULL,
   `is_paid` tinyint(1) NOT NULL DEFAULT '0',
   `time_registered` datetime NOT NULL,
@@ -234,8 +248,8 @@ CREATE TABLE `cp_participants` (
 -- Dumping data for table `cp_participants`
 --
 
-INSERT INTO `cp_participants` (`id`, `account_id`, `fullname`, `identity_link`, `id_number`, `institution_name`, `province_id`, `instagram_photo_link`, `payment_proof_link`, `is_paid`, `time_registered`, `address`, `phone`, `email`) VALUES
-(12, 11, 'asdawd', 'uploads/cp/11/identity_link.jpg', 'awdasdaw', 'SMAK5', 11, NULL, NULL, 0, '2016-08-01 15:39:19', 'wdawdasd', '213123123123', 'zonecaptain@gmail.com');
+INSERT INTO `cp_participants` (`id`, `account_id`, `fullname`, `identity_link`, `id_number`, `institution_name`, `province_id`, `instagram_photo_link`, `photo_description`, `payment_proof_link`, `is_paid`, `time_registered`, `address`, `phone`, `email`) VALUES
+(14, 11, 'Jonathan Hosea', 'uploads/cp/11/identity_link.jpg', 'Jonathan Hosea', 'SMAK 5', 6, 'uploads/cp/karya/11/hasil_karya.jpg', 'uploads/cp/karya/11/description.pdf', 'uploads/cp/11/bukti_trf.jpg', 1, '2016-08-24 17:31:50', 'Taman Pegangsaan Indah Blok D no 11, kelapa gading', '87884514310', 'jonathan.hosea@me.com');
 
 -- --------------------------------------------------------
 
@@ -491,12 +505,12 @@ ALTER TABLE `cfk_participants`
 -- AUTO_INCREMENT for table `cip_participants`
 --
 ALTER TABLE `cip_participants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `cmp_participants`
 --
 ALTER TABLE `cmp_participants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cms_news`
 --
@@ -511,7 +525,7 @@ ALTER TABLE `config`
 -- AUTO_INCREMENT for table `cp_participants`
 --
 ALTER TABLE `cp_participants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `misc_provinces`
 --

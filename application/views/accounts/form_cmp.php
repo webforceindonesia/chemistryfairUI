@@ -31,13 +31,13 @@
                     <?php endif; ?>
 
                     <!-- Show the form for account registration -->
-                    <?php echo form_open_multipart('daftar/cp/' . $mode);
+                    <?php echo form_open_multipart('daftar/cmp/' . $mode);
 
                     // Nama Institusi
                     echo form_label('Nama Institusi Pendidikan', 'institution_name', array('class' => 'form-label'));
                     echo form_error('institution_name');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'institution_name',
                         'value'         => empty($user_institution_name) ? set_value('institution_name') : $user_institution_name
                     )); 
@@ -47,20 +47,57 @@
                     echo form_label('Nama Lengkap', 'fullname', array('class' => 'form-label'));
                     echo form_error('fullname');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'fullname',
                         'value'         => empty($user_fullname) ? set_value('fullname') : $user_fullname
                     )); 
-                    echo '<br/>';
+                    echo '<br/>'; ?>
 
+                    <!-- Anggota 1 sampai max 20 Anggota -->
+                    <div id="anggotas">
+
+                    <?php if(!empty($anggota_fullname))
+                    {
+                        foreach($anggota_fullname as $anggota):?>
+
+                        <div class="input-group">
+                            <label for="anggota" class="form-label">Nama Anggota</label>
+                            <input type="text" name="anggota[]" id="anggota" class="form-input-generic form-control" value="<?php echo $anggota; ?>">
+                        </div><br>
+
+                        <?php endforeach;
+                    }else{?>
+                        <div class="input-group">
+                            <label for="anggota" class="form-label">Nama Anggota</label>
+                            <input type="text" name="anggota[]" id="anggota" class="form-input-generic form-control" value="">
+                        </div><br>
+
+                    <?php } ?>
+
+                    </div>
+
+                    <button onClick="addField()" type="button" class="btn btn-primary">Tambah Anggota</button>
+                    <br><br>
+
+                    <?php
                     // Identitiy 
-                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar)', 'id_number', array('class' => 'form-label'));
+                    echo form_label('Nomor Identitas (KTP/Kartu Pelajar) Ketua Tim', 'id_number', array('class' => 'form-label'));
                     echo form_error('id_number');
                     echo form_input(array(
                         'class'         => 'form-input-generic', 
                         'name'          => 'id_number',
                         'value'         => empty($user_id_number) ? set_value('id_number') : $user_id_number
                     )); 
+                    echo '<br/>';
+
+                    // Asal provinsi
+                    $options = array(
+                        'Male' => titlecase('Pria'),
+                        'Female' => titlecase('Wanita')
+                    );
+                    echo form_label('Jenis Kelamin - Ketua Kelompok', 'gender', array('class' => 'form-label'));
+                    echo form_error('gender');
+                    echo form_dropdown('gender', $options, empty($user_province_id) ? set_value('gender') : $user_province_id, array('class' => 'form-control'));
                     echo '<br/>';
 
                     // Upload Tanda Pengenal
@@ -112,14 +149,14 @@
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
-                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id);
+                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id, array('class' => 'form-control'));
                     echo '<br/>';
 
                     // Alamat
                     echo form_label('Alamat Lengkap', 'address', array('class' => 'form-label'));
                     echo form_error('address');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'address',
                         'value'         => empty($address) ? set_value('address') : $address
                     )); 
@@ -160,3 +197,18 @@
         </div>
     </div>
     <div class="col-md-2"></div>
+    <script>
+        var anggotas = 1;
+
+        function addField ()
+        {
+            if(anggotas > 20)
+            {
+                alert('Anggota Maximal 20 Orang');
+            }else
+            {
+                $('#anggotas').append('<div class="input-group"><label for="anggota" class="form-label">Nama Anggota</label><input type="text" name="anggota[]" id="anggota" class="form-input-generic"></div><br>');
+                anggotas++;
+            }
+        }
+    </script>
