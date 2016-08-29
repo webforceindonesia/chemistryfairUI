@@ -131,7 +131,7 @@ $(document).ready( function () {
 	        				<td><?php echo $row->teacher_phone; ?></td>
 	        				<td><?php echo $row->teacher_email; ?></td>
 	        				<td>
-	        					<?php if($row->is_paid == 1)
+	        					<?php if($row->is_paid > 0)
 	        					{
 	        						echo 'Yes';
 	        					}else
@@ -155,16 +155,19 @@ $(document).ready( function () {
 	        				<?php if($row->payment_proof_link != NULL): ?>
 	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id) ?>">
 	        						<i class="fa fa-money" aria-hidden="true"></i>
-	        					</a>
+	        					</a><br>
 	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cip/'.$row->account_id.'/invalid') ?>">
 	        						<i class="fa fa-times" aria-hidden="true"></i>
-	        					</a>
+	        					</a><br>
 	        				<?php endif; ?>
 		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>">
 		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-		        				</a>
+		        				</a><br>
 		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id.'/gagal') ?>">
 		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/winner/cp/'.$row->account_id.'/winner') ?>">
+		        					<i class="fa fa-trophy" aria-hidden="true"></i>
 		        				</a>
 	        				</td>
 	        			</tr>

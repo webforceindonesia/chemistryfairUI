@@ -7,6 +7,43 @@ function dateReverse ($date)
                 $reversed = $dateArray['2'] . "-" . $reversed = $dateArray['1'] . "-" . $reversed = $dateArray['0'];
                 return $reversed;
             }
+ $options = array(
+                        '1' => 'aceh',
+                        '2' => 'bali',
+                        '3' => 'banten',
+                        '4' => 'bengkulu',
+                        '5' => 'gorontalo',
+                        '6' => 'jakarta',
+                        '7' => 'jambi',
+                        '8' => 'jawa_barat',
+                        '9' => 'jawa_tengah',
+                        '10' => 'jawa_timur',
+                        '11' => 'kalimantan_barat',
+                        '12' => 'kalimantan_selatan',
+                        '13' => 'kalimantan_tengah',
+                        '14' => 'kalimantan_timur',
+                        '15' => 'kalimantan_utara',
+                        '16' => 'kepulauan_bangka_belitung',
+                        '17' => 'kepulauan_riau',
+                        '18' => 'lampung',
+                        '19' => 'maluku',
+                        '20' => 'maluku_utara',
+                        '21' => 'nusa_tenggara_barat',
+                        '22' => 'nusa_tenggara_timur',
+                        '23' => 'papua',
+                        '24' => 'papua_barat',
+                        '25' => 'riau',
+                        '26' => 'sulawesi_barat',
+                        '27' => 'sulawesi_selatan',
+                        '28' => 'sulawesi_tengah',
+                        '29' => 'sulawesi_timur',
+                        '30' => 'sulawesi_utara',
+                        '31' => 'sumatera_barat',
+                        '32' => 'sumatera_selatan',
+                        '33' => 'sumatera_utara',
+                        '34' => 'yogyakarta'
+                    );
+?>
 ?>
 
 <!-- Data Tables Links -->
@@ -31,17 +68,15 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>No.</td>
 	        			<td>Account Id</td>
+	        			<td>Nama Institusi</td>
 	        			<td>Member 1</td>
 	        			<td>Member 2</td>
 	        			<td>Member Link 1</td>
 	        			<td>Member Link 2</td>
-	        			<td>Nama Institusi</td>
 	        			<td>Provinsi</td>
 	        			<td>Nama Pendamping</td>
 	        			<td>No Telp Pendamping</td>
-	        			<td>Hari Menginap</td>
-	        			<td>Pendamping Menginap</td>
-	        			<td>Butuh Transportasi</td>
+	        			<td>Email Pendamping</td>
 	        			<td>Link Bukti Pembayaran</td>
 	        			<td>Sudah Membayar</td>
 	        			<td>Waktu Register</td>
@@ -55,58 +90,46 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
+	        				<td><?php echo $row->institution_name; ?></td>
 	        				<td><?php echo $row->fullname_member1; ?></td>
 	        				<td><?php echo $row->fullname_member2; ?></td>
-	        				<td><?php echo $row->identity_member1_link; ?></td>
-	        				<td><?php echo $row->identity_member2_link; ?></td>
-	        				<td><?php echo $row->institution_name; ?></td>
+	        				<td>
+		        				<?php if($row->identity_member1_link != NULL): ?>
+		        					<a href="<?php echo base_url() . $row->identity_member1_link; ?>">
+		        						<img src="<?php echo base_url() . $row->identity_member1_link; ?>" width="100px">
+		        					</a>
+		        				<?php endif; ?>
+	        				</td>
+	        				<td>
+		        				<?php if($row->identity_member2_link != NULL): ?>
+		        					<a href="<?php echo base_url() . $row->identity_member2_link; ?>">
+		        						<img src="<?php echo base_url() . $row->identity_member2_link; ?>" width="100px">
+		        					</a>
+		        				<?php endif; ?>
+	        				</td>
 	        				<td>
 	        					<?php
-		        					switch($row->province_id)
-		        					{
-		        						case 1:
-		        						{
-		        							echo 'Jakarta';
-		        						}break;
-
-		        						case 2:
-		        						{
-		        							echo 'Bandung';
-		        						}break;
-
-		        						case 3:
-		        						{
-		        							echo 'Papua';
-		        						}break;
-		        					}
+	        						foreach ($options as $province => $name)
+	        						{
+	        							if($province == $row->province_id)
+	        							{
+	        								echo $name;
+	        							}
+	        						}
 	        					?>
 	        				</td>
 	        				<td><?php echo $row->teacher_name; ?></td>
 	        				<td><?php echo $row->teacher_phone_number; ?></td>
-	        				<td><?php echo $row->lodging_days; ?></td>
+	        				<td><?php echo $row->teacher_email; ?></td>
 	        				<td>
-	        					<?php if($row->teacher_needs_lodging == 1)
-	        					{
-	        						echo 'Yes';
-	        					}else
-	        					{
-	        						echo 'No';
-	        					} 
-	        					?>
+	        					<?php if($row->payment_proof_link != NULL): ?>
+		        					<a href="<?php echo base_url() . $row->payment_proof_link; ?>">
+		        						<img src="<?php echo base_url() . $row->payment_proof_link; ?>" width="100px">
+		        					</a>
+		        				<?php endif; ?>
 	        				</td>
 	        				<td>
-	        					<?php if($row->need_transport == 1)
-	        					{
-	        						echo 'Yes';
-	        					}else
-	        					{
-	        						echo 'No';
-	        					} 
-	        					?>
-	        				</td>
-	        				<td><?php echo $row->payment_proof_link; ?></td>
-	        				<td>
-	        					<?php if($row->is_paid == 1)
+	        					<?php if($row->is_paid > 0)
 	        					{
 	        						echo 'Yes';
 	        					}else
@@ -116,7 +139,19 @@ $(document).ready( function () {
 	        					?>
 	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
-	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cc/'.$row->account_id) ?>">Conf Pembayaran</a></td>
+	        				<td style="font-size:18px;">
+	        				<?php if($row->payment_proof_link != NULL): ?>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cc/'.$row->account_id) ?>">
+	        						<i class="fa fa-money" aria-hidden="true"></i>
+	        					</a><br>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cc/'.$row->account_id.'/invalid') ?>">
+	        						<i class="fa fa-times" aria-hidden="true"></i>
+	        					</a><br>
+	        				<?php endif; ?>
+		        				<a href="<?php echo base_url('admin/winner/cc/'.$row->account_id.'/winner') ?>">
+		        					<i class="fa fa-trophy" aria-hidden="true"></i>
+		        				</a>
+	        				</td>
 	        			</tr>
 	        		<?php 
 	        			$total++;

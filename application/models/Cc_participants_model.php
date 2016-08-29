@@ -41,10 +41,8 @@ class Cc_participants_model extends CI_Model
      */
     public function get_details($account_id)
     {
-        $this->db->select('fullname_member1, fullname_member2, identity_member1_link, identity_member2_link, 
-        province_id, teacher_name, teacher_phone_number, lodging_days, teacher_needs_lodging, need_transport, payment_proof_link
-        , is_paid, time_registered');
-        $this->db->where('id', $account_id);
+        $this->db->select('*');
+        $this->db->where('account_id', $account_id);
         $this->db->limit(1);
         return $this->db->get('cc_participants')->row();
     }
@@ -64,21 +62,24 @@ class Cc_participants_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $fullname_member1, $fullname_member2, $institution_name, $province_id,
-    $teacher_name, $teacher_phone_number, $lodging_days, $teacher_needs_lodging, $need_transport)
+    public function register_participant()
     {
         // Create the query builder 
         $this->db->insert('cc_participants', array(
-            'account_id'            =>  $account_id,
-            'fullname_member1'      =>  $fullname_member1,
-            'fullname_member2'      =>  $fullname_member2,
-            'institution_name'      =>  $institution_name,
-            'province_id'           =>  $province_id,
-            'teacher_name'          =>  $teacher_name,
-            'teacher_phone_number'  =>  $teacher_phone_number, 
-            'lodging_days'          =>  $lodging_days,
-            'teacher_needs_lodging' =>  $teacher_needs_lodging,
-            'need_transport'        =>  $need_transport,
+            'account_id'            =>  $this->session->userdata('user_id'),
+            'fullname_member1'      =>  $this->input->post('fullname_ketua'),
+            'fullname_member2'      =>  $this->input->post('fullname_anggota'),
+            'institution_name'      =>  $this->input->post('institution_name'),
+            'address'               =>  $this->input->post('address'),
+            'phone'                 =>  $this->input->post('phone'),
+            'email'                 =>  $this->input->post('email'),
+            'province_id'           =>  $this->input->post('province_id'),
+            'teacher_name'          =>  $this->input->post('teacher_name'),
+            'teacher_phone_number'  =>  $this->input->post('teacher_phone'), 
+            'teacher_email'         =>  $this->input->post('teacher_email'), 
+            'lodging_days'          =>  '',
+            'teacher_needs_lodging' =>  '',
+            'need_transport'        =>  '',
             'time_registered'       =>  date('Y-m-d H:i:s')
         ));
     }
@@ -93,16 +94,10 @@ class Cc_participants_model extends CI_Model
      */
     public function change_details($account_id, $field_name, $value)
     {
-        $allowed_field = array('fullname_member1', 'fullname_member2', 'identity_member1_link', 'identity_member2_link', 'institution_name', 'province_id',
-        'teacher_name', 'teacher_phone_number', 'lodging_days', 'teacher_needs_lodging', 'need_transport', 'payment_proof_link');
-        if (in_array($field_name, $allowed_field, true))
-        {
-            $this->db->where('id', $account_id);
-            $this->db->limit(1);
-            $this->db->update('cc_participants', array($field_name => $value));
-            return true;
-        }
-        return false;
+        $this->db->where('account_id', $account_id);
+        $this->db->limit(1);
+        $this->db->update('cc_participants', array($field_name => $value));
+        return true;
     }
 
     /**

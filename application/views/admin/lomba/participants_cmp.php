@@ -21,6 +21,10 @@ $(document).ready( function () {
 
 </script>
 
+<pre>
+<?php print_r($participants) ?>
+</pre>
+
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
@@ -31,11 +35,15 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>Id</td>
 	        			<td>Account Id</td>
-	        			<td>Type</td>
 	        			<td>Full Name</td>
 	        			<td>Nama Institusi</td>
+	        			<td>Address</td>
 	        			<td>Photo</td>
+	        			<td>Email</td>
+	        			<td>Photo KTP</td>
 	        			<td>Bukti Transfer</td>
+	        			<td>Link Karya</td>
+	        			<td>Sudah Membayar</td>
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
 	        		</tr>
@@ -46,13 +54,54 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
-	        				<td><?php echo $row->type; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
 	        				<td><?php echo $row->institution_name; ?></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/photo/<?php echo $row->photo_link ?>"></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/transfer/<?php echo $row->payment_proof_link ?>"></td>
+	        				<td><?php echo $row->address; ?></td>
+	        				<td><?php echo $row->phone; ?></td>
+	        				<td><?php echo $row->email; ?></td>
+	        				<td>
+	        					<a href="<?php echo base_url() . $row->identity_link ?>">
+	        						<img src="<?php echo base_url() . $row->identity_link ?>" style="width:75px">
+	        					</a>
+	        				</td>
+	        				<td>
+	        				<?php if($row->payment_proof_link != NULL): ?>
+	        					<a href="<?php echo base_url() . $row->payment_proof_link ?>">
+	        						<img src="<?php echo base_url() . $row->payment_proof_link ?>" style="width:75px">
+	        					</a>
+	        				<?php endif; ?>
+	        				</td>
+	        				<td>
+	        				<?php if($row->youtube_video_link != NULL): ?>
+	        					<a href="<?php echo $row->youtube_video_link ?>">
+	        						Link
+	        					</a>
+	        				<?php endif; ?>
+	        				</td>
+	        				<td>
+								<?php if($row->is_paid > 0)
+	        					{
+	        						echo 'Yes';
+	        					}else
+	        					{
+	        						echo 'No';
+	        					} 
+	        					?>
+	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
-	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cip/'.$row->account_id) ?>">Conf Pembayaran</a></td>
+	        				<td style="font-size:18px;">
+	        				<?php if($row->payment_proof_link != NULL): ?>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cmp/'.$row->account_id) ?>">
+	        						<i class="fa fa-money" aria-hidden="true"></i>
+	        					</a><br>
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cmp/'.$row->account_id.'/invalid') ?>">
+	        						<i class="fa fa-times" aria-hidden="true"></i>
+	        					</a><br>
+	        				<?php endif; ?>
+		        				<a href="<?php echo base_url('admin/winner/cmp/'.$row->account_id.'/winner') ?>">
+		        					<i class="fa fa-trophy" aria-hidden="true"></i>
+		        				</a>
+	        				</td>
 	        			</tr>
 	        		<?php $total++;
 	        		} ?>

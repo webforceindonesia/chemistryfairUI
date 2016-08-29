@@ -21,10 +21,6 @@ $(document).ready( function () {
 
 </script>
 
-<pre>
-	<?php print_r($participants) ?>
-</pre>
-
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
@@ -43,6 +39,7 @@ $(document).ready( function () {
 	        			<td>Photo KTP</td>
 	        			<td>Bukti Transfer</td>
 	        			<td>Foto Karya</td>
+	        			<td>Sudah Membayar</td>
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
 	        		</tr>
@@ -64,15 +61,29 @@ $(document).ready( function () {
 	        					</a>
 	        				</td>
 	        				<td>
+	        				<?php if($row->payment_proof_link != NULL): ?>
 	        					<a href="<?php echo base_url() . $row->payment_proof_link ?>">
 	        						<img src="<?php echo base_url() . $row->payment_proof_link ?>" style="width:75px">
 	        					</a>
+	        				<?php endif; ?>
 	        				</td>
 	        				<td>
+	        				<?php if($row->instagram_photo_link != NULL): ?>
 	        					<a href="<?php echo base_url() . $row->instagram_photo_link ?>">
 	        						<img src="<?php echo base_url() . $row->instagram_photo_link ?>" style="width:75px">
 	        					</a><br><br><strong>Deskripsi Foto</strong>
 	        					<p><?php echo $row->photo_description ?></p>
+	        				<?php endif; ?>
+	        				</td>
+	        				<td>
+								<?php if($row->is_paid > 0)
+	        					{
+	        						echo 'Yes';
+	        					}else
+	        					{
+	        						echo 'No';
+	        					} 
+	        					?>
 	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
 	        				<td style="font-size:18px;">
@@ -84,14 +95,8 @@ $(document).ready( function () {
 	        						<i class="fa fa-times" aria-hidden="true"></i>
 	        					</a><br>
 	        				<?php endif; ?>
-		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cp/'.$row->account_id) ?>">
-		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-		        				</a><br>
-		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cp/'.$row->account_id.'/gagal') ?>">
-		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
-		        				</a><br>
 		        				<a href="<?php echo base_url('admin/winner/cp/'.$row->account_id.'/winner') ?>">
-		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        					<i class="fa fa-trophy" aria-hidden="true"></i>
 		        				</a>
 	        				</td>
 	        			</tr>

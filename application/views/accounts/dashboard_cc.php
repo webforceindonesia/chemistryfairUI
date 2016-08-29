@@ -3,7 +3,7 @@
     <!-- The dashboard profile container -->
     <div class="dashboard-content-container col-md-9">
         <?php if ($user_is_participant == true) : ?>
-            <h1>Dashboard Peserta Chemistry Movie Project</h1>
+            <h1>Dashboard Peserta Chemistry Competition</h1>
                 <?php
                     if($this->session->flashdata('upload_failed')): ?>
                         <?php foreach ($this->session->flashdata('upload_failed') as $error_msg) : ?>
@@ -38,11 +38,11 @@
                         <p>Mohon melengkapi dan mengupload semua gambar-gambar yang dibutuhkan di bawah ini.</p>
                     <?php elseif ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
-                        <p>Peserta diharap membayar biaya administrasi Rp.50,000.00 ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
+                        <p>Peserta diharap membayar biaya administrasi <p style="color:blue">Rp.150,000.00</p> ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cc/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -67,7 +67,7 @@
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cc/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -92,7 +92,7 @@
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cmp/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cmm,/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -110,62 +110,20 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
-                    <?php elseif ($user_youtube_link == NULL) : ?>
-                        <p>Status : <span style="color:blue">Menunggu Link Youtube</span></p>
+                    <?php elseif ($user_passed == 1) : ?>
+                        <p>Status : <span style="color:green">Anda Lolos seleksi</span></p>
+                        <p>Tolong isi form di bawah ini mengenai penginapan saat lomba nanti, selanjutnya anda akan dihubungkan dengan panitia langsung</p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cc/email_penginapan'); ?>
+                            <table class="table table-bordered">
+                            </table>
+                        </form></p>
+                    <?php elseif ($user_passed == 2) : ?>
+                        <p>Status : <span style="color:red">Maaf anda gagal dalam seleksi.</span></p>
                         <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
                         <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
-                        <p>
-
-                        <?php echo form_open_multipart('akun/dashboard/cmp/youtube'); ?>
-                        <?php
-
-                        // Upload Bukti Trf
-                        echo form_label('Link Youtube', 'youtube', array('class' => 'form-label'));
-                        echo '<br><br>';
-                        echo form_error('youtube');
-                        echo form_input(array(
-                            'pattern'       => 'https?://.+',
-                            'required'      => '',
-                            'title'         => 'Include http://',
-                            'class'         => 'form-control', 
-                            'name'          => 'youtube',
-                            'placeholder'   => 'http://youtube.com/Link-Youtube',
-                        )); 
-
-                        echo '<br>';
-
-                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
-
-                        ?></form></p>
-                    <?php elseif ($user_payment_verified == 1) : ?>
-                        <p>Status : <span style="color:yellow">Menunggu Hasil Pengumuman dan Verifikasi Video</span></p>
-                        <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
-                         dari pihak kami. Terima kasih.</p>
-                        <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
-                        <p>
-
-                        <?php echo form_open_multipart('akun/dashboard/cmp/youtube'); ?>
-                        <?php
-
-                        // Upload Bukti Trf
-                        echo form_label('Link Youtube', 'youtube', array('class' => 'form-label'));
-                        echo '<br><br>';
-                        echo form_error('youtube');
-                        echo form_input(array(
-                            'pattern'       => 'https?://.+',
-                            'required'      => '',
-                            'title'         => 'Include http://',
-                            'class'         => 'form-control', 
-                            'name'          => 'youtube',
-                            'placeholder'   => 'http://youtube.com/Link-Youtube',
-                        )); 
-
-                        echo '<br>';
-
-                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
-
-                        ?></form></p>
                     <?php elseif ($user_payment_verified == 3) : ?>
                         <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
                         <p>
@@ -188,31 +146,21 @@
                     <h3 class="panel-title">Data Tim Peserta</h3>
                 </div>
                 <div class="panel-body">
-                    <p><div><strong>Nama Institusi</strong></div><?php echo $user_institution_name ?></p>
-                    <p><div><strong>Nama Panjang</strong></div><?php echo $user_fullname ?></p>
-                    <br>
-                    <table class="table">
-                    <tr>
-                        <th>
-                        <p><div><strong>Anggota</strong></div>
-                        </th>
-                    </tr>
-                        <?php foreach ($anggotas as $anggota): ?>
-                        <tr>
-                            <td>
-                            <?php echo $anggota ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                    </p>
-                    <br>
-                    <p><div><strong>Nomor Identitas Ketua</strong></div><?php echo $user_id_number ?></p>
-                    <p><div><strong>Foto Kartu identitas</strong></div><?php echo empty($user_identity_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user_identity_link.'" height= "100">' ?></p>
+                    <p><div><strong>Nama Institusi</strong></div><?php echo $institution_name ?></p>
+                    <p><div><strong>Nama Ketua</strong></div><?php echo $user_fullname_ketua ?></p>
+                    <p><div><strong>Nama Anggota</strong></div><?php echo $user_fullname_anggota ?></p>
+                    <p><div><strong>Address</strong></div><?php echo $address ?></p>
+                    <p><div><strong>Email</strong></div><?php echo $email ?></p>
+                    <p><div><strong>Phone</strong></div><?php echo $phone ?></p>
+                    <p><div><strong>Foto Kartu identitas Ketua</strong></div><?php echo empty($user1_identity_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user1_identity_link.'" height= "100">' ?></p>
+                    <p><div><strong>Foto Kartu identitas Anggota</strong></div><?php echo empty($user2_identity_link) ? '<span style="color:red">KOSONG</span>' :  '<img src="'.base_url().$user2_identity_link.'" height= "100">' ?></p>
                     <p><div><strong>Alamat</strong></div><?php echo $address ?></p>
                     <p><div><strong>Nomor Telpon</strong></div><?php echo $phone ?></p>
                     <p><div><strong>Email</strong></div><?php echo $email ?></p>
-                    <a href="<?php echo site_url() ?>daftar/cmp/edit">Ubah</a>
+                    <p><div><strong>Nama Guru Pendamping</strong></div><?php echo $teacher_name ?></p>
+                    <p><div><strong>Telepon Guru Pendamping</strong></div><?php echo $teacher_phone ?></p>
+                    <p><div><strong>Email Guru Pendamping</strong></div><?php echo $teacher_email ?></p>
+                    <a href="<?php echo site_url() ?>daftar/cc/edit">Ubah</a>
                 </div>
             </div>
         <?php else: ?>
