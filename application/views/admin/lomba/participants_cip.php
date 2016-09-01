@@ -161,12 +161,18 @@ $(document).ready( function () {
 	        					</a><br>
 	        				<?php endif; ?>
 		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id) ?>">
-		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        					Abstrak<i class="fa fa-thumbs-up" aria-hidden="true"></i>
 		        				</a><br>
 		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cip/'.$row->account_id.'/gagal') ?>">
-		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        					Abstrak<i class="fa fa-thumbs-down" aria-hidden="true"></i>
 		        				</a><br>
-		        				<a href="<?php echo base_url('admin/winner/cp/'.$row->account_id.'/winner') ?>">
+		        				<a href="<?php echo base_url('admin/konfirmasi/makalah/cip/'.$row->account_id) ?>">
+		        					Makalah<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/konfirmasi/makalah/cip/'.$row->account_id.'/gagal') ?>">
+		        					Makalah<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/winner/cip/'.$row->account_id.'/winner') ?>">
 		        					<i class="fa fa-trophy" aria-hidden="true"></i>
 		        				</a>
 	        				</td>

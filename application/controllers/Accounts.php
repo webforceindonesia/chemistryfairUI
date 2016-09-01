@@ -472,6 +472,8 @@ class Accounts extends CI_Controller {
         		$data['user_is_participant']			= TRUE;
   	        	$data['user_submitted_abstract'] 		= $user_participant_data->abstract_link != NULL ? TRUE : FALSE;
 	        	$data['user_passed_abstract']			= $user_participant_data->abstract_passed;
+                $data['user_submitted_makalah']         = $user_participant_data->makalah_link != NULL ? TRUE : FALSE;
+                $data['user_passed_makalah']            = $user_participant_data->makalah_approved;
 	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
 	        	$data['user_payment_verified']			= $user_participant_data->is_paid;
                 $data['user_email']                     = $this->session->userdata('user_email');
@@ -583,6 +585,7 @@ class Accounts extends CI_Controller {
 	                }
 	                else
 	                {
+
 	                		//Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
@@ -592,6 +595,51 @@ class Accounts extends CI_Controller {
 	                        redirect('akun/dashboard/cip');
 	                }
 	            }
+            }
+
+            if ($param == 'makalah')
+            {
+                $config['upload_path']          = 'uploads/cip/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cip/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
+
+                //Check File Berkas Upload
+                if(isset($_FILES['file_berkas']))
+                {
+                    $config['allowed_types']        = 'zip';
+                    $config['file_name']            = 'berkas_makalah.zip';
+                    $this->upload->initialize($config);
+
+                    if ( ! $this->upload->do_upload('file_berkas'))
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+                            $error_data = $error['error'];
+                            $this->session->set_flashdata('upload_failed', $error_data);
+
+                            redirect('akun/dashboard/cip');
+                    }
+                    else
+                    {
+                            //Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+                            $this->db->select('cip_participants');
+                            $data = array('makalah_link' => $link . "/berkas.zip");
+                            $this->db->update('cip_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
+                            redirect('akun/dashboard/cip');
+                    }
+                }
             }
         }else if($action == 'cp')
         {
@@ -854,6 +902,7 @@ class Accounts extends CI_Controller {
                 $data['user_is_participant']            = TRUE;
                 $data['user_submitted_payment_proof']   = $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
                 $data['user_payment_verified']          = $user_participant_data->is_paid;
+                $data['user_passed']                    = $user_participant_data->abstract_passed;
                 $data['user_email']                     = $this->session->userdata('user_email');
                 
                 $cmp_data = $this->cc_participants_model->get_details($this->session->userdata('user_id'));
@@ -936,9 +985,12 @@ class Accounts extends CI_Controller {
 
             }else if($param == 'email_penginapan')
             {
-                if($_POST[])
+                if($this->input->post())
                 {
-                    
+                    echo '<pre>';
+                    print_r($this->input->post());
+                    echo '</pre>';
+                    exit;
                 }else
                 {
                     redirect('dashboard/cc');

@@ -480,6 +480,20 @@ class Admin extends CI_Controller {
 			$this->db->update($lomba . '_participants');
 			$this->session->set_flashdata('success', 'Success in Rejection');
 			redirect('/admin/lomba/' . $lomba);
+		}else if($type == "makalah" && $gagal == '')
+		{
+			$this->db->set('makalah_approved', '1');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Approval');
+			redirect('/admin/lomba/' . $lomba);
+		}else if($type == "makalah" && $gagal == "gagal")
+		{
+			$this->db->set('makalah_approved', '2');
+			$this->db->where('account_id', $account_id);
+			$this->db->update($lomba . '_participants');
+			$this->session->set_flashdata('success', 'Success in Rejection');
+			redirect('/admin/lomba/' . $lomba);
 		}
 	}
 
@@ -495,7 +509,7 @@ class Admin extends CI_Controller {
 		{
 			case 'cp':
 			{
-				$this->db->set('is_paid', '3');
+				$this->db->set('is_paid', '4');
 				$this->db->where('account_id', $account_id);
 				$this->db->update($lomba . '_participants');
 				$this->session->set_flashdata('success', 'Success in Winner Selection');
@@ -503,7 +517,7 @@ class Admin extends CI_Controller {
 				//Make Everyone Else A Loser!
 				foreach($this->db->get_where($lomba . '_participants', array('is_paid' => '1'))->result() as $row)
 				{
-					$this->db->set('is_paid', '2');
+					$this->db->set('is_paid', '3');
 					$this->db->where('id', $row->id);
 					$this->db->update($lomba . '_participants');
 				}
@@ -512,7 +526,7 @@ class Admin extends CI_Controller {
 
 			case 'cmp':
 			{
-				$this->db->set('is_paid', '3');
+				$this->db->set('is_paid', '4');
 				$this->db->where('account_id', $account_id);
 				$this->db->update($lomba . '_participants');
 				$this->session->set_flashdata('success', 'Success in Winner Selection');
@@ -520,7 +534,25 @@ class Admin extends CI_Controller {
 				//Make Everyone Else A Loser!
 				foreach($this->db->get_where($lomba . '_participants', array('is_paid' => '1'))->result() as $row)
 				{
-					$this->db->set('is_paid', '2');
+					$this->db->set('is_paid', '3');
+					$this->db->where('id', $row->id);
+					$this->db->update($lomba . '_participants');
+				}
+
+				redirect('/admin/lomba/' . $lomba);
+			}break;
+
+			case 'cip':
+			{
+				$this->db->set('is_paid', '4');
+				$this->db->where('account_id', $account_id);
+				$this->db->update($lomba . '_participants');
+				$this->session->set_flashdata('success', 'Success in Winner Selection');
+
+				//Make Everyone Else A Loser!
+				foreach($this->db->get_where($lomba . '_participants', array('is_paid' => '1'))->result() as $row)
+				{
+					$this->db->set('is_paid', '3');
 					$this->db->where('id', $row->id);
 					$this->db->update($lomba . '_participants');
 				}

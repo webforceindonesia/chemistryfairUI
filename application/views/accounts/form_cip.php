@@ -210,7 +210,7 @@
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
-                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id);
+                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id, array('class' => 'form-control'));
                     echo '<br/>';
 
                     // Lodging Days
@@ -226,8 +226,8 @@
                     // Need transport
                     echo form_label('Apakah anda membutuhkan transportasi dari penginapan anda?', 'need_transport', array('class' => 'form-label'));
                     echo form_error('need_transport');
-                    if ($user_need_transport == true) echo form_checkbox(array('name' => 'need_transport', 'checked' => 'checked'));
-                    else echo form_checkbox('need_transport', 'true', set_checkbox('need_transport', 'true'));
+                    if ($user_need_transport == true) echo form_checkbox(array('name' => 'need_transport', 'checked' => 'checked'), array('class' => 'form-control'));
+                    else echo form_checkbox('need_transport', 'true', set_checkbox('need_transport', 'true'), array('class' => 'form-control'));
                     echo '<br/>';
 
 
@@ -273,5 +273,4 @@
             </div>
         </div>
     </div>
-</div>
     <div class="col-md-2"></div>

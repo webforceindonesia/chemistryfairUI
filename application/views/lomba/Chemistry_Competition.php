@@ -78,9 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Check if it's already in time for open registration -->
         <?php if (new DateTime() < new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
             <?php if (isset($_SESSION['user_id'])) : ?>
-                <?php if (in_array('seminar', $_SESSION['user_participations'])) : ?>
+                <?php if (array_key_exists('cc', $_SESSION['user_participations'])) : ?>
                     <div class="alert alert-success col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'dashboard/cc'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                        <a href="<?php echo site_url() . 'akun/dashboard/cc'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
                     </div>
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>

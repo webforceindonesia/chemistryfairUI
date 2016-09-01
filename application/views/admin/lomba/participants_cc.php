@@ -148,6 +148,12 @@ $(document).ready( function () {
 	        						<i class="fa fa-times" aria-hidden="true"></i>
 	        					</a><br>
 	        				<?php endif; ?>
+	        					<a href="<?php echo base_url('admin/konfirmasi/abstrak/cc/'.$row->account_id) ?>">
+		        					<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/konfirmasi/abstrak/cc/'.$row->account_id.'/gagal') ?>">
+		        					<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a><br>
 		        				<a href="<?php echo base_url('admin/winner/cc/'.$row->account_id.'/winner') ?>">
 		        					<i class="fa fa-trophy" aria-hidden="true"></i>
 		        				</a>

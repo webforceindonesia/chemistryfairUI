@@ -146,10 +146,180 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
+                    <?php elseif ($user_submitted_makalah == NULL) : ?>  
+                        </form>
+                        <p>Status : <span style="color:red">Menunggu Upload Makalah</span></p>
+                        <p>Mohon mengupload karya makalah anda di tempat di bawah ini. Anda hanya bisa mengupload makalah satu kali saja, jadi mohon
+                           upload hanya revisi terakhir dari makalah anda. Mohon file yang di cantumkan berbentuk zip.</p>
+                        <p>
+                        <?php echo form_open_multipart('akun/dashboard/cip/makalah'); ?>
+                        <?php
+
+                        // Upload Berkas
+                        echo form_label('File Berkas', 'berkas', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('berkas');
+                        echo form_upload(array(
+                            'class'         => 'button button-success', 
+                            'name'          => 'file_berkas',
+                            'placeholder'   => 'Upload File.',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
+
+                        ?></form></p>
+                    <?php elseif ($user_passed_makalah == 0) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Hasil Lolos Makalah</span></p>
+                        <p>Tim kami akan memeriksa dan menilai makalah anda, mohon menunggu hingga hasil penilaian
+                         makalah anda keluar. Terima kasih.</p>
+                    <?php elseif ($user_passed_makalah == 2) : ?>
+                        <p>Status : <span style="color:blue">Makalah Anda Gagal</span></p>
+                        <p>
+                            Mohon maaf, makalah Tim Anda tidak lolos seleksi makalah.
+                            Tetap semangat berkarya demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu karya Tim Anda di Chemistry Innovation Project tahun depan
+                        </p>
                     <?php else : ?>
-                        <p>Status : <span style="color:green">Pembayaran Terkonfirmasi</span></p>
-                        <p>Selamat! Pembayaran anda telah kami konfirmasikan dan tim anda sudah menjadi peserta dalam lomba Chemistry Innovation Project!
-                         Semoga sukses!</p>
+                        <p>Status : <span style="color:green">Anda Lolos Seleksi Makalah</span></p>
+                        <p>Tolong isi form di bawah ini mengenai penginapan saat lomba nanti, selanjutnya anda akan dihubungkan dengan panitia</p>
+                        <br>
+                        <p>
+                        <?php echo form_open_multipart('akun/dashboard/cip/email_penginapan'); ?>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Nama ketua kelompok</td>
+                                    <td><input type="text" class="form-control" name="nama-ketua" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Bersediakah Anda untuk datang ke Kampus UI, Depok? (Ya/Tidak)</td>
+                                    <td>
+                                        <span><input type="radio" name="datang" value="Ya" class="form-control">Ya</span>
+                                        <span><input type="radio" name="datang" value="Tidak" class="form-control">Tidak</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Butuh penginapan selama rangkaian acara Chemistry Innovation Project? (Ya/Tidak)</td>
+                                    <td>
+                                        <span><input type="radio" name="penginapan" value="Ya" class="form-control">Ya</span>
+                                        <span><input type="radio" name="penginapan" value="Tidak" class="form-control">Tidak</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jika Ya, berapakah anggota kelompok yang butuh penginapan?</td>
+                                    <td><input type="number" class="form-control" name="anggota-penginapan"></td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Kelamin ketua</td>
+                                    <td><input type="text" class="form-control" name="gender_ketua" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Kelamin Anggota</td>
+                                    <td><input type="text" class="form-control" name="gender_anggota" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Apakah guru pendamping juga memerlukan penginapan?</td>
+                                    <td>
+                                        <span><input type="radio" name="guru-penginapan" value="Ya" class="form-control">Ya</span>
+                                        <span><input type="radio" name="guru-penginapan" value="Tidak" class="form-control">Tidak</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kapankah tanggal kedatangan Anda?</td>
+                                    <td><input type="date" class="form-control" name="tanggal-kedatangan" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Transportasi apakah yang Anda gunakan? (Pesawat/Kereta/Bus/kendaraan pribadi)</td>
+                                    <td><input type="text" class="form-control" name="kendaraaan" required></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Jika Anda menggunakan Pesawat, panitia akan menjemput Anda di Bandara Soekarno-Hatta</td>
+                                </tr>
+                                <tr>
+                                    <td>Maskapai apa yang Anda gunakan?</td>
+                                    <td><input type="text" class="form-control" name="maskapai"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapa pesawat Anda dijadwalkan berangkat?</td>
+                                    <td><input type="time" class="form-control" name="brangkat-pesawat"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapa pesawat Anda dijadwalkan tiba?</td>
+                                    <td><input type="time" class="form-control" name="tiba-pesawat"></td>
+                                </tr>
+                                <tr>
+                                    <td>Di terminal berapa Anda akan turun?</td>
+                                    <td><input type="text" class="form-control" name="terminal-pesawat"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Jika Anda menggunakan kereta, panitia akan menjemput Anda di Stasiun Universitas Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>Dari stasiun manakah Anda berangkat?</td>
+                                    <td><input type="text" class="form-control" name="stasiun-krl"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapakah kereta Anda dijadwalkan berangkat?</td>
+                                    <td><input type="time" class="form-control" name="brangkat-krl"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapakah estimasi Anda untuk tiba di St. UI</td>
+                                    <td><input type="time" class="form-control" name="tiba-krl"></td>
+                                </tr>
+                                <tr>
+                                    <td>Apa stasiun tujuan Anda? (Apabila St. UI bukan tujuan Anda, Anda dapat menggunakan KRL Jabodetabek dan turun di St. UI)</td>
+                                    <td><input type="text" class="form-control" name="tujuan-krl"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Jika Anda menggunakan Bus</td>
+                                </tr>
+                                <tr>
+                                    <td>Dari terminal manakah Anda berangkat?</td>
+                                    <td><input type="text" class="form-control" name="stasiun-bus"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapakah bus Anda dijadwalkan berangkat?</td>
+                                    <td><input type="time" class="form-control" name="brangkat-bus"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapakah Anda akan tiba di Terminal Kampung Rambutan/ Terminal Depok?</td>
+                                    <td><input type="time" class="form-control" name="tiba-bus"></td>
+                                </tr>
+                                <tr>
+                                    <td>Kapankah tanggal kepulangan Anda? (Semua kepulangan wajib saat acara selesai yaitu tanggal 13 November)</td>
+                                    <td><input type="date" class="form-control" name="pulang"></td>
+                                </tr>
+                                <tr>
+                                    <td>Transportasi apa yang Anda gunakan? (Pesawat/Kereta/Bus/Kendaraan Pribadi)</td>
+                                    <td><input type="text" class="form-control" name="kendaraan-pulang"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><p style="color:blue">Jika Anda menggunakan Pesawat</p></td>
+                                </tr>
+                                <tr>
+                                    <td>Maskapai apa yang Anda gunakan?</td>
+                                    <td><input type="text" class="form-control" name="maskapai-pulang"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pada pukul berapa pesawat Anda dijadwalkan berangkat?</td>
+                                    <td><input type="time" class="form-control" name="brangkat-pesawat-pulang"></td>
+                                </tr>
+                                 <tr>
+                                    <td colspan="2"><p style="color:blue">Jika Anda menggunakan kereta, maka panitia akan mengantar sampai St. Universitas Indonesia</p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><p style="color:blue">Jika Anda menggunakan bus, maka panitia akan mengantar sampai Terminal Kp. Rambutan dan Terminal Depok</p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><p style="color:red">Semua keberangkatan dan kepulangan harus dikonfirmasikan terlebih dahullu ke panitia. CP: 087885901321 (Rio)</p></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="submit" class="btn btn-primary pull-right" value="SUBMIT"></td>
+                                </tr>
+                            </table>
+                        </form></p>
                     <?php endif; ?>
                 </div>
             </div>
