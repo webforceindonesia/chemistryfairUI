@@ -936,13 +936,117 @@ class Accounts extends CI_Controller {
 
             }else if($param == 'email_penginapan')
             {
-                if($_POST[])
+                /*if($_POST[])
                 {
                     
                 }else
                 {
                     redirect('dashboard/cc');
-                }
+                }*/
+            }
+        }
+
+        else if ($action == 'cfk')
+        {
+            if (array_key_exists('cfk', $this->session->userdata('user_participations')))
+            {
+                $this->load->model('cfk_participants_model');
+                $user_participant_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
+                $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
+
+        		$data['user_is_participant']			= TRUE;
+	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
+	        	//$data['user_payment_verified']			= $user_participant_data->is_paid;
+                $data['user_email']                     = $this->session->userdata('user_email');
+                
+                $cfk_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
+                $data['user_institution_name']      = $cfk_data->institution_name;
+                $data['user_fullname']      = $cfk_data->fullname;
+                $data['user_fullname_parent']     = $cfk_data->fullname_parent;
+                $data['user_age'] = $cfk_data->age;
+                $data['user_phone']       = $cfk_data->phone;
+                $data['user_competition']      = $cfk_data->competition;
+                $data['user_is_tk']      = $cfk_data->competition;
+        	}
+            
+            else
+        	{
+        		$data['user_is_participant'] = FALSE;
+        	}
+
+            $this->load->view('accounts/dashboard_cfk.php', $data);
+            
+            if ($param == 'upload')
+            {
+            	$config['upload_path']          = 'uploads/cfk/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cfk/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+				{
+					if(!mkdir($link, 0777, TRUE))
+					{
+						$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+					}
+				}
+
+                //Check File Berkas Upload
+                if(isset($_FILES['file_berkas']))
+                {
+                	$config['allowed_types']        = 'zip';
+                	$config['file_name']			= 'berkas.zip';
+				    $this->upload->initialize($config);
+
+	                if ( ! $this->upload->do_upload('file_berkas'))
+	                {
+	                        $error = array('error' => $this->upload->display_errors());
+	                        $error_data = $error['error'];
+	                        $this->session->set_flashdata('upload_failed', $error_data);
+
+	                        redirect('akun/dashboard/cfk');
+	                }
+	                else
+	                {
+	                		//Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+	                		$this->db->select('cfk_participants');
+	                		$data = array('abstract_link' => $link . "/berkas.zip");
+	                		$this->db->update('cfk_participants', $data)->result;
+	                        $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
+	                        redirect('akun/dashboard/cfk');
+	                }
+	            }
+
+	            //Check File Bukti Trf Upload
+				if(isset($_FILES['file_bukti']))
+                {
+                	$config['allowed_types']        = 'jpg';
+                	$config['file_name']			= 'bukti_trf.jpg';
+                	$config['overwrite']			= TRUE;
+				    $this->upload->initialize($config);
+
+	                if ( ! $this->upload->do_upload('file_bukti') )
+	                {
+	                        $error = array('error' => $this->upload->display_errors());
+
+	                        $this->session->set_flashdata('upload_failed', $error);
+
+	                        redirect('akun/dashboard/cfk');
+	                }
+	                else
+	                {
+	                		//Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+	                		$this->db->select('cfk_participants');
+	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+	                		$this->db->update('cfk_participants', $data)->result;
+	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+	                        redirect('akun/dashboard/cfk');
+	                }
+	            }
             }
         }
         
@@ -1032,6 +1136,11 @@ class Accounts extends CI_Controller {
             {
                 $page = 'accounts/form_cip.php';
             }break;
+
+            case 'cfk':
+            {
+                $page = 'accounts/form_cfk.php';
+            }
 
             default :
             {
@@ -1300,6 +1409,31 @@ class Accounts extends CI_Controller {
                 $this->load->model('admin_model');
                 $pendaftar = $this->admin_model->getUser($this->session->userdata('user_id'));
                 $this->admin_model->email_new_register('ticketingcf2016@gmail.com', 'Chemistry Innovation Project', $pendaftar);
+
+            }break;
+
+            case 'cfk' :
+            {
+                //Put Into Array
+                $data_pendaftar = array (
+
+                    'account_id'                 => $this->session->userdata('user_id'),
+                    'fullname'                   => $this->input->post('fullname'),
+                    'institution_name'           => $this->input->post('institution_name'),
+                    'fullname_parent'                   => $this->input->post('fullname_parent'),
+                    'age'                   => $this->input->post('age'),
+                    'competitions'                   => $this->input->post('competitions'),
+                    'is_tk'                   => $this->input->post('is_tk'),
+                    'phone'                   => $this->input->post('phone'),
+                );
+
+                $this->db->where('account_id', $this->session->userdata('user_id'));
+                $this->db->insert('cfk_participants' , $data);
+
+                //Email ticketingcf2016@gmail.com
+                $this->load->model('admin_model');
+                $pendaftar = $this->admin_model->getUser($this->session->userdata('user_id'));
+                $this->admin_model->email_new_register('ticketingcf2016@gmail.com', 'Chemistry Fair Kids', $pendaftar);
 
             }break;
 
