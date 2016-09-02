@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <!-- Check if it's already in time for open registration -->
-        <?php if (new DateTime() < new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
+        <?php if (new DateTime() > new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
             <?php if (isset($_SESSION['user_id'])) : ?>
                 <?php if (array_key_exists('cc', $_SESSION['user_participations'])) : ?>
                     <div class="alert alert-success col-md-12" role="alert">

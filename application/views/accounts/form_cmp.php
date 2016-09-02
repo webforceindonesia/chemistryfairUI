@@ -2,7 +2,7 @@
     <div class="dashboard-content-container col-md-8">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Data Peserta Chemistry Innovation Project</h3>
+                <h3 class="panel-title">Data Peserta Chemistry Movie Project</h3>
             </div>
             <div class="panel-body">
                 <!-- The form -->

@@ -987,10 +987,8 @@ class Accounts extends CI_Controller {
             {
                 if($this->input->post())
                 {
-                    echo '<pre>';
-                    print_r($this->input->post());
-                    echo '</pre>';
-                    exit;
+                   $this->email_model->email_transportasi();
+                   redirect('dashboard/cc');
                 }else
                 {
                     redirect('dashboard/cc');

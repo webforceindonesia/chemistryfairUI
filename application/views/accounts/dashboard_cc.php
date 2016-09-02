@@ -121,18 +121,18 @@
                                     <td>Nama ketua kelompok</td>
                                     <td><input type="text" class="form-control" name="nama-ketua" required></td>
                                 </tr>
-                                <tr>
+                                <tr class="form-group">
                                     <td>Bersediakah Anda untuk datang ke Kampus UI, Depok? (Ya/Tidak)</td>
                                     <td>
-                                        <span><input type="radio" name="datang" value="Ya" class="form-control">Ya</span>
-                                        <span><input type="radio" name="datang" value="Tidak" class="form-control">Tidak</span>
+                                        <span><input type="radio" name="datang" value="Ya"> Ya&nbsp &nbsp
+                                        <input type="radio" name="datang" value="Tidak"> Tidak</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Butuh penginapan selama rangkaian acara Chemistry Innovation Project? (Ya/Tidak)</td>
                                     <td>
-                                        <span><input type="radio" name="penginapan" value="Ya" class="form-control">Ya</span>
-                                        <span><input type="radio" name="penginapan" value="Tidak" class="form-control">Tidak</span>
+                                        <span><input type="radio" name="penginapan" value="Ya"> Ya&nbsp &nbsp
+                                        <input type="radio" name="penginapan" value="Tidak"> Tidak</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -150,8 +150,8 @@
                                 <tr>
                                     <td>Apakah guru pendamping juga memerlukan penginapan?</td>
                                     <td>
-                                        <span><input type="radio" name="guru-penginapan" value="Ya" class="form-control">Ya</span>
-                                        <span><input type="radio" name="guru-penginapan" value="Tidak" class="form-control">Tidak</span>
+                                        <span><input type="radio" name="guru-penginapan" value="Ya"> Ya&nbsp &nbsp
+                                        <input type="radio" name="guru-penginapan" value="Tidak"> Tidak</span>
                                     </td>
                                 </tr>
                                 <tr>

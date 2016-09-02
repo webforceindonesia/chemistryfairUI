@@ -114,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <!-- Check if it's already in time for open registration -->
-        <?php if (new DateTime() < new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
+        <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
             <?php if (isset($_SESSION['user_id'])) : ?>
 
                 <!-- For CP -->
