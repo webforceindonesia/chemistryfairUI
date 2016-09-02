@@ -1343,5 +1343,167 @@ class Daftar extends CI_Controller
 
         $this->load->view('templates/footer.php');
     }
+
+    public function cfk ($param1 = '')
+    {
+        $data['title'] = titlecase('Daftar Chemistry Fair Kids');
+
+        $this->load->view('templates/header.php', $data);
+
+        //Check if already Registered
+        $this->load->model('cfk_participants_model');
+        if (array_key_exists('cfk', $this->session->userdata('user_participations')) && $param1 == '')
+        {
+            redirect('akun/dashboard/cfk');
+           exit();
+        }
+
+
+        if($param1 == 'edit')
+        {  
+           $this->form_validation->set_rules(  
+                    'institution_name', 'Nama Sekolah', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap Peserta', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname_parent', 'Nama Orang Tua', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'age', 'Usia Peserta', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'phone', 'Nomor Telepon', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $cfk_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
+                $data['mode']                       = 'edit';
+                $data['user_institution_name']      = $cfk_data->institution_name;
+                $data['user_fullname']              = $cfk_data->fullname;
+                $data['user_fullname_parent']             = $cfk_data->fullname_parent;
+                $data['user_competition']           = $cfk_data->competition;
+                $data['user_age']         = $cfk_data->age;
+                $data['user_phone']           = $cfk_data->phone;
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+                    // Register the user to the DB
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'fullname', $this->input->post('fullname'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'institution_name', $this->input->post('institution_name'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'fullname_parent', $this->input->post('fullname_parent'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'age', $this->input->post('age'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'phone', $this->input->post('phone'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'competition', ($this->input->post('competition_draw') == 'true' ? 1 : 0) + ($this->input->post('competition_cake') == 'true' ? 2 : 0));
+
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/cfk');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_cfk.php', $data);
+                } 
+        }else
+        {
+            $this->form_validation->set_rules(  
+                    'institution_name', 'Nama Sekolah', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap Peserta', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'fullname_parent', 'Nama Orang Tua', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'age', 'Usia Peserta', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                $this->form_validation->set_rules(  
+                    'phone', 'Nomor Telepon', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $data['mode']                       = '';
+                $data['user_institution_name']      = '';
+                $data['user_fullname']              = '';
+                $data['user_fullname_parent']             = '';
+                $data['user_competition']           = '';
+                $data['user_age']         = '';
+                $data['user_phone']           = '';
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+
+                    // Register the user to the DB
+                    $this->cfk_participants_model->register_participant(
+                        $this->session->userdata('user_id'),
+                        $this->input->post('institution_name'),
+                        $this->input->post('fullname'),
+                        $this->input->post('fullname_parent'),
+                        $this->input->post('age'),
+                        $this->input->post('phone'),
+                        ($this->input->post('competition_draw') == 'true' ? 1 : 0) + ($this->input->post('competition_cake') == 'true' ? 2 : 0)
+                    );
+
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/cfk');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_cfk.php', $data);
+                }
+
+        }
+
+        $this->load->view('templates/footer.php');
+    }
         
 }
