@@ -4,14 +4,11 @@
     <div class="dashboard-content-container col-md-9">
         <?php if ($user_is_participant == true) : ?>
             <h1>Dashboard Peserta Chemistry Innovation Project</h1>
-                <?php
-                    if($this->session->flashdata('upload_failed')): ?>
-                        <?php foreach ($this->session->flashdata('upload_failed') as $error_msg) : ?>
-                            <div class="alert alert-danger">
-                                <?php echo $error_msg; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                <?php if($this->session->flashdata('upload_failed')): ?>
+                    <div class="alert alert-danger">
+                        <?php print_r($this->session->flashdata('upload_failed')); ?>
+                    </div>
+                <?php endif; ?>
 
                     <?php
                         if($this->session->flashdata('upload')): ?>
@@ -182,11 +179,31 @@
                             Kegagalan merupakan kemenangan yang tertunda.
                             Kami tunggu karya Tim Anda di Chemistry Innovation Project tahun depan
                         </p>
+                    <?php elseif ($user_payment_verified == 5) : ?>
+                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
+                        <p>
+                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Competition.
+                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu kehadiran Tim Anda di Chemistry Competition tahun depan
+                        </p>
+                    <?php elseif ($user_payment_verified == 4) : ?>
+                        <p>Status : <span style="color:green">Anda Telah Menang!</span></p>
+                        <p>
+                            Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
+                            Kami tunggu kehadiran Tim Anda di Chemistry Competition tahun depan!
+                        </p>
+                    <?php elseif ($user_passed_abstract == 3) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Pengumuman Hasil Seleksi</span></p>
+                        <p>Tim kami akan mengumumkan hasil seleksi. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
+                        <p>Jika anda memiliki pertanyaan, silahkan menhubungi :</p>
                     <?php else : ?>
                         <p>Status : <span style="color:green">Anda Lolos Seleksi Makalah</span></p>
                         <p>Tolong isi form di bawah ini mengenai penginapan saat lomba nanti, selanjutnya anda akan dihubungkan dengan panitia</p>
                         <br>
                         <p>
+                        </form>
                         <?php echo form_open_multipart('akun/dashboard/cip/email_penginapan'); ?>
                             <table class="table table-bordered">
                                 <tr>
@@ -213,17 +230,36 @@
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin ketua</td>
-                                    <td><input type="text" class="form-control" name="gender_ketua" required></td>
+                                    <td>
+                                        <select name="gender_ketua" class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Jenis Kelamin Anggota</td>
-                                    <td><input type="text" class="form-control" name="gender_anggota" required></td>
+                                    <td>Jenis Kelamin Member 2</td>
+                                    <td>
+                                        <select name="gender_anggota[]" class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis Kelamin Member 3</td>
+                                    <td>
+                                        <select name="gender_anggota[]" class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Apakah guru pendamping juga memerlukan penginapan?</td>
                                     <td>
-                                        <span><input type="radio" name="guru-penginapan" value="Ya" class="form-control">Ya</span>
-                                        <span><input type="radio" name="guru-penginapan" value="Tidak" class="form-control">Tidak</span>
+                                        <span><input type="radio" name="guru-penginapan" value="Ya"> Ya&nbsp &nbsp
+                                        <input type="radio" name="guru-penginapan" value="Tidak"> Tidak</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -232,7 +268,14 @@
                                 </tr>
                                 <tr>
                                     <td>Transportasi apakah yang Anda gunakan? (Pesawat/Kereta/Bus/kendaraan pribadi)</td>
-                                    <td><input type="text" class="form-control" name="kendaraaan" required></td>
+                                    <td>
+                                        <select name="kendaraan" class="form-control">
+                                            <option value="Pesawat">Pesawat</option>
+                                            <option value="Kereta">Kereta</option>
+                                            <option value="Bus">Bus</option>
+                                            <option value="Kendaraan-Pribadi">Kendaraan Pribadi</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Jika Anda menggunakan Pesawat, panitia akan menjemput Anda di Bandara Soekarno-Hatta</td>
@@ -352,6 +395,7 @@
                     <a href="<?php echo site_url() ?>daftar/cip/edit">Ubah</a>
                 </div>
             </div>
+
         <?php else: ?>
 
             <div class="alert alert-danger">

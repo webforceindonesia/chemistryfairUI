@@ -40,9 +40,9 @@
                         'university' => 'Perguruan Tinggi'
                     );
                     echo form_label('Kategori Peserta', 'type', array('class' => 'form-label'));
-                    echo form_error('participant_type');
-                    echo form_dropdown('participant_type', $options, empty($user_category) ? set_value('participant_type') : $user_category);
                     echo '<br/>';
+                    echo form_error('participant_type');
+                    echo form_dropdown('participant_type', $options, empty($user_category) ? set_value('participant_type') : $user_category, array('class' => 'form-control'));
                     echo '<br/>';
 
                     // Nama Institusi

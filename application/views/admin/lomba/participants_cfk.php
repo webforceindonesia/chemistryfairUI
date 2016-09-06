@@ -60,3 +60,9 @@ $(document).ready( function () {
         </div>
   </div>
 </section>
+
+<?php if($this->session->flashdata('success')): ?>
+	<script>
+		swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+	</script>
+<?php endif; ?>

@@ -1,7 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
-<section id="footerAll">
+<section id="footerAll" style="box-shadow:none;">
+<div class="row">
     <div class="col-md-2">
         <img class="logo-hmd-footer" src="<?php echo base_url() ?>/images/HMD-Kimia.png">
     </div>
@@ -30,6 +31,33 @@
 
         </div>  
     </div>
+    </div>
+</section>
+<section id="footerAll">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 footerPar footer-quote-container">
+            <h2>Website and Systems Build By</h2>
+            <p>
+                ByteForce - Web Solutions
+            </p>
+        </div>
+        <div class="col-md-2">
+            <img class="logo-hmd-footer" src="<?php echo base_url() ?>/images/byteforce.png" style="margin-left:-10%; max-width:200px;">
+        </div>
+        <div class="col-md-6 footerPar footer-contact-container">
+        <div class="col-md-6">
+        <br><br>
+            <div><h3 align="left">Our Partners</h3></div>
+            <!-- Logo Partners -->
+        </div>     
+        <div class="col-md-6"> 
+        <br><br>          
+            <!-- Logo Partners -->
+        </div>  
+    </div>
+    </div>
+</div>
 </section>
 </div>
 <!-- Parallax Must be on bottom -->

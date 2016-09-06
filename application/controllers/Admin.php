@@ -524,6 +524,23 @@ class Admin extends CI_Controller {
 				redirect('/admin/lomba/' . $lomba);
 			}break;
 
+			case 'cc':
+			{
+				$this->db->set('is_paid', '4');
+				$this->db->where('account_id', $account_id);
+				$this->db->update($lomba . '_participants');
+				$this->session->set_flashdata('success', 'Success in Winner Selection');
+
+				//Make Everyone Else A Loser!
+				foreach($this->db->get_where($lomba . '_participants', array('is_paid' => '<3'))->result() as $row)
+				{
+					$this->db->set('is_paid', '3');
+					$this->db->where('id', $row->id);
+					$this->db->update($lomba . '_participants');
+				}
+				redirect('/admin/lomba/' . $lomba);
+			}break;
+
 			case 'cmp':
 			{
 				$this->db->set('is_paid', '4');
@@ -552,7 +569,7 @@ class Admin extends CI_Controller {
 				//Make Everyone Else A Loser!
 				foreach($this->db->get_where($lomba . '_participants', array('is_paid' => '1'))->result() as $row)
 				{
-					$this->db->set('is_paid', '3');
+					$this->db->set('is_paid', '5');
 					$this->db->where('id', $row->id);
 					$this->db->update($lomba . '_participants');
 				}

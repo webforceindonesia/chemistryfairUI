@@ -640,7 +640,25 @@ class Accounts extends CI_Controller {
                             redirect('akun/dashboard/cip');
                     }
                 }
+            }else if($param == 'email_penginapan')
+            {
+                if($this->input->post())
+                {
+                   //Send Email
+                   $this->load->model('email_model');
+                   $this->email_model->email_transportasi();
+
+                   //Change
+                   $this->db->where('account_id', $this->session->userdata('user_id'));
+                   $this->db->select('cip_participants');
+                   $this->db->update('cip_participants', array('abstract_passed' => 3))->result;
+                   redirect('akun/dashboard/cip');
+                }else
+                {
+                   redirect('akun/dashboard/cip');
+                }
             }
+
         }else if($action == 'cp')
         {
             if (array_key_exists('cp', $this->session->userdata('user_participations')))
@@ -746,7 +764,7 @@ class Accounts extends CI_Controller {
                 }
 
                 //Check File Bukti Trf Upload
-                if(isset($_FILES['insta_file']))
+                if(isset($_FILES))
                 {
                     $config['allowed_types']        = 'jpg';
                     $config['file_name']            = 'hasil_karya.jpg';
@@ -761,9 +779,7 @@ class Accounts extends CI_Controller {
                     }
                     else
                     {
-                        //Update DB   
-                        $this->db->where('account_id', $this->session->userdata('user_id'));
-                        $this->db->update('cp_participants', array('instagram_photo_link' => $link . '/' . $config['file_name']));
+                        $photo = $link . '/' . $config['file_name'];
                     }
 
                     $config['allowed_types']        = 'pdf';
@@ -783,6 +799,23 @@ class Accounts extends CI_Controller {
                         $this->db->where('account_id', $this->session->userdata('user_id'));
                         $this->db->update('cp_participants', array('photo_description' => $link . '/' . $config['file_name']));
                         $this->session->set_flashdata('upload', 'Upload Karya Sukses & Deskripsi Karya Sukses Di Simpan');
+                        $desc = $link . '/' . $config['file_name'];
+
+                        //Update DB   
+                        $this->db->where('account_id', $this->session->userdata('user_id'));
+                        $this->db->update('cp_participants', array('instagram_photo_link' => $photo));
+
+                        $data = array (
+
+                            'photo' => $photo,
+                            'desc'  => $desc
+
+                            );
+
+                        //Email To The Ticketing
+                        // $this->load->model('email_model');
+                        // $this->email_model->cp_email($data);
+
                         redirect('akun/dashboard/cp');
                     }
 
@@ -810,6 +843,9 @@ class Accounts extends CI_Controller {
                 $data['user_identity_link']         = $cp_data->identity_link;
                 $data['user_province_id']           = $cp_data->province_id;
                 $data['user_youtube_link']          = $cp_data->youtube_video_link;
+                $data['berkas']                     = $cp_data->makalah_approved;
+                $data['user_poster_link']           = $cp_data->poster_link;
+                $data['user_synopsys_link']         = $cp_data->synopsys_link;
                 $data['address']                    = $cp_data->address;
                 $data['email']                      = $cp_data->email;
                 $data['phone']                      = $cp_data->phone;
@@ -889,6 +925,68 @@ class Accounts extends CI_Controller {
                     $this->session->set_flashdata('upload_failed', 'Link Tidak Valid');
 
                     redirect('akun/dashboard/cmp');
+                }
+            }else if($param == 'berkas')
+            {
+                $config['upload_path']          = 'uploads/cmp/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/cmp/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
+
+                //Check File Bukti Trf Upload
+                if(isset($_FILES))
+                {
+                    $config['allowed_types']        = 'pdf';
+                    $config['file_name']            = 'synopsys.pdf';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if ( ! $this->upload->do_upload('synopsys') )
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+                            $this->session->set_flashdata('upload_failed', $error);
+                            redirect('akun/dashboard/cmp');
+                    }
+                    else
+                    {
+                            //Write to db
+                            $synopsys = $link . "/bukti_trf.jpg";
+                    }
+
+                    $config['allowed_types']        = 'jpg';
+                    $config['file_name']            = 'poster.jpg';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
+
+                    if ( ! $this->upload->do_upload('poster') )
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+                            $this->session->set_flashdata('upload_failed', $error);
+                            redirect('akun/dashboard/cmp');
+                    }
+                    else
+                    {
+                            //Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+                            $this->db->select('cmp_participants');
+                            $data = array(
+                                'poster_link'      => $link . "/bukti_trf.jpg",
+                                'synopsys_link'    => $synopsys
+                                );
+                            $this->db->update('cmp_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload Berkas Sukses!');
+                            redirect('akun/dashboard/cmp');
+                    }
                 }
             }
         }else if($action == 'cc')
@@ -985,18 +1083,23 @@ class Accounts extends CI_Controller {
 
             }else if($param == 'email_penginapan')
             {
-                /*if($this->input->post())
+                if($this->input->post())
                 {
+                   //Send Email
+                   $this->load->model('email_model');
                    $this->email_model->email_transportasi();
-                   redirect('dashboard/cc');
+
+                   //Change
+                   $this->db->where('account_id', $this->session->userdata('user_id'));
+                   $this->db->select('cc_participants');
+                   $this->db->update('cc_participants', array('abstract_passed' => 3))->result;
+                   redirect('akun/dashboard/cc');
                 }else
                 {
-                    redirect('dashboard/cc');
-                }*/
+                   redirect('akun/dashboard/cc');
+                }
             }
-        }
-
-        else if ($action == 'cfk')
+        }else if ($action == 'cfk')
         {
             if (array_key_exists('cfk', $this->session->userdata('user_participations')))
             {
@@ -1004,9 +1107,9 @@ class Accounts extends CI_Controller {
                 $user_participant_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
                 $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
 
-        		$data['user_is_participant']			= TRUE;
-	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
-	        	//$data['user_payment_verified']			= $user_participant_data->is_paid;
+                $data['user_is_participant']            = TRUE;
+                $data['user_submitted_payment_proof']   = $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
+                //$data['user_payment_verified']            = $user_participant_data->is_paid;
                 $data['user_email']                     = $this->session->userdata('user_email');
                 
                 $cfk_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
@@ -1017,18 +1120,18 @@ class Accounts extends CI_Controller {
                 $data['user_phone']       = $cfk_data->phone;
                 $data['user_competition']      = $cfk_data->competition;
                 $data['user_is_tk']      = $cfk_data->competition;
-        	}
+            }
             
             else
-        	{
-        		$data['user_is_participant'] = FALSE;
-        	}
+            {
+                $data['user_is_participant'] = FALSE;
+            }
 
             $this->load->view('accounts/dashboard_cfk.php', $data);
             
             if ($param == 'upload')
             {
-            	$config['upload_path']          = 'uploads/cfk/' . $this->session->user_id;
+                $config['upload_path']          = 'uploads/cfk/' . $this->session->user_id;
                 $config['max_size']             = 5000;
 
                 $this->load->library('upload', $config);
@@ -1036,67 +1139,67 @@ class Accounts extends CI_Controller {
                 $link = "uploads/cfk/" . $this->session->user_id;
 
                 if (!file_exists ($link))
-				{
-					if(!mkdir($link, 0777, TRUE))
-					{
-						$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
-					}
-				}
+                {
+                    if(!mkdir($link, 0777, TRUE))
+                    {
+                        $this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+                    }
+                }
 
                 //Check File Berkas Upload
                 if(isset($_FILES['file_berkas']))
                 {
-                	$config['allowed_types']        = 'zip';
-                	$config['file_name']			= 'berkas.zip';
-				    $this->upload->initialize($config);
+                    $config['allowed_types']        = 'zip';
+                    $config['file_name']            = 'berkas.zip';
+                    $this->upload->initialize($config);
 
-	                if ( ! $this->upload->do_upload('file_berkas'))
-	                {
-	                        $error = array('error' => $this->upload->display_errors());
-	                        $error_data = $error['error'];
-	                        $this->session->set_flashdata('upload_failed', $error_data);
+                    if ( ! $this->upload->do_upload('file_berkas'))
+                    {
+                            $error = array('error' => $this->upload->display_errors());
+                            $error_data = $error['error'];
+                            $this->session->set_flashdata('upload_failed', $error_data);
 
-	                        redirect('akun/dashboard/cfk');
-	                }
-	                else
-	                {
-	                		//Write to db
+                            redirect('akun/dashboard/cfk');
+                    }
+                    else
+                    {
+                            //Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
-	                		$this->db->select('cfk_participants');
-	                		$data = array('abstract_link' => $link . "/berkas.zip");
-	                		$this->db->update('cfk_participants', $data)->result;
-	                        $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
-	                        redirect('akun/dashboard/cfk');
-	                }
-	            }
+                            $this->db->select('cfk_participants');
+                            $data = array('abstract_link' => $link . "/berkas.zip");
+                            $this->db->update('cfk_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
+                            redirect('akun/dashboard/cfk');
+                    }
+                }
 
-	            //Check File Bukti Trf Upload
-				if(isset($_FILES['file_bukti']))
+                //Check File Bukti Trf Upload
+                if(isset($_FILES['file_bukti']))
                 {
-                	$config['allowed_types']        = 'jpg';
-                	$config['file_name']			= 'bukti_trf.jpg';
-                	$config['overwrite']			= TRUE;
-				    $this->upload->initialize($config);
+                    $config['allowed_types']        = 'jpg';
+                    $config['file_name']            = 'bukti_trf.jpg';
+                    $config['overwrite']            = TRUE;
+                    $this->upload->initialize($config);
 
-	                if ( ! $this->upload->do_upload('file_bukti') )
-	                {
-	                        $error = array('error' => $this->upload->display_errors());
+                    if ( ! $this->upload->do_upload('file_bukti') )
+                    {
+                            $error = array('error' => $this->upload->display_errors());
 
-	                        $this->session->set_flashdata('upload_failed', $error);
+                            $this->session->set_flashdata('upload_failed', $error);
 
-	                        redirect('akun/dashboard/cfk');
-	                }
-	                else
-	                {
-	                		//Write to db
+                            redirect('akun/dashboard/cfk');
+                    }
+                    else
+                    {
+                            //Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
-	                		$this->db->select('cfk_participants');
-	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
-	                		$this->db->update('cfk_participants', $data)->result;
-	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
-	                        redirect('akun/dashboard/cfk');
-	                }
-	            }
+                            $this->db->select('cfk_participants');
+                            $data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+                            $this->db->update('cfk_participants', $data)->result;
+                            $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+                            redirect('akun/dashboard/cfk');
+                    }
+                }
             }
         }
         
@@ -1186,11 +1289,6 @@ class Accounts extends CI_Controller {
             {
                 $page = 'accounts/form_cip.php';
             }break;
-
-            case 'cfk':
-            {
-                $page = 'accounts/form_cfk.php';
-            }
 
             default :
             {
@@ -1486,6 +1584,7 @@ class Accounts extends CI_Controller {
                 $this->admin_model->email_new_register('ticketingcf2016@gmail.com', 'Chemistry Fair Kids', $pendaftar);
 
             }break;
+
 
             default:
             {

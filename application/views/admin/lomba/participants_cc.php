@@ -44,7 +44,6 @@ function dateReverse ($date)
                         '34' => 'yogyakarta'
                     );
 ?>
-?>
 
 <!-- Data Tables Links -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.3/jszip-2.5.0/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css"/>
@@ -169,3 +168,9 @@ $(document).ready( function () {
         </div>
   </div>
 </section>
+
+<?php if($this->session->flashdata('success')): ?>
+	<script>
+		swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+	</script>
+<?php endif; ?>

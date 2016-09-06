@@ -20,7 +20,7 @@
                     <div class="panel-body">
                         <div class="btn-group-vertical" role="group" aria-label="...">
                             <a class="btn btn-default" href="<?php echo site_url() . 'acara/seminar'; ?>">Seminar</a>
-                            <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cfk'; ?>">Chemistry Fair Kids</a>
+                            <a class="btn btn-default" href="<?php echo site_url() . 'acara/chemistry_fair_kids'; ?>">Chemistry Fair Kids</a>
                         </div>
                     </div>
                 </div>

@@ -1343,7 +1343,7 @@ class Daftar extends CI_Controller
 
         $this->load->view('templates/footer.php');
     }
-
+    
     public function cfk ($param1 = '')
     {
         $data['title'] = titlecase('Daftar Chemistry Fair Kids');
@@ -1504,6 +1504,5 @@ class Daftar extends CI_Controller
         }
 
         $this->load->view('templates/footer.php');
-    }
-        
+    } 
 }

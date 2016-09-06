@@ -4,13 +4,10 @@
     <div class="dashboard-content-container col-md-9">
         <?php if ($user_is_participant == true) : ?>
             <h1>Dashboard Peserta Chemistry Competition</h1>
-                <?php
-                    if($this->session->flashdata('upload_failed')): ?>
-                        <?php foreach ($this->session->flashdata('upload_failed') as $error_msg) : ?>
+                <?php if($this->session->flashdata('upload_failed')): ?>
                             <div class="alert alert-danger">
-                                <?php echo $error_msg; ?>
+                                <?php print_r ($error_msg); ?>
                             </div>
-                        <?php endforeach; ?>
                     <?php endif; ?>
 
                     <?php
@@ -129,7 +126,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Butuh penginapan selama rangkaian acara Chemistry Innovation Project? (Ya/Tidak)</td>
+                                    <td>Butuh penginapan selama rangkaian acara Chemistry Competition? (Ya/Tidak)</td>
                                     <td>
                                         <span><input type="radio" name="penginapan" value="Ya"> Ya&nbsp &nbsp
                                         <input type="radio" name="penginapan" value="Tidak"> Tidak</span>
@@ -141,11 +138,21 @@
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin ketua</td>
-                                    <td><input type="text" class="form-control" name="gender_ketua" required></td>
+                                    <td>
+                                        <select name="gender_ketua" class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin Anggota</td>
-                                    <td><input type="text" class="form-control" name="gender_anggota" required></td>
+                                    <td>
+                                        <select name="gender_anggota[]" class="form-control">
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Perempuan">Perempuan</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Apakah guru pendamping juga memerlukan penginapan?</td>
@@ -160,7 +167,14 @@
                                 </tr>
                                 <tr>
                                     <td>Transportasi apakah yang Anda gunakan? (Pesawat/Kereta/Bus/kendaraan pribadi)</td>
-                                    <td><input type="text" class="form-control" name="kendaraaan" required></td>
+                                    <td>
+                                        <select name="kendaraan" class="form-control">
+                                            <option value="Pesawat">Pesawat</option>
+                                            <option value="Kereta">Kereta</option>
+                                            <option value="Bus">Bus</option>
+                                            <option value="Kendaraan-Pribadi">Kendaraan Pribadi</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Jika Anda menggunakan Pesawat, panitia akan menjemput Anda di Bandara Soekarno-Hatta</td>
@@ -253,6 +267,25 @@
                         <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
                         <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
+                    <?php elseif ($user_payment_verified == 3) : ?>
+                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
+                        <p>
+                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Competition.
+                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu kehadiran Tim Anda di Chemistry Competition tahun depan
+                        </p>
+                    <?php elseif ($user_payment_verified == 4) : ?>
+                        <p>Status : <span style="color:green">Anda Telah Menang!</span></p>
+                        <p>
+                            Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
+                            Kami tunggu kehadiran Tim Anda di Chemistry Competition tahun depan!
+                        </p>
+                    <?php elseif ($user_passed == 3) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Pengumuman Hasil Seleksi</span></p>
+                        <p>Tim kami akan mengumumkan hasil seleksi. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
+                        <p>Jika anda memiliki pertanyaan, silahkan menhubungi :</p>
                     <?php elseif ($user_payment_verified == 1) : ?>
                         <p>Status : <span style="color:blue">Menunggu Pengumuman Hasil Seleksi</span></p>
                         <p>Tim kami akan mengumumkan hasil seleksi. Mohon menunggu akan konfirmasi
@@ -269,20 +302,6 @@
                         Pengumuman Hasil Seleksi Online Chemistry Competition: 2 November 2016 di Website CF 2016<br>
                         </p>
                         <strong><!-- Cp Goes Here --></strong>
-                    <?php elseif ($user_payment_verified == 3) : ?>
-                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
-                        <p>
-                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Photograph.
-                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
-                            Kegagalan merupakan kemenangan yang tertunda.
-                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan
-                        </p>
-                    <?php elseif ($user_payment_verified == 4) : ?>
-                        <p>Status : <span style="color:green">Anda Telah Menang!</span></p>
-                        <p>
-                            Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
-                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan!
-                        </p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -318,7 +337,7 @@
             <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'daftar/cmp'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/cc'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
                         <span>Silahkan registrasi tim anda untuk acara ini.</span>
                     </div>
                 <?php endif; ?>

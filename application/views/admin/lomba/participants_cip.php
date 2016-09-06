@@ -85,6 +85,7 @@ $(document).ready( function () {
 	        			<td>Email Guru Pendamping</td>
 	        			<td>Status Pembayaran</td>
 	        			<td>File Abstrak</td>
+	        			<td>File Makalah</td>
 	        			<td>Bukti Transfer</td>
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
@@ -141,6 +142,7 @@ $(document).ready( function () {
 	        					?>
 	        				</td>
 	        				<td><a href="<?php echo base_url() . $row->abstract_link ?>">Download</a></td>
+	        				<td><a href="<?php echo base_url() . $row->makalah_link ?>">Download</a></td>
 	        				<td>
 	        					<?php if($row->payment_proof_link != NULL): ?>
 	        						<a href="<?php echo base_url() . $row->payment_proof_link ?>">
@@ -185,3 +187,9 @@ $(document).ready( function () {
         </div>
   </div>
 </section>
+
+<?php if($this->session->flashdata('success')): ?>
+	<script>
+		swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+	</script>
+<?php endif; ?>

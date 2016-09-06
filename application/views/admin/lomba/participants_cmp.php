@@ -21,10 +21,6 @@ $(document).ready( function () {
 
 </script>
 
-<pre>
-<?php print_r($participants) ?>
-</pre>
-
 <script src="https://use.fontawesome.com/e72fe59750.js"></script>
 <section id="contentAll">
 <div class="container">
@@ -97,6 +93,12 @@ $(document).ready( function () {
 	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cmp/'.$row->account_id.'/invalid') ?>">
 	        						<i class="fa fa-times" aria-hidden="true"></i>
 	        					</a><br>
+	        					<a href="<?php echo base_url('admin/konfirmasi/makalah/cmp/'.$row->account_id) ?>">
+		        					Berkas<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+		        				</a><br>
+		        				<a href="<?php echo base_url('admin/konfirmasi/makalah/cmp/'.$row->account_id.'/gagal') ?>">
+		        					Berkas<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+		        				</a><br>
 	        				<?php endif; ?>
 		        				<a href="<?php echo base_url('admin/winner/cmp/'.$row->account_id.'/winner') ?>">
 		        					<i class="fa fa-trophy" aria-hidden="true"></i>
@@ -111,3 +113,9 @@ $(document).ready( function () {
         </div>
   </div>
 </section>
+
+<?php if($this->session->flashdata('success')): ?>
+	<script>
+		swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+	</script>
+<?php endif; ?>

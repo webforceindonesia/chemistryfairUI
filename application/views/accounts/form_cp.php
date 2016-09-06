@@ -112,7 +112,7 @@
                     );
                     echo form_label('Asal Provinsi', 'province_id', array('class' => 'form-label'));
                     echo form_error('province_id');
-                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id);
+                    echo form_dropdown('province_id', $options, empty($user_province_id) ? set_value('province_id') : $user_province_id, array('class' => 'form-control'));
                     echo '<br/>';
 
                     // Alamat

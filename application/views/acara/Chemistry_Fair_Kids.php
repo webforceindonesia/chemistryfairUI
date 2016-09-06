@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <b>Lomba Menghias Kue</b><br/>
             <p>Rp.&nbsp;40.000,-</p>
             <b>Jika mendaftar kedua lomba</b><br/>
-            <p>Rp.&nbsp;30.000,-</p>
+            <p>Rp.&nbsp;50.000,-</p>
         </div>
 
         <div class="content-info-container col-md-6">

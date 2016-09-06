@@ -7,7 +7,7 @@
                 <?php
                     if($this->session->flashdata('upload_failed')): ?>
                         <pre>
-                            <?php echo $this->session->flashdata('upload_failed') ?>
+                            <?php print_r($this->session->flashdata('upload_failed')) ?>
                         </pre>
                     <?php endif; ?>
 

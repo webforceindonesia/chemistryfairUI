@@ -72,7 +72,7 @@ $(document).ready( function () {
 	        					<a href="<?php echo base_url() . $row->instagram_photo_link ?>">
 	        						<img src="<?php echo base_url() . $row->instagram_photo_link ?>" style="width:75px">
 	        					</a><br><br><strong>Deskripsi Foto</strong>
-	        					<p><?php echo $row->photo_description ?></p>
+	        					<p><a href="<?php echo base_url() . $row->photo_description ?>">Download Photo Description</a></p>
 	        				<?php endif; ?>
 	        				</td>
 	        				<td>
@@ -108,3 +108,9 @@ $(document).ready( function () {
         </div>
   </div>
 </section>
+
+<?php if($this->session->flashdata('success')): ?>
+	<script>
+		swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+	</script>
+<?php endif; ?>

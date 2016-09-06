@@ -30,9 +30,13 @@
             <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/qunit.css">
             <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/style.css">
             <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/media.css">
+            <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/css/sweetalert.css">
             <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery-2.0.2.js"></script>
+            <script type="text/javascript" src="<?php echo base_url() ?>/js/sweetalert.min.js"></script>
+            <script type="text/javascript" src="<?php echo base_url() ?>/js/jquery.stellar.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/bootstrap.min.js"></script>
             <script type="text/javascript" src="<?php echo base_url() ?>/js/qunit.js"></script>
+            <script type="text/javascript" src="<?php echo base_url() ?>/js/script.js"></script>
             
             <!-- Metas -->
             <meta charset="utf-8">

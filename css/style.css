@@ -472,7 +472,7 @@ body
 .header-account-box > .btn-group > a:first-child
 {
 	background-color: lightgreen;
-}
+} 
 
 /* Footer Template */
 #footerAll
@@ -485,9 +485,9 @@ body
 	clear:both;
 	overflow-x: hidden;
 
-	-webkit-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
-	-moz-box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
-	box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
+	-moz-box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
+	box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
 }
 
 .footer-par

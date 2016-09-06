@@ -38,7 +38,7 @@
                         <p>Mohon melengkapi dan mengupload semua gambar-gambar yang dibutuhkan di bawah ini.</p>
                     <?php elseif ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
-                        <p>Peserta diharap membayar biaya administrasi Rp.50,000.00 ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
+                        <p>Peserta diharap membayar biaya administrasi Rp.75,000.00 ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
                         <p>
 
@@ -111,6 +111,7 @@
 
                         ?></form></p>
                     <?php elseif ($user_youtube_link == NULL) : ?>
+                        </form>
                         <p>Status : <span style="color:blue">Menunggu Link Youtube</span></p>
                         <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
@@ -138,8 +139,98 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
 
                         ?></form></p>
+                    <?php elseif ($user_poster_link == NULL && $user_synopsys_link == NULL) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Berkas Film</span></p>
+                        <p>Peserta dimohon untuk segera mengirimkan Poster Film dan Sinopsis Film yang diikutsertakan dalam Chemistry Movie Project ke email Chemistry Art Competition (cfcac2016@gmail.com) agar dapat segera melalui proses penilaian karya oleh juri.</p>
+                        <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cmp/berkas'); ?>
+                        <?php
+
+                        // Upload Bukti Trf
+                        echo form_label('File Synopsis (File berbentuk .pdf)', 'synopsys', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('synopsys');
+                        echo form_upload(array(
+                            'class'         => 'btn btn-primary form-control', 
+                            'name'          => 'synopsys',
+                            'placeholder'   => 'Upload File Synopsis',
+                        )); 
+
+                        echo '<br>';
+
+                        // Upload Bukti Trf
+                        echo form_label('File Poster (File berbentuk .jpg)', 'poster', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('poster');
+                        echo form_upload(array(
+                            'class'         => 'button button-success form-control', 
+                            'name'          => 'poster',
+                            'placeholder'   => 'Poster Film.',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
+
+                        ?></form></p>
+                    <?php elseif ($user_payment_verified == 3) : ?>
+                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
+                        <p>
+                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Movie Project.
+                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
+                            Kegagalan merupakan kemenangan yang tertunda.
+                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan
+                        </p>
+                    <?php elseif ($user_payment_verified == 4) : ?>
+                        <p>Status : <span style="color:green">Anda Telah Menang!</span></p>
+                        <p>
+                            Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
+                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan!
+                        </p>
+                    <?php elseif ($berkas == 1) : ?>
+                        <p>Status : <span style="color:blue">Menunggu Hasil Pengumuman dan Verifikasi Video</span></p>
+                        <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
+                    <?php elseif ($berkas == 2) : ?>
+                        <p>Status : <span style="color:red">Maaf Berkas Anda Ditolak</span></p>
+                        <p>Peserta dimohon untuk segera mengirimkan Poster Film dan Sinopsis Film yang diikutsertakan dalam Chemistry Movie Project ke email Chemistry Art Competition (cfcac2016@gmail.com) agar dapat segera melalui proses penilaian karya oleh juri.</p>
+                        <p>Anda bisa mengupdate berkas Anda: </p>
+                        <p>
+
+                        <?php echo form_open_multipart('akun/dashboard/cmp/berkas'); ?>
+                        <?php
+
+                        // Upload Bukti Trf
+                        echo form_label('File Synopsis (File berbentuk .pdf)', 'synopsys', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('synopsys');
+                        echo form_upload(array(
+                            'class'         => 'btn btn-primary form-control', 
+                            'name'          => 'synopsys',
+                            'placeholder'   => 'Upload File Synopsis',
+                        )); 
+
+                        echo '<br>';
+
+                        // Upload Bukti Trf
+                        echo form_label('File Poster (File berbentuk .jpg)', 'poster', array('class' => 'form-label'));
+                        echo '<br>';
+                        echo form_error('poster');
+                        echo form_upload(array(
+                            'class'         => 'button button-success form-control', 
+                            'name'          => 'poster',
+                            'placeholder'   => 'Poster Film.',
+                        )); 
+
+                        echo '<br>';
+
+                        echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
+
+                        ?></form></p>
                     <?php elseif ($user_payment_verified == 1) : ?>
-                        <p>Status : <span style="color:yellow">Menunggu Hasil Pengumuman dan Verifikasi Video</span></p>
+                        <p>Status : <span style="color:blue">Menunggu Hasil Pengumuman dan Verifikasi Video</span></p>
                         <p>Tim kami akan memeriksa link youtube anda. Mohon menunggu akan konfirmasi
                          dari pihak kami. Terima kasih.</p>
                         <p>Anda bisa mengupdate link youtube Anda jika perlu : </p>
@@ -166,20 +257,6 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Submit'));
 
                         ?></form></p>
-                    <?php elseif ($user_payment_verified == 3) : ?>
-                        <p>Status : <span style="color:red">Anda Telah Gugur Dalam Seleksi</span></p>
-                        <p>
-                            Mohon maaf, karya Tim Anda belum menjadi juara Chemistry Photograph.
-                            Tetap semangat berkarya dan berkompetisi demi kemajuan bangsa.
-                            Kegagalan merupakan kemenangan yang tertunda.
-                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan
-                        </p>
-                    <?php elseif ($user_payment_verified == 4) : ?>
-                        <p>Status : <span style="color:green">Anda Telah Menang!</span></p>
-                        <p>
-                            Untuk konfirmasi kemenangan dan untuk kontak selanjutnya harap hubungi <br><br>Manda (086770529281)<br>Putri (085697366602)<br><br>
-                            Kami tunggu kehadiran Tim Anda di Chemistry Art Competition tahun depan!
-                        </p>
                     <?php endif; ?>
                 </div>
             </div>
