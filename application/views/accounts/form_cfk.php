@@ -90,14 +90,14 @@
                     echo form_radio(array(
                         'class'         => 'form-input-generic form-control', 
                         'name'          => 'is_tk',
-                        'value'         => 'sd',
+                        'value'         => '0',
                         'style'         =>  'width:50px;margin-top:20px;'
                     ));
                     echo '<p style="color:black">SD </p>';
                     echo form_radio(array(
                         'class'         => 'form-input-generic form-control', 
                         'name'          => 'is_tk',
-                        'value'         => 'tk',
+                        'value'         => '1',
                         'style'         =>  'width:50px;margin-top:20px;'
                     ));
                     echo '<p style="color:black">TK </p>';

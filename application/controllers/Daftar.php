@@ -1413,6 +1413,7 @@ class Daftar extends CI_Controller
                     $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'institution_name', $this->input->post('institution_name'));
                     $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'fullname_parent', $this->input->post('fullname_parent'));
                     $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'age', $this->input->post('age'));
+                    $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'is_tk', $this->input->post('is_tk'));
                     $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'phone', $this->input->post('phone'));
                     $this->cfk_participants_model->change_details($this->session->userdata('user_id'), 'competition', ($this->input->post('competition_draw') == 'true' ? 1 : 0) + ($this->input->post('competition_cake') == 'true' ? 2 : 0));
 
@@ -1485,7 +1486,8 @@ class Daftar extends CI_Controller
                         $this->input->post('fullname_parent'),
                         $this->input->post('age'),
                         $this->input->post('phone'),
-                        ($this->input->post('competition_draw') == 'true' ? 1 : 0) + ($this->input->post('competition_cake') == 'true' ? 2 : 0)
+                        ($this->input->post('competition_draw') == 'true' ? 1 : 0) + ($this->input->post('competition_cake') == 'true' ? 2 : 0),
+                        $this->input->post('is_tk')
                     );
 
                     $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));

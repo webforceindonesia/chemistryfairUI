@@ -52,7 +52,7 @@ class Cfk_participants_model extends CI_Model
         // Create the query builder 
         $this->db->insert('cfk_participants', array(
             'account_id'            =>  $account_id,
-            'type'                  => $type,
+            'is_tk'                 =>  $type,
             'fullname'              =>  $fullname,
             'fullname_parent'       =>  $fullname_parent,
             'phone'                 =>  $phone,
