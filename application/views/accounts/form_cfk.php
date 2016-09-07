@@ -38,7 +38,7 @@
                     echo form_label('Nama Institusi Pendidikan', 'institution_name', array('class' => 'form-label'));
                     echo form_error('institution_name');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'institution_name',
                         'value'         => empty($user_institution_name) ? set_value('institution_name') : $user_institution_name
                     )); 
@@ -48,7 +48,7 @@
                     echo form_label('Nama Lengkap', 'fullname', array('class' => 'form-label'));
                     echo form_error('fullname');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'fullname',
                         'value'         => empty($user_fullname) ? set_value('fullname') : $user_fullname
                     )); 
@@ -58,7 +58,7 @@
                     echo form_label('Nama Lengkap Pendamping', 'fullname_parent', array('class' => 'form-label'));
                     echo form_error('fullname_parent');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'fullname_parent',
                         'value'         => empty($user_fullname_parent) ? set_value('fullname_parent') : $user_fullname_parent
                     )); 
@@ -68,7 +68,7 @@
                     echo form_label('Umur Peserta', 'age', array('class' => 'form-label'));
                     echo form_error('age');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'age',
                         'value'         => empty($user_age) ? set_value('age') : $user_age
                     )); 
@@ -78,24 +78,24 @@
                     echo form_label('Kompetisi', 'competition', array('class' => 'form-label'));
                     echo form_error('competition');
                     if (($user_competition & 1) == 1) echo form_checkbox(array('name' => 'competition_draw', 'value' => 'true', 'checked' => 'checked'));
-                    else echo form_checkbox('competition_draw', 'true', set_checkbox('competition_draw', 'true'));
+                    else echo form_checkbox('competition_draw', 'true', set_checkbox('competition_draw', 'true'), array('class' => 'form-control'));
                     echo '<p style="color:black">Mewarnai </p>';
                     if (($user_competition & 2) == 2) echo form_checkbox(array('name' => 'competition_cake', 'value' => 'true', 'checked' => 'checked'));
-                    else echo form_checkbox('competition_cake', 'true', set_checkbox('competition_cake', 'true'));
-                    echo '<p style="color:black">Menghias Kue </p>';
+                    else echo form_checkbox('competition_cake', 'true', set_checkbox('competition_cake', 'true'), array('class' => 'form-control'));
+                    echo '<p style="color:black">Menghias Kue </p> <br><br>';
 
                     // Tingkat lomba
                     echo form_label('Tingkat Lomba', 'is_tk', array('class' => 'form-label'));
                     echo form_error('is_tk');
                     echo form_radio(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'is_tk',
                         'value'         => 'sd',
                         'style'         =>  'width:50px;margin-top:20px;'
                     ));
                     echo '<p style="color:black">SD </p>';
                     echo form_radio(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'is_tk',
                         'value'         => 'tk',
                         'style'         =>  'width:50px;margin-top:20px;'
@@ -107,7 +107,7 @@
                     echo form_label('No. Telepon Pendamping', 'phone', array('class' => 'form-label', 'id' => 'phone'));
                     echo form_error('phone');
                     echo form_input(array(
-                        'class'         => 'form-input-generic', 
+                        'class'         => 'form-input-generic form-control', 
                         'name'          => 'phone',
                         'value'         => empty($user_phone) ? set_value('phone') : $user_phone
                     )); 

@@ -1109,17 +1109,17 @@ class Accounts extends CI_Controller {
 
                 $data['user_is_participant']            = TRUE;
                 $data['user_submitted_payment_proof']   = $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
-                //$data['user_payment_verified']            = $user_participant_data->is_paid;
+                $data['user_payment_verified']            = $user_participant_data->is_paid;
                 $data['user_email']                     = $this->session->userdata('user_email');
                 
                 $cfk_data = $this->cfk_participants_model->get_details($this->session->userdata('user_id'));
                 $data['user_institution_name']      = $cfk_data->institution_name;
-                $data['user_fullname']      = $cfk_data->fullname;
-                $data['user_fullname_parent']     = $cfk_data->fullname_parent;
-                $data['user_age'] = $cfk_data->age;
-                $data['user_phone']       = $cfk_data->phone;
-                $data['user_competition']      = $cfk_data->competition;
-                $data['user_is_tk']      = $cfk_data->competition;
+                $data['user_fullname']              = $cfk_data->fullname;
+                $data['user_fullname_parent']       = $cfk_data->fullname_parent;
+                $data['user_age']                   = $cfk_data->age;
+                $data['user_phone']                 = $cfk_data->phone;
+                $data['user_competition']           = $cfk_data->competition;
+                $data['user_is_tk']                 = $cfk_data->type;
             }
             
             else
@@ -1146,33 +1146,6 @@ class Accounts extends CI_Controller {
                     }
                 }
 
-                //Check File Berkas Upload
-                if(isset($_FILES['file_berkas']))
-                {
-                    $config['allowed_types']        = 'zip';
-                    $config['file_name']            = 'berkas.zip';
-                    $this->upload->initialize($config);
-
-                    if ( ! $this->upload->do_upload('file_berkas'))
-                    {
-                            $error = array('error' => $this->upload->display_errors());
-                            $error_data = $error['error'];
-                            $this->session->set_flashdata('upload_failed', $error_data);
-
-                            redirect('akun/dashboard/cfk');
-                    }
-                    else
-                    {
-                            //Write to db
-                            $this->db->where('account_id', $this->session->userdata('user_id'));
-                            $this->db->select('cfk_participants');
-                            $data = array('abstract_link' => $link . "/berkas.zip");
-                            $this->db->update('cfk_participants', $data)->result;
-                            $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
-                            redirect('akun/dashboard/cfk');
-                    }
-                }
-
                 //Check File Bukti Trf Upload
                 if(isset($_FILES['file_bukti']))
                 {
@@ -1194,7 +1167,7 @@ class Accounts extends CI_Controller {
                             //Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cfk_participants');
-                            $data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+                            $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
                             $this->db->update('cfk_participants', $data)->result;
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cfk');

@@ -35,11 +35,33 @@
 
                     <?php if ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
-                        <p>Peserta diharap membayar biaya administrasi <p style="color:blue">Rp.150,000.00</p> ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
+                        <p>Peserta diharap membayar biaya administrasi 
+                        <p style="color:blue">
+                            <?php 
+                                switch($user_competition)
+                                    {
+                                        case 1:
+                                        {
+                                            echo 'Rp. 20.000';
+                                        }break;
+
+                                        case 2:
+                                        {
+                                            echo 'Rp. 40.000';
+                                        }break;
+
+                                        case 3:
+                                        {
+                                            echo 'Rp. 50.000';
+                                        }break;
+                                    }
+                             ?>
+                        </p> 
+                        ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
                         <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cc/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cfk/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -64,7 +86,7 @@
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cc/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cfk/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -89,7 +111,7 @@
                         <p>Anda bisa mengupdate bukti pembayaran Anda jika perlu : </p>
                         <p>
 
-                        <?php echo form_open_multipart('akun/dashboard/cmm,/upload'); ?>
+                        <?php echo form_open_multipart('akun/dashboard/cfk/upload'); ?>
                         <?php
 
                         // Upload Bukti Trf
@@ -107,6 +129,10 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
+                    <?php elseif ($user_payment_verified == 1) : ?>
+                        <p>Status : <span style="color:blue">Konfirmasi Pembayaran Berhasil!</span></p>
+                        <p>Tim kami sudah memeriksa bukti pembayaran yang sudah Anda upload. Mohon menunggu akan konfirmasi
+                         dari pihak kami. Terima kasih.</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -120,7 +146,7 @@
                     <p><div><strong>Nama Orang Tua</strong></div><?php echo $user_fullname_parent ?></p>
                     <p><div><strong>Umur</strong></div><?php echo $user_age ?></p>
                     <p><div><strong>Lomba yang diikuti</strong></div><?php if (($user_competition & 1) == 1) echo 'Mewarnai, '; if (($user_competition & 2) == 2) echo 'Menghias Kue'; ?></p>
-                    <p><div><strong>Tingkat Lomba</strong></div><?php echo $user_is_tk ? 'TK' : 'SD' ?></p>
+                    <p><div><strong>Tingkat Lomba</strong></div><?php echo $user_is_tk?></p>
                     <p><div><strong>Nomor Telepon</strong></div><?php echo $user_phone ?></p>
                     <a href="<?php echo site_url() ?>daftar/cfk/edit">Ubah</a>
                 </div>

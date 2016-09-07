@@ -33,8 +33,9 @@ $(document).ready( function () {
 	        			<td>Account Id</td>
 	        			<td>Type</td>
 	        			<td>Full Name</td>
+	        			<td>Nama Pendamping</td>
 	        			<td>Nama Institusi</td>
-	        			<td>Photo</td>
+	        			<td>Lomba Diikuti</td>
 	        			<td>Bukti Transfer</td>
 	        			<td>Waktu Pendaftaran</td>
 	        			<td>Action</td>
@@ -47,11 +48,43 @@ $(document).ready( function () {
 	        				<td><?php echo $row->account_id; ?></td>
 	        				<td><?php echo $row->type; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
+	        				<td><?php echo $row->fullname_parent; ?></td>
 	        				<td><?php echo $row->institution_name; ?></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/photo/<?php echo $row->photo_link ?>"></td>
-	        				<td><img src="<?php echo base_url() ?>uploads/cip/transfer/<?php echo $row->payment_proof_link ?>"></td>
+	        				<td>
+	        					<?php
+	        						switch($row->competition)
+	        						{
+	        							case 1:
+	        							{
+	        								echo 'Drawing';
+	        							}break;
+
+	        							case 2:
+	        							{
+	        								echo 'Menghias Kue';
+	        							}break;
+
+	        							case 3:
+	        							{
+	        								echo 'Drawing and Menghias Kue';
+	        							}break;
+	        						}
+	        					?>
+	        				</td>
+	        				<td>
+	        					<?php if($row->payment_proof_link != NULL): ?>
+		        					<a href="<?php echo base_url() . $row->payment_proof_link ?>">
+		        						<img src="<?php echo base_url() . $row->payment_proof_link ?>" width="50px">
+		        					</a>
+		        				<?php else: ?>
+		        					Belum Membayar
+		        				<?php endif; ?>
+	        				</td>
 	        				<td><?php echo dateReverse($row->time_registered); ?></td>
-	        				<td><a href="<?php echo base_url('admin/konfirmasi_pembayaran/cip/'.$row->account_id) ?>">Conf Pembayaran</a></td>
+	        				<td>
+		        				<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cfk/'.$row->account_id) ?>">Conf Pembayaran</a>
+		        				<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cfk/'.$row->account_id.'/invalid') ?>">Pembayaran Gagal</a>
+		        			</td>
 	        			</tr>
 	        		<?php } ?>
 	        		</tbody>

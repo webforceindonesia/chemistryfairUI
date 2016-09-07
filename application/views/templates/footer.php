@@ -33,22 +33,23 @@
     </div>
     </div>
 </section>
-<section id="footerAll">
-<div class="container-fluid">
+<section id="footerPartner">
+<div class="container">
     <div class="row">
-        <div class="col-md-4 footerPar footer-quote-container">
-            <h2>Website and Systems Build By</h2>
+        <div class="col-md-3 footerPar footer-quote-container">
+            <h3>Website and Systems Build By</h3>
             <p>
                 ByteForce - Web Solutions
             </p>
         </div>
         <div class="col-md-2">
-            <img class="logo-hmd-footer" src="<?php echo base_url() ?>/images/byteforce.png" style="margin-left:-10%; max-width:200px;">
+            <p align="left">
+                <img src="<?php echo base_url() ?>/images/byteforce.png" style="margin-left:0; margin-top:-0.5em; max-height:100px;">
+            </p>
         </div>
-        <div class="col-md-6 footerPar footer-contact-container">
+        <div class="col-md-7 footerPar footer-contact-container">
         <div class="col-md-6">
-        <br><br>
-            <div><h3 align="left">Our Partners</h3></div>
+            <div style="margin-top:-1em;"><h3 align="left">Our Partners</h3></div>
             <!-- Logo Partners -->
         </div>     
         <div class="col-md-6"> 

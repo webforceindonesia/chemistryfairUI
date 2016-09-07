@@ -75,19 +75,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php if (isset($_SESSION['user_id'])) : ?>
                 <?php if (in_array('seminar', $_SESSION['user_participations'])) : ?>
                     <div class="alert alert-success col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'profile'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
+                        <a href="<?php echo site_url() . 'akun/dashboard/cfk'; ?>" class="btn btn-primary btn-lg" role="button">Halaman Peserta</a>
                     </div>
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/cfk'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
                     </div>
                     <span>Silahkan registrasi diri anda untuk acara ini.</span>
                 <?php endif; ?>
             <?php else : ?>
                 <div class="alert alert-warning col-md-12" role="alert">
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
+                    <a href="<?php echo site_url() . 'akun/register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
+                    <a href="<?php echo site_url() . 'akun/login'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
                     <span>Sebelum anda bisa mendaftar untuk acara ini, anda harus memiliki akun Chemistry Fair 2016</span>
                 </div>
             <?php endif; ?>

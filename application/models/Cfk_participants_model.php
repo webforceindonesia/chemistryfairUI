@@ -47,13 +47,14 @@ class Cfk_participants_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $institution_name, $fullname, $fullname_parent, $age, $phone, $competition)
+    public function register_participant($account_id, $institution_name, $fullname, $fullname_parent, $age, $phone, $competition, $type)
     {
         // Create the query builder 
         $this->db->insert('cfk_participants', array(
             'account_id'            =>  $account_id,
+            'type'                  => $type,
             'fullname'              =>  $fullname,
-            'fullname_parent'              =>  $fullname_parent,
+            'fullname_parent'       =>  $fullname_parent,
             'phone'                 =>  $phone,
             'institution_name'      =>  $institution_name,
             'age'                   =>  $age,

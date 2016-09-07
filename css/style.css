@@ -24,6 +24,7 @@ body
 	left:0;
 	width:100%;
 	height:inherit;
+	background-attachment: fixed;
 }
 
 #navBar
@@ -488,6 +489,37 @@ body
 	-webkit-box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
 	-moz-box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
 	box-shadow: 0px -5px 13px 1px rgba(0,0,0,0.6);
+}
+
+#footerPartner
+{
+	width:100%;
+	position: relative;
+	bottom:0;
+	height: 100px;
+	background:#202020;
+	padding-bottom: 3em;
+}
+
+#footerPartner h3
+{
+	font-size :18px;
+}
+
+#footerPartner p
+{
+	font-size :18px;
+}
+
+#footerPartner .footer-par
+{
+	margin-top: 0;
+	padding-left:2em;
+}
+
+#footerPartner .footer-quote-container
+{
+	padding-top:0;
 }
 
 .footer-par

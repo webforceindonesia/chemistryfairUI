@@ -1358,7 +1358,6 @@ class Daftar extends CI_Controller
            exit();
         }
 
-
         if($param1 == 'edit')
         {  
            $this->form_validation->set_rules(  
@@ -1401,10 +1400,10 @@ class Daftar extends CI_Controller
                 $data['mode']                       = 'edit';
                 $data['user_institution_name']      = $cfk_data->institution_name;
                 $data['user_fullname']              = $cfk_data->fullname;
-                $data['user_fullname_parent']             = $cfk_data->fullname_parent;
+                $data['user_fullname_parent']       = $cfk_data->fullname_parent;
                 $data['user_competition']           = $cfk_data->competition;
-                $data['user_age']         = $cfk_data->age;
-                $data['user_phone']           = $cfk_data->phone;
+                $data['user_age']                   = $cfk_data->age;
+                $data['user_phone']                 = $cfk_data->phone;
 
                 // If the form is validated
                 if ($this->form_validation->run() === TRUE)
