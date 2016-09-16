@@ -634,7 +634,7 @@ class Accounts extends CI_Controller {
                             //Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cip_participants');
-                            $data = array('makalah_link' => $link . "/berkas.zip");
+                            $data = array('makalah_link' => $link . "/berkas_makalah.zip");
                             $this->db->update('cip_participants', $data)->result;
                             $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
                             redirect('akun/dashboard/cip');
@@ -1119,7 +1119,7 @@ class Accounts extends CI_Controller {
                 $data['user_age']                   = $cfk_data->age;
                 $data['user_phone']                 = $cfk_data->phone;
                 $data['user_competition']           = $cfk_data->competition;
-                $data['user_is_tk']                 = $cfk_data->type;
+                $data['user_is_tk']                 = ($cfk_data->is_tk == 1)? 'TK' : 'SD';
             }
             
             else
@@ -1165,10 +1165,10 @@ class Accounts extends CI_Controller {
                     else
                     {
                             //Write to db
-                            $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cfk_participants');
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
                             $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
-                            $this->db->update('cfk_participants', $data)->result;
+                            $this->db->update('cfk_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cfk');
                     }

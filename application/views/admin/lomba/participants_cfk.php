@@ -46,7 +46,7 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
-	        				<td><?php echo $row->type; ?></td>
+	        				<td><?php echo ($row->is_tk == 1)? 'TK' : 'SD'; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
 	        				<td><?php echo $row->fullname_parent; ?></td>
 	        				<td><?php echo $row->institution_name; ?></td>

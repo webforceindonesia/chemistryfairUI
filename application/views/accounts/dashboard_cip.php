@@ -70,10 +70,8 @@
                         </p>
                     <?php elseif ($user_submitted_payment_proof == NULL) : ?>
                         <p>Status : <span style="color:red">Menunggu Upload Bukti Pembayaran</span></p>
-                        <p>Selamat! Anda telah lolos dalam tahap seleksi abstrak. Untuk melanjutkan ke tahap berikutnya, mohon
-                         membayar biaya pendaftaran dengan invoice yang bisa anda download di link dibawah ini.</p>
-                        <!-- <p>WIP Link downlod pdf JO HALP</p> -->
-                        <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini : </p>
+                        <p>Selamat! Anda telah lolos tahap seleksi abstrak. Untuk melanjutkan ke tahap berikutnya, mohon untuk melakukan pembayaran biaya registrasi sebesar Rp 120.000 untuk peserta CIP tingkat Siswa dan Rp 130.000 untuk peserta CIP tingkat Mahasiswa ke Nomor Rekening BRI 0951-01-043292-532 a/n Fiona Angellinnov</p>
+                        <p>Setelah membayar, mohon screenshot atau foto bukti pembayaran anda dan menguploadnya di tempat di bawah ini:</p>
                         <p>
 
                         <?php echo form_open_multipart('akun/dashboard/cip/upload'); ?>

@@ -13,11 +13,11 @@ class admin_model extends CI_Model {
 	{
 		if($limit == '')
 		{
-			return $this->db->get($lomba.'_participants', 30)->result();
+			return $this->db->get($lomba.'_participants')->result();
 		}else
 		{
 			$this->db->where("id >", $limit);
-			return $this->db->get($lomba.'_participants', 30)->result();
+			return $this->db->get($lomba.'_participants')->result();
 		}
 	}
 
