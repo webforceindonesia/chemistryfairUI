@@ -561,7 +561,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
 	                		$data = array('abstract_link' => $link . "/berkas.zip");
-	                		$this->db->update('cip_participants', $data)->result;
+	                		$this->db->update('cip_participants', $data);
 	                        $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
 	                        redirect('akun/dashboard/cip');
 	                }
@@ -590,7 +590,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
 	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
-	                		$this->db->update('cip_participants', $data)->result;
+	                		$this->db->update('cip_participants', $data);
 	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
 	                        redirect('akun/dashboard/cip');
 	                }
@@ -635,7 +635,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cip_participants');
                             $data = array('makalah_link' => $link . "/berkas_makalah.zip");
-                            $this->db->update('cip_participants', $data)->result;
+                            $this->db->update('cip_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload File Berkas Sukses!');
                             redirect('akun/dashboard/cip');
                     }
@@ -651,7 +651,7 @@ class Accounts extends CI_Controller {
                    //Change
                    $this->db->where('account_id', $this->session->userdata('user_id'));
                    $this->db->select('cip_participants');
-                   $this->db->update('cip_participants', array('abstract_passed' => 3))->result;
+                   $this->db->update('cip_participants', array('abstract_passed' => 3));
                    redirect('akun/dashboard/cip');
                 }else
                 {
@@ -741,7 +741,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cp_participants');
                             $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
-                            $this->db->update('cp_participants', $data)->result;
+                            $this->db->update('cp_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cp');
                     }
@@ -907,7 +907,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cmp_participants');
                             $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
-                            $this->db->update('cmp_participants', $data)->result;
+                            $this->db->update('cmp_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cmp');
                     }
@@ -983,7 +983,7 @@ class Accounts extends CI_Controller {
                                 'poster_link'      => $link . "/bukti_trf.jpg",
                                 'synopsys_link'    => $synopsys
                                 );
-                            $this->db->update('cmp_participants', $data)->result;
+                            $this->db->update('cmp_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload Berkas Sukses!');
                             redirect('akun/dashboard/cmp');
                     }
@@ -1075,7 +1075,7 @@ class Accounts extends CI_Controller {
                             $this->db->where('account_id', $this->session->userdata('user_id'));
                             $this->db->select('cc_participants');
                             $data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
-                            $this->db->update('cc_participants', $data)->result;
+                            $this->db->update('cc_participants', $data);
                             $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
                             redirect('akun/dashboard/cc');
                     }
@@ -1092,7 +1092,7 @@ class Accounts extends CI_Controller {
                    //Change
                    $this->db->where('account_id', $this->session->userdata('user_id'));
                    $this->db->select('cc_participants');
-                   $this->db->update('cc_participants', array('abstract_passed' => 3))->result;
+                   $this->db->update('cc_participants', array('abstract_passed' => 3));
                    redirect('akun/dashboard/cc');
                 }else
                 {
@@ -1324,7 +1324,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('identity_member1_link' => $link . "/identity_member1_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }
@@ -1350,7 +1350,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('identity_member2_link' => $link . "/identity_member2_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }
@@ -1376,7 +1376,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('identity_member3_link' => $link . "/identity_member3_link");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }
@@ -1402,7 +1402,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('passphoto_link1' => $link . "/passphoto_link1");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }
@@ -1428,7 +1428,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('passphoto_link2' => $link . "/passphoto_link2");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }
@@ -1454,7 +1454,7 @@ class Accounts extends CI_Controller {
                                 $this->db->where('account_id', $this->session->userdata('user_id'));
                                 $this->db->select('cip_participants');
                                 $data = array('passphoto_link3' => $link . "/passphoto_link3");
-                                $this->db->update('cip_participants', $data)->result;
+                                $this->db->update('cip_participants', $data);
                                 $flag++;
                         }
                     }

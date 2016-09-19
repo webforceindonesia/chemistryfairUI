@@ -33,7 +33,7 @@
                         <div class="btn-group-vertical" role="group" aria-label="...">
                             <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cc'; ?>">Chemistry Competition</a>
                             <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cip'; ?>">Chemistry Innovation Project</a>
-                            <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cp'; ?>">Chemistry Photography Competition</a>
+                            <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cp'; ?>">Chemistry Photograph</a>
                             <a class="btn btn-default" href="<?php echo site_url() . 'akun/dashboard/cmp'; ?>">Chemistry Movie Project</a>
                         </div>
                     </div>

@@ -142,7 +142,7 @@ class Daftar extends CI_Controller
                 {
                     $config['upload_path']          = 'uploads/cip/' . $this->session->user_id;
                     $config['allowed_types']        = 'jpg';
-                    $config['max_size']             = 5000;
+                    $config['max_size']             = 1000;
                     $config['overwrite']            = TRUE;
 
                     $this->load->library('upload', $config);
@@ -385,7 +385,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cip/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -606,7 +606,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cp/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -720,7 +720,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cp/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -881,7 +881,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cmp/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -997,7 +997,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cmp/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -1132,7 +1132,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cc/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);
@@ -1250,7 +1250,7 @@ class Daftar extends CI_Controller
                     {
                         $config['upload_path']          = 'uploads/cc/' . $this->session->user_id;
                         $config['allowed_types']        = 'jpg';
-                        $config['max_size']             = 5000;
+                        $config['max_size']             = 1000;
                         $config['overwrite']            = TRUE;
 
                         $this->load->library('upload', $config);

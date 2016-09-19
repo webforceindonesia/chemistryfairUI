@@ -23,6 +23,22 @@
                             <?php echo $this->session->flashdata('make_failed'); ?>
                         </div>
                     <?php endif; ?>
+            <?php 
+
+                $flag = 0;
+                
+                if($user_submitted_abstract != NULL)
+                {
+                    $flag = 1;
+                }
+
+                if($user_passed_abstract == 1)
+                {
+                    $flag = 1;
+                }
+            
+            ?>
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Status Peserta</h3>
@@ -35,7 +51,7 @@
                     <?php if ($user_details_complete == FALSE) : ?>
                         <p>Status : <span style="color:red">Data gambar anda belum lengkap!</span></p>
                         <p>Mohon melengkapi dan mengupload semua gambar-gambar yang dibutuhkan di bawah ini.</p>
-                    <?php elseif ($user_submitted_abstract == NULL) : ?>
+                    <?php elseif ($flag == 0): ?>
                         <p>Status : <span style="color:red">Menunggu Upload Abstrak</span></p>
                         <p>Mohon mengupload karya abstrak anda di tempat di bawah ini. Anda hanya bisa mengupload abstrak satu kali saja, jadi mohon
                            upload hanya revisi terakhir dari abstrak anda. Mohon file yang di cantumkan berbentuk zip.</p>
