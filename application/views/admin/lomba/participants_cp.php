@@ -16,9 +16,7 @@ function dateReverse ($date)
 <script>
 
 $(document).ready( function () {
-    $('#participants').DataTable({
-      responsive:true
-    });
+    $('#participants').DataTable();
 } );
 
 </script>

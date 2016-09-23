@@ -16,9 +16,7 @@ function dateReverse ($date)
 <script>
 
 $(document).ready( function () {
-    $('#participants').DataTable({
-      responsive:true
-    });
+    $('#participants').DataTable();
 } );
 
 </script>
@@ -40,6 +38,8 @@ $(document).ready( function () {
 	        			<td>Email</td>
 	        			<td>Photo KTP</td>
 	        			<td>Bukti Transfer</td>
+	        			<td>Poster Film</td>
+	        			<td>Synopsis Film</td>
 	        			<td>Link Karya</td>
 	        			<td>Sudah Membayar</td>
 	        			<td>Waktu Pendaftaran</td>
@@ -66,6 +66,20 @@ $(document).ready( function () {
 	        				<?php if($row->payment_proof_link != NULL): ?>
 	        					<a href="<?php echo base_url() . $row->payment_proof_link ?>">
 	        						<img src="<?php echo base_url() . $row->payment_proof_link ?>" style="width:75px">
+	        					</a>
+	        				<?php endif; ?>
+	        				</td>
+	        				<td>
+	        				<?php if($row->poster_link != NULL): ?>
+	        					<a href="<?php echo base_url() . $row->poster_link ?>">
+	        						Download
+	        					</a>
+	        				<?php endif; ?>
+	        				</td>
+	        				<td>
+	        				<?php if($row->synopsys_link != NULL): ?>
+	        					<a href="<?php echo base_url() . $row->synopsys_link ?>">
+	        						Download
 	        					</a>
 	        				<?php endif; ?>
 	        				</td>

@@ -249,5 +249,55 @@ HHH;
 			return false;
 		}
 	}
+
+	public function uploadedBerkasCmp ()
+	{
+		$user_id = $this->session->userdata('user_id');
+
+		$user_data = $this->db->get_where('accounts', array('id' => $user_id))->row();
+
+		$subject  = "Informasi Transportasi dan Penginapan Peserta";
+
+		$headers  = "From: noreply@chemistryfair-ui.com \r\n";
+		$headers .= "Reply-To: chemistryfair2016@gmail.com \r\n";
+		$headers .= "MIME-Version: 1.0\r\n";
+		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+		$message  = <<<EOD
+					
+					<html>		
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+					<!-- Optional theme -->
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+					<body>
+						<div class="container">
+							<div class="row">
+								<div class="col-12-md">
+									<h1>Film Poster and Synopsis Uploaded</h1>
+									<p>
+										Peserta dengan nama :<br>
+										{$user_data->fullname}<br>
+										Dengan Nomor Akun :<br>
+										{$user_data->id}<br>
+										Telah Mengupload Synopsis dan Poster.
+									</p>
+								</div>
+							</div>
+						</div>
+					</body>
+					</html>
+EOD;
+
+		if(mail("zonecaptain@gmail.com", $subject, $message, $headers))
+		{
+			return true;
+		}else
+		{
+			return false;
+		}
+
+	}
 }
 ?>

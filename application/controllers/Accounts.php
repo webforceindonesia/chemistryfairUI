@@ -960,7 +960,7 @@ class Accounts extends CI_Controller {
                     else
                     {
                             //Write to db
-                            $synopsys = $link . "/bukti_trf.jpg";
+                            $synopsys = $link . "/synopsys.pdf";
                     }
 
                     $config['allowed_types']        = 'jpg';
@@ -977,15 +977,24 @@ class Accounts extends CI_Controller {
                     else
                     {
                             //Write to db
-                            $this->db->where('account_id', $this->session->userdata('user_id'));
-                            $this->db->select('cmp_participants');
                             $data = array(
-                                'poster_link'      => $link . "/bukti_trf.jpg",
+                                'poster_link'      => $link . "/poster.jpg",
                                 'synopsys_link'    => $synopsys
                                 );
-                            $this->db->update('cmp_participants', $data);
-                            $this->session->set_flashdata('upload', 'Upload Berkas Sukses!');
-                            redirect('akun/dashboard/cmp');
+                    }
+
+                    //Send email to client
+                    if($synopsys != NULL && $data['poster_link'] !== NULL)
+                    {
+                        $this->load->model('email_model');
+                        $this->email_model->uploadedBerkasCmp();
+
+                        $this->db->where('account_id', $this->session->userdata('user_id'));
+                        $this->db->select('cmp_participants');
+                        $this->db->update('cmp_participants', $data);
+                        $this->session->set_flashdata('upload', 'Upload Berkas Sukses!');
+                        
+                        redirect('akun/dashboard/cmp');
                     }
                 }
             }
