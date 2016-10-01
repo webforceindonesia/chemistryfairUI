@@ -54,14 +54,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span>Anda telah terdaftar dalam acara ini. Silahkan kunjungi halaman peserta anda untuk informasi lebih lanjut.</span>
                 <?php else : ?>
                     <div class="alert alert-info col-md-12" role="alert">
-                        <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
+                        <a href="<?php echo site_url() . 'daftar/seminar'; ?>" class="btn btn-primary btn-lg" role="button">Registrasi Online</a>
                     </div>
                     <span>Silahkan registrasi diri anda untuk acara ini.</span>
                 <?php endif; ?>
             <?php else : ?>
                 <div class="alert alert-warning col-md-12" role="alert">
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
-                    <a href="<?php echo site_url() . 'register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
+                    <a href="<?php echo site_url() . 'akun/register'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Register</a>
+                    <a href="<?php echo site_url() . 'akun/login'; ?>" class="btn btn-primary btn-lg alert-btn" role="button">Login</a>
                     <span>Sebelum anda bisa mendaftar untuk acara ini, anda harus memiliki akun Chemistry Fair 2016</span>
                 </div>
             <?php endif; ?>

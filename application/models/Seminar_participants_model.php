@@ -19,7 +19,7 @@ time_registered	    datetime
 				
 */
 
-class Seminar_participant_model extends CI_Model
+class Seminar_participants_model extends CI_Model
 {
     // Constructor
     public function __construct()
@@ -36,8 +36,8 @@ class Seminar_participant_model extends CI_Model
      */
     public function get_details($account_id)
     {
-        $this->db->select('type, fullname, institution_name, passphoto_link, payment_proof_link, is_paid, time_registered');
-        $this->db->where('id', $account_id);
+        $this->db->select('*');
+        $this->db->where('account_id', $account_id);
         $this->db->limit(1);
         return $this->db->get('seminar_participants')->row();
     }
@@ -51,14 +51,20 @@ class Seminar_participant_model extends CI_Model
      *  @return bool True on success, false otherwise
      *  @author FURIBAITO
      */
-    public function register_participant($account_id, $participant_type, $fullname, $institution_name)
+    public function register_participant($account_id, $participant_type, $fullname, $gender, $identity_type, $identity_number, $birth, $address, $facebook, $twitter)
     {
         // Create the query builder 
         $this->db->insert('seminar_participants', array(
             'account_id'        =>  $account_id,
             'type'              =>  $participant_type,
             'fullname'          =>  $fullname,
-            'institution_name'  =>  $institution_name,
+            'gender'  			=>  $gender,
+			'identity_type' 	=>  $identity_type,
+			'identity_number'  	=>  $identity_number,
+			'birth'  			=>  $birth,
+			'address'  			=>  $address,
+			'facebook'  		=>  $facebook,
+			'twitter'  			=>  $twitter,
             'time_registered'   =>  date('Y-m-d H:i:s')
         ));
     }
@@ -73,10 +79,10 @@ class Seminar_participant_model extends CI_Model
      */
     public function change_details($account_id, $field_name, $value)
     {
-        $allowed_field = array('type', 'fullname', 'institution_name', 'passphoto_link', 'payment_proof_link');
+        $allowed_field = array('type', 'fullname', 'twitter', 'identity_type', 'identity_number', 'birth', 'address', 'facebook', 'twitter', 'identity_link', 'passphoto_link', 'payment_proof_link');
         if (in_array($field_name, $allowed_field, true))
         {
-            $this->db->where('id', $account_id);
+            $this->db->where('account_id', $account_id);
             $this->db->limit(1);
             $this->db->update('seminar_participants', array($field_name => $value));
             return true;

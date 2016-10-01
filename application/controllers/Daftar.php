@@ -1506,4 +1506,311 @@ class Daftar extends CI_Controller
 
         $this->load->view('templates/footer.php');
     } 
+
+	public function seminar ($param1 = '')
+    {
+        $data['title'] = titlecase('Daftar Seminar Nasional');
+
+        $this->load->view('templates/header.php', $data);
+
+        //Check if already Registered
+        $this->load->model('seminar_participants_model');
+        if (array_key_exists('seminar', $this->session->userdata('user_participations')) && $param1 == '')
+        {
+            redirect('akun/dashboard/seminar');
+            exit();
+        }
+
+        if($param1 == 'edit')
+        {  
+           		$this->form_validation->set_rules(  
+                    'gender', 'Jenis Kelamin', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'identity_type', 'Tipe Identitas', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'identity_number', 'No. Identitas', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'birth', 'Tempat/Tanggal Lahir', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'address', 'Alamat', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $seminar_data = $this->seminar_participants_model->get_details($this->session->userdata('user_id'));
+                $data['mode']                       = 'edit';
+				$data['user_type'] 					= $seminar_data->type;
+				$data['user_gender'] 				= $seminar_data->gender;
+				$data['user_fullname'] 				= $seminar_data->fullname;
+				$data['user_identity_type'] 		= $seminar_data->identity_type;
+				$data['user_identity_number'] 		= $seminar_data->identity_number;
+				$data['user_identity_link'] 		= $seminar_data->identity_link;
+				$data['user_passphoto_link'] 		= $seminar_data->passphoto_link;
+				$data['user_birth'] 				= $seminar_data->birth;
+				$data['user_address'] 				= $seminar_data->address;
+				$data['user_facebook'] 				= $seminar_data->facebook;
+				$data['user_twitter'] 				= $seminar_data->twitter;
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+                    // Register the user to the DB
+                    $this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'type', $this->input->post('type'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'fullname', $this->input->post('fullname'));
+                    $this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'gender', $this->input->post('gender'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'identity_type', $this->input->post('identity_type'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'identity_number', $this->input->post('identity_number'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'birth', $this->input->post('birth'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'address', $this->input->post('address'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'facebook', $this->input->post('facebook'));
+					$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'twitter', $this->input->post('twitter'));
+					
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+					// Do the file uploading if found
+					if (!empty($_FILES))
+					{
+						$config['upload_path']          = 'uploads/seminar/' . $this->session->user_id;
+						$config['allowed_types']        = 'jpg';
+						$config['max_size']             = 1000;
+						$config['overwrite']            = TRUE;
+
+						$this->load->library('upload', $config);
+
+						$link = "uploads/seminar/" . $this->session->user_id;
+
+						if (!file_exists ($link))
+						{
+							if(!mkdir($link, 0777, TRUE))
+							{
+								$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+							}
+						}
+
+						$error = array();
+
+						if(is_uploaded_file($_FILES['identity_link']['tmp_name']))
+						{
+							$config['file_name']            = 'identity_link.jpg';
+							$this->upload->initialize($config);
+
+							if (!$this->upload->do_upload('identity_link'))
+							{
+								array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+							}
+							else
+							{
+								$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'identity_link', $link . '/identity_link' . '.jpg');
+							}
+						}
+
+						if(is_uploaded_file($_FILES['passphoto_link']['tmp_name']))
+						{
+							$config['file_name']            = 'passphoto_link.jpg';
+							$this->upload->initialize($config);
+
+							if (!$this->upload->do_upload('passphoto_link'))
+							{
+								array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+							}
+							else
+							{
+								$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'passphoto_link', $link . '/passphoto_link' . '.jpg');
+							}
+						}
+					}
+						
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/seminar');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_seminar.php', $data);
+                } 
+        }else
+        {
+            	$this->form_validation->set_rules(  
+                    'gender', 'Jenis Kelamin', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'fullname', 'Nama Lengkap', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'identity_type', 'Tipe Identitas', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'identity_number', 'No. Identitas', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'birth', 'Tempat/Tanggal Lahir', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+
+				$this->form_validation->set_rules(  
+                    'address', 'Alamat', 
+                    'required', 
+                    array(
+                        'required'      => 'Form ini harus diisi!',
+                    )
+                );
+                
+                $data['mode']                       = '';
+				$data['user_type'] 					= '';
+				$data['user_gender'] 				= '';
+				$data['user_fullname'] 				= '';
+				$data['user_identity_type'] 		= '';
+				$data['user_identity_number'] 		= '';
+				$data['user_identity_link'] 		= '';
+				$data['user_passphoto_link'] 		= '';
+				$data['user_birth'] 				= '';
+				$data['user_address'] 				= '';
+				$data['user_facebook'] 				= '';
+				$data['user_twitter'] 				= '';
+
+                // If the form is validated
+                if ($this->form_validation->run() === TRUE)
+                {
+
+                    // Register the user to the DB
+                    $this->seminar_participants_model->register_participant(
+						$this->session->userdata('user_id'),
+                        $this->input->post('type'),
+						$this->input->post('fullname'),
+						$this->input->post('gender'),
+						$this->input->post('identity_type'),
+						$this->input->post('identity_number'),
+						$this->input->post('birth'),
+						$this->input->post('address'),
+						$this->input->post('facebook'),
+						$this->input->post('twitter')
+                    );
+
+                    $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
+
+					// Do the file uploading if found
+					if (!empty($_FILES))
+					{
+						$config['upload_path']          = 'uploads/seminar/' . $this->session->user_id;
+						$config['allowed_types']        = 'jpg';
+						$config['max_size']             = 1000;
+						$config['overwrite']            = TRUE;
+
+						$this->load->library('upload', $config);
+
+						$link = "uploads/seminar/" . $this->session->user_id;
+
+						if (!file_exists ($link))
+						{
+							if(!mkdir($link, 0777, TRUE))
+							{
+								$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+							}
+						}
+
+						$error = array();
+
+						if(is_uploaded_file($_FILES['identity_link']['tmp_name']))
+						{
+							$config['file_name']            = 'identity_link.jpg';
+							$this->upload->initialize($config);
+
+							if (!$this->upload->do_upload('identity_link'))
+							{
+								array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+							}
+							else
+							{
+								$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'identity_link', $link . '/identity_link' . '.jpg');
+							}
+						}
+
+						if(is_uploaded_file($_FILES['passphoto_link']['tmp_name']))
+						{
+							$config['file_name']            = 'passphoto_link.jpg';
+							$this->upload->initialize($config);
+
+							if (!$this->upload->do_upload('passphoto_link'))
+							{
+								array_push($error, $config['file_name']  . ' : '  . $this->upload->display_errors());
+							}
+							else
+							{
+								$this->seminar_participants_model->change_details($this->session->userdata('user_id'), 'passphoto_link', $link . '/passphoto_link' . '.jpg');
+							}
+						}
+					}
+
+                    // Redirect to the dashboard
+                    redirect('akun/dashboard/seminar');
+                }
+
+                // Else, show the form
+                else
+                {
+                    $this->load->view('accounts/form_seminar.php', $data);
+                }
+
+        }
+
+        $this->load->view('templates/footer.php');
+    } 
 }

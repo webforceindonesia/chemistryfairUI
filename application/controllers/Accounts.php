@@ -1184,6 +1184,98 @@ class Accounts extends CI_Controller {
                 }
             }
         }
+		else if ($action == 'seminar')
+        {
+            if (array_key_exists('seminar', $this->session->userdata('user_participations')))
+            {
+                $this->load->model('seminar_participants_model');
+                $user_participant_data = $this->seminar_participants_model->get_details($this->session->userdata('user_id'));
+                $user_data = $this->accounts_model->get_details($_SESSION['user_id']);
+
+        		$data['user_is_participant']			= TRUE;
+	        	$data['user_submitted_payment_proof']	= $user_participant_data->payment_proof_link != NULL ? TRUE : FALSE;
+	        	$data['user_payment_verified']			= $user_participant_data->is_paid;
+                $data['user_email']                     = $this->session->userdata('user_email');
+                
+                $seminar_data = $this->seminar_participants_model->get_details($this->session->userdata('user_id'));
+                $data['user_type']              	= $seminar_data->type;
+                $data['user_fullname']      		= $seminar_data->fullname;
+                $data['user_gender']      			= $seminar_data->gender;
+				$data['user_identity_type']      	= $seminar_data->identity_type;
+				$data['user_identity_number']      	= $seminar_data->identity_number;
+				$data['user_identity_link']      	= $seminar_data->identity_link;
+				$data['user_passphoto_link']      	= $seminar_data->passphoto_link;
+				$data['user_birth']      			= $seminar_data->birth;
+				$data['user_address']      			= $seminar_data->address;
+				$data['user_facebook'] 				= $seminar_data->facebook;
+				$data['user_twitter'] 				= $seminar_data->twitter;
+
+	        	if (empty($data['user_identity_link'])
+                || empty($data['user_passphoto_link']))
+	        	{
+	        		$data['user_details_complete'] = FALSE;
+	        	}
+                
+                else
+	        	{
+	        		$data['user_details_complete'] = TRUE;
+	        	}
+        	}
+            
+            else
+        	{
+        		$data['user_is_participant'] = FALSE;
+        	}
+
+            $this->load->view('accounts/dashboard_seminar.php', $data);
+            
+            if ($param == 'upload')
+            {
+            	$config['upload_path']          = 'uploads/seminar/' . $this->session->user_id;
+                $config['max_size']             = 5000;
+
+                $this->load->library('upload', $config);
+
+                $link = "uploads/seminar/" . $this->session->user_id;
+
+                if (!file_exists ($link))
+				{
+					if(!mkdir($link, 0777, TRUE))
+					{
+						$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+					}
+				}
+
+	            //Check File Bukti Trf Upload
+				if(isset($_FILES['file_bukti']))
+                {
+                	$config['allowed_types']        = 'jpg';
+                	$config['file_name']			= 'bukti_trf.jpg';
+                	$config['overwrite']			= TRUE;
+				    $this->upload->initialize($config);
+
+	                if ( ! $this->upload->do_upload('file_bukti') )
+	                {
+	                        $error = array('error' => $this->upload->display_errors());
+
+	                        $this->session->set_flashdata('upload_failed', $error);
+
+	                        redirect('akun/dashboard/seminar');
+	                }
+	                else
+	                {
+
+	                		//Write to db
+                            $this->db->where('account_id', $this->session->userdata('user_id'));
+	                		$this->db->select('seminar_participants');
+	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+	                		$this->db->update('seminar_participants', $data);
+	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
+	                        redirect('akun/dashboard/seminar');
+	                }
+	            }
+            }
+        }
         
         $this->load->view('templates/footer.php');
     }
