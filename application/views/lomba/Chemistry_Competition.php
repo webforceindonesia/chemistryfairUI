@@ -73,6 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="content-info-container col-md-12">
             <h2>Unduhan</h2>
             <a href="<?php echo base_url() . 'downloads/Guidebook CC CF 2016.pdf' ?>" download>Guidebook CC CF 2016</a><br>
+            <a href="<?php echo base_url() . 'downloads/Soal Latihan Chemistry Competition 2016.docx' ?>" download>Soal Latihan CC CF 2016</a><br>
         </div>
 
         <!-- Check if it's already in time for open registration -->

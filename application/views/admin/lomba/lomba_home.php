@@ -62,6 +62,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                <h1 class="content-title col-md-8">Chemistry Movie Project</h1>
 		            </a>
 		        </div>
+		        <div class="content-subdirectory-container col-md-12">
+		            <a href="<?php echo site_url('admin/lomba/seminar'); ?>"  class="content-title-container col-md-12">
+		                <div class="hexagon col-md-1">
+		                    <span>
+		                    Nov <p>12</p>
+		                    </span>
+		                </div>
+		                <h1 class="content-title col-md-8">Seminar Nasional</h1>
+		            </a>
+		        </div>
         	</div>
         </div>
   </div>

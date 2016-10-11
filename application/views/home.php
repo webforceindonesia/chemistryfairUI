@@ -88,19 +88,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php endif; ?>
                     <br/><br/>
 
-                    <?php if (new DateTime() > new DateTime(CF_CIP_OPEN_REGISTRATION)) : ?>
-                        <b>Penutupan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_CLOSE_REGISTRATION))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php elseif (new DateTime() > new DateTime(CF_CIP_CLOSE_REGISTRATION)) : ?>
-                        Pendaftaran <i>Chemistry Innovation Project</i> sudah ditutup!
-                    <?php else : ?>
-                        <b>Pembukaan</b> pendaftaran <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_OPEN_REGISTRATION))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php endif; ?>
-                    <br/><br/>
-
                     <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
                         <b>Penutupan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
                         <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_CLOSE_REGISTRATION))->days; ?></b>
@@ -110,6 +97,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php else : ?>
                         <b>Pembukaan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
                         <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_OPEN_REGISTRATION))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php endif; ?>
+                    <br/><br/>
+
+                    <?php if (new DateTime() > new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK)) : ?>
+                        <b>Batas Pengumpulan</b> MAKALAH <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK))->days; ?></b>
+                        &nbsp;hari lagi!
+                    <?php elseif (new DateTime() > new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK)) : ?>
+                        Pengumpulan MAKALAH <i>Chemistry Innovation Project</i> sudah DITUTUP!
+                    <?php else : ?>
+                        <b>Batas Pengumpulan</b> MAKALAH <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
+                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK))->days; ?></b>
                         &nbsp;hari lagi!
                     <?php endif; ?>
                     <br/><br/>

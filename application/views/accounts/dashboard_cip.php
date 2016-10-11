@@ -157,7 +157,7 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
-                    <?php elseif ($user_submitted_makalah == NULL) : ?>  
+                    <?php elseif ($user_submitted_makalah == NULL && new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK) < new DateTime()) : ?>  
                         </form>
                         <p>Status : <span style="color:red">Menunggu Upload Makalah</span></p>
                         <p>Mohon mengupload karya makalah anda di tempat di bawah ini. Anda hanya bisa mengupload makalah satu kali saja, jadi mohon
