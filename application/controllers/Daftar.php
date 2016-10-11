@@ -1114,15 +1114,15 @@ class Daftar extends CI_Controller
                 if ($this->form_validation->run() === TRUE)
                 {
                     // Register the user to the DB
-                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'fullname_ketua', $this->input->post('fullname_ketua'));
-                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'fullname_anggota', $this->input->post('fullname_anggota'));
+                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'fullname_member1', $this->input->post('fullname_ketua'));
+                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'fullname_member2', $this->input->post('fullname_anggota'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'institution_name', $this->input->post('institution_name'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'province_id', $this->input->post('province_id'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'address', $this->input->post('address'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'email', $this->input->post('email'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'phone', $this->input->post('phone'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'teacher_name', $this->input->post('teacher_name'));
-                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'teacher_phone', $this->input->post('teacher_phone'));
+                    $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'teacher_phone_number', $this->input->post('teacher_phone'));
                     $this->cc_participants_model->change_details($this->session->userdata('user_id'), 'teacher_email', $this->input->post('teacher_email'));
 
                     $this->session->set_userdata('user_participations', $this->accounts_model->get_account_participation($this->session->user_id));
