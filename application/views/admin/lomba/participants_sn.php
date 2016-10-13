@@ -67,6 +67,7 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>No.</td>
 	        			<td>Account Id</td>
+	        			<td>Phone</td>
 	        			<td>Fullname</td>
 	        			<td>Identity Type</td>
 	        			<td>Identity Number</td>
@@ -88,6 +89,7 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
+	        				<td><?php echo $row->phone_number; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
 	        				<td><?php echo $row->identity_type; ?></td>
 	        				<td><?php echo $row->identity_number; ?></td>

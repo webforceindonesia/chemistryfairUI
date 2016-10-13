@@ -31,6 +31,7 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>Id</td>
 	        			<td>Account Id</td>
+	        			<td>Phone</td>
 	        			<td>Type</td>
 	        			<td>Full Name</td>
 	        			<td>Nama Pendamping</td>
@@ -46,6 +47,7 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
+	        				<td><?php echo $row->phone_number; ?></td>
 	        				<td><?php echo ($row->is_tk == 1)? 'TK' : 'SD'; ?></td>
 	        				<td><?php echo $row->fullname; ?></td>
 	        				<td><?php echo $row->fullname_parent; ?></td>

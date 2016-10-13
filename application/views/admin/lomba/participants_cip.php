@@ -68,6 +68,7 @@ $(document).ready( function () {
 	        		<tr>
 	        			<td>No.</td>
 	        			<td>Account Id</td>
+	        			<td>Phone</td>
 	        			<td>Account Email</td>
 	        			<td>Type</td>
 	        			<td>Member 1</td>
@@ -97,6 +98,7 @@ $(document).ready( function () {
 	        			<tr>
 	        				<td><?php echo $row->id; ?></td>
 	        				<td><?php echo $row->account_id; ?></td>
+	        				<td><?php echo $row->phone_number; ?></td>
 	        				<td><?php echo $emails[$total] ?></td>
 	        				<td><?php echo $row->type; ?></td>
 	        				<td><?php echo $row->fullname_member1; ?></td>
