@@ -147,11 +147,52 @@ class Admin extends CI_Controller {
 			redirect('/admin/news');
 		}else
 		{
+
 			$this->load->model('cms_news_model');
 			$this->cms_news_model->write();
 
-			$this->session->set_flashdata('news', 'Membuat Berita Baru Sukses');
+			$id 	= $this->cms_news_model->get_id_latest();
+			$link 	= 'uploads/news/' . $id;
 
+			//Check File Berkas Upload
+            if(isset($_FILES['image']))
+            {
+            	$config['upload_path']          = 'uploads/news/' . $id;
+                $config['max_size']             = 5000;
+            	$config['allowed_types']        = 'jpg';
+            	$config['file_name']			= 'image.jpg';
+                $this->load->library('upload', $config);
+			    $this->upload->initialize($config);
+
+			    if (!file_exists ($link))
+				{
+					if(!mkdir($link, 0777, TRUE))
+					{
+						$this->session->set_flashdata('make_failed', 'Error Membuat Folder');
+					}
+				}
+
+                if ( ! $this->upload->do_upload('image'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    $error_data = $error['error'];
+                    $this->session->set_flashdata('upload_failed', $error_data);
+                    echo $error_data;
+                    exit;
+
+                    redirect('admin/news');
+                }
+                else
+                {
+            		$image = $link . "/image.jpg";
+                }
+            }
+
+            $this->db->set('image', $image);
+            $this->db->where('id', $id);
+            $this->db->update('cms_news');
+
+			$this->session->set_flashdata('success', 'Membuat Berita Baru Sukses!');
 			redirect('/admin/news');
 		}
 	}
@@ -610,6 +651,25 @@ class Admin extends CI_Controller {
 
 			
 		}
+	}
+
+	function verify_override ($account_id)
+	{
+		// Set the account to be activated/verified/validated in the database
+        $this->db->where('id', $account_id);
+        $this->db->limit(1);
+        $this->db->update('accounts', array('is_verified' => true, 'verification_code' => NULL));
+        $this->session->set_flashdata('success', 'Success in Verifikasi Akun Manual');
+        redirect('admin');
+	}
+
+	function delete_account($account_id)
+	{
+		$this->db->where('id', $account_id);
+        $this->db->limit(1);
+        $this->db->delete('accounts');
+        $this->session->set_flashdata('success', 'Success in Delete Akun');
+        redirect('admin');
 	}
 }
 

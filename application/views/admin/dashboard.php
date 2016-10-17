@@ -41,6 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <th>Pendaftaran Lomba</th>
                     <th>Akun Sudah Di Verifikasi</th>
                     <th>Waktu Pendaftaran</th>
+                    <th>Override Verifikasi</th>
+                    <th>Delete Akun</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,6 +62,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     ?>
                     </td>
                     <td><?php echo $account['time_created'] ?></td>
+                    <td><a href="<?php echo base_url(); ?>admin/verify_override/<?php echo $account['id']; ?>">Verifikasi Manual</a></td>
+                    <td><a href="<?php echo base_url(); ?>admin/delete_account/<?php echo $account['id']; ?>">Delete Akun</a></td>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -79,3 +83,8 @@ $(document).ready( function () {
 } );
 
 </script>
+<?php if($this->session->flashdata('success')): ?>
+  <script>
+    swal("Success!", "<?php echo $this->session->flashdata('success') ?>", "success");
+  </script>
+<?php endif; ?>

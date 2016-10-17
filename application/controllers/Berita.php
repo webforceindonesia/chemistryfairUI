@@ -30,9 +30,10 @@ class Berita extends CI_Controller {
 		$this->load->model('cms_news_model');
 		$content = $this->cms_news_model->pull_one($news_id);
 		
-		$data['news_title'] = $content->title;
-		$data['news_content'] = $content->content;
-		$data['news_created'] = $content->created;
+		$data['news_title'] 	= $content->title;
+		$data['news_content'] 	= $content->content;
+		$data['news_created'] 	= $content->created;
+		$data['image']			= $content->image;
 				
 		$page = "news_entry";
 		if (!file_exists (APPPATH.'views/'.$page.'.php'))

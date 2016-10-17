@@ -157,7 +157,10 @@
                         echo form_submit(array('class' => 'form-submit', 'name' => 'submit', 'value' => 'Upload'));
 
                         ?></form></p>
-                    <?php elseif ($user_submitted_makalah == NULL && new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK) < new DateTime()) : ?>  
+                    <?php elseif (new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK) < new DateTime() && $user_submitted_makalah == NULL) : ?>
+                        <p>Status : <span style="color:red">Upload Makalah Sudah Ditutup</span></p>
+                        <p>Maaf Jika Anda Belum Mengupload makalah, tetapi deadline makalah sudah lewat.</p>
+                    <?php elseif ($user_submitted_makalah == NULL) : ?>  
                         </form>
                         <p>Status : <span style="color:red">Menunggu Upload Makalah</span></p>
                         <p>Mohon mengupload karya makalah anda di tempat di bawah ini. Anda hanya bisa mengupload makalah satu kali saja, jadi mohon

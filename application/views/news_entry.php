@@ -8,10 +8,33 @@ function dateReverse ($date)
                 return $reversed;
             }
 ?>
+
+<style>
+    .image
+    {
+        width:100%;
+        margin-top: -50px;
+    }
+
+    .image img
+    {
+        max-height: 400px;
+    }
+
+    .news
+    {
+        padding:2em;
+    }
+</style>
+
 <section id="contentAll">
 	<div id="aboutUs">
-		<div class="container">
-			<div class="col-md-5">
+			<div class="col-md-12 brita">
+                <div class="image">
+                    <?php if($image): ?>
+                        <p align="center"><img src="<?php echo base_url() . $image; ?>"></p> 
+                    <?php endif; ?>
+                </div>
                 <div class="news">
                     <h1><?php echo $news_title; ?></h1>
                     <h5><?php echo dateReverse($news_created); ?></h5>
@@ -21,5 +44,4 @@ function dateReverse ($date)
                 </div>   	
             </div>
         </div>
-    </div>
  </section>

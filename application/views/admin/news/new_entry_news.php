@@ -15,10 +15,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 
                 if($article != '') 
                     {
-                        echo form_open ('admin/edit_news/' . $article->id);
+                        echo form_open_multipart ('admin/edit_news/' . $article->id);
                     }else
                     {
-                        echo form_open ('admin/new_news');
+                        echo form_open_multipart ('admin/new_news');
                     }
 
                 ?>
@@ -46,8 +46,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
                 <br><br>
-                <div class="col-md-4">
-                    <input type="submit" class="form-control">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Headline Image</h3><br>
+                        <input type="file" name="image" id="image" placeholder="Headline Image">
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-md-4 pull-right">
+                        <input type="submit" class="form-control">
+                    </div>
                 </div>
                 </form>
             </div> 

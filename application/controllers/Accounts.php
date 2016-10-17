@@ -589,7 +589,7 @@ class Accounts extends CI_Controller {
 	                		//Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('cip_participants');
-	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+	                		$data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
 	                		$this->db->update('cip_participants', $data);
 	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
 	                        redirect('akun/dashboard/cip');
@@ -1268,7 +1268,7 @@ class Accounts extends CI_Controller {
 	                		//Write to db
                             $this->db->where('account_id', $this->session->userdata('user_id'));
 	                		$this->db->select('seminar_participants');
-	                		$data = array('payment_proof_link' => $link . "/bukti_trf.JPG");
+	                		$data = array('payment_proof_link' => $link . "/bukti_trf.jpg");
 	                		$this->db->update('seminar_participants', $data);
 	                        $this->session->set_flashdata('upload', 'Upload Bukti Transfer Sukses!');
 	                        redirect('akun/dashboard/seminar');

@@ -31,6 +31,12 @@ class cms_news_model extends CI_Model {
 		return $this->db->get('cms_news')->row();
 	}
 
+	public function get_id_latest ()
+	{
+		$this->db->order_by('id', 'DESC');
+		return $this->db->get('cms_news')->row()->id;
+	}
+
 	public function write ()
 	{	
 		$this->title = $this->input->post('title');
