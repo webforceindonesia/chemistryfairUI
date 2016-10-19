@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i>1 September – 29 Oktober 2016</i><br/>
 
             <h3>Pengumuman Pemenang</h2>
-            <i>6 November 2016</i><br/>
+            <i>8 November 2016</i><br/>
 
             <h3>Exhibition Day</h2>
             <i>13 November 2016 (Voting juara terfavorit)</i><br/>
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h3>Chemistry Movie Project</h3>
             <b>Upload Online</b><br/>
             <i>1 September – 29 Oktober 2016</i><br/>
-            <i>Online di Akun Youtube Chemistry Fair</i><br/><br/>
+            <i>Online di akun Youtube peserta, kirim link video melalui website Chemistry Fair UI 2016</i><br/><br/>
 
             <b>Display</b><br/>
             <i>Minggu, 13 November 2016</i><br/>
@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <h3>Chemistry Photograph</h3>
             <b>Upload Online</b><br/>
             <i>1 September – 29 Oktober 2016</i><br/>
-            <i>Online di Akun Youtube Chemistry Fair</i><br/><br/>
+            <i>Upload melalui email cfcac2016@gmail.com</i><br/><br/>
 
             <b>Display</b><br/>
             <i>Minggu, 13 November 2016</i><br/>
