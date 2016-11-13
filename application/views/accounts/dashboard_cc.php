@@ -288,16 +288,17 @@
                         <p>Jika anda memiliki pertanyaan, silahkan menhubungi :</p>
                     <?php elseif ($user_payment_verified == 1) : ?>
                         <p>Status : <span style="color:blue">Menunggu Pengumuman Hasil Seleksi</span></p>
-                        <p>Tim kami akan mengumumkan hasil seleksi. Mohon menunggu akan konfirmasi
-                         dari pihak kami. Terima kasih.</p>
-                        <p>Jika anda memiliki pertanyaan, silahkan menhubungi :</p>
-                        <p>
-                        seleksi online akan dilaksanakan di www.scele.ui.ac.id pada tanggal 29 Oktober 2016.<br><br>
-                        Dibawahnya terdapat pernyataan bahwa akun scele.ui.ac.id akan segera dikirimkan ke email ketua tim, maksimal 1 hari setelah panitia mengkonfirmasi bukti pembayaran.<br><br>
-                        Try Out Seleksi Online Chemistry Competition dilaksanakan di scele.ui.ac.id pada tanggal 24, dan 25 Oktober 2016<br>
-                        Hasil seleksi online akan diumumkan pada tanggal 2 November 2016<br><br>
+                        <p>Akun scele.ui.ac.id akan segera dikirimkan ke email ketua tim, maksimal 1 hari setelah panitia mengkonfirmasi bukti pembayaran.<br>
+                        SELEKSI ONLINE CHEMISTRY COMPETITION DISELENGGERAKAN SERENTAK DI scele.ui.ac.id HARI SABTU TANGGAL 29 OKTOBER 2016 SEBANYAK 3 SESI<br>
+                        SESI 1: 09.00 – 11.00 WAKTU scele.ui.ac.id<br>
+                        SESI 1: 13.00 – 15.00 WAKTU scele.ui.ac.id<br>
+                        SESI 1: 16.00 – 18.00 WAKTU scele.ui.ac.id<br>
+                        Jika anda memiliki pertanyaan, silahkan menghubungi :<br>
+                        Willy       : +62 89677258455<br>
+                        Maryam  : +62 85795572070<br>
                         Tanggal Penting Waktu dan Tempat Seleksi Online:<br>
-                        Try Out Online Chemistry Competition: 24 & 25 Oktober 2016 di website scele.ui.ac.id<br>
+                        Try Out Online I Chemistry Competition:  24 Oktober 2016 di website scele.ui.ac.id<br>
+                        Try Out Online II Chemistry Competition: 28 Oktober 2016 di website scele.ui.ac.id <br>
                         Seleksi Online Chemistry Competition: 29 Oktober 2016 di website scele.ui.ac.id<br>
                         Pengumuman Hasil Seleksi Online Chemistry Competition: 2 November 2016 di Website CF 2016<br>
                         </p>

@@ -103,7 +103,7 @@ body
 	bottom:0;
 }
 
-#footerPar h3
+.footerPar h3
 {
 	margin-top:0;
 	font-weight:300;
@@ -496,7 +496,7 @@ body
 	width:100%;
 	position: relative;
 	bottom:0;
-	height: 100px;
+	height: 850px;
 	background:#202020;
 	padding-bottom: 3em;
 }
@@ -504,6 +504,12 @@ body
 #footerPartner h3
 {
 	font-size :18px;
+}
+
+.footerPar img
+{
+	padding-top:1em;
+	max-width:80px;
 }
 
 #footerPartner p

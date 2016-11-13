@@ -36,29 +36,92 @@
     </div>
 </section>
 <section id="footerPartner">
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-3 footerPar footer-quote-container">
             <h3>Website and Systems Build By</h3>
             <p>
                 ByteForce - Web Solutions
             </p>
-        </div>
-        <div class="col-md-2">
-            <p align="left">
+            <p align="center">
                 <img src="<?php echo base_url() ?>/images/byteforce.png" style="margin-left:0; margin-top:-0.5em; max-height:100px;">
             </p>
         </div>
-        <div class="col-md-7 footerPar footer-contact-container">
-        <div class="col-md-6">
-            <div style="margin-top:-1em;"><h3 align="left">Our Partners</h3></div>
-            <!-- Logo Partners -->
-        </div>     
-        <div class="col-md-6"> 
-        <br><br>          
-            <!-- Logo Partners -->
-        </div>  
-    </div>
+        <div class="col-md-9 footerPar footer-contact-container">
+            <div class="col-md-4">
+                <br>
+                <div style="margin-top:-1em;"><h3 align="left">Supported By</h3></div>
+                <p align="center">
+                    <img src="<?php echo base_url()?>images/ristekdikti2.png">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/hki.png">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/kemendikbud.png">
+                </p>
+            </div>     
+            <div class="col-md-4">
+                <br>
+                <div style="margin-top:-1em;"><h3 align="left">Sponsored By</h3></div>
+                <p align="center">
+                    <img src="<?php echo base_url()?>images/sponsors/faber.png">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/elex.jpg">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/tempo.jpg">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/milo.jpg">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/pondan.png">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/logomedcobpmigas.jpg">
+                    <br><br>
+                    <img src="<?php echo base_url()?>images/sponsors/nescafe.png">
+                    <br><br>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <br>
+                <p align="center"> 
+                    <div class="col-md-6">
+                    <div style="margin-top:-1em;"><h3 align="left">Media Partners</h3></div>
+                        <img src="<?php echo base_url()?>images/medpar/goodnews.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/infokampus.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/qna.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/jadwalevent.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/berandajogja.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/infoui.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/ui.png">
+                        <br><br>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="<?php echo base_url()?>images/medpar/jobstreet.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/am.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/kabarkampus.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/kitatv.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/ozjkt.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/inspiratorfreak.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/studentjob.jpg">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/radar.png">
+                        <br><br>
+                        <img src="<?php echo base_url()?>images/medpar/provoke.jpg">
+                        <br><br>
+                    </div>
+                </p>
+            </div>  
+        </div>
     </div>
 </div>
 </section>

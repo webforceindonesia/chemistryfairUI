@@ -666,7 +666,6 @@ class Admin extends CI_Controller {
 	function delete_account($account_id)
 	{
 		$this->db->where('id', $account_id);
-        $this->db->limit(1);
         $this->db->delete('accounts');
         $this->session->set_flashdata('success', 'Success in Delete Akun');
         redirect('admin');

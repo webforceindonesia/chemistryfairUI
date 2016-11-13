@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			    </div>
             </div>
             <div class="row" id="homePage">
-            	<div class="col-md-6">
+            	<div class="col-md-4">
                 	<h1><i>Berita</i></h1>
                     <div id="berita">
                     <?php foreach ($news as $article): ?>
@@ -75,19 +75,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php endif; ?>
                     <br/><br/>
 
-                    <?php if (new DateTime() > new DateTime(CF_CC_OPEN_REGISTRATION)) : ?>
-                        <b>Penutupan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_CLOSE_REGISTRATION))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php elseif (new DateTime() > new DateTime(CF_CC_CLOSE_REGISTRATION)) : ?>
-                        Pendaftaran <i>Chemistry Competition</i> sudah ditutup!
-                    <?php else : ?>
-                        <b>Pembukaan</b> pendaftaran <i>Chemistry Competition</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CC_OPEN_REGISTRATION))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php endif; ?>
-                    <br/><br/>
-
                     <?php if (new DateTime() > new DateTime(CF_CAC_OPEN_REGISTRATION)) : ?>
                         <b>Penutupan</b> pendaftaran <i>Chemistry Art Competition</i> &nbsp;adalah&nbsp;
                         <b><?php echo (new DateTime())->diff(new DateTime(CF_CAC_CLOSE_REGISTRATION))->days; ?></b>
@@ -101,20 +88,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php endif; ?>
                     <br/><br/>
 
-                    <?php if (new DateTime() > new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK)) : ?>
-                        <b>Batas Pengumpulan</b> MAKALAH <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php elseif (new DateTime() > new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK)) : ?>
-                        Pengumpulan MAKALAH <i>Chemistry Innovation Project</i> sudah DITUTUP!
-                    <?php else : ?>
-                        <b>Batas Pengumpulan</b> MAKALAH <i>Chemistry Innovation Project</i> &nbsp;adalah&nbsp;
-                        <b><?php echo (new DateTime())->diff(new DateTime(CF_CIP_PENGUMUMAN_ABSTRAK))->days; ?></b>
-                        &nbsp;hari lagi!
-                    <?php endif; ?>
-                    <br/><br/>
-
                 </div>
+                <div class="col-md-2"></div>
             	<div class="col-md-6">
                 	<h1><i>Timeline</i></h1>
                         <section class = "timeline" id="timeline">
@@ -133,8 +108,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </li>
                                 <li>
                                     <div>
-                                    <time><span class ="tanggal">1-22</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <time><span class ="tanggal">1-26</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
                                     <span class = "timelinedesc">Pendaftaran Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">2</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Penutupan Pendaftaran Chemistry Art Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">8</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman pemenang CMP & CP</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">18</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Penutupan Pendaftaran Seminar Nasional</span>
                                     </div>
                                 </li>
                                 <li>
@@ -145,20 +138,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </li>
                                 <li>
                                     <div>
-                                    <time><span class ="tanggal">27-17</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <time><span class ="tanggal">27-25</span><br><span class ="bulan">SEPTEMBER - OKTOBER</span><BR><span class ="tahun">2016</span></time>
                                     <span class = "timelinedesc">Pembayaran biaya registrasi ulang dan pengiriman makalah CIP</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">24</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
-                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi) dan Try Out Chemistry Competition</span>
+                                    <span class = "timelinedesc">Pengumuman lolos makalah (8 terbaik tingkat SMA/sederajat dan 8 terbaik tingkat Perguruan Tinggi) dan Try Out 1 Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">28</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Try Out 2 Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
                                     <time><span class ="tanggal">29</span><br><span class ="bulan">OKTOBER</span><BR><span class ="tahun">2016</span></time>
                                     <span class = "timelinedesc">Pelaksanaan Babak Penyisihan Online Chemistry Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">2</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman Perempat Finalis Competition</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">12</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Perempat Final Chemistry Competition</span>
                                     </div>
                                 </li>
                                 <li>
@@ -189,6 +200,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div>
                                     <time><span class ="tanggal">26</span><br><span class ="bulan">NOVEMBER</span><BR><span class ="tahun">2016</span></time>
                                     <span class = "timelinedesc">Pelaksanaan National Seminar Chemistry Fair 2016 dan Penutupan Chemistry Fair 2016</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                    <time><span class ="tanggal">29</span><br><span class ="bulan">OCTOBER</span><BR><span class ="tahun">2016</span></time>
+                                    <span class = "timelinedesc">Pengumuman Finalis Chemistry Innovation Project</span>
                                     </div>
                                 </li>
                             </ul>

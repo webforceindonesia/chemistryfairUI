@@ -78,7 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $(document).ready( function () {
     $('#akun').DataTable({
-      responsive:true
+      responsive:true,
+      "lengthMenu": [[10, 25, 50, 100, 250, 400, -1], [10, 25, 50, 100, 250, 400, "All"]]
     });
 } );
 

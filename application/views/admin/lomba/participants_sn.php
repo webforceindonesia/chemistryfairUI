@@ -130,10 +130,10 @@ $(document).ready( function () {
 	        				</td>
 	        				<td style="font-size:18px;">
 	        				<?php if($row->payment_proof_link != NULL): ?>
-	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cc/'.$row->account_id) ?>">
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/seminar/'.$row->account_id) ?>">
 	        						<i class="fa fa-money" aria-hidden="true"></i>
 	        					</a><br>
-	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/cc/'.$row->account_id.'/invalid') ?>">
+	        					<a href="<?php echo base_url('admin/konfirmasi/pembayaran/seminar/'.$row->account_id.'/invalid') ?>">
 	        						<i class="fa fa-times" aria-hidden="true"></i>
 	        					</a><br>
 	        				<?php endif; ?>

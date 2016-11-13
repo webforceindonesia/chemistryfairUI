@@ -181,16 +181,11 @@
 
 	#footerPartner
 	{
-		height: 300px;
+		height: 2000px;
 	}
 }
 
 @media handheld, screen and (max-width: 1200px) and (min-width: 995px) {
-
-	#footerPartner
-	{
-		height: 300px;
-	}
 	
 	#countdown
 	{
@@ -204,7 +199,7 @@
 
 	#footerPartner
 	{
-		height: 300px;
+		height: 2100px;
 	}
 }
 
@@ -270,7 +265,7 @@
 
 	#footerPartner
 	{
-		height: 300px;
+		height: 2100px;
 	}
 
 	#countdown
@@ -343,7 +338,7 @@
 
 	#footerPartner
 	{
-		height: 300px;
+		height: 2800px;
 	}
 
 	#countdown
@@ -418,7 +413,7 @@
 
   	#footerPartner
 	{
-		height: 300px;
+		height: 2800px;
 	}
   
   #content
@@ -456,7 +451,7 @@
 
   	#footerPartner
 	{
-		height: 300px;
+		height: 2800px;
 	}
 	
   #content
@@ -494,7 +489,7 @@
 
   	#footerPartner
 	{
-		height: 300px;
+		height: 2800px;
 	}
 	  
   #content
